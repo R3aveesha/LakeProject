@@ -5,7 +5,7 @@ import './App.css'
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
 import Home from './pages/Home'
 import AdminLogin from './pages/AdiminLogin'
-import Footer from './common/Footer'
+import LoginSelector from './pages/Loginselector'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -18,7 +18,7 @@ function App() {
 
           <Route path='/Home' element={<Home/>}></Route>
           <Route path='/AdminLogin' element={<AdminLogin/>}></Route>
-          <Route path ="/footer" element={<Footer/>}></Route>
+          <Route path='/LoginSelector' element={<LoginSelector/>}></Route>
       </Routes>
     </Router>
   

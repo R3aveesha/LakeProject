@@ -1,12 +1,17 @@
+
+
 .footer-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    background-color: #1d2d50;
-    padding: 100px;
+    background-color: #1e3567;
+    padding: 10px 50px;
+    margin-top: 400px;
     color: #ffffff;
-    flex-wrap: wrap;
+    width: 100%; 
+    box-sizing: border-box;
+    position: relative;
 }
 
 .Logo {
@@ -19,7 +24,7 @@
 .about-us-container {
     flex: 1;
     max-width: 300px;
-    margin: 10px 40px; /* Increase horizontal margin for more space between containers */
+    margin: 10px 0px;
 }
 
 .contacts-container h3 {
@@ -45,7 +50,7 @@
     .contacts-container, 
     .about-us-container {
         max-width: 100%;
-        margin: 10px 0; /* Reduce horizontal margin for centered layout */
+        margin: 10px 0;
         text-align: center;
     }
 }

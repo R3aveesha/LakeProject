@@ -1,0 +1,47 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1c2e;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .login-page {
+    text-align: center;
+    color: white;
+  }
+  
+  .register-btn {
+    background-color: #333;
+  }
+  
+  .login-options {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0px;
+    margin-top: 200px;
+  }
+  
+  .login-btn {
+    background-color: #fca311;
+    color: black;
+    border: none;
+    padding: 30px;
+    margin: 0 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    width: 200px;
+  }
+  
+  .staff-login {
+    background-color: #9baacf;
+  }
+  
+  .admin-login {
+    background-color: #a7e3e6;
+  }
+  
+  
+  
+  
