@@ -3,7 +3,9 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
-import Visitor from './routes/Visitor'
+import Home from './pages/Home'
+import AdminLogin from './pages/AdiminLogin'
+import Footer from './common/Footer'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -14,30 +16,9 @@ function App() {
     <Router>
       <Routes>
 
-        {
-          userType=="" && (
-            <Visitor />
-          )
-        }
-        {
-          userType=="loggedUser" && (
-            <Routes>
-              <Route path='/' element={<HomePage />}></Route>
-              <Route path='/about' element={<AboutPage />}></Route>
-              <Route path='/dashboard' element={<HomePage />}></Route>
-              <Route path='/profile' element={<AboutPage />}></Route>
-            </Routes>
-          )
-        }
-        {
-          userType=="admin" && (
-            <Routes>
-              <Route path='/adminDashboard' element={<AdminDashboard />}></Route>
-              <Route path='/AdminProfile' element={<AdminProfile />}></Route>
-            </Routes>
-          )
-        }
-
+          <Route path='/Home' element={<Home/>}></Route>
+          <Route path='/AdminLogin' element={<AdminLogin/>}></Route>
+          <Route path ="/footer" element={<Footer/>}></Route>
       </Routes>
     </Router>
   
