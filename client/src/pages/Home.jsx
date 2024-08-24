@@ -4,8 +4,8 @@ import './Home.css';
 const Home = () => {
   return (
     <div className="home-container">
-      <a href="/">
-        <div className="card badminton">
+      <a href="/" className="card badminton" >
+        <div>
           <h2>Badminton</h2>
           <p>Now Available!</p>
         </div>

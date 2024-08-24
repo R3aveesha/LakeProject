@@ -1,0 +1,57 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #1b1f38; 
+    font-family: Arial, sans-serif;
+  }
+  
+ .admin-dashboard {
+    text-align: center;
+    color: #ffffff;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+
+  .admin-dashboard h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+ 
+  .manager-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .manager-button {
+    background-color: #dcdcdc; 
+    border: none;
+    border-radius: 10px;
+    padding: 25px;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+  }
+  
+  .manager-button:hover {
+    background-color: #c0c0c0; 
+  }
+  
+ 
+  @media (max-width: 600px) {
+    .manager-grid {
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
+    }
+  }
+  
