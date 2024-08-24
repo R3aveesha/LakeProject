@@ -1,0 +1,74 @@
+/* Container to center the login box on the page */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #1b1f38; /* Dark blue background color */
+}
+
+/* Styling for the login box */
+.login-box {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  height: 20px;
+  text-align: center;
+}
+
+/* Styling for the form labels and input fields */
+.input-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #333333;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+/* Styling for the Sign In button */
+.login-button {
+  width: 100%;
+  padding: 0.7rem;
+  background-color: #ffcc00;
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #e6b800;
+}
+
+/* Placeholder for the footer section (add styles if needed) */
+.login-footer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.login-footer a {
+  color: #000000;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.login-footer a:hover {
+  text-decoration: underline;
+}
