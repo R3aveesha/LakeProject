@@ -14,8 +14,7 @@ function App() {
         <button className="login-btn staff-login">Staff Login</button>
         <button className="login-btn admin-login">Administrator Login</button>
       </main>
-
-        <Footer/>
+    <Footer/>
         
     </div>
   );

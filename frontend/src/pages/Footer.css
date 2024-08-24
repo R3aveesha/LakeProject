@@ -6,7 +6,7 @@
     justify-content: space-between;
     align-items: flex-start;
     background-color: #1e3567;
-    padding: 10px 50px;
+    /* padding: 10px 50px; */
     margin-top: 400px;
     color: #ffffff;
     width: 100%; 
@@ -36,7 +36,7 @@
     margin: 5px 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: auto) {
     .footer-container {
         flex-direction: column;
         align-items: center;
