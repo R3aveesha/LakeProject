@@ -1,9 +1,8 @@
 import React from 'react';
 import styles from '../gamesManagement/IndoorGames.module.css';
-/* import badminton from '../../images/badminton.jpg'; */
 
 const games = [
-  /* { name: 'Bowling', image: `url(${badminton})` }, */
+  { name: 'Bowling', image: '' },
   { name: 'Horse Riding', image: 'horse-riding.jpg' },
   { name: 'Archery', image: 'archery.jpg' },
   { name: 'Football', image: 'football.jpg' },
