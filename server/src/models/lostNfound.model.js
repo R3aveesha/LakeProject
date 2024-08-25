@@ -9,7 +9,7 @@ const LostNFoundSchema = new Schema({
     email: {type: String,
         required: true},
 
-    contactNumber: {type: Number, default: 0},
+    contactNumber: {type: String, default: 0},
 
     foundItemsCategory: {type: String, enum: ["Sport", "Accessories"], required: true},
 

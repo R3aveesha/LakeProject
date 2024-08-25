@@ -37,37 +37,36 @@ exports.addOrder = async (req, res) => {
 
 exports.updateOrder = async (req, res) => {
     try {
-        const orderId = req.params.id; // Get the order ID from the URL parameter
+        const orderId = req.params.id; 
 
-        // Extract the fields to be updated from the request body
+        
         const updates = {
-            meals: req.body.meals, // Array of meals with food and quantity
-            totalPrice: req.body.totalPrice,
+            meals: req.body.meals, 
             isCompleted: req.body.isCompleted
         };
 
-        // Remove undefined fields to avoid accidental overwriting of existing fields with undefined
+        
         Object.keys(updates).forEach((key) => {
             if (updates[key] === undefined) {
                 delete updates[key];
             }
         });
 
-        // Find the order by ID and update it
+        
         const updatedOrder = await Order.findByIdAndUpdate(orderId, updates, {
-            new: true, // Return the updated document
-            runValidators: true // Run validation against the model's schema
+            new: true, 
+            runValidators: true 
         });
 
-        // Check if the order was found and updated
+        
         if (!updatedOrder) {
             return res.status(404).send({ message: 'Order not found' });
         }
 
-        // Respond with the updated order
+        
         return res.status(200).json(updatedOrder);
     } catch (error) {
-        // Handle any errors
+        
         return res.status(500).json({ error: error.message });
     }
 };

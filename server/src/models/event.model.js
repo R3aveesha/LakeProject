@@ -8,7 +8,7 @@ const EventSchema = new mongoose.Schema({
     date: Date,
     start_date: Date,
     end_time: Date,
-    capacity: number,
+    capacity: Number,
     participants: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Participant' }],
     location: String,
     status: { type: String, enum: ['active', 'cancelled', 'ongoing'], default: 'active' },
