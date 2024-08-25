@@ -1,4 +1,4 @@
-const LostNFound = require("../models/lostNFound.model");
+const LostNFound = require("../models/lostNfound.model");
 
 exports.addLostAndFound = async (req, res) => {
   try {
