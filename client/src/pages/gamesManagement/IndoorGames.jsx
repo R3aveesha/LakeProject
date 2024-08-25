@@ -1,29 +1,36 @@
 import React from 'react';
-import './IndoorGames.css';
+import styles from '../gamesManagement/IndoorGames.module.css';
+import badminton from '../../images/badminton.jpg';
 
-const IndoorGames = () => {
-    const sports = [
-        { id: 1, name: "Bowling", img: "" },
-        { id: 2, name: "Horse Riding", img: "" },
-        { id: 3, name: "Archery", img: "" },
-        { id: 4, name: "Football", img: "" },
-        { id: 5, name: "Water Sports", img: "" },
-        { id: 6, name: "Badminton", img: "" },
-        { id: 7, name: "Video Gaming", img: "" },
-        { id: 8, name: "Cricket", img: "" },
-      ];
-    return (
-        <div className="sports-grid">
-            <h2>Indoor Games</h2>
-      {sports.map(sport => (
-        <div key={sport.id} className="sport-card">
-          <img src={sport.img} alt={sport.name} />
-          <h3>{sport.name}</h3>
-          <button>View</button>
-        </div>
-      ))}
+const games = [
+  { name: 'Bowling', image: `url(${badminton})` },
+  { name: 'Horse Riding', image: 'horse-riding.jpg' },
+  { name: 'Archery', image: 'archery.jpg' },
+  { name: 'Football', image: 'football.jpg' },
+  { name: 'Water Sports', image: 'water-sports.jpg' },
+  { name: 'Badminton', image: 'badminton.jpg' },
+  { name: 'Gaming', image: 'gaming.jpg' },
+  { name: 'Cricket', image: 'cricket.jpg' },
+];
+
+const Games = () => {
+  return (
+    <div className={styles.gamesContainer}>
+      <div className={styles.searchBar}>
+        <input type="text" placeholder="Search Games" />
+        <button className={styles.searchButton}>🔍</button>
+      </div>
+      <div className={styles.gamesGrid}>
+        {games.map((game, index) => (
+          <div key={index} className={styles.gameCard}>
+            <img src={`../Images/${game.image}`} alt={game.name} />
+            <h2>{game.name}</h2>
+            <button className={styles.viewButton}>View</button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
 
-export default IndoorGames;
+export default Games;
