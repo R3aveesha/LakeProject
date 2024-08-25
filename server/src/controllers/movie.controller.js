@@ -1,5 +1,4 @@
-const movie = require("../models/movie.model.js");
-const { addAvailableTimes } = require("./game.controller.js");
+const Movie = require("../models/movie.model.js");
 
 /**
  * @function getMovies
@@ -8,7 +7,7 @@ const { addAvailableTimes } = require("./game.controller.js");
  */
 exports.getMovies = async (req, res) => {
   try {
-    const movies = await movie.find();
+    const movies = await Movie.find();
     res.json(movies);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -24,7 +23,7 @@ exports.getMovies = async (req, res) => {
  */
 exports.getMovieById = async (req, res) => {
   try {
-    const movie = await movie.findById(req.params.id);
+    const movie = await Movie.findById(req.params.id);
     if (!movie) {
       throw new Error("Movie not found");
     }
@@ -41,12 +40,15 @@ exports.getMovieById = async (req, res) => {
  * @param {string} req.body.name The name of the movie
  * @param {string} req.body.category The category of the movie
  * @param {Date[]} req.body.availableTimes The available times of the movie
+ * @param {number} req.body.duration The duration of the movie
+ * @param {number} req.body.price The price of the movie
+ * @param {string} req.body.description The description of the movie
  * @returns {Promise<Movie>} A promise that resolves with the newly created movie
  */
 exports.createMovie = async (req, res) => {
   try {
-    const { name, category, availableTimes } = req.body;
-    const movie = new movie({
+    const { name, category, availableTimes, duration, price, description } = req.body;
+    const newMovie = new Movie({
       name,
       category,
       availableTimes,
@@ -54,8 +56,8 @@ exports.createMovie = async (req, res) => {
       price,
       description,
     });
-    await movie.save();
-    res.status(201).json(movie);
+    await newMovie.save();
+    res.status(201).json(newMovie);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -71,9 +73,10 @@ exports.createMovie = async (req, res) => {
 exports.updateMovie = async (req, res) => {
   try {
     const movieId = req.params.id;
-    const updatedMovie = await movie.findByIdAndUpdate(movieId, req.body, {
-      new: true,
-    });
+    const updatedMovie = await Movie.findByIdAndUpdate(movieId, req.body, { new: true });
+    if (!updatedMovie) {
+      throw new Error("Movie not found");
+    }
     res.json(updatedMovie);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -89,7 +92,10 @@ exports.updateMovie = async (req, res) => {
 exports.deleteMovie = async (req, res) => {
   try {
     const movieId = req.params.id;
-    const deletedMovie = await movie.findByIdAndDelete(movieId);
+    const deletedMovie = await Movie.findByIdAndDelete(movieId);
+    if (!deletedMovie) {
+      throw new Error("Movie not found");
+    }
     res.json(deletedMovie);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -106,13 +112,18 @@ exports.deleteMovie = async (req, res) => {
 exports.addAvailableTimes = async (req, res) => {
   try {
     const movieId = req.params.id;
-    const movie = await movie.findById(movieId);
+    const movie = await Movie.findById(movieId);
+    if (!movie) {
+      throw new Error("Movie not found");
+    }
     movie.availableTimes.push(...req.body.availableTimes);
     await movie.save();
+    res.json(movie);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
+
 
 /**
  * @function removeAvailableTimes
@@ -124,20 +135,36 @@ exports.addAvailableTimes = async (req, res) => {
 exports.removeAvailableTimes = async (req, res) => {
   try {
     const movieId = req.params.id;
-    const movie = await movie.findById(movieId);
+    // console.log("Movie ID:", movieId);
+    // console.log("Request Body:", req.body);
+
+    const movie = await Movie.findById(movieId);
+    if (!movie) {
+      return res.status(404).json({ error: "Movie not found" });
+    }
+
+    // Ensure availableTimes are Date objects
+    const availableTimesToRemove = req.body.availableTimes.map(time => new Date(time));
+
     movie.availableTimes = movie.availableTimes.filter(
-      (time) => !req.body.availableTimes.includes(time)
+      (time) => !availableTimesToRemove.some(removeTime => removeTime.getTime() === new Date(time).getTime())
     );
+
     await movie.save();
+    res.json(movie);
   } catch (err) {
+    console.error(err); // Use a logging library in production
     res.status(500).json({ error: err.message });
   }
 };
+
+
 
 /**
  * @function addRatingsToMovie
  * @description Add ratings to a movie
  * @param {string} req.params.id The ID of the movie to add ratings to
+ * @param {Object[]} req.body.ratings The ratings to add
  * @param {string} req.body.ratings[].customerId The ID of the customer who rated the movie
  * @param {number} req.body.ratings[].score The score given by the customer
  * @param {string} req.body.ratings[].feedback The feedback given by the customer
@@ -146,9 +173,59 @@ exports.removeAvailableTimes = async (req, res) => {
 exports.addRatingsToMovie = async (req, res) => {
   try {
     const movieId = req.params.id;
-    const movie = await movie.findById(movieId);
+    const { ratings } = req.body;
+    const movie = await Movie.findById(movieId);
+    if (!movie) {
+      throw new Error("Movie not found");
+    }
+    movie.ratings.push(...ratings);
+    await movie.save();
+    res.json(movie);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+/**
+ * @function addFeedbackRating
+ * @description Add a feedback rating to a movie
+ * @param {string} req.params.id The ID of the movie to add feedback rating to
+ * @param {Object} req.body The feedback rating to add
+ * @param {string} req.body.customerId The ID of the customer who provided the feedback
+ * @param {number} req.body.score The score given by the customer
+ * @param {string} req.body.feedback The feedback given by the customer
+ * @returns {Promise<Movie>} A promise that resolves with the updated movie
+ */
+exports.addFeedbackRating = async (req, res) => {
+  try {
+    const movieId = req.params.id;
+    const { customerId, score, feedback } = req.body;
+    const movie = await Movie.findById(movieId);
+    if (!movie) {
+      throw new Error("Movie not found");
+    }
     movie.ratings.push({ customerId, score, feedback });
     await movie.save();
+    res.json(movie);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+/**
+ * @function viewFeedbackRatings
+ * @description View all feedback ratings for a movie
+ * @param {string} req.params.id The ID of the movie to view feedback ratings for
+ * @returns {Promise<Object[]>} A promise that resolves with an array of feedback ratings
+ */
+exports.viewFeedbackRatings = async (req, res) => {
+  try {
+    const movieId = req.params.id;
+    const movie = await Movie.findById(movieId);
+    if (!movie) {
+      throw new Error("Movie not found");
+    }
+    res.json(movie.ratings);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
