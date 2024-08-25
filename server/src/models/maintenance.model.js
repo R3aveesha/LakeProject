@@ -1,32 +1,30 @@
-const mongoose = require('mongoose')
-const Schema =mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const maintenanceSchema=new Schema({
+const maintenanceSchema = new Schema({
     
     taskId: {
         type: String,
-        required: true
+        required: true,
+        unique: true
       },
       taskName: {
         type: String,
         required: true
       },
       description: {
-        type: String,
-        required: true
+        type: String
       },
       status: {
         type: String,
-        enum: ['Pending', 'In Progress', 'Completed'], // Example statuses, you can adjust as necessary
-        required: true
+        enum: ['Pending', 'In Progress', 'Completed', 'Cancelled'], // Example statuses
+        default: 'Pending'
       },
       assignedTo: {
-        type: String, // You might replace this with a reference to a User model if necessary
-        required: true
+        type: String
       },
       scheduledDate: {
-        type: Date,
-        required: true
+        type: Date
       },
       createdAt: {
         type: Date,
@@ -36,6 +34,6 @@ const maintenanceSchema=new Schema({
         type: Date,
         default: Date.now
       }
-})
+});
 
-module.exports=mongoose.model('maintenance',maintenanceSchema)
+module.exports = mongoose.model('Maintenance', maintenanceSchema)

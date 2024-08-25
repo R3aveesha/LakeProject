@@ -1,8 +1,11 @@
-const express = require('express')
-const router = exprsss.Router();
+const express = require('express');
+const router = express.Router();
 const maintenanceController = require('../controllers/maintenance.controller.js');
 
-router.get('/maintenances', maintenanceController.getMaintenances); // get all maintenances
-router.post('/maintenances',maintenanceController.addResources);//add resources
-router.delete('/maintenances/:id',maintenanceController.deleteResources);//delete resources
-router.put('/maintenance/:id',updateMaintenance.updategame);//update maintenance
+
+router.get('/maintenances', maintenanceController.getMaintenance);
+router.post('/maintenances', maintenanceController.addMaintenance);
+router.put('/maintenances/:id', maintenanceController.updateMaintenance);
+router.delete('/maintenances/:id', maintenanceController.deleteMaintenance);
+
+module.exports = router
