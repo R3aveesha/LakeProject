@@ -3,6 +3,8 @@ const express = require("express");
 const gameRoutes = require('./games.route.js');
 const authRoutes = require('./auth.route.js');
 const movieRoutes = require('./movie.route.js');
+const eventRoutes = require('./event.route.js');
+const customerRoutes = require('./customer.route.js');
 
 const router = express.Router();
 
@@ -13,5 +15,7 @@ router.get("/", (req, res) => {
 router.use("/games", gameRoutes);
 router.use("/auth",authRoutes);
 router.use("/movies", movieRoutes);
+router.use("/event", eventRoutes);
+router.use("/customer", customerRoutes);
 
 module.exports = router;
