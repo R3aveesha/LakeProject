@@ -5,6 +5,8 @@ const authRoutes = require('./auth.route.js');
 const resourceRoutes = require('./resource.route.js');
 const movieRoutes = require('./movie.route.js');
 const maintenanceRoutes = require('./maintenance.route.js');
+const eventRoutes = require('./event.route.js');
+const customerRoutes = require('./customer.route.js');
 
 const router = express.Router();
 
