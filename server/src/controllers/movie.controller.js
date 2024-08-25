@@ -47,7 +47,8 @@ exports.getMovieById = async (req, res) => {
  */
 exports.createMovie = async (req, res) => {
   try {
-    const { name, category, availableTimes, duration, price, description } = req.body;
+    const { name, category, availableTimes, duration, price, description } =
+      req.body;
     const newMovie = new Movie({
       name,
       category,
@@ -73,7 +74,9 @@ exports.createMovie = async (req, res) => {
 exports.updateMovie = async (req, res) => {
   try {
     const movieId = req.params.id;
-    const updatedMovie = await Movie.findByIdAndUpdate(movieId, req.body, { new: true });
+    const updatedMovie = await Movie.findByIdAndUpdate(movieId, req.body, {
+      new: true,
+    });
     if (!updatedMovie) {
       throw new Error("Movie not found");
     }
@@ -124,7 +127,6 @@ exports.addAvailableTimes = async (req, res) => {
   }
 };
 
-
 /**
  * @function removeAvailableTimes
  * @description Remove available times from a movie
@@ -144,10 +146,15 @@ exports.removeAvailableTimes = async (req, res) => {
     }
 
     // Ensure availableTimes are Date objects
-    const availableTimesToRemove = req.body.availableTimes.map(time => new Date(time));
+    const availableTimesToRemove = req.body.availableTimes.map(
+      (time) => new Date(time)
+    );
 
     movie.availableTimes = movie.availableTimes.filter(
-      (time) => !availableTimesToRemove.some(removeTime => removeTime.getTime() === new Date(time).getTime())
+      (time) =>
+        !availableTimesToRemove.some(
+          (removeTime) => removeTime.getTime() === new Date(time).getTime()
+        )
     );
 
     await movie.save();
@@ -157,8 +164,6 @@ exports.removeAvailableTimes = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-
-
 
 /**
  * @function addRatingsToMovie
