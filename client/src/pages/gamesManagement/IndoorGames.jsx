@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../gamesManagement/IndoorGames.module.css';
-import badminton from '../../images/badminton.jpg';
+
 
 const games = [
   { name: 'Bowling', image: `url(${badminton})` },
