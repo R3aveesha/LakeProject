@@ -1,0 +1,51 @@
+/* Login.module.css */
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  background-color: #1b1f38;
+}
+
+.loginForm {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.inputField {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-left: auto;
+  
+}
+
+.button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #FFBB00;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: auto
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.errorMessage {
+  color: red;
+  margin-bottom: 1rem;
+}

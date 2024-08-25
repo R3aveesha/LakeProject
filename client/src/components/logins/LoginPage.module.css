@@ -1,0 +1,48 @@
+* {
+    margin: 20px;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #1c2331;
+    font-family: Arial, sans-serif;
+  }
+  
+  .logincontainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .loginbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 220px;
+    text-decoration: none;
+    color: #000;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+  }
+  
+  .loginbox:hover {
+    transform: scale(1.05);
+  }
+  
+  .loginboxcustomer {
+    background-color: #cda334;
+  }
+  
+  .loginboxstaff {
+    background-color: #a3acd8;
+  }
+  
+  .loginboxadmin {
+    background-color: #a7dcd9;
+  }
+  
