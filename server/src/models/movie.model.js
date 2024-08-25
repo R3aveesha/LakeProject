@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const GameSchema = new Schema(
+const MovieSchema = new Schema(
   {
     name: { type: String, required: true },
     category: { type: String, required: true },
@@ -9,7 +9,7 @@ const GameSchema = new Schema(
     duration: { type: Number, required: true },
     price: { type: Number, required: true },
     artists: [{ type: String }],
-    description: { type: String },
+    description: { type: String,required: true },
     ratings: [
       {
         customerId: { type: Schema.Types.ObjectId, ref: "Customer" },
@@ -21,4 +21,4 @@ const GameSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Game", GameSchema);
+module.exports = mongoose.model("Movie",MovieSchema);
