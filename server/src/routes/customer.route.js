@@ -9,6 +9,5 @@ router.post('/reminders/:eventId', customerController.setRemindersForEvent);
 router.post('/book/:eventId', customerController.bookEvent);
 router.get('/notifications/:userId', customerController.receiveNotifications);
 router.post('/feedback', customerController.addFeedback);
-router.get('/search', customerController.searchEvents);
 
 module.exports = router;
