@@ -10,7 +10,7 @@ router.delete('/delete/:id', eventController.deleteEvent);
 router.post('/cancel/:id', eventController.cancelEvent);
 router.get('/notifications/:userId', eventController.viewNotifications);
 router.get('/participants/:id', eventController.viewParticipants);
-router.get('/logs/:id', eventController.viewEventLogs);
+//router.get('/logs/:id', eventController.viewEventLogs);
 router.get('/payments/:id', eventController.viewPayments);
 router.post('/payments/:paymentId', eventController.acceptOrRejectPayment);
 
