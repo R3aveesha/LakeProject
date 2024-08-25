@@ -6,6 +6,8 @@ const foodRoutes = require('./food.route.js');
 const orderRoutes = require('./order.route.js');
 const feedRoutes = require('./feedback.route');
 const movieRoutes = require('./movie.route.js');
+const eventRoutes = require('./event.route.js');
+const customerRoutes = require('./customer.route.js');
 
 const router = express.Router();
 
@@ -19,5 +21,7 @@ router.use("/food",foodRoutes);
 router.use("/order", orderRoutes);
 router.use("/feedback", feedRoutes);
 router.use("/movies", movieRoutes);
+router.use("/event", eventRoutes);
+router.use("/customer", customerRoutes);
 
 module.exports = router;
