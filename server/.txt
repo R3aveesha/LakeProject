@@ -1,0 +1,4 @@
+game
+feedback
+rating
+slot
