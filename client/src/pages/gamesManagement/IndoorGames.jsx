@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from '../gamesManagement/IndoorGames.module.css';
 
-
 const games = [
   { name: 'Bowling', image: '' },
   { name: 'Horse Riding', image: 'horse-riding.jpg' },
