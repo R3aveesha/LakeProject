@@ -28,5 +28,6 @@ router.use("/movies", movieRoutes);
 router.use("/maintenance", maintenanceRoutes);
 router.use("/event", eventRoutes);
 router.use("/booking", bookingRoutes);
+router.use("/customer", customerRoutes);
 
 module.exports = router;
