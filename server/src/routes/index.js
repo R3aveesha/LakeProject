@@ -18,5 +18,4 @@ router.use("/resource", resourceRoutes);
 router.use("/movies", movieRoutes);
 router.use("/maintenance", maintenanceRoutes);
 
-
 module.exports = router;
