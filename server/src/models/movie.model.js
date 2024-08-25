@@ -3,13 +3,13 @@ const Schema = mongoose.Schema;
 
 const MovieSchema = new Schema(
   {
-    name: { type: String, required: true },
+    name: { type: String, required: true, unique: true, index: true },
     category: { type: String, required: true },
-    availableTimes: [{ type: Date }],
+    availableTimes: { type: [Date], default: [] },
     duration: { type: Number, required: true },
     price: { type: Number, required: true },
-    artists: [{ type: String }],
-    description: { type: String,required: true },
+    artists: { type: [String], default: [] },
+    description: { type: String, required: true },
     ratings: [
       {
         customerId: { type: Schema.Types.ObjectId, ref: "Customer" },
@@ -21,4 +21,11 @@ const MovieSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Movie",MovieSchema);
+MovieSchema.path("name").validate(async (value) => {
+  const movieNameCount = await mongoose.models.Movie.countDocuments({
+    name: value,
+  });
+  return !movieNameCount;
+}, "Movie name already exists");
+
+module.exports = mongoose.model("Movie", MovieSchema);

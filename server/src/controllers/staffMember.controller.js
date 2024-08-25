@@ -41,12 +41,26 @@ exports.getStaffMemberById = async (req, res) => {
 // * @returns {Promise<StaffMember>} A promise that resolves with the newly created staff member
 exports.createStaffMember = async (req, res) => {
   try {
-    const { username, password, role, salary } = req.body;
-    const staffMember = new StaffMember({ username, password, role, salary });
+    const { username, email, nic, address, phone, password, role, salary } =
+      req.body;
+    const staffMember = new StaffMember({
+      username,
+      email,
+      nic,
+      address,
+      phone,
+      password,
+      role,
+      salary,
+    });
     await staffMember.save();
     res.status(201).json(staffMember);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    if (err.name === "ValidationError") {
+      res.status(400).json({ error: err.message });
+    } else {
+      res.status(500).json({ error: err.message });
+    }
   }
 };
 
