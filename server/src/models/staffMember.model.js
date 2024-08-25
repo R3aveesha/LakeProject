@@ -6,6 +6,7 @@ const StaffMemberSchema = new Schema(
   {
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    profilePic: { type: String },
     role: { type: String, required: true },
     createdAt: { type: Date, default: Date.now },
     salary: { type: Number, required: true },

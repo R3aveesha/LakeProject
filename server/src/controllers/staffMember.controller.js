@@ -100,7 +100,7 @@ exports.login = async (req, res) => {
     }
     const isPasswordValid = await staffMember.verifyPassword(password);
     if (!isPasswordValid) {
-      throw new Error("Invalid password");
+      throw new Error("Invalid username or password");
     }
     res.json(staffMember);
   } catch (err) {
