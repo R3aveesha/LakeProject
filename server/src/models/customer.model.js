@@ -8,7 +8,8 @@ const CustomerSchema = new Schema({
     password: { type: String, required: true },
     freeTimes: [{ type: Date }],
     profilePic: { type: String },
-    createdAt: { type: Date, default: Date.now }
+    createdAt: { type: Date, default: Date.now },
+    notifications: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Notification' }]
 });
 
 
