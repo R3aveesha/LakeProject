@@ -2,11 +2,13 @@ import React from 'react';
 import NavBar from '../components/core/NavBar';
 import Sidebar from '../components/core/Sidebar';
 import NavFunction from '../functions/navFunction';
-import StaffRegistrationForm from '../pages/staffManagement/StafftRegForm';
+
 
 import Footer from '../components/core/Footer';
 import Carousel from '../components/core/HomeCarousel';
 import ItemCard from '../components/itemCard';
+
+
 const Home = () => {
 
   
@@ -24,6 +26,10 @@ const Home = () => {
       <Carousel images={images} />
       <ItemCard />
       <Footer/>
+
+    
+
+       
     </section>
     
 

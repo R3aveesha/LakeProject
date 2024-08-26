@@ -8,6 +8,7 @@ import CategorizeNav from './components/core/CategorizeNav.jsx';
 
 
 
+
 function App() {
   return (
     <Router>
@@ -17,7 +18,6 @@ function App() {
 
         {/* <Route path="/games/indoor" element={<IndoorGames />} /> */}
         <Route path="/food/start" element={<FoodOrderStart />} />
-        
       </Routes>
     </Router>
   );
