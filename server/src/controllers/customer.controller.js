@@ -1,5 +1,3 @@
-
-
 const Event = require('../models/event.model.js');
 const Feedback = require('../models/feedback.model.js');
 
