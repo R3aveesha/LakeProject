@@ -45,8 +45,7 @@ const LeaveRequests = () => {
 
   return (
     <div>
-      {/* Header Component */}
-      <Header />
+    
 
       <div style={containerStyle}>
         <h2>MY LEAVE REQUESTS</h2>
@@ -92,8 +91,6 @@ const LeaveRequests = () => {
         </table>
       </div>
 
-      {/* Footer Component */}
-      <Footer />
     </div>
   );
 };

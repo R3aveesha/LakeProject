@@ -1,27 +1,18 @@
-<<<<<<< HEAD
 import React from 'react';
-import NavBar from '../components/core/NavBar';
-import Sidebar from '../components/core/Sidebar';
-import NavFunction from '../functions/navFunction';
 
 
 import Footer from '../components/core/Footer';
 import Carousel from '../components/core/HomeCarousel';
 import ItemCard from '../components/itemCard';
-import LeaveDetails from './staffManagement/ViewStaffDetails';
 
-=======
 import React from "react";
 import NavBar from "../components/core/NavBar";
 import Sidebar from "../components/core/Sidebar";
 import NavFunction from "../functions/navFunction";
-import StaffRegistrationForm from "../pages/staffManagement/StafftRegForm";
 import { useState, useEffect } from "react";
-import Footer from "../components/core/Footer";
 import Carousel from "../components/core/HomeCarousel";
 import ItemCard from "../components/itemCard";
 import axios from "axios";
->>>>>>> 3b65b5fdebf7550db425ddb43d929fbfc2639602
 
 const Home = () => {
   const images = ["/image1.jpg", "/image2.jpg", "image3.jpg"];
@@ -66,15 +57,7 @@ const Home = () => {
 
       <Carousel images={images} />
       <ItemCard />
-<<<<<<< HEAD
-      <Footer/>
-
-    <LeaveDetails/>
-
-       
-=======
       <Footer />
->>>>>>> 3b65b5fdebf7550db425ddb43d929fbfc2639602
     </section>
   );
 };

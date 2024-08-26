@@ -54,7 +54,7 @@ const LeaveRequestForm = () => {
   return (
     <div style={containerStyle}>
       <div style={formStyle}>
-        <h2>Leave Request Form</h2>
+        <h3>Leave Request Form</h3>
         <form>
           <input style={inputStyle} type="text" placeholder="Staff ID" />
           <input style={inputStyle} type="date" placeholder="Leave Need Date" />
