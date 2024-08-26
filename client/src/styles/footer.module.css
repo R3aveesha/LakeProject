@@ -1,9 +1,12 @@
 .footer {
   display: flex;
-  max-width: 100vw;
-  height: 240px;
-  width: 100%;
+  max-width: 99vw;
+  height: auto;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100vw;
   background-color: #1d284c;
+  flex-wrap: wrap;
 }
 
 .box1 {
@@ -45,7 +48,12 @@
   .footer {
     flex-direction: column; 
     height: auto; 
-    padding: 20px; 
+    padding: 20px 0; 
+    text-align: center;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 99vw !important;
+    max-width: 99wv !important;
   }
 
   .box1, .box2, .box3 {
