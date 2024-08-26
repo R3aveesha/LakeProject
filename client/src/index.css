@@ -33,3 +33,11 @@ body {
   scrollbar-width: thin; /* Makes the scrollbar thin */
   scrollbar-color: darkgrey transparent; /* Thumb and track color */
 }
+
+
+button{
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
