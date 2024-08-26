@@ -3,11 +3,20 @@ import React from "react";
 const DynamicTable = ({
   headers,
   data,
-  headerToKeyMapping, // map object {Header:DataKey}
+  headerToKeyMapping,
   opt,
+  clickableRow = false,
+  onRowClick = () => {},
   onDelete = () => {},
   onUpdate = () => {},
 }) => {
+  // Handle row click if the clickableRow prop is true
+  const handleRowClick = (rowId) => {
+    if (clickableRow) {
+      onRowClick(rowId);
+    }
+  };
+
   return (
     <table>
       <thead>
@@ -27,29 +36,59 @@ const DynamicTable = ({
       </thead>
       <tbody>
         {data.map((row) => (
-          <tr key={row._id}>
+          <tr
+            key={row._id}
+            onClick={() => handleRowClick(row._id)}
+            style={{ cursor: clickableRow ? "pointer" : "default" }} // Optional visual cue
+          >
             {headers.map((header, colIndex) => (
-              <td key={colIndex}>
-                {row[headerToKeyMapping[header]]}
-              </td>
+              <td key={colIndex}>{row[headerToKeyMapping[header]]}</td>
             ))}
             {opt === 0 && (
               <td>
-                <button onClick={() => onUpdate(row._id)}>Edit</button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onUpdate(row._id);
+                  }}
+                >
+                  Edit
+                </button>
               </td>
             )}
             {opt === 1 && (
               <td>
-                <button onClick={() => onDelete(row._id)}>Delete</button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onDelete(row._id);
+                  }}
+                >
+                  Delete
+                </button>
               </td>
             )}
             {opt === 2 && (
               <>
                 <td>
-                  <button onClick={() => onUpdate(row._id)}>Edit</button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onUpdate(row._id);
+                    }}
+                  >
+                    Edit
+                  </button>
                 </td>
                 <td>
-                  <button onClick={() => onDelete(row._id)}>Delete</button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onDelete(row._id);
+                    }}
+                  >
+                    Delete
+                  </button>
                 </td>
               </>
             )}
