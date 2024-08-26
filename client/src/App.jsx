@@ -15,6 +15,8 @@ import CommonLoginPage from './pages/CommonLoginPage.jsx';
 import GameMainPage from './pages/gamesManagement/gameMainPage.jsx';
 import ManageFood from './pages/foodManagement/ManageFood.jsx';
 import UpdateFoodItems from './pages/foodManagement/UpdateFoodItems.jsx';
+import GameDetails from './pages/gamesManagement/(slug).jsx';
+
 
 
 
@@ -28,6 +30,7 @@ function App() {
         <Route path="/staff" element={<StaffLoginPage />} />
         <Route path="/admin" element={<AdminLoginPage />} />
         <Route path="/games" element={<GameMainPage />} />
+        <Route path="//games/:activity" element={<GameDetails />} />
         <Route path="/commomLoign" element={<CommonLoginPage />} />
         <Route path="/categorize" element={<CategorizeNav />} />
 

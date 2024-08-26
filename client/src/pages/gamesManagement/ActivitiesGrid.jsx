@@ -17,7 +17,7 @@ const ActivitiesGrid = () => {
   return (
     <div className={styles.gridContainer}>
       {activities.map((activity, index) => (
-        <ActivityCard key={index} image={activity.image} title={activity.title} />
+        <ActivityCard key={index} image={activity.image} title={activity.title} activity={activity} />
       ))}
     </div>
   );
