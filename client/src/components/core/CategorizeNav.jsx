@@ -49,14 +49,24 @@ const CategorizeNav = () => {
     margin: 0,
   };
 
+  const listItemStyle = {
+    marginBottom: '15px', // Adjust this value to control the space between list items
+    fontSize: '18px',
+  };
+
+  const linkStyle = {
+    color: 'white', // Set the link color to white
+    textDecoration: 'none', // Remove the underline
+  };
+
   return (
     <div style={containerStyle}>
       <div style={sidebarStyle}>
         <h2 style={headingStyle}>Categorize</h2>
         <ul style={listStyle}>
-          <li>Indoor Games</li>
-          <li>Outdoor Games</li>
-          <li>Water Games</li>
+          <a href='' style={linkStyle}><li style={listItemStyle}>Indoor Games</li></a>
+          <a href='' style={linkStyle}><li style={listItemStyle}>Outdoor Games</li></a>
+          <a href='' style={linkStyle}> <li style={listItemStyle}>Water Games</li></a>
         </ul>
       </div>
       <div style={toggleButtonStyle} onClick={toggleSidebar}>

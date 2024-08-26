@@ -1,0 +1,15 @@
+// src/components/ActivityCard.jsx
+import React from 'react';
+import styles from './ActivityCard.module.css';
+
+const ActivityCard = ({ image, title }) => {
+  return (
+    <div className={styles.card}>
+      <img src={image} alt={title} className={styles.cardImage} />
+      <h3 className={styles.cardTitle}>{title}</h3>
+      <button className={styles.cardButton}>View</button>
+    </div>
+  );
+};
+
+export default ActivityCard;

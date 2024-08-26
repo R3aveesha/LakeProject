@@ -99,7 +99,7 @@ const StaffRegistrationForm = () => {
         </div>
 
         <div style={inputContainerStyle}>
-          <label style={labelStyle} htmlFor="job">Job Position</label>
+          <label style={labelStyle} htmlFor="job">Position</label>
           <input style={inputStyle} type="text" id="job" />
         </div>
 
