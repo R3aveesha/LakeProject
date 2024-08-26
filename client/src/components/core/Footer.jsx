@@ -1,5 +1,5 @@
 import styles from "../../styles/footer.module.css"
-import logo from "../../assets/logo/logoLVHead.png";
+import logo from "/logo.png";
 import { FaInstagram } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { PiXLogo } from "react-icons/pi";
