@@ -1,6 +1,7 @@
 // src/Carousel.js
 import React, { useState } from 'react';
 import styles from '../../styles/carousel.module.css';	
+import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa';
 
 const Carousel = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -15,9 +16,9 @@ const Carousel = ({ images }) => {
 
   return (
     <div className={styles.carousel}>
-      <button onClick={goToPrevious} className={styles.left}>Previous</button>
+      <button onClick={goToPrevious} className={styles.left}><FaArrowAltCircleLeft /></button>
       <img src={images[currentIndex]} alt="carousel" className={styles.image} />
-      <button onClick={goToNext} className={styles.right}>Next</button>
+      <button onClick={goToNext} className={styles.right}><FaArrowAltCircleRight /></button>
     </div>
   );
 };

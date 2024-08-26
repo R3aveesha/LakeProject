@@ -2,17 +2,18 @@ import React from 'react'
 import styles from '../../pages/foodManagement/styles/foodOrderStyles.module.css'
 import NavBar from '../../components/core/NavBar'
 import Footer from '../../components/core/Footer'
+import CustomButton from '../../components/reUseable/CustomButton'
 const FoodOrderStart = () => {
   return (
     <>
-    <NavBar/>
-    <div className={styles.mainContainer}>
-      <div className={styles.portal}>
-        <div className=''>
-            <div style={{lineHeight:"1.5rem"}}>
+    <NavBar name='foods'/>
+    <div className={styles.portalHeader}>
+            <div style={{lineHeight:"1.5rem", paddingLeft:"10px"}}>
                 <h3>LAKEVIEW <br /> RESTAURANT</h3>
             </div>
-        </div>
+    </div>
+    <div className={styles.mainContainer}>
+        
         <div className={styles.portalBody} >
             
             <h4>Welcome to our Food management Portal</h4>
@@ -22,11 +23,12 @@ const FoodOrderStart = () => {
             </p>
             <br />
             <br />
-           
+            <div>
+                <CustomButton color="yellow" buttonText="Order"/>
+            </div>
         </div>
       </div>
       <div></div>
-    </div>
     <Footer />
     </>
   )

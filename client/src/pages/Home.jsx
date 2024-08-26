@@ -5,13 +5,15 @@ import NavFunction from '../functions/navFunction';
 import StaffRegistrationForm from '../pages/staffManagement/StafftRegForm';
 
 import Footer from '../components/core/Footer';
+import Carousel from '../components/core/HomeCarousel';
+import ItemCard from '../components/itemCard';
 const Home = () => {
 
   
   const images = [
-    'https://via.placeholder.com/600x400?text=Slide+1',
-    'https://via.placeholder.com/600x400?text=Slide+2',
-    'https://via.placeholder.com/600x400?text=Slide+3',
+    '/image1.jpg',
+    '/image2.jpg',
+    'image3.jpg',
   ];
   
 
@@ -19,6 +21,8 @@ const Home = () => {
     <section>
       <NavFunction name={'home'} />
       
+      <Carousel images={images} />
+      <ItemCard />
       <Footer/>
     </section>
     
