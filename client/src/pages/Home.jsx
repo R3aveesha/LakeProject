@@ -4,14 +4,10 @@ import React from 'react';
 import Footer from '../components/core/Footer';
 import Carousel from '../components/core/HomeCarousel';
 import ItemCard from '../components/itemCard';
-
-import React from "react";
 import NavBar from "../components/core/NavBar";
 import Sidebar from "../components/core/Sidebar";
 import NavFunction from "../functions/navFunction";
 import { useState, useEffect } from "react";
-import Carousel from "../components/core/HomeCarousel";
-import ItemCard from "../components/itemCard";
 import axios from "axios";
 
 const Home = () => {

@@ -3,7 +3,7 @@ import React from 'react';
 import NavFunction from '../../functions/navFunction'; // Ensure the path is correct
 import Footer from '../../components/core/Footer'; // Ensure the path is correct
 import ActivitiesGrid from './ActivitiesGrid';
-import CategorizeNav from '../../components/core/CategorizeNav';
+import CategorizeNav from '../../components/core/categorizeNav';
 
 const GameMainPage = () => {
   return (
