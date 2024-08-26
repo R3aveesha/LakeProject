@@ -18,7 +18,7 @@ const Home = () => {
   return (
     <section>
       <NavFunction name={'home'} />
-      <StaffRegistrationForm/>
+      
       <Footer/>
     </section>
     

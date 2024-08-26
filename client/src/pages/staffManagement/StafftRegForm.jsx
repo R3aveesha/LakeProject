@@ -9,6 +9,7 @@ const StaffRegistrationForm = () => {
     height: '100vh',
     backgroundColor: '#1b1f38',
     padding: '20px',
+    boxSizing: 'border-box',
   };
 
   const formStyle = {
@@ -29,6 +30,12 @@ const StaffRegistrationForm = () => {
     justifyContent: 'flex-end',
     fontWeight: 'bold',
     marginRight: '10px',
+  };
+
+  const inputContainerStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    width: '100%',
   };
 
   const inputStyle = {
@@ -75,35 +82,52 @@ const StaffRegistrationForm = () => {
     color: '#ffffff',
   };
 
+  const responsiveGrid = {
+    '@media (max-width: 768px)': {
+      gridTemplateColumns: '1fr',
+    },
+  };
+
   return (
     <div style={formContainerStyle}>
-      <form style={formStyle}>
+      <form style={{ ...formStyle, ...responsiveGrid }}>
         <h2 style={titleStyle}>Staff Registration Form</h2>
-        <label style={labelStyle} htmlFor="name">Name</label>
-        <input style={inputStyle} type="text" id="name" />
-        
-        <label style={labelStyle} htmlFor="job">Job Position</label>
-        <input style={inputStyle} type="text" id="job" />
-        
-        <label style={labelStyle} htmlFor="email">Email</label>
-        <input style={inputStyle} type="email" id="email" />
-        
-        <label style={labelStyle} htmlFor="password">Password</label>
-        <input style={inputStyle} type="password" id="password" />
-        
-        <label style={labelStyle} htmlFor="nic">NIC</label>
-        <input style={inputStyle} type="text" id="nic" />
-        
-        <div style={{ gridColumn: 'span 1' }}></div> {/* Empty space */}
-        
-        <label style={labelStyle} htmlFor="address">Address</label>
-        <input style={inputStyle} type="text" id="address" />
-        
-        <div style={{ gridColumn: 'span 1' }}></div> {/* Empty space */}
-        
-        <label style={labelStyle} htmlFor="phone">Phone</label>
-        <input style={inputStyle} type="text" id="phone" />
-        
+
+        <div style={inputContainerStyle}>
+          <label style={labelStyle} htmlFor="name">Name</label>
+          <input style={inputStyle} type="text" id="name" />
+        </div>
+
+        <div style={inputContainerStyle}>
+          <label style={labelStyle} htmlFor="job">Job Position</label>
+          <input style={inputStyle} type="text" id="job" />
+        </div>
+
+        <div style={inputContainerStyle}>
+          <label style={labelStyle} htmlFor="email">Email</label>
+          <input style={inputStyle} type="email" id="email" />
+        </div>
+
+        <div style={inputContainerStyle}>
+          <label style={labelStyle} htmlFor="password">Password</label>
+          <input style={inputStyle} type="password" id="password" />
+        </div>
+
+        <div style={inputContainerStyle}>
+          <label style={labelStyle} htmlFor="nic">NIC</label>
+          <input style={inputStyle} type="text" id="nic" />
+        </div>
+
+        <div style={inputContainerStyle}>
+          <label style={labelStyle} htmlFor="address">Address</label>
+          <input style={inputStyle} type="text" id="address" />
+        </div>
+
+        <div style={inputContainerStyle}>
+          <label style={labelStyle} htmlFor="phone">Phone</label>
+          <input style={inputStyle} type="text" id="phone" />
+        </div>
+
         <div style={buttonContainerStyle}>
           <button type="submit" style={registerButtonStyle}>Register</button>
           <button type="reset" style={clearButtonStyle}>Clear</button>
