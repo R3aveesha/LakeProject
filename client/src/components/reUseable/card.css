@@ -1,0 +1,40 @@
+.card {
+    width: 200px;
+    height: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.card-image {
+    margin-top: 15px;
+    width: 170px;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card-title {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: 15px;
+    color: white;
+}
+
+.card-button {
+    background-color: #FFBB00
+    ;
+    color: white;
+    border: none;
+    width: 170px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.card-button:hover {
+    background-color: #8f701a
+    ;
+}
