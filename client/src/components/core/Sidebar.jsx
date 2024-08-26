@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import styles from '../../styles/navbar.module.css';
+import styles from '../../styles/sidebar.module.css';
 
-const NavBar = ({ name }) => {
+const Sidebar = ({ name }) => {
     const [currentPage, setCurrentPage] = useState('home');
 
     useEffect(() => {
@@ -12,7 +12,7 @@ const NavBar = ({ name }) => {
     return (
         <nav className={styles.nav}>
             <img src="/logo.png" alt="logo" className={styles.logo} />
-            <div className="navlinks">
+            <div className={styles.navlinks}>
                 <Link to='/' className={styles.link} style={{ backgroundColor: currentPage === 'home' ? 'white' : 'transparent', color: currentPage === 'home' ? 'black' : 'white' }}>Home</Link>
                 <Link to='/games' className={styles.link} style={{ backgroundColor: currentPage === 'games' ? 'white' : 'transparent', color: currentPage === 'games' ? 'black' : 'white' }}>Games</Link>
                 <Link to='/movies' className={styles.link} style={{ backgroundColor: currentPage === 'movies' ? 'white' : 'transparent', color: currentPage === 'movies' ? 'black' : 'white' }}>Movies</Link>
@@ -26,4 +26,4 @@ const NavBar = ({ name }) => {
     );
 }
 
-export default NavBar;
+export default Sidebar;
