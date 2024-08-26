@@ -1,25 +1,25 @@
+.portalHeader {
+    display: flex;
+    background-color: #161E38;
+    justify-content: space-between;
+    color: white;
+    width: 60%;
+}
+
 .mainContainer {
     display: flex;
     background-color: #161E38;
     width: 60%;
-}
-
-.portal {
-    color: white;
-
-}
-
-.portalHeader {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 175px;
 }
 
 .portalBody {
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    justify-content: center;
-    align-items: center;
-text-align: center;
+    display: flex;                
+    flex-direction: column;       
+    justify-content: center;      
+    align-items: center;          
+    text-align: center;           
+    color: white; 
 }
