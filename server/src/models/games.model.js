@@ -7,7 +7,7 @@ const GameSchema = new Schema({
     availableTimes: [{ type: Date }],
     ratings: [{
         customerId: { type: Schema.Types.ObjectId, ref: 'Customer' },
-        score: { type: Number, required: true },
+        score: { type: Number },
         feedback: { type: String }
     }],
     createdAt: { type: Date, default: Date.now },

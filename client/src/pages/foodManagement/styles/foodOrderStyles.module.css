@@ -1,25 +1,45 @@
-.portalHeader {
+.main {
     display: flex;
+    width: 100%;
     background-color: #161E38;
-    justify-content: space-between;
-    color: white;
-    width: 60%;
 }
 
 .mainContainer {
     display: flex;
-    background-color: #161E38;
-    width: 60%;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 175px;
+    flex-direction: column;
 }
 
-.portalBody {
-    display: flex;                
-    flex-direction: column;       
-    justify-content: center;      
-    align-items: center;          
-    text-align: center;           
-    color: white; 
+.mainContainerHeader {
+    display: flex;
+    justify-content: space-between;
+    
 }
+
+.mainContainerTitle {
+    font-weight: bold;
+    color: #fff;
+}
+
+.mainContainerBody {
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+.imageContainer {
+    width: 400px;
+    max-width: 600px; 
+    margin: 0;
+    overflow: hidden; 
+    justify-content: center;
+    align-items: center;
+    padding-left: 500px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  
+  .imageContainer img {
+    width: 400px; 
+    height: auto; 
+  }
+  
