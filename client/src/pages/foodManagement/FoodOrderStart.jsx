@@ -8,12 +8,13 @@ const FoodOrderStart = () => {
     <NavBar/>
     <div className={styles.mainContainer}>
       <div className={styles.portal}>
-        <div>
+        <div className=''>
             <div style={{lineHeight:"1.5rem"}}>
                 <h3>LAKEVIEW <br /> RESTAURANT</h3>
             </div>
         </div>
-        <div >
+        <div className={styles.portalBody} >
+            
             <h4>Welcome to our Food management Portal</h4>
             <br />
             <p>
@@ -21,7 +22,7 @@ const FoodOrderStart = () => {
             </p>
             <br />
             <br />
-
+           
         </div>
       </div>
       <div></div>
