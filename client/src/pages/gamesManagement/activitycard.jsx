@@ -8,7 +8,7 @@ const ActivityCard = ({ image, title, activity }) => {
     <div className={styles.card}>
       <img src={image} alt={title} className={styles.cardImage} />
       <h3 className={styles.cardTitle}>{title}</h3>
-      <Link to={`/games/${activity}`} >
+      <Link to={`/api/games/${activity._id}`} >
         <button className={styles.cardButton}>View</button>
       </Link>
     </div>
