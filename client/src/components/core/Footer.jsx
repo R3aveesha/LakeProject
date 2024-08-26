@@ -45,7 +45,7 @@ const Footer = () => {
             
         </div> 
 
-        <div className="box3">
+        <div className={styles.box3}>
         <h5>About Us</h5>
         <br />
         <p>Introduce the management system of the play zone <br />
