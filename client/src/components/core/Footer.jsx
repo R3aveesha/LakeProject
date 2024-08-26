@@ -14,7 +14,7 @@ const Footer = () => {
         <div
           className = {styles.box1}
         >
-          <img src={logo} alt="" />
+          <img src={logo} alt="" width={200} />
           <div
             className={styles.logos}
           >

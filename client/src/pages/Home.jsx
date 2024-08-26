@@ -6,6 +6,7 @@ import StaffRegistrationForm from '../pages/staffManagement/StafftRegForm';
 
 import Footer from '../components/core/Footer';
 import Carousel from '../components/core/HomeCarousel';
+import ItemCard from '../components/itemCard';
 const Home = () => {
 
   
@@ -19,8 +20,9 @@ const Home = () => {
   return (
     <section>
       <NavFunction name={'home'} />
-      <StaffRegistrationForm/>
+      
       <Carousel images={images} />
+      <ItemCard />
       <Footer/>
     </section>
     
