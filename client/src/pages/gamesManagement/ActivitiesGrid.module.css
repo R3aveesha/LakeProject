@@ -1,0 +1,12 @@
+/* src/components/ActivitiesGrid.module.css */
+.gridContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    min-height: 400px;
+    background-color: #161e38; /* Matching background color to the parent section */
+  }
+  

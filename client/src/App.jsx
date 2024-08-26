@@ -9,6 +9,7 @@ import LoginPage from './pages/LoginPage.jsx';
 import StaffLoginPage from './pages/StaffLoginPage.jsx';
 import AdminLoginPage from './pages/AdminLogin.jsx';
 import CommonLoginPage from './pages/CommonLoginPage.jsx';
+import GameMainPage from './pages/gamesManagement/gameMainPage.jsx';
 
 
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/staff" element={<StaffLoginPage />} />
         <Route path="/admin" element={<AdminLoginPage />} />
+        <Route path="/games" element={<GameMainPage />} />
         <Route path="/commomLoign" element={<CommonLoginPage />} />
         <Route path="/categorize" element={<CategorizeNav />} />
 
