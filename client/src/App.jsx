@@ -1,6 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home.jsx'
-import Test from './pages/test.jsx';
 import Home from './pages/Home.jsx';
 import FoodOrderStart from './pages/foodManagement/FoodOrderStart.jsx';
 //import AdminLogins from './components/logins/AdminLogins.jsx';
@@ -19,7 +17,6 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/test" element={<Test />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/staff" element={<StaffLoginPage />} />
         <Route path="/admin" element={<AdminLoginPage />} />
