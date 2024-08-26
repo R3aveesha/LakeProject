@@ -1,0 +1,25 @@
+.portalHeader {
+    display: flex;
+    background-color: #161E38;
+    justify-content: space-between;
+    color: white;
+    width: 60%;
+}
+
+.mainContainer {
+    display: flex;
+    background-color: #161E38;
+    width: 60%;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 175px;
+}
+
+.portalBody {
+    display: flex;                
+    flex-direction: column;       
+    justify-content: center;      
+    align-items: center;          
+    text-align: center;           
+    color: white; 
+}

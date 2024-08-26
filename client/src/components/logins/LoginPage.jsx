@@ -1,5 +1,4 @@
 import React from 'react'      // page for choose logins (customer,staft,Admin)
-import styles from './LoginPage.module.css'
 
 
 
