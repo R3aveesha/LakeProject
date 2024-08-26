@@ -19,7 +19,7 @@ function App() {
         <Route path="/adminlogins" element={<AdminLogins />} />
 
         {/* <Route path="/games/indoor" element={<IndoorGames />} /> */}
-
+        
       </Routes>
     </Router>
   );
