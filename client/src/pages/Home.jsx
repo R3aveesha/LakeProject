@@ -7,6 +7,7 @@ import NavFunction from '../functions/navFunction';
 import Footer from '../components/core/Footer';
 import Carousel from '../components/core/HomeCarousel';
 import ItemCard from '../components/itemCard';
+import LeaveDetails from './staffManagement/ViewStaffDetails';
 
 
 const Home = () => {
@@ -27,7 +28,7 @@ const Home = () => {
       <ItemCard />
       <Footer/>
 
-    
+    <LeaveDetails/>
 
        
     </section>

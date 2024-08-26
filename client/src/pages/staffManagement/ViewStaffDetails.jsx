@@ -3,8 +3,8 @@ import React from 'react';
 const StaffTable = () => {
   const containerStyle = {
     padding: '20px',
-    backgroundColor: '#161E38', // Changed background color
-    color: '#234151', // Changed text color to be readable on dark background
+    backgroundColor: '#161E38',
+    color: '#234151',
   };
 
   const tableStyle = {
