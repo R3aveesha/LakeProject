@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import FoodList from '../../components/reUseable/foodList';
 import NavBar from "../../components/core/NavBar";
 import Footer from "../../components/core/Footer";
-import styles from '../../pages/foodManagement/styles/food.module.css'
+import styles from '../../pages/foodManagement/styles/manageFood.module.css'
 
 const FoodPage = () => {
   /* const [foods, setFoods] = useState([]); */
@@ -68,13 +68,37 @@ const FoodPage = () => {
   return (
     <>
       <NavBar name="foods" />
-      <div className={styles.foodPage}>
-        <header className={styles.foodHeader}>
-          <h1>Lakeview Restaurant</h1>
-          {/* Add any other header elements or search bar here */}
-        </header>
-        <FoodList foods={sampleFoods} />
-      </div>
+      <div className={styles.manageItems}>
+      <h2>Manage All Menu Items</h2>
+      <table className={styles.foodTable}>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Image</th>
+            <th>Item Name</th>
+            <th>Price</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sampleFoods.map((item, index) => (
+            <tr key={item.id}>
+              <td>{index + 1}</td>
+              <td><img src={item.imageUrl} alt={item.name} className={styles.foodImage}/></td>
+              <td>{item.name}</td>
+              <td>{`Rs. ${item.price.toFixed(2)}`}</td>
+              <td>
+                <button className={styles.updateButton}>✏️</button>
+              </td>
+              <td>
+                <button className={styles.deleteButton}>🗑️</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
       <Footer />  
     </>
   );

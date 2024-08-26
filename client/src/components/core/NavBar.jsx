@@ -23,8 +23,9 @@ const NavBar = ({ name }) => {
                 <Link to="/cart">
                     🛒 Cart ({cart.length})
                 </Link>    
-                <button type="button" className={styles.signIn} >Sign in</button>
-                <button type="button" className={styles.register} >Register</button>
+                
+                <Link to="/commomLoign" className={styles.link}><button type="button" className={styles.signIn} >Sign in</button></Link>
+                <Link to="/register" className={styles.link}><button type="button" className={styles.register} >Register</button></Link>
             </div>
         </nav>
     );
