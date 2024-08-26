@@ -1,13 +1,16 @@
 // src/components/ActivityCard.jsx
 import React from 'react';
 import styles from './ActivityCard.module.css';
+import { Link } from 'react-router-dom';
 
-const ActivityCard = ({ image, title }) => {
+const ActivityCard = ({ image, title, activity }) => {
   return (
     <div className={styles.card}>
       <img src={image} alt={title} className={styles.cardImage} />
       <h3 className={styles.cardTitle}>{title}</h3>
-      <button className={styles.cardButton}>View</button>
+      <Link to={`/games/${activity}`} >
+        <button className={styles.cardButton}>View</button>
+      </Link>
     </div>
   );
 };
