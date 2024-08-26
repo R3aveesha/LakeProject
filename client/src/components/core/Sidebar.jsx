@@ -21,6 +21,7 @@ const Sidebar = ({ name }) => {
                 <Link to='/support' className={styles.link} style={{ backgroundColor: currentPage === 'support' ? 'white' : 'transparent', color: currentPage === 'support' ? 'black' : 'white' }}>Support</Link>
                 <button type="button" className={styles.signIn} >Sign in</button>
                 <button type="button" className={styles.register} >Register</button>
+                
             </div>
         </nav>
     );

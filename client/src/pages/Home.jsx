@@ -9,6 +9,7 @@ const Home = () => {
     <section>
       <NavFunction name={'home'} />
     </section>
+    
   );
 };
 

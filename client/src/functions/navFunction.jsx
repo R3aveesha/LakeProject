@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../components/core/Sidebar';
 import NavBar from '../components/core/NavBar';
-import { FaBars } from "react-icons/fa"; // Corrected the icon name
+//import { FaBars } from "react-icons/fa"; // Corrected the icon name
 
 const NavFunction = ({ name }) => {
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);
