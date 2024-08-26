@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../../styles/navbar.module.css';
+import { useCart } from '../../pages/foodManagement/context/CartContext';
 
 const NavBar = ({ name }) => {
     const [currentPage, setCurrentPage] = useState('home');
-
+    const { cart } = useCart();
     useEffect(() => {
         setCurrentPage(name);
     }, [name]); 
@@ -19,6 +20,10 @@ const NavBar = ({ name }) => {
                 <Link to='/foods' className={styles.link} style={{ backgroundColor: currentPage === 'foods' ? 'white' : 'transparent', color: currentPage === 'foods' ? 'black' : 'white' }}>Foods</Link>
                 <Link to='/events' className={styles.link} style={{ backgroundColor: currentPage === 'events' ? 'white' : 'transparent', color: currentPage === 'events' ? 'black' : 'white' }}>Events</Link>
                 <Link to='/support' className={styles.link} style={{ backgroundColor: currentPage === 'support' ? 'white' : 'transparent', color: currentPage === 'support' ? 'black' : 'white' }}>Support</Link>
+                <Link to="/cart">
+                    🛒 Cart ({cart.length})
+                </Link>    
+                
                 <Link to="/commomLoign" className={styles.link}><button type="button" className={styles.signIn} >Sign in</button></Link>
                 <Link to="/register" className={styles.link}><button type="button" className={styles.register} >Register</button></Link>
             </div>

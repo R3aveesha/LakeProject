@@ -1,10 +1,10 @@
 import React from 'react';
 
-const LeaveDetails = () => {
+const SalaryTable = () => {
   const containerStyle = {
     padding: '20px',
-    backgroundColor: '#161E38', // Changed background color
-    color: '#234151', // Changed text color to be readable on dark background
+    backgroundColor: '#161E38',
+    color: '#234151',
   };
 
   const tableStyle = {
@@ -52,16 +52,22 @@ const LeaveDetails = () => {
       <table style={tableStyle}>
         <thead>
           <tr>
-            <th style={thStyle}>Id</th>
-            <th style={thStyle}>Date</th>
-            <th style={thStyle}>Attendant Time</th>
-            <th style={thStyle}>Leave Time</th>
-            <th style={thStyle}>Hours</th>
-
+            <th style={thStyle}>SalaryId</th>
+            <th style={thStyle}>Month</th>
+            <th style={thStyle}>Total Hours</th>
+            <th style={thStyle}>OT Hours</th>
+            <th style={thStyle}>Normal Salary</th>
+            <th style={thStyle}>OT salary</th>
+            <th style={thStyle}>Salary for hours</th>
+            <th style={thStyle}>Final Salary</th>
           </tr>
         </thead>
         <tbody>
+          {/* Add rows here */}
           <tr>
+            <td style={tdStyle}></td>
+            <td style={tdStyle}></td>
+            <td style={tdStyle}></td>
             <td style={tdStyle}></td>
             <td style={tdStyle}></td>
             <td style={tdStyle}></td>
@@ -74,4 +80,4 @@ const LeaveDetails = () => {
   );
 };
 
-export default LeaveDetails;
+export default SalaryTable;

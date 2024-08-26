@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LeaveDetails = () => {
+const ViewAttendance = () => {
   const containerStyle = {
     padding: '20px',
     backgroundColor: '#161E38', // Changed background color
@@ -52,11 +52,11 @@ const LeaveDetails = () => {
       <table style={tableStyle}>
         <thead>
           <tr>
-            <th style={thStyle}>Id</th>
-            <th style={thStyle}>Date</th>
-            <th style={thStyle}>Attendant Time</th>
-            <th style={thStyle}>Leave Time</th>
-            <th style={thStyle}>Hours</th>
+            <th style={thStyle}>Leave Id</th>
+            <th style={thStyle}>Staff Id</th>
+            <th style={thStyle}>Leave need Date</th>
+            <th style={thStyle}>Reasone</th>
+            <th style={thStyle}>Status</th>
 
           </tr>
         </thead>
@@ -66,7 +66,10 @@ const LeaveDetails = () => {
             <td style={tdStyle}></td>
             <td style={tdStyle}></td>
             <td style={tdStyle}></td>
-            <td style={tdStyle}></td>
+            <td style={tdStyle}>
+              <button style={updateButtonStyle}>Accept</button>
+              <button style={deleteButtonStyle}>Reject</button>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -74,4 +77,4 @@ const LeaveDetails = () => {
   );
 };
 
-export default LeaveDetails;
+export default ViewAttendance;
