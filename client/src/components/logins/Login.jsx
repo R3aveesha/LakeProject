@@ -1,47 +1,28 @@
-import React, { useState } from 'react';
-import styles from './Login.module.css';
+// src/components/logins/Login.jsx
+import React from 'react';
+import styles from '../../styles/login.module.css'; // Ensure this path is correct
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Simple validation (for demonstration)
-    if (email === 'user@example.com' && password === 'password') {
-      setError('');
-      alert('Login successful!');
-      // Handle successful login
-    } else {
-      setError('Invalid email or password');
-    }
-  };
-
   return (
-    <div className={styles.container}>
-      
-      <form className={styles.loginForm} onSubmit={handleSubmit}>
+    <div className={styles['login-container']}>
+      <div className={styles['login-box']}>
         <h2>Login</h2>
-        {error && <p className={styles.errorMessage}>{error}</p>}
-        <input
-          type="email"
-          className={styles.inputField}
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          className={styles.inputField}
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit" className={styles.button}>
-          Login
-        </button>
-      </form>
+        <form>
+          <div className={styles['input-group']}>
+            <label>Email</label>
+            <input type="email" placeholder="Value" />
+          </div>
+          <div className={styles['input-group']}>
+            <label>Password</label>
+            <input type="password" placeholder="Value" />
+          </div>
+          <button type="submit" className={styles['sign-in-button']}>Sign In</button>
+        </form>
+        <div className={styles['footer-links']}>
+          <a href="#" className={styles['forgot-password']}>Forgot password?</a>
+          <a href="#" className={styles['sign-up']}>Sign Up</a>
+        </div>
+      </div>
     </div>
   );
 };
