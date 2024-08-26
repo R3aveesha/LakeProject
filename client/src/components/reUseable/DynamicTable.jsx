@@ -10,85 +10,55 @@ const DynamicTable = ({
   onDelete = () => {},
   onUpdate = () => {},
 }) => {
-  // Handle row click if the clickableRow prop is true
-  const handleRowClick = (rowId) => {
-    if (clickableRow) {
-      onRowClick(rowId);
-    }
-  };
-
   return (
-    <table>
+    <table id="dynamic-table">
       <thead>
         <tr>
           {headers.map((header, index) => (
-            <th key={index}>{header}</th>
+            <th key={index} id={`header-${header.replace(/\s+/g, '-').toLowerCase()}`}>
+              {header}
+            </th>
           ))}
-          {opt === 0 && <th>Edit</th>}
-          {opt === 1 && <th>Delete</th>}
+          {opt === 0 && <th id="edit-column-header">Edit</th>}
+          {opt === 1 && <th id="delete-column-header">Delete</th>}
           {opt === 2 && (
             <>
-              <th>Edit</th>
-              <th>Delete</th>
+              <th id="edit-column-header">Edit</th>
+              <th id="delete-column-header">Delete</th>
             </>
           )}
         </tr>
       </thead>
       <tbody>
-        {data.map((row) => (
+        {data.map((row, rowIndex) => (
           <tr
             key={row._id}
-            onClick={() => handleRowClick(row._id)}
-            style={{ cursor: clickableRow ? "pointer" : "default" }} // Optional visual cue
+            id={`row-${row._id}`}
+            onClick={() => clickableRow && onRowClick(row._id)}
+            style={{ cursor: clickableRow ? 'pointer' : 'default' }} // Optional visual cue
           >
             {headers.map((header, colIndex) => (
-              <td key={colIndex}>{row[headerToKeyMapping[header]]}</td>
+              <td key={colIndex} id={`cell-${row._id}-${header.replace(/\s+/g, '-').toLowerCase()}`}>
+                {row[headerToKeyMapping[header]]}
+              </td>
             ))}
             {opt === 0 && (
-              <td>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onUpdate(row._id);
-                  }}
-                >
-                  Edit
-                </button>
+              <td id={`edit-button-${row._id}`}>
+                <button onClick={(e) => { e.stopPropagation(); onUpdate(row._id); }}>Edit</button>
               </td>
             )}
             {opt === 1 && (
-              <td>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onDelete(row._id);
-                  }}
-                >
-                  Delete
-                </button>
+              <td id={`delete-button-${row._id}`}>
+                <button onClick={(e) => { e.stopPropagation(); onDelete(row._id); }}>Delete</button>
               </td>
             )}
             {opt === 2 && (
               <>
-                <td>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onUpdate(row._id);
-                    }}
-                  >
-                    Edit
-                  </button>
+                <td id={`edit-button-${row._id}`}>
+                  <button onClick={(e) => { e.stopPropagation(); onUpdate(row._id); }}>Edit</button>
                 </td>
-                <td>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onDelete(row._id);
-                    }}
-                  >
-                    Delete
-                  </button>
+                <td id={`delete-button-${row._id}`}>
+                  <button onClick={(e) => { e.stopPropagation(); onDelete(row._id); }}>Delete</button>
                 </td>
               </>
             )}
