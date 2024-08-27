@@ -33,6 +33,9 @@ function App() {
 
         {/* <Route path="/games/indoor" element={<IndoorGames />} /> */}
         <Route path="/food/start" element={<FoodOrderStart />} />
+        <Route path='/food' element={<FoodPage />} />
+        <Route path='/cart' element={<Cart />} /> 
+        
       </Routes>
     </Router>
     </CartProvider>
