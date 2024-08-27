@@ -49,3 +49,5 @@ CustomerSchema.methods.verifyPassword = async function(password) {
 
 
 module.exports = mongoose.model('Customer', CustomerSchema);
+
+
