@@ -79,7 +79,7 @@ const FoodPage = () => {
   const handleDelete = async (id) => {
     try {
       
-      await axios.delete(`YOUR_API_URL/items/${id}`);
+      await axios.delete(`http://localhost:3000/api/food/delete/${id}`);
  
       alert('Item deleted successfully!');
     } catch (error) {

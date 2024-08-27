@@ -16,7 +16,11 @@ import GamesDetails from './pages/gamesManagement/Dashboards/GamesDetails.jsx';
 import CategorizeNav from './components/core/CategorizeNav.jsx';
 import ManageFoood from './pages/foodManagement/ManageFood.jsx'
 import UpdateFood from './pages/foodManagement/UpdateFoodItems.jsx'
-
+import CustomerSupportManagerDashboard from './pages/customerSupport/CustomerSupportDashboard.jsx';
+import CustomerSupport from './pages/customerSupport/customerSupportpage.jsx';
+import InquiryForm from './pages/customerSupport/InqueryPage.jsx';
+import CustomerInquiries from './pages/customerSupport/InqueryTable.jsx'
+import TransportPage from './pages/customerSupport/TransportPage.jsx';
 
 
 
@@ -40,6 +44,8 @@ function App() {
         <Route path='/cart' element={<Cart/>}/>
         <Route path="/manageFoods" element={<ManageFoood />} />
         <Route path='/updateFoodItem/:id' element={<UpdateFood/>} />
+
+        
 
       </Routes>
     </Router>
