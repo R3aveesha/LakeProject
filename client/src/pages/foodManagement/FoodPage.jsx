@@ -3,9 +3,23 @@ import FoodList from '../../components/reUseable/foodList';
 import NavBar from "../../components/core/NavBar";
 import Footer from "../../components/core/Footer";
 import styles from '../../pages/foodManagement/styles/food.module.css'
+import axios from 'axios';
 
 const FoodPage = () => {
-  /* const [foods, setFoods] = useState([]); */
+  const [foods, setFoods] = useState([]);
+  useEffect(() => {
+    const fetchFood = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/api/food"); // Proxy will handle this
+        setFoods(response.data);
+        
+      } catch (error) {
+        console.error("Error fetching foods:", error);
+      }
+    };
+
+    fetchFood();
+  }, []);
 
   const sampleFoods = [ 
     {
@@ -73,7 +87,7 @@ const FoodPage = () => {
           <h1>Lakeview Restaurant</h1>
           {/* Add any other header elements or search bar here */}
         </header>
-        <FoodList foods={sampleFoods} />
+        <FoodList foods={foods} />
       </div>
       <Footer />  
     </>

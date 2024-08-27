@@ -13,7 +13,14 @@ import AdminLoginPage from './pages/AdminLogin.jsx';
 import CommonLoginPage from './pages/CommonLoginPage.jsx';
 import GameMainPage from './pages/gamesManagement/gameMainPage.jsx';
 import GamesDetails from './pages/gamesManagement/Dashboards/GamesDetails.jsx';
-import CategorizeNav from './components/core/categorizeNav.jsx';
+import CategorizeNav from './components/core/CategorizeNav.jsx';
+import ManageFoood from './pages/foodManagement/ManageFood.jsx'
+import UpdateFood from './pages/foodManagement/UpdateFoodItems.jsx'
+import CustomerSupportManagerDashboard from './pages/customerSupport/CustomerSupportDashboard.jsx';
+import CustomerSupport from './pages/customerSupport/customerSupportpage.jsx';
+import InquiryForm from './pages/customerSupport/InqueryPage.jsx';
+import CustomerInquiries from './pages/customerSupport/InqueryTable.jsx'
+import TransportPage from './pages/customerSupport/TransportPage.jsx';
 
 
 
@@ -36,6 +43,13 @@ function App() {
         <Route path='/food' element={<FoodPage />} />
         <Route path='/cart' element={<Cart />} /> 
         
+        <Route path="/foods" element={<FoodPage />} />
+        <Route path='/cart' element={<Cart/>}/>
+        <Route path="/manageFoods" element={<ManageFoood />} />
+        <Route path='/updateFoodItem/:id' element={<UpdateFood/>} />
+
+        
+
       </Routes>
     </Router>
     </CartProvider>
