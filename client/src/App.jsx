@@ -13,7 +13,10 @@ import AdminLoginPage from './pages/AdminLogin.jsx';
 import CommonLoginPage from './pages/CommonLoginPage.jsx';
 import GameMainPage from './pages/gamesManagement/gameMainPage.jsx';
 import GamesDetails from './pages/gamesManagement/Dashboards/GamesDetails.jsx';
-import CategorizeNav from './components/core/categorizeNav.jsx';
+import CategorizeNav from './components/core/CategorizeNav.jsx';
+import ManageFoood from './pages/foodManagement/ManageFood.jsx'
+import UpdateFood from './pages/foodManagement/UpdateFoodItems.jsx'
+
 
 
 
@@ -33,6 +36,11 @@ function App() {
 
         {/* <Route path="/games/indoor" element={<IndoorGames />} /> */}
         <Route path="/food/start" element={<FoodOrderStart />} />
+        <Route path="/foods" element={<FoodPage />} />
+        <Route path='/cart' element={<Cart/>}/>
+        <Route path="/manageFoods" element={<ManageFoood />} />
+        <Route path='/updateFoodItem/:id' element={<UpdateFood/>} />
+
       </Routes>
     </Router>
     </CartProvider>
