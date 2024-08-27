@@ -1,8 +1,12 @@
 import React from 'react';
+import NavBar from '../../components/core/NavBar';
+import Footer from '../../components/core/Footer';
 
-const LostItemsForm = () => {
+const FoundForm = () => {
   return (
-    <div style={styles.container}>
+    <div>
+      <NavBar></NavBar>
+    <div style={styles.container}> 
       <div style={styles.dashboard}>
         <button style={styles.dashboardButton}>Dashboard</button>
         <h2 style={styles.title}>Found Items Form</h2>
@@ -29,14 +33,16 @@ const LostItemsForm = () => {
         <button style={styles.deleteButton}>Delete</button>
       </div>
     </div>
+    <Footer></Footer>
+    </div>
   );
 };
 
 const styles = {
   container: {
-    padding: '40px',
+    padding: '30px',
     backgroundColor: '#161E38', // Main background color
-    minHeight: '100vh', // Full viewport height
+    minHeight: '80vh', // Full viewport height
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -115,4 +121,4 @@ const styles = {
   },
 };
 
-export default LostItemsForm;
+export default FoundForm;

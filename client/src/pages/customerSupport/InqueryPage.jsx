@@ -1,8 +1,12 @@
 import React from "react";
+import NavBar from "../../components/core/NavBar";
+import Footer from "../../components/core/Footer";
 
 const InquiryForm = () => {
   return (
-  <div style={styles.background}>
+ <div>
+  <NavBar></NavBar>
+   <div style={styles.background}>
       <div style={styles.container}>
       <div style={styles.sidebar}>
         <h2 style={styles.sidebarHeading}>Dashboard</h2>
@@ -52,18 +56,21 @@ const InquiryForm = () => {
     </div>
 
   </div>
+  <Footer></Footer>
+ </div>
   );
 };
 
 const styles = {
   background: {
-    height: "100vh",
-      backgroundColor: "#212a49",
+    height: "80vh",
+      backgroundColor: "#161E38"
+
   },
   container: {
     display: "flex",
     padding: "50px",
-    backgroundColor: "#212a49",
+    backgroundColor: "#161E38",
     color: "#fff",
   },
   sidebar: {

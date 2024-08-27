@@ -18,11 +18,17 @@ import ManageFoood from './pages/foodManagement/ManageFood.jsx'
 import UpdateFood from './pages/foodManagement/UpdateFoodItems.jsx'
 import CustomerSupportManagerDashboard from './pages/customerSupport/CustomerSupportDashboard.jsx';
 import CustomerSupport from './pages/customerSupport/customerSupportpage.jsx';
+import FoundForm from './pages/customerSupport/FoundForm.jsx'
 import InquiryForm from './pages/customerSupport/InqueryPage.jsx';
 import CustomerInquiries from './pages/customerSupport/InqueryTable.jsx'
 import TransportPage from './pages/customerSupport/TransportPage.jsx';
-
-
+import BillInfo from './pages/eventManagement/BillInfo.jsx';
+import BookingEvent from './pages/eventManagement/BookingEvent.jsx';
+import CardPay from './pages/eventManagement/CardPay.jsx';
+import EventDashboard from './pages/eventManagement/EventDashboard.jsx';
+import MusicalEvent from './pages/eventManagement/MusicalEvent.jsx';
+import OtherEvent from './pages/eventManagement/OtherEvent.jsx';
+import ViewEvent from './pages/eventManagement/ViewEvent.jsx';
 
 function App() {
   return (
@@ -48,9 +54,29 @@ function App() {
         <Route path="/manageFoods" element={<ManageFoood />} />
         <Route path='/updateFoodItem/:id' element={<UpdateFood/>} />
 
+         {/*customer support*/}
+
+        <Route path='/CustomerSupportManagerDashboard' element={<CustomerSupportManagerDashboard/>}></Route>
+        <Route path='/CustomerSupport' element={<CustomerSupport/>}/>
+        <Route path='/FoundForm' element={<FoundForm/>}/>
+        <Route path='/InqueryPage' element={<InquiryForm/>}/>
+        <Route path='/CustomerInquiries' element={<CustomerInquiries/>}/>
+        <Route path='/TransportPage' element={<TransportPage/>}/>
+         {/*cshould add lost item table*/}
+
+
+         {/*event management*/}
+         <Route path='/BillInfo' element={<BillInfo/>}/>
+         <Route path='/BookingEvent' element={<BookingEvent/>}/>
+         <Route path='/CardPay' element={<CardPay/>}/>
+         <Route path='/EventDashboard' element={<EventDashboard/>}/>
+        <Route path='/MusicalEvent' element={<MusicalEvent/>}/>
+        <Route path='/OtherEvent' element={<OtherEvent/>}/>
+        <Route path='/ViewEvent' element={<ViewEvent/>}/>
+        </Routes>
         
 
-      </Routes>
+    
     </Router>
     </CartProvider>
   );

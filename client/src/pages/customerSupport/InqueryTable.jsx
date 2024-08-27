@@ -1,10 +1,14 @@
 import React from 'react';
+import NavBar from '../../components/core/NavBar';
+import Footer from '../../components/core/Footer';
 
 const CustomerInquiries = () => {
   return (
-    <div style={styles.container}>
+    <div>
+      <NavBar></NavBar>
+      <div style={styles.container}>
       <div style={styles.dashboard}>
-        <h3 style={styles.dashboardTitle}>My Dashboard</h3>
+        
       </div>
       
       <div style={styles.inquiriesContainer}>
@@ -43,9 +47,12 @@ const CustomerInquiries = () => {
             </tr>
           </tbody>
         </table>
+        
       </div>
       
       <button style={styles.deleteButton}>Delete</button>
+    </div>
+      <Footer></Footer>
     </div>
   );
 };
@@ -56,20 +63,9 @@ const styles = {
     backgroundColor: '#0D1B2A',
     color: '#FFFFFF',
     padding: '20px',
-    minHeight: '100vh',
+    minHeight: '70vh',
   },
-  dashboard: {
-    backgroundColor: '#1B263B',
-    padding: '10px',
-    borderRadius: '5px',
-    marginBottom: '20px',
-    width: '100%',
-    textAlign: 'left',
-  },
-  dashboardTitle: {
-    margin: 0,
-    color: '#FFFFFF',
-  },
+ 
   inquiriesContainer: {
     backgroundColor: '#FFFFFF',
     color: '#000000',

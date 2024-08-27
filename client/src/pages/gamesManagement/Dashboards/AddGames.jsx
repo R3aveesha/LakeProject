@@ -1,8 +1,13 @@
 import React from 'react';
+import Footer from '../../../components/core/Footer';
+import NavBar from '../../../components/core/NavBar';
+
 
 const AddGames = () => {
     return (
-        <div className="add-games">
+      <div>
+        <NavBar></NavBar>
+          <div className="add-games">
             <form>
                 <div className="form-group">
                     <label>Category:</label>
@@ -38,6 +43,8 @@ const AddGames = () => {
                 <button type="submit" className="add-button">Add</button>
             </form>
         </div>
+        <Footer></Footer>
+      </div>
     );
 };
 

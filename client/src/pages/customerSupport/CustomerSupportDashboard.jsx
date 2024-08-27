@@ -1,9 +1,13 @@
 
 import React from 'react';
+import NavBar from '../../components/core/NavBar';
+import Footer from '../../components/core/Footer';
 
 const CustomerSupportManagerDashboard = () => {
   return (
-    <div style={styles.container}>
+   <div>
+    <NavBar></NavBar>
+     <div style={styles.container}>
       <h2 style={styles.title}>Customer Support Manager Dashboard</h2>
       <div style={styles.buttonContainer}>
         <button style={styles.button}>Add Found Items</button>
@@ -13,6 +17,8 @@ const CustomerSupportManagerDashboard = () => {
         <button style={styles.button}>Add Transport</button>
       </div>
     </div>
+    <Footer></Footer>
+   </div>
   );
 };
 
@@ -24,6 +30,8 @@ const styles = {
     padding: '20px',
     borderRadius: '10px',
     textAlign: 'center',
+    width: '100%',
+    height: '70vh',
   },
   title: {
     marginBottom: '30px',

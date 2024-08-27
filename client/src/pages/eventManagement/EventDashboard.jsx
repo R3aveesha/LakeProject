@@ -1,6 +1,9 @@
 import React from 'react';
 import NavBar from '../../components/core/NavBar';
 import Footer from '../../components/core/Footer';
+import game1 from '../../../public/game1.png';
+import game2 from '../../../public/game2.png';
+import game3 from '../../../public/game3.png';
 
 const EventDashboard = () => {
   return (
@@ -9,25 +12,25 @@ const EventDashboard = () => {
       <div style={styles.container}>
         <div style={styles.sidebar}>
           <h2 style={styles.categoryTitle}>Category</h2>
-          <ul style={styles.categoryList}>
-            <li style={styles.categoryItemhigh}>Gaming Tournaments</li>
-            <li style={styles.categoryItem}>Musical Events</li>
-            <li style={styles.categoryItem}>Others</li>
-          </ul>
+          <div style={styles.categoryList}>
+            <button style={styles.categoryItemhigh}>Gaming Tournaments</button>
+            <button style={styles.categoryItem}>Musical Events</button>
+            <button style={styles.categoryItem}>Others</button>
+          </div>
         </div>
         <div style={styles.mainContent}>
           <div style={styles.eventCard}>
-            <img src="path_to_victory_arena_image.jpg" alt="Victory Arena" style={styles.eventImage} />
+            <img src={game1} alt="Victory Arena" style={styles.eventImage} />
             <h3 style={styles.cardTitle}>Victory Arena</h3>
             <button style={styles.viewButton}>View</button>
           </div>
           <div style={styles.eventCard}>
-            <img src="path_to_gaming_legends_image.jpg" alt="Gaming Legends" style={styles.eventImage} />
+            <img src={game2} alt="Gaming Legends" style={styles.eventImage} />
             <h3 style={styles.cardTitle}>Gaming Legends</h3>
             <button style={styles.viewButton}>View</button>
           </div>
           <div style={styles.eventCard}>
-            <img src="path_to_ultimate_gamefest_image.jpg" alt="The Ultimate Gamefest" style={styles.eventImage} />
+            <img src={game3} alt="The Ultimate Gamefest" style={styles.eventImage} />
             <h3 style={styles.cardTitle}>The Ultimate Gamefest</h3>
             <button style={styles.viewButton}>View</button>
           </div>
@@ -57,24 +60,25 @@ const styles = {
     fontWeight: 'bold',
   },
   categoryList: {
-    listStyleType: 'none',
-    padding: 0,
+    display: 'flex',
+    flexDirection: 'column',
   },
   categoryItem: {
-    marginBottom: '10px',
-    padding: '10px',
-    backgroundColor: '#0a1e42',
-    borderRadius: '4px',
-    cursor: 'pointer',
-  },
-  categoryItemhigh:{
     marginBottom: '10px',
     padding: '10px',
     backgroundColor: '#ffff',
     borderRadius: '4px',
     cursor: 'pointer',
-    color:'#0a1e42',
-
+    border: 'none', // To remove the default button border
+  },
+  categoryItemhigh: {
+    marginBottom: '10px',
+    padding: '10px',
+    backgroundColor: '#FFBB00',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    color: '#0a1e42',
+    border: 'none', // To remove the default button border
   },
   mainContent: {
     display: 'flex',

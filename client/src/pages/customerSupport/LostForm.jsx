@@ -1,8 +1,12 @@
 import React from 'react';
+import NavBar from '../../components/core/NavBar';
+import Footer from '../../components/core/Footer';
 
 const LostItemsForm = () => {
   return (
-    <div style={styles.container}>
+    <div>
+      <NavBar></NavBar>
+      <div style={styles.container}>
       <div style={styles.dashboard}>
         <button style={styles.dashboardButton}>Dashboard</button>
         <h2 style={styles.title}>Lost Items Form</h2>
@@ -28,6 +32,8 @@ const LostItemsForm = () => {
         <button style={styles.editButton}>Edit</button>
         <button style={styles.deleteButton}>Delete</button>
       </div>
+    </div>
+    <Footer></Footer>
     </div>
   );
 };
