@@ -76,6 +76,18 @@ const FoodPage = () => {
 
   const navigate = useNavigate();
 
+  const handleDelete = async (id) => {
+    try {
+      
+      await axios.delete(`YOUR_API_URL/items/${id}`);
+ 
+      alert('Item deleted successfully!');
+    } catch (error) {
+      console.error('Error deleting item:', error);
+      alert('Failed to delete item.');
+    }
+  };
+
   return (
     <>
       <NavBar name="foods" />
