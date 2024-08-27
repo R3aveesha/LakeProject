@@ -66,5 +66,4 @@ const Booking1 = () => {
     </>
   );
 }
-
 export default Booking1;

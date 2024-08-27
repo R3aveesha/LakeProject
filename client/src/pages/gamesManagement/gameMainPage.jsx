@@ -70,13 +70,7 @@ const GameMainPage = () => {
           onWaterClick={handleWaterClick}
           onCategoryClick={handleCategoryClick} // For "Show All Games"
         />
-        <input
-          type="text"
-          placeholder="Search games..."
-          value={searchQuery}
-          onChange={handleSearchChange}
-          style={{ marginBottom: "20px", padding: "10px", width: "80%", maxWidth: "400px" }}
-        />
+       
         <ActivitiesGrid activities={filteredGames} />
         {/* Pass filteredGames to ActivitiesGrid */}
       </div>
