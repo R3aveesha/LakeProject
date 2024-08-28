@@ -16,7 +16,7 @@ const Sidebar = ({ name }) => {
                 <Link to='/' className={styles.link} style={{ backgroundColor: currentPage === 'home' ? 'white' : 'transparent', color: currentPage === 'home' ? 'black' : 'white' }}>Home</Link>
                 <Link to='/games' className={styles.link} style={{ backgroundColor: currentPage === 'games' ? 'white' : 'transparent', color: currentPage === 'games' ? 'black' : 'white' }}>Games</Link>
                 <Link to='/movies' className={styles.link} style={{ backgroundColor: currentPage === 'movies' ? 'white' : 'transparent', color: currentPage === 'movies' ? 'black' : 'white' }}>Movies</Link>
-                <Link to='/foods' className={styles.link} style={{ backgroundColor: currentPage === 'foods' ? 'white' : 'transparent', color: currentPage === 'foods' ? 'black' : 'white' }}>Foods</Link>
+                <Link to='/food' className={styles.link} style={{ backgroundColor: currentPage === 'foods' ? 'white' : 'transparent', color: currentPage === 'foods' ? 'black' : 'white' }}>Foods</Link>
                 <Link to='/events' className={styles.link} style={{ backgroundColor: currentPage === 'events' ? 'white' : 'transparent', color: currentPage === 'events' ? 'black' : 'white' }}>Events</Link>
                 <Link to='/support' className={styles.link} style={{ backgroundColor: currentPage === 'support' ? 'white' : 'transparent', color: currentPage === 'support' ? 'black' : 'white' }}>Support</Link>
                 <button type="button" className={styles.signIn} >Sign in</button>

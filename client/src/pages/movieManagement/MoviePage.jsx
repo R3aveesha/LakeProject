@@ -5,7 +5,7 @@ import Footer from '../../components/core/Footer';
 const MoviePage = () => {
   return (
     <>
-      <NavBar name="home" />
+      <NavBar name="movies" />
       <div style={styles.container}>
         <div style={styles.filterSection}>
           <input

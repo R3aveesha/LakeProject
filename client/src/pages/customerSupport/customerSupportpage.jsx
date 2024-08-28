@@ -6,7 +6,7 @@ import image from "../../../public/CusSup.jpg";
 const CustomerSupport = () => {
   return (
     <div>
-      <NavBar />
+      <NavBar name = "support"/>
       <div style={styles.container}>
         <div style={styles.supportSection}>
           <h2 style={styles.heading}>Customer Support</h2>
