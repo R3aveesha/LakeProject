@@ -4,7 +4,6 @@ import NavFunction from "../../functions/navFunction"; // Ensure the path is cor
 import Footer from "../../components/core/Footer"; // Ensure the path is correct
 import ActivitiesGrid from "./ActivitiesGrid";
 import CategorizeNav from "../../components/core/CategorizeNav";
-import CategorizeNav from "../../components/core/CategorizeNav";
 import axios from "axios";
 
 const GameMainPage = () => {

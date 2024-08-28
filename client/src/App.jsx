@@ -23,7 +23,6 @@ import CustomerInquiries from './pages/customerSupport/InqueryTable.jsx'
 import TransportPage from './pages/customerSupport/TransportPage.jsx';
 
 
-
 function App() {
   return (
     <CartProvider>
@@ -44,6 +43,14 @@ function App() {
         <Route path='/cart' element={<Cart/>}/>
         <Route path="/manageFoods" element={<ManageFoood />} />
         <Route path='/updateFoodItem/:id' element={<UpdateFood/>} />
+
+        <Route path='/transport' element={<TransportPage/>}/>
+        <Route path='/customerinq' element={<CustomerInquiries/>}/>
+        <Route path='/inquire' element={<InquiryForm/>}/>
+        <Route path='/customerSupport' element={<CustomerSupport/>}/>
+        <Route path='/ustomerSupportDashboard' element={<CustomerSupportManagerDashboard/>}/>
+
+        <Route path=''/>
 
         
 
