@@ -3,6 +3,7 @@ import NavBar from "../../components/core/NavBar";
 import Footer from "../../components/core/Footer";
 import axios from "axios";
 import MovieCard from "./movieCard";
+import { useNavigate } from "react-router-dom";
 
 const MoviePage = () => {
   const [movies, setMovies] = useState([]);
@@ -12,6 +13,8 @@ const MoviePage = () => {
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -160,7 +163,7 @@ const MoviePage = () => {
               </ul>
             </div>
           </div>
-          <button style={styles.showtimesButton}>View Showtimes</button>
+          <button style={styles.showtimesButton} onClick={() => {navigate('/movies/showtimes')}}>View Showtimes</button>
         </div>
 
         <div
