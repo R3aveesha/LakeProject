@@ -29,6 +29,10 @@ import EventDashboard from './pages/eventManagement/EventDashboard.jsx';
 import MusicalEvent from './pages/eventManagement/MusicalEvent.jsx';
 import OtherEvent from './pages/eventManagement/OtherEvent.jsx';
 import ViewEvent from './pages/eventManagement/ViewEvent.jsx';
+import games from './pages/gamesManagement/gameMainPage.jsx';
+import AddGames from './pages/gamesManagement/Dashboards/AddGames.jsx';
+import AvailableTimes from './pages/gamesManagement/Dashboards/AvailableTimes.jsx';
+import ChangeAvailableTimes from './pages/gamesManagement/Dashboards/ChangeAvailableTimes.jsx';
 
 function App() {
   return (
@@ -39,8 +43,8 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/staff" element={<StaffLoginPage />} />
         <Route path="/admin" element={<AdminLoginPage />} />
-        <Route path="/games" element={<GameMainPage />} />
-        <Route path="//games/:activity" element={<GamesDetails />} />
+       
+        
         <Route path="/commomLoign" element={<CommonLoginPage />} />
         <Route path="/categorize" element={<CategorizeNav />} />
 
@@ -73,6 +77,14 @@ function App() {
         <Route path='/MusicalEvent' element={<MusicalEvent/>}/>
         <Route path='/OtherEvent' element={<OtherEvent/>}/>
         <Route path='/ViewEvent' element={<ViewEvent/>}/>
+
+
+         {/*games management*/}
+         <Route path="/games" element={<GameMainPage />} />
+         <Route path="//games/:activity" element={<GamesDetails />} />
+        <Route path='/AddGames' element={<AddGames/>}/>
+        <Route path='/AvailableTimes' element={<AvailableTimes/>}/>
+        <Route path='/ChangeAvailableTimes' element={<ChangeAvailableTimes/>}/>
         </Routes>
         
 

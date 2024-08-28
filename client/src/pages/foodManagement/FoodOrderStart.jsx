@@ -20,13 +20,13 @@ const FoodOrderStart = () => {
               </h3>
             </div>
             <div className="mainContainerNavBar">
-              <FoodNavBar/>
+             
             </div>
           </div>
           <div className={styles.mainContainerBody}>
             <h4>Welcome to our Food management Portal</h4>
             <br />
-            <p>
+            <p className="foodcaption">
               Your gateway to a seamless dining experience at Lakeview Gaming
               zone.
             </p>
