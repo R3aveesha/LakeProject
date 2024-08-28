@@ -1,8 +1,27 @@
-import React from 'react';
-import NavBar from '../../components/core/NavBar';
-import Footer from '../../components/core/Footer';
+import React, { useEffect, useState } from "react";
+import NavBar from "../../components/core/NavBar";
+import Footer from "../../components/core/Footer";
+import axios from "axios";
 
 const MoviePage = () => {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    const fetchGames = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/api/games/games"
+        ); // Proxy will handle this
+        setMovies(response.data);
+        setFilteredGames(response.data); // Set the initial filtered games
+      } catch (error) {
+        console.error("Error fetching games:", error);
+      }
+    };
+
+    fetchGames();
+  }, []);
+
   return (
     <>
       <NavBar name="movies" />
@@ -17,27 +36,27 @@ const MoviePage = () => {
             <div style={styles.filterCategory}>
               <h3 style={styles.filterTitle}>Filter By Genre</h3>
               <ul style={styles.filterList}>
-                <li>Family</li>
-                <li>Action</li>
-                <li>Comedy</li>
-                <li>Horror</li>
-                <li>Romantic</li>
+                <li style={{ paddingTop: "15px" }}>Family</li>
+                <li style={{ paddingTop: "15px" }}>Action</li>
+                <li style={{ paddingTop: "15px" }}>Comedy</li>
+                <li style={{ paddingTop: "15px" }}>Horror</li>
+                <li style={{ paddingTop: "15px" }}>Romantic</li>
               </ul>
             </div>
             <div style={styles.filterCategory}>
               <h3 style={styles.filterTitle}>Filter By Language</h3>
               <ul style={styles.filterList}>
-                <li>Sinhala</li>
-                <li>Tamil</li>
-                <li>Hindi</li>
-                <li>English</li>
+                <li style={{ paddingTop: "15px" }}>Sinhala</li>
+                <li style={{ paddingTop: "15px" }}>Tamil</li>
+                <li style={{ paddingTop: "15px" }}>Hindi</li>
+                <li style={{ paddingTop: "15px" }}>English</li>
               </ul>
             </div>
             <div style={styles.filterCategory}>
               <h3 style={styles.filterTitle}>Filter By Date</h3>
               <ul style={styles.filterList}>
-                <li>Now Showing</li>
-                <li>Upcoming</li>
+                <li style={{ paddingTop: "15px" }}>Now Showing</li>
+                <li style={{ paddingTop: "15px" }}>Upcoming</li>
               </ul>
             </div>
           </div>
@@ -102,69 +121,69 @@ const MoviePage = () => {
 
 const styles = {
   container: {
-    display: 'flex',
-    justifyContent: 'space-around',
-    padding: '20px',
-    backgroundColor: '#1b1b2f',
-    color: '#fff',
+    display: "flex",
+    justifyContent: "space-around",
+    padding: "20px",
+    backgroundColor: "#1b1b2f",
+    color: "#fff",
   },
   filterSection: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '20px',
-    backgroundColor: '#2d2d44',
-    borderRadius: '10px',
-    width: '25%',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "20px",
+    backgroundColor: "#2d2d44",
+    borderRadius: "10px",
+    width: "25%",
   },
   searchBox: {
-    padding: '10px',
-    marginBottom: '20px',
-    width: '100%',
-    borderRadius: '5px',
-    border: 'none',
-    outline: 'none',
+    padding: "10px",
+    marginBottom: "20px",
+    width: "100%",
+    borderRadius: "5px",
+    border: "none",
+    outline: "none",
   },
   filterContainer: {
-    width: '100%',
+    width: "100%",
   },
   filterCategory: {
-    marginBottom: '20px',
+    marginBottom: "20px",
   },
   filterTitle: {
-    marginBottom: '10px',
-    color: '#f8f8f8',
+    marginBottom: "10px",
+    color: "#f8f8f8",
   },
   filterList: {
-    listStyleType: 'none',
-    padding: '0',
-    color: '#bbb',
+    listStyleType: "none",
+    padding: "0",
+    color: "#bbb",
   },
   showtimesButton: {
-    padding: '10px 20px',
-    backgroundColor: '#f8c444',
-    border: 'none',
-    borderRadius: '5px',
-    color: '#000',
-    cursor: 'pointer',
-    marginTop: '20px',
+    padding: "10px 20px",
+    backgroundColor: "#f8c444",
+    border: "none",
+    borderRadius: "5px",
+    color: "#000",
+    cursor: "pointer",
+    marginTop: "20px",
   },
   moviesSection: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(3, 1fr)',
-    gap: '20px',
-    width: '70%',
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
+    gap: "20px",
+    width: "70%",
   },
   movieCard: {
-    textAlign: 'center',
-    backgroundColor: '#2d2d44',
-    borderRadius: '10px',
-    padding: '10px',
+    textAlign: "center",
+    backgroundColor: "#2d2d44",
+    borderRadius: "10px",
+    padding: "10px",
   },
   movieImage: {
-    width: '120px',
-    height: '160px',
-    borderRadius: '10px',
+    width: "120px",
+    height: "160px",
+    borderRadius: "10px",
   },
 };
 
