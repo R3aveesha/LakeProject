@@ -65,7 +65,7 @@ const MoviePage = () => {
 
   // click handlers for filtering movies
 
-  console.log(filteredMovies);
+  //console.log(filteredMovies);
 
   return (
     <>
