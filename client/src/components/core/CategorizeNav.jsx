@@ -59,6 +59,7 @@ const CategorizeNav = ({
     marginBottom: "15px",
     fontSize: "18px",
     cursor: "pointer",
+    padding: "10px",
   };
 
   const linkStyle = {
