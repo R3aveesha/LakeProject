@@ -1,15 +1,19 @@
-import React from "react";
+import React, { Component } from "react";
 
-const movieCard = () => {
-  const { data } = this.props;
+export default class MovieCard extends Component {
+  render() {
+    const { movie } = this.props;
 
-  return (
-    <div style={styles.movieCard}>
-      <img src={data.image} alt={data.title} style={styles.movieImage} />
-      <p>{data.title}</p>
-    </div>
-  );
-};
+    return (
+      <div style={styles.movieCard}>
+        <div style={{height:150,width:200,overflow:"hidden"}}>
+          <img src={movie.image} alt={movie.name} style={styles.movieImage} />
+        </div>
+        <p style={{marginTop:"80px"}}>{movie.name}</p>
+      </div>
+    );
+  }
+}
 
 const styles = {
   movieCard: {
@@ -17,7 +21,13 @@ const styles = {
     backgroundColor: "#2d2d44",
     borderRadius: "10px",
     padding: "10px",
+    height: "300px",
+    margin:"20px",
+    width: "200px",
+  },
+  movieImage: {
+    width: "100%",
+    borderRadius: "10px",
+    overflow:"hidden",
   },
 };
-
-export default movieCard;

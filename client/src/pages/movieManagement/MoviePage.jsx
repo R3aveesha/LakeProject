@@ -2,18 +2,25 @@ import React, { useEffect, useState } from "react";
 import NavBar from "../../components/core/NavBar";
 import Footer from "../../components/core/Footer";
 import axios from "axios";
+import MovieCard from "./movieCard";
 
 const MoviePage = () => {
   const [movies, setMovies] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState([]);
+
+  const [selectedGenre, setSelectedGenre] = useState("");
+  const [selectedLanguage, setSelectedLanguage] = useState("");
+  const [selectedDate, setSelectedDate] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchGames = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/games/games"
+          "http://localhost:3000/api/movies/movies"
         ); // Proxy will handle this
         setMovies(response.data);
-        setFilteredGames(response.data); // Set the initial filtered games
+        setFilteredMovies(response.data); // Set the initial filtered games
       } catch (error) {
         console.error("Error fetching games:", error);
       }
@@ -21,6 +28,44 @@ const MoviePage = () => {
 
     fetchGames();
   }, []);
+
+  useEffect(() => {
+    let filtered = movies;
+
+    if (selectedGenre) {
+      filtered = filtered.filter((movie) => movie.category === selectedGenre);
+    }
+
+    if (selectedLanguage) {
+      filtered = filtered.filter(
+        (movie) => movie.language === selectedLanguage
+      );
+    }
+
+    if (selectedDate) {
+      const now = new Date();
+      filtered = filtered.filter((movie) => {
+        const availableDates = movie.availableTimes.map(
+          (date) => new Date(date)
+        );
+        return selectedDate === "Now Showing"
+          ? availableDates.some((date) => date > now)
+          : availableDates.some((date) => date > now);
+      });
+    }
+
+    if (searchTerm) {
+      filtered = filtered.filter((movie) =>
+        movie.category.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    setFilteredMovies(filtered);
+  }, [selectedGenre, selectedLanguage, selectedDate, searchTerm, movies]);
+
+  // click handlers for filtering movies
+
+  console.log(filteredMovies);
 
   return (
     <>
@@ -36,82 +81,99 @@ const MoviePage = () => {
             <div style={styles.filterCategory}>
               <h3 style={styles.filterTitle}>Filter By Genre</h3>
               <ul style={styles.filterList}>
-                <li style={{ paddingTop: "15px" }}>Family</li>
-                <li style={{ paddingTop: "15px" }}>Action</li>
-                <li style={{ paddingTop: "15px" }}>Comedy</li>
-                <li style={{ paddingTop: "15px" }}>Horror</li>
-                <li style={{ paddingTop: "15px" }}>Romantic</li>
+                <li
+                  style={{ paddingTop: "15px" }}
+                  onClick={() => setSelectedGenre("Family")}
+                >
+                  Family
+                </li>
+                <li
+                  style={{ paddingTop: "15px" }}
+                  onClick={() => setSelectedGenre("Action")}
+                >
+                  Action
+                </li>
+                <li
+                  style={{ paddingTop: "15px" }}
+                  onClick={() => setSelectedGenre("Crime")}
+                >
+                  Crime
+                </li>
+                <li
+                  style={{ paddingTop: "15px" }}
+                  onClick={() => setSelectedGenre("Horror")}
+                >
+                  Horror
+                </li>
+                <li
+                  style={{ paddingTop: "15px" }}
+                  onClick={() => setSelectedGenre("Romantic")}
+                >
+                  Romantic
+                </li>
               </ul>
             </div>
             <div style={styles.filterCategory}>
               <h3 style={styles.filterTitle}>Filter By Language</h3>
               <ul style={styles.filterList}>
-                <li style={{ paddingTop: "15px" }}>Sinhala</li>
-                <li style={{ paddingTop: "15px" }}>Tamil</li>
-                <li style={{ paddingTop: "15px" }}>Hindi</li>
-                <li style={{ paddingTop: "15px" }}>English</li>
+                <li
+                  style={{ paddingTop: "15px" }}
+                  onClick={(e) => setSelectedLanguage("Sinhala")}
+                >
+                  Sinhala
+                </li>
+                <li
+                  style={{ paddingTop: "15px" }}
+                  onClick={() => setSelectedLanguage("Tamil")}
+                >
+                  Tamil
+                </li>
+                <li
+                  style={{ paddingTop: "15px" }}
+                  onClick={() => setSelectedLanguage("Hindi")}
+                >
+                  Hindi
+                </li>
+                <li
+                  style={{ paddingTop: "15px" }}
+                  onClick={() => setSelectedLanguage("English")}
+                >
+                  English
+                </li>
               </ul>
             </div>
             <div style={styles.filterCategory}>
               <h3 style={styles.filterTitle}>Filter By Date</h3>
               <ul style={styles.filterList}>
-                <li style={{ paddingTop: "15px" }}>Now Showing</li>
-                <li style={{ paddingTop: "15px" }}>Upcoming</li>
+                <li
+                  style={{ paddingTop: "15px" }}
+                  onClick={() => setSelectedDate("Now Showing")}
+                >
+                  Now Showing
+                </li>
+                <li
+                  style={{ paddingTop: "15px" }}
+                  onClick={() => setSelectedDate("Upcoming")}
+                >
+                  Upcoming
+                </li>
               </ul>
             </div>
           </div>
           <button style={styles.showtimesButton}>View Showtimes</button>
         </div>
 
-        <div style={styles.moviesSection}>
-          <div style={styles.movieCard}>
-            <img
-              src="https://via.placeholder.com/120x160"
-              alt="My Red Comrade"
-              style={styles.movieImage}
-            />
-            <p>My Red Comrade</p>
-          </div>
-          <div style={styles.movieCard}>
-            <img
-              src="https://via.placeholder.com/120x160"
-              alt="Thangalaan"
-              style={styles.movieImage}
-            />
-            <p>Thangalaan</p>
-          </div>
-          <div style={styles.movieCard}>
-            <img
-              src="https://via.placeholder.com/120x160"
-              alt="Despicable Me 4"
-              style={styles.movieImage}
-            />
-            <p>Despicable Me 4</p>
-          </div>
-          <div style={styles.movieCard}>
-            <img
-              src="https://via.placeholder.com/120x160"
-              alt="Kambili"
-              style={styles.movieImage}
-            />
-            <p>Kambili</p>
-          </div>
-          <div style={styles.movieCard}>
-            <img
-              src="https://via.placeholder.com/120x160"
-              alt="Deadpool and Wolverine"
-              style={styles.movieImage}
-            />
-            <p>Deadpool and Wolverine</p>
-          </div>
-          <div style={styles.movieCard}>
-            <img
-              src="https://via.placeholder.com/120x160"
-              alt="Demonte Colony 2"
-              style={styles.movieImage}
-            />
-            <p>Demonte Colony 2</p>
-          </div>
+        <div
+          style={{
+            display: "flex",
+            flexFlow: "row wrap",
+            maxWidth: "70%",
+            justifyContent: "center",
+          }}
+        >
+          {movies.map((movie, index) => (
+            <MovieCard key={index} movie={movie} />
+          ))}
         </div>
       </div>
       <Footer />
