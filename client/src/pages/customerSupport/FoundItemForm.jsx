@@ -1,8 +1,12 @@
 import React from 'react';
+import NavBar from '../../components/core/NavBar';
+import Footer from '../../components/core/Footer';
 
 const FoundItemsForm = () => {
   return (
-    <div style={styles.container}>
+    <div>
+      <NavBar></NavBar>
+      <div style={styles.container}>
       <div style={styles.dashboard}>
         <h3 style={styles.dashboardTitle}>My Dashboard</h3>
       </div>
@@ -53,6 +57,8 @@ const FoundItemsForm = () => {
         <button style={styles.generateButton}>Generate Reports</button>
         <button style={styles.deleteButton}>Delete</button>
       </div>
+    </div>
+    <Footer></Footer>
     </div>
   );
 };

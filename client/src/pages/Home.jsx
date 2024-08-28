@@ -1,17 +1,14 @@
 import React from 'react';
-
-
 import Footer from '../components/core/Footer';
 import Carousel from '../components/core/HomeCarousel';
 import ItemCard from '../components/itemCard';
-import NavBar from "../components/core/NavBar";
-import Sidebar from "../components/core/Sidebar";
 import NavFunction from "../functions/navFunction";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import image2 from "../../public/image2.jpg";
 
 const Home = () => {
-  const images = ["/image1.jpg", "/image2.jpg", "image3.jpg"];
+  const images = ["/image1.jpg", "/image2.jpg", "/image3.jpg"];
 
   // State for games and movies
   const [games, setGames] = useState([]);
@@ -50,7 +47,6 @@ const Home = () => {
   return (
     <section>
       <NavFunction name={"home"} />
-
       <Carousel images={images} />
       <ItemCard />
       <Footer />

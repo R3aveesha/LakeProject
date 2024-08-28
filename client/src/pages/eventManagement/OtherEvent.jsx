@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBar from '../../components/core/NavBar';
 import Footer from '../../components/core/Footer';
+import other1 from '../../../public/other1.jpg';
 
 const OtherEvent = () => {
   return (
@@ -17,7 +18,7 @@ const OtherEvent = () => {
         </div>
         <div style={styles.mainContent}>
           <div style={styles.eventCard}>
-            <img src="path_to_victory_arena_image.jpg" alt="Shuttle Strike " style={styles.eventImage} />
+            <img src={other1.jpg} alt="Shuttle Strike " style={styles.eventImage} />
             <h3 style={styles.cardTitle}>Shuttle Strike</h3>
             <button style={styles.viewButton}>View</button>
           </div>
@@ -70,7 +71,7 @@ const styles = {
   categoryItemhigh:{
     marginBottom: '10px',
     padding: '10px',
-    backgroundColor: '#ffff',
+    backgroundColor: '#FFBB00',
     borderRadius: '4px',
     cursor: 'pointer',
     color:'#0a1e42',

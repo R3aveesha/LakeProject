@@ -9,6 +9,7 @@ import axios from "axios";
 const GameMainPage = () => {
   const [games, setGames] = useState([]);
   const [filteredGames, setFilteredGames] = useState([]);
+  const [searchQuery, setSearchQuery] = useState(""); // State for search query
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -41,7 +42,13 @@ const GameMainPage = () => {
 
   const handleCategoryClick = () => {
     console.log("Show All Games clicked");
-    setFilteredGames({games}); // Reset to show all games
+    setFilteredGames(games); // Reset to show all games
+  };
+
+  const handleSearchChange = (e) => {
+    const query = e.target.value.toLowerCase();
+    setSearchQuery(query);
+    setFilteredGames(games.filter((game) => game.name.toLowerCase().includes(query)));
   };
 
   return (
@@ -51,6 +58,7 @@ const GameMainPage = () => {
         className="main"
         style={{
           display: "flex",
+          flexDirection: "column", // Added to handle search input above the grid
           justifyContent: "start",
           alignItems: "center",
           flexWrap: "wrap",
@@ -62,6 +70,7 @@ const GameMainPage = () => {
           onWaterClick={handleWaterClick}
           onCategoryClick={handleCategoryClick} // For "Show All Games"
         />
+       
         <ActivitiesGrid activities={filteredGames} />
         {/* Pass filteredGames to ActivitiesGrid */}
       </div>

@@ -1,29 +1,30 @@
 import React from "react";
-
+import NavBar from "../../components/core/NavBar";
+import Footer from "../../components/core/Footer";
+import image from "../../../public/CusSup.jpg";
 
 const CustomerSupport = () => {
   return (
-    <div style={styles.container}>
-      <div style={styles.supportSection}>
-        <h2 style={styles.heading}>Customer Support</h2>
-        <img
-          src=""
-          alt="Customer Support"
-          style={styles.image}
-        />
-      </div>
-      <div style={styles.searchSection}>
-        <input
-          type="text"
-          placeholder="Search"
-          style={styles.searchInput}
-        />
-        <div style={styles.buttonContainer}>
-          <button style={styles.button}>Inquiries</button>
-          <button style={styles.button}>Lost & Found Items</button>
-          <button style={styles.button}>Transport</button>
+    <div>
+      <NavBar />
+      <div style={styles.container}>
+        <div style={styles.supportSection}>
+          <h2 style={styles.heading}>Customer Support</h2>
+          <img
+            src={image}
+            alt="Customer Support"
+            style={styles.image}
+          />
+        </div>
+        <div style={styles.searchSection}>
+          <div style={styles.buttonContainer}>
+            <button style={styles.button}>Inquiries</button>
+            <button style={styles.button}>Lost & Found Items</button>
+            <button style={styles.button}>Transport</button>
+          </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
@@ -34,18 +35,22 @@ const styles = {
     flexDirection: "column",
     alignItems: "center",
     padding: "20px",
-    backgroundColor: "#212a49",
+    backgroundColor: "#161E38",
     color: "#fff",
+    height: "70vh",
   },
   supportSection: {
     textAlign: "center",
+    padding: "40px",
+    alignItems: "center",
   },
   heading: {
     fontSize: "24px",
     marginBottom: "10px",
+    padding: "10px",
   },
   image: {
-    width: "100%",
+    width: "80%",
     maxWidth: "400px",
     borderRadius: "8px",
   },
@@ -67,8 +72,8 @@ const styles = {
     gap: "10px",
   },
   button: {
-    backgroundColor: "#FFD700", // Updated to yellow color
-    color: "#000", // Changed text color to black for contrast
+    backgroundColor: "#FFD700", // Yellow color
+    color: "#000", // Text color black
     padding: "10px 20px",
     border: "none",
     borderRadius: "5px",
