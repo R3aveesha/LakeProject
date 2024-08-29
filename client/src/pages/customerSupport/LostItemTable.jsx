@@ -1,65 +1,108 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import NavBar from '../../components/core/NavBar';
 import Footer from '../../components/core/Footer';
+import { useNavigate } from 'react-router-dom';
 
 const LostItemsTable = () => {
+  const [lostItems, setLostItems] = useState([]);
+  const [showOptions, setShowOptions] = useState(true); // Control visibility of the options column
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchLostItems = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/api/lostNFound/all-lost-and-found");
+        setLostItems(response.data);
+      } catch (error) {
+        console.error("Error fetching lost items:", error);
+        alert("Failed to fetch lost items. Please try again later.");
+      }
+    };
+
+    fetchLostItems();
+  }, []);
+
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this item?");
+    if (confirmDelete) {
+      try {
+        await axios.delete(`http://localhost:3000/api/lostNFound/${id}`);
+        setLostItems(lostItems.filter(item => item._id !== id));
+        alert("Item deleted successfully.");
+      } catch (error) {
+        console.error("Error deleting item:", error);
+        alert("Failed to delete item. Please try again later.");
+      }
+    }
+  };
+
   return (
-   <div>
-    <NavBar></NavBar>
-     <div style={styles.container}>
-      <div style={styles.dashboard}>
-        <h3 style={styles.dashboardTitle}>My Dashboard</h3>
-      </div>
+    <div>
+      <NavBar />
+      <div style={styles.container}>
+        <div style={styles.dashboard}>
+          <h3 style={styles.dashboardTitle}>My Dashboard</h3>
+        </div>
 
-      <div style={styles.tableContainer}>
-        <h2 style={styles.title}>Lost Items Form</h2>
-        <table style={styles.table}>
-          <thead>
-            <tr>
-              <th style={styles.th}>Name</th>
-              <th style={styles.th}>Email</th>
-              <th style={styles.th}>Contact Number</th>
-              <th style={styles.th}>Lost Items Category</th>
-              <th style={styles.th}>Lost Item</th>
-              <th style={styles.th}>Lost Item Place</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style={styles.td}>Harith</td>
-              <td style={styles.td}>harithd@gmail.com</td>
-              <td style={styles.td}>0772553475</td>
-              <td style={styles.td}>Sports</td>
-              <td style={styles.td}>Shuttle Cock</td>
-              <td style={styles.td}>Badminton Court</td>
-            </tr>
-            <tr>
-              <td style={styles.td}>Chanuka</td>
-              <td style={styles.td}>chanuxl89@gmail.com</td>
-              <td style={styles.td}>0743564637</td>
-              <td style={styles.td}>Accessories</td>
-              <td style={styles.td}>Sunglasses</td>
-              <td style={styles.td}>Horse Riding Area</td>
-            </tr>
-            <tr>
-              <td style={styles.td}>Randy</td>
-              <td style={styles.td}>randy65@gmail.com</td>
-              <td style={styles.td}>0793456789</td>
-              <td style={styles.td}>Watch</td>
-              <td style={styles.td}>Movie Theater</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+        <div style={styles.tableContainer}>
+          <h2 style={styles.title}>Lost Items Form</h2>
+          <div style={styles.tableWrapper}>
+            <div style={styles.tableHeaderWrapper}>
+              <table style={styles.table}>
+                <thead>
+                  <tr>
+                    <th style={styles.th}>Name</th>
+                    <th style={styles.th}>Email</th>
+                    <th style={styles.th}>Contact Number</th>
+                    <th style={styles.th}>Lost Items Category</th>
+                    <th style={styles.th}>Lost Item</th>
+                    <th style={styles.th}>Lost Item Place</th>
+                    {showOptions && <th style={styles.th}>Options</th>} {/* Options Column */}
+                    <th style={styles.th}>Found</th> {/* New Found Column */}
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <div style={styles.tableBodyWrapper}>
+              <table style={styles.table}>
+                <tbody>
+                  {lostItems.map((item, index) => (
+                    <tr key={index}>
+                      <td style={styles.td}>{item.userName}</td>
+                      <td style={styles.td}>{item.email}</td>
+                      <td style={styles.td}>{item.contactNumber}</td>
+                      <td style={styles.td}>{item.foundItemsCategory}</td>
+                      <td style={styles.td}>{item.foundItem}</td>
+                      <td style={styles.td}>{item.foundItemPlace}</td>
+                      {showOptions && (
+                        <td style={styles.td}>
+                          <div style={styles.optionsContainer}>
+                            <button style={styles.optionButton} onClick={() => navigate(`/lostNfound/edit/${item._id}`)}>Edit</button>
+                            <button style={styles.optionButton} onClick={() => handleDelete(item._id)}>Delete</button>
+                          </div>
+                        </td>
+                      )}
+                      <td style={styles.td}>
+                        <button style={styles.foundButton} onClick={() => navigate(`/foundItm/${item._id}`)}>Found</button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
 
-      <div style={styles.buttonGroup}>
-        <button style={styles.editButton}>Edit</button>
-        <button style={styles.generateButton}>Generate Reports</button>
-        <button style={styles.deleteButton}>Delete</button>
+        <div style={styles.buttonGroup}>
+          {/* <button style={styles.editButton}>Edit</button> */}
+          <button style={styles.generateButton}>Generate Reports</button>
+          {/* <button style={styles.deleteButton}>Delete</button> */}
+        </div>
       </div>
+      <Footer />
     </div>
-    <Footer></Footer>
-   </div>
   );
 };
 
@@ -93,20 +136,64 @@ const styles = {
     color: '#000000',
     marginBottom: '20px',
   },
+  tableWrapper: {
+    maxHeight: '600px', 
+    overflowY: 'auto',
+    display: 'block',
+  },
+  tableHeaderWrapper: {
+    position: 'sticky',
+    top: 0,
+    backgroundColor: '#FFFFFF',
+    zIndex: 2,
+  },
+  tableBodyWrapper: {
+    display: 'block',
+  },
   table: {
     width: '100%',
     borderCollapse: 'collapse',
+    tableLayout: 'fixed',
   },
   th: {
     borderBottom: '2px solid #ddd',
     padding: '10px',
     backgroundColor: '#f0f0f0',
     textAlign: 'left',
+    position: 'sticky',
+    top: 0,
+    zIndex: 1,
   },
   td: {
     borderBottom: '1px solid #ddd',
     padding: '10px',
     textAlign: 'left',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  },
+  optionsContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  optionButton: {
+    backgroundColor: '#F4D35E',
+    color: '#000',
+    padding: '5px 10px',
+    borderRadius: '5px',
+    border: 'none',
+    cursor: 'pointer',
+    marginBottom: '5px',
+    width: '100%',
+  },
+  foundButton: {
+    backgroundColor: '#4CAF50', // Green color for found button
+    color: '#FFFFFF',
+    padding: '5px 10px',
+    borderRadius: '5px',
+    border: 'none',
+    cursor: 'pointer',
+    width: '100%',
   },
   buttonGroup: {
     display: 'flex',

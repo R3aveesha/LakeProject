@@ -44,6 +44,8 @@ import ViewAttendance from './pages/staffManagement/ViewAttendance.jsx';
 import StaffTable from './pages/staffManagement/ViewStaffDetails.jsx';
 import LeaveDetails from './pages/staffManagement/ViewLeaveDetails.jsx';
 import SalaryTable from './pages/staffManagement/ViewSalaryDetails.jsx';
+import LostitemTable from './pages/customerSupport/LostItemTable.jsx';
+import LostItemForm from './pages/customerSupport/LostForm.jsx';
 
 function App() {
   return (
@@ -62,16 +64,18 @@ function App() {
           <Route path="/food/start" element={<FoodOrderStart />} />
           <Route path="/food" element={<FoodPage />} /> {/*done*/}
           <Route path="/cart" element={<Cart />} />
-          <Route path="/manageFoods" element={<ManageFood />} />
-          <Route path="/updateFoodItem/:id" element={<UpdateFood />} />
+          <Route path="/manageFoods" element={<ManageFood />} />{/*done*/}
+          <Route path="/updateFoodItem/:id" element={<UpdateFood />} />{/*done*/}
 
           {/* Customer Support */}
           <Route path="/customerSupportManagerDashboard" element={<CustomerSupportManagerDashboard />} />
           <Route path="/support" element={<CustomerSupport />} />
-          <Route path="/foundform" element={<FoundForm />} />
+          <Route path="/foundItm/:id" element={<FoundForm />} />
           <Route path="/inquerypage" element={<InquiryForm />} />
           <Route path="/customerInquiries" element={<CustomerInquiries />} />
           <Route path="/transport" element={<TransportPage />} />
+          <Route path="/lostitems" element={<LostitemTable />} />
+          <Route path="/lostitemform" element={<LostItemForm />} />
 
           {/* Event Management */}
           <Route path="/billinfo" element={<BillInfo />} />

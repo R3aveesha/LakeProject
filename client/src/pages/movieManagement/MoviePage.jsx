@@ -100,6 +100,8 @@ const MoviePage = () => {
     setSelectedDate("");
   };
 
+  console.log(filteredMovies);
+
   const handleNavigate = (id) => {
     navigate(`/movie/${id}`);
   };

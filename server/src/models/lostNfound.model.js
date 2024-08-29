@@ -15,13 +15,13 @@ const LostNFoundSchema = new Schema(
       required: true,
     },
 
-    foundItem: { type: String, required: true },
+    foundItem: { type: String },
 
-    foundItemPlace: { type: String, required: true },
+    foundItemPlace: { type: String },
 
     isFound: { type: Boolean, default: false },
 
-    founder: { type: Schema.Types.ObjectId, ref: "Customer"},
+    founder: { type: Schema.Types.ObjectId, ref: "Customer" },
   },
   {
     timestamps: true,

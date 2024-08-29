@@ -2,19 +2,23 @@
 import React from 'react';
 import NavBar from '../../components/core/NavBar';
 import Footer from '../../components/core/Footer';
+import { useNavigate } from 'react-router-dom';
 
 const CustomerSupportManagerDashboard = () => {
+
+  const navigate = useNavigate();
+
   return (
    <div>
     <NavBar></NavBar>
      <div style={styles.container}>
       <h2 style={styles.title}>Customer Support Manager Dashboard</h2>
       <div style={styles.buttonContainer}>
-        <button style={styles.button}>Add Found Items</button>
-        <button style={styles.button}>View Customer Inquiry</button>
-        <button style={styles.button}>View Lost Items</button>
-        <button style={styles.button}>View Found Items</button>
-        <button style={styles.button}>Add Transport</button>
+        <button style={styles.button} onClick={()=>navigate('/foundform')} >Add Found Items</button>
+        <button style={styles.button} onClick={()=>navigate('/customerInquiries')} >View Customer Inquiry</button>
+        <button style={styles.button} onClick={()=>navigate('/lostitems')} >View Lost Items</button>
+        <button style={styles.button} onClick={()=>navigate('/founditems')} >View Found Items</button>
+        <button style={styles.button} onClick={()=>navigate('/transport')} >Add Transport</button>
       </div>
     </div>
     <Footer></Footer>
