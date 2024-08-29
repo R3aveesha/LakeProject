@@ -97,6 +97,7 @@ const MoviePage = () => {
     setSelectedDate("");
   };
 
+
   return (
     <>
       <NavBar name="movies" />

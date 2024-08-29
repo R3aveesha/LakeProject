@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 
 export default class MovieCard extends Component {
+
+  handleClick = () => {
+    const { movie, onNavigate } = this.props;
+    onNavigate(movie._id);
+  };
   render() {
     const { movie } = this.props;
 
     return (
-      <div style={styles.movieCard}>
+      <div style={styles.movieCard} onClick={this.handleClick}>
         <div style={{height:150,width:200,overflow:"hidden"}}>
           <img src={movie.image} alt={movie.name} style={styles.movieImage} />
         </div>
