@@ -96,7 +96,9 @@ const MoviePage = () => {
     setSelectedLanguage("");
     setSelectedDate("");
   };
-
+  const handleNavigate = (id) => {
+    navigate(`/movie/${id}`);
+  };
 
   return (
     <>
@@ -212,7 +214,7 @@ const MoviePage = () => {
           }}
         >
           {filteredMovies.map((movie, index) => (
-            <MovieCard key={index} movie={movie} />
+            <MovieCard key={index} movie={movie} onNavigate={handleNavigate} />
           ))}
         </div>
       </div>

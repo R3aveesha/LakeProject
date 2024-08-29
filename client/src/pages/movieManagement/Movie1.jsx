@@ -13,7 +13,7 @@ const Movie1 = () => {
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/movies/${id}`);
+        const response = await axios.get(`http://localhost:3000/api/movies/movies/${id}`);
         setMovie(response.data);
         setLoading(false);
       } catch (err) {
