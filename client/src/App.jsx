@@ -53,10 +53,10 @@ function App() {
 
           {/* <Route path="/games/indoor" element={<IndoorGames />} /> */}
           <Route path="/food/start" element={<FoodOrderStart />} />
-          <Route path="/food" element={<FoodPage />} />
+          <Route path="/food" element={<FoodPage />} /> {/*done*/}
           <Route path="/cart" element={<Cart />} />
-          <Route path="/manageFoods" element={<ManageFoood />} />
-          <Route path="/updateFoodItem/:id" element={<UpdateFood />} />
+          <Route path="/manageFoods" element={<ManageFoood />} />{/*done*/}
+          <Route path="/updateFoodItem/:id" element={<UpdateFood />} />{/*done*/}
 
           {/*customer support*/}
 

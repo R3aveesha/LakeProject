@@ -5,8 +5,13 @@ import Footer from "../../components/core/Footer";
 import CustomButton from "../../components/reUseable/CustomButton";
 import pic1 from  '../../../public/Food_Management(Restaurant)/pic1.jpg'
 import FoodNavBar from "../../components/reUseable/foodNavBar";
+import { useNavigate } from "react-router-dom";
+
 
 const FoodOrderStart = () => {
+
+const navigate = useNavigate();
+
   return (
     <>
       <NavBar name="foods" />
@@ -32,8 +37,8 @@ const FoodOrderStart = () => {
             </p>
             <br />
             <br />
-            <div>
-              <CustomButton color="yellow" buttonText="Order" />
+            <div onClick={()=>navigate('/food')}>
+              <CustomButton color="yellow" buttonText="Order"  />
             </div>
           </div>
         </div>

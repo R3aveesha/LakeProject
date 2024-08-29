@@ -4,9 +4,12 @@ import axios from 'axios'; // Import axios outside the component
 import NavBar from "../../components/core/NavBar";
 import Footer from "../../components/core/Footer";
 import styles from '../../pages/foodManagement/styles/updateFood.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const UpdateFoodItems = () => {
   const { id } = useParams(); // Destructure id from useParams
+const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: '',
     ingredients: '',
@@ -70,6 +73,8 @@ const UpdateFoodItems = () => {
 
       console.log('Food item updated:', response.data);
       // Handle success (e.g., redirect or show a success message)
+      navigate('/manageFoods');
+    
     } catch (error) {
       console.error('Error updating food item:', error.response ? error.response.data : error.message);
       // Handle error (e.g., show an error message)
