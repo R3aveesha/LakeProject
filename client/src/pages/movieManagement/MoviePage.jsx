@@ -17,19 +17,19 @@ const MoviePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchGames = async () => {
+    const fetchMovies = async () => {
       try {
         const response = await axios.get(
           "http://localhost:3000/api/movies/movies"
-        ); // Proxy will handle this
+        );
         setMovies(response.data);
-        setFilteredMovies(response.data); // Set the initial filtered games
+        setFilteredMovies(response.data); // Set the initial filtered movies
       } catch (error) {
-        console.error("Error fetching games:", error);
+        console.error("Error fetching movies:", error);
       }
     };
 
-    fetchGames();
+    fetchMovies();
   }, []);
 
   useEffect(() => {
@@ -51,24 +51,51 @@ const MoviePage = () => {
         const availableDates = movie.availableTimes.map(
           (date) => new Date(date)
         );
-        return selectedDate === "Now Showing"
-          ? availableDates.some((date) => date > now)
-          : availableDates.some((date) => date > now);
+        if (selectedDate === "Now Showing") {
+          return availableDates.some((date) => date === now);
+        } else if (selectedDate === "Upcoming") {
+          return availableDates.every((date) => date > now);
+        }
+        return false;
       });
     }
 
     if (searchTerm) {
       filtered = filtered.filter((movie) =>
-        movie.category.toLowerCase().includes(searchTerm.toLowerCase())
+        movie.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
     setFilteredMovies(filtered);
   }, [selectedGenre, selectedLanguage, selectedDate, searchTerm, movies]);
 
-  // click handlers for filtering movies
+  const handleGenreSelect = (genre) => {
+    setSelectedGenre(genre);
+    setSelectedLanguage("");
+    setSelectedDate("");
+    setSearchTerm("");
+  };
 
-  //console.log(filteredMovies);
+  const handleLanguageSelect = (language) => {
+    setSelectedLanguage(language);
+    setSelectedGenre("");
+    setSelectedDate("");
+    setSearchTerm("");
+  };
+
+  const handleDateSelect = (date) => {
+    setSelectedDate(date);
+    setSelectedGenre("");
+    setSelectedLanguage("");
+    setSearchTerm("");
+  };
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+    setSelectedGenre("");
+    setSelectedLanguage("");
+    setSelectedDate("");
+  };
 
   return (
     <>
@@ -78,6 +105,8 @@ const MoviePage = () => {
           <input
             type="text"
             placeholder="Search Movies"
+            value={searchTerm}
+            onChange={handleSearch}
             style={styles.searchBox}
           />
           <div style={styles.filterContainer}>
@@ -86,31 +115,31 @@ const MoviePage = () => {
               <ul style={styles.filterList}>
                 <li
                   style={{ paddingTop: "15px" }}
-                  onClick={() => setSelectedGenre("Family")}
+                  onClick={() => handleGenreSelect("Family")}
                 >
                   Family
                 </li>
                 <li
                   style={{ paddingTop: "15px" }}
-                  onClick={() => setSelectedGenre("Action")}
+                  onClick={() => handleGenreSelect("Action")}
                 >
                   Action
                 </li>
                 <li
                   style={{ paddingTop: "15px" }}
-                  onClick={() => setSelectedGenre("Crime")}
+                  onClick={() => handleGenreSelect("Crime")}
                 >
                   Crime
                 </li>
                 <li
                   style={{ paddingTop: "15px" }}
-                  onClick={() => setSelectedGenre("Horror")}
+                  onClick={() => handleGenreSelect("Horror")}
                 >
                   Horror
                 </li>
                 <li
                   style={{ paddingTop: "15px" }}
-                  onClick={() => setSelectedGenre("Romantic")}
+                  onClick={() => handleGenreSelect("Romantic")}
                 >
                   Romantic
                 </li>
@@ -121,25 +150,25 @@ const MoviePage = () => {
               <ul style={styles.filterList}>
                 <li
                   style={{ paddingTop: "15px" }}
-                  onClick={(e) => setSelectedLanguage("Sinhala")}
+                  onClick={() => handleLanguageSelect("Sinhala")}
                 >
                   Sinhala
                 </li>
                 <li
                   style={{ paddingTop: "15px" }}
-                  onClick={() => setSelectedLanguage("Tamil")}
+                  onClick={() => handleLanguageSelect("Tamil")}
                 >
                   Tamil
                 </li>
                 <li
                   style={{ paddingTop: "15px" }}
-                  onClick={() => setSelectedLanguage("Hindi")}
+                  onClick={() => handleLanguageSelect("Hindi")}
                 >
                   Hindi
                 </li>
                 <li
                   style={{ paddingTop: "15px" }}
-                  onClick={() => setSelectedLanguage("English")}
+                  onClick={() => handleLanguageSelect("English")}
                 >
                   English
                 </li>
@@ -150,20 +179,27 @@ const MoviePage = () => {
               <ul style={styles.filterList}>
                 <li
                   style={{ paddingTop: "15px" }}
-                  onClick={() => setSelectedDate("Now Showing")}
+                  onClick={() => handleDateSelect("Now Showing")}
                 >
                   Now Showing
                 </li>
                 <li
                   style={{ paddingTop: "15px" }}
-                  onClick={() => setSelectedDate("Upcoming")}
+                  onClick={() => handleDateSelect("Upcoming")}
                 >
                   Upcoming
                 </li>
               </ul>
             </div>
           </div>
-          <button style={styles.showtimesButton} onClick={() => {navigate('/movies/showtimes')}}>View Showtimes</button>
+          <button
+            style={styles.showtimesButton}
+            onClick={() => {
+              navigate("/movies/showtimes");
+            }}
+          >
+            View Showtimes
+          </button>
         </div>
 
         <div
@@ -174,7 +210,7 @@ const MoviePage = () => {
             justifyContent: "center",
           }}
         >
-          {movies.map((movie, index) => (
+          {filteredMovies.map((movie, index) => (
             <MovieCard key={index} movie={movie} />
           ))}
         </div>
@@ -223,6 +259,7 @@ const styles = {
     listStyleType: "none",
     padding: "0",
     color: "#bbb",
+    cursor: "pointer",
   },
   showtimesButton: {
     padding: "10px 20px",
@@ -232,23 +269,6 @@ const styles = {
     color: "#000",
     cursor: "pointer",
     marginTop: "20px",
-  },
-  moviesSection: {
-    display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
-    gap: "20px",
-    width: "70%",
-  },
-  movieCard: {
-    textAlign: "center",
-    backgroundColor: "#2d2d44",
-    borderRadius: "10px",
-    padding: "10px",
-  },
-  movieImage: {
-    width: "120px",
-    height: "160px",
-    borderRadius: "10px",
   },
 };
 

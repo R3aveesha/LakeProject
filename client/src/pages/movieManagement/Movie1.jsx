@@ -1,32 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import NavBar from '../../components/core/NavBar';
 import Footer from '../../components/core/Footer';
+import { useParams } from 'react-router-dom';
 
 const Movie1 = () => {
+  const { id } = useParams(); // Get the ID from the URL
+  const [movie, setMovie] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchMovie = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/api/movies/${id}`);
+        setMovie(response.data);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchMovie();
+  }, [id]); // Add id as a dependency to refetch if it changes
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  if (!movie) return <div>No movie data</div>;
+
   return (
     <>
       <NavBar name='home' />
       <div style={styles.container}>
         <div style={styles.movieContainer}>
           <img
-            src='https://via.placeholder.com/341x366'
-            alt='Despicable Me 4'
+            src={movie.image}
+            alt={movie.name}
             style={styles.movieImage}
           />
           <div style={styles.movieDetails}>
-            <h2 style={styles.title}>Movie Details</h2>
-            <p><strong>Name:</strong> Despicable Me 4</p>
-            <p><strong>Director:</strong> Chris Renaud</p>
-            <p><strong>Year:</strong> 2024</p>
-            <p><strong>Language:</strong> English</p>
-            <p><strong>Actors:</strong> Steve Carell, Kristen Wiig, Pierre Coffin, Joey King, Miranda Cosgrove, Stephen Colbert, Sofia Vergara, Steve Coogan, Madison Palon, Dana Gaier, Chloe Fineman, Will Ferrell</p>
-            <p><strong>Genre:</strong> Family</p>
-            <p><strong>Duration:</strong> 1h 34m</p>
-            <p><strong>Synopsis:</strong> Gru and Lucy and their girls Margo, Edith, and Agnes welcome a new member to the Gru family, Gru Jr., who is intent on tormenting his dad. Gru faces a new nemesis in Maxime Le Mal and his femme fatale girlfriend Valentina, and the family is forced to go on the run.</p>
+            <h2 style={styles.title}>{movie.name}</h2>
+            <p><strong>Director:</strong> {movie.director || 'Unknown'}</p>
+            <p><strong>Year:</strong> {movie.year || 'Unknown'}</p>
+            <p><strong>Language:</strong> {movie.language}</p>
+            <p><strong>Actors:</strong> {movie.artists.join(', ')}</p>
+            <p><strong>Genre:</strong> {movie.category}</p>
+            <p><strong>Duration:</strong> {movie.duration} minutes</p>
+            <p><strong>Synopsis:</strong> {movie.description}</p>
           </div>
         </div>
-
-      
       </div>
       <Footer />
     </>
@@ -62,7 +85,6 @@ const styles = {
     marginBottom: '15px',
     color: '#f8f8f8',
   },
-
 };
 
 export default Movie1;
