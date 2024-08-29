@@ -1,63 +1,84 @@
 // services/inquiryService.js
 const Inquiry = require('../models/inquiry.model'); // Adjust the path as needed
 
-// Function to create an inquiry
-exports.createInquiry = async (data) => {
-    try {
-        const inquiry = new Inquiry(data);
-        await inquiry.save();
-        return { status: 201, data: inquiry };
-    } catch (error) {
-        return { status: 400, error: error.message };
-    }
-};
 
 // Function to get all inquiries
-exports.getAllInquiries = async () => {
+exports.getAllInquiries = async (req,res) => {
     try {
-        // const inquiries = await Inquiry.find().populate('userName', 'name');
         const inquiries = await Inquiry.find();
-        return { status: 200, data: inquiries };
+        res.json(inquiries);
     } catch (error) {
-        return { status: 500, error: error.message };
+        res.status(500).json({ error: error.message });
     }
 };
 
-// Function to get a single inquiry by ID
-exports.getOneInquiry = async (id) => {
+
+// Function to add an inquiry
+exports.addInquiry = async (req,res) => {
     try {
-        const inquiry = await Inquiry.findById(id).populate('userName', 'name');
-        if (!inquiry) {
-            return { status: 404, error: 'Inquiry not found' };
-        }
-        return { status: 200, data: inquiry };
+        const inquiry = {
+            userName: req.body.userName,
+            email: req.body.email,
+            contactNumber: req.body.contactNumber,
+            inquiryCategory: req.body.inquiryCategory,
+            inquiryMessage: req.body.inquiryMessage,
+        };
+
+        const newInquiry = await Inquiry.create(inquiry);
+
+        res.status(201).json(newInquiry);
     } catch (error) {
-        return { status: 500, error: error.message };
+        res.status(500).json({ error: error.message });
+    }
+};
+
+
+// Function to get one inquiry
+exports.getOneInquiry = async (req,res) => {
+    try {
+        const id = req.params.id;
+
+        const inquiry = await Inquiry.findById(id);
+
+        if (!inquiry) {
+            return res.status(404).json({ message: "Inquiry not found" });
+        }
+
+        return res.status(200).json(inquiry);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
 };
 
 // Function to update an inquiry
-exports.updateInquiry = async (id, data) => {
+exports.updateInquiry = async (req,res) => {
     try {
-        const inquiry = await Inquiry.findByIdAndUpdate(id, data, { new: true });
+        const id = req.params.id;
+        const inquiry = await Inquiry.findByIdAndUpdate(id, req.body, { new: true });
+        
         if (!inquiry) {
-            return { status: 404, error: 'Inquiry not found' };
+            return res.status(404).json({ message: "Inquiry not found" });
         }
-        return { status: 200, data: inquiry };
+        
+        return res.status(200).json(inquiry);
     } catch (error) {
-        return { status: 400, error: error.message };
+        res.status(500).json({ error: error.message });
+        
     }
-};
+}
 
 // Function to delete an inquiry
-exports.deleteInquiry = async (id) => {
+exports.deleteInquiry = async (req,res) => {
     try {
+        const id = req.params.id;
         const inquiry = await Inquiry.findByIdAndDelete(id);
+        
         if (!inquiry) {
-            return { status: 404, error: 'Inquiry not found' };
+            return res.status(404).json({ message: "Inquiry not found" });
         }
-        return { status: 200, message: 'Inquiry deleted' };
+        
+        return res.status(200).json(inquiry);
     } catch (error) {
-        return { status: 500, error: error.message };
+        res.status(500).json({ error: error.message });
     }
-};
+}
