@@ -2,13 +2,11 @@ import React, { useEffect, useState } from "react";
 import NavBar from "../../components/core/NavBar";
 import Footer from "../../components/core/Footer";
 import axios from "axios";
-import MovieCard from "./movieCard";
 import { useNavigate } from "react-router-dom";
 
 const MoviePage = () => {
   const [movies, setMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
-
   const [selectedGenre, setSelectedGenre] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
@@ -23,7 +21,7 @@ const MoviePage = () => {
           "http://localhost:3000/api/movies/movies"
         );
         setMovies(response.data);
-        setFilteredMovies(response.data); // Set the initial filtered movies
+        setFilteredMovies(response.data);
       } catch (error) {
         console.error("Error fetching movies:", error);
       }
@@ -45,25 +43,20 @@ const MoviePage = () => {
       );
     }
 
-    // Function to normalize a date by setting time components to zero
-    const normalizeDate = (date) => {
-      return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-    };
+    const normalizeDate = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate());
 
     if (selectedDate) {
-      const now = normalizeDate(new Date()); // Normalize the current date
+      const now = normalizeDate(new Date());
       filtered = filtered.filter((movie) => {
         const availableDates = movie.availableTimes.map((date) =>
           normalizeDate(new Date(date))
         );
 
         if (selectedDate === "Now Showing") {
-          // Check if any available date matches the normalized current date
           return availableDates.some(
             (date) => date.getTime() === now.getTime()
           );
         } else if (selectedDate === "Upcoming") {
-          // Check if all available dates are after the current date
           return availableDates.every((date) => date > now);
         }
         return false;
@@ -106,6 +99,7 @@ const MoviePage = () => {
     setSelectedLanguage("");
     setSelectedDate("");
   };
+
   const handleNavigate = (id) => {
     navigate(`/movie/${id}`);
   };
@@ -126,105 +120,51 @@ const MoviePage = () => {
             <div style={styles.filterCategory}>
               <h3 style={styles.filterTitle}>Filter By Genre</h3>
               <ul style={styles.filterList}>
-                <li
-                  style={{ paddingTop: "15px" }}
-                  onClick={() => handleGenreSelect("Family")}
-                >
-                  Family
-                </li>
-                <li
-                  style={{ paddingTop: "15px" }}
-                  onClick={() => handleGenreSelect("Action")}
-                >
-                  Action
-                </li>
-                <li
-                  style={{ paddingTop: "15px" }}
-                  onClick={() => handleGenreSelect("Crime")}
-                >
-                  Crime
-                </li>
-                <li
-                  style={{ paddingTop: "15px" }}
-                  onClick={() => handleGenreSelect("Horror")}
-                >
-                  Horror
-                </li>
-                <li
-                  style={{ paddingTop: "15px" }}
-                  onClick={() => handleGenreSelect("Romantic")}
-                >
-                  Romantic
-                </li>
+                <li onClick={() => handleGenreSelect("Family")}>Family</li>
+                <li onClick={() => handleGenreSelect("Action")}>Action</li>
+                <li onClick={() => handleGenreSelect("Crime")}>Crime</li>
+                <li onClick={() => handleGenreSelect("Horror")}>Horror</li>
+                <li onClick={() => handleGenreSelect("Romantic")}>Romantic</li>
               </ul>
             </div>
             <div style={styles.filterCategory}>
               <h3 style={styles.filterTitle}>Filter By Language</h3>
               <ul style={styles.filterList}>
-                <li
-                  style={{ paddingTop: "15px" }}
-                  onClick={() => handleLanguageSelect("Sinhala")}
-                >
-                  Sinhala
-                </li>
-                <li
-                  style={{ paddingTop: "15px" }}
-                  onClick={() => handleLanguageSelect("Tamil")}
-                >
-                  Tamil
-                </li>
-                <li
-                  style={{ paddingTop: "15px" }}
-                  onClick={() => handleLanguageSelect("Hindi")}
-                >
-                  Hindi
-                </li>
-                <li
-                  style={{ paddingTop: "15px" }}
-                  onClick={() => handleLanguageSelect("English")}
-                >
-                  English
-                </li>
+                <li onClick={() => handleLanguageSelect("Sinhala")}>Sinhala</li>
+                <li onClick={() => handleLanguageSelect("Tamil")}>Tamil</li>
+                <li onClick={() => handleLanguageSelect("Hindi")}>Hindi</li>
+                <li onClick={() => handleLanguageSelect("English")}>English</li>
               </ul>
             </div>
             <div style={styles.filterCategory}>
               <h3 style={styles.filterTitle}>Filter By Date</h3>
               <ul style={styles.filterList}>
-                <li
-                  style={{ paddingTop: "15px" }}
-                  onClick={() => handleDateSelect("Now Showing")}
-                >
-                  Now Showing
-                </li>
-                <li
-                  style={{ paddingTop: "15px" }}
-                  onClick={() => handleDateSelect("Upcoming")}
-                >
-                  Upcoming
-                </li>
+                <li onClick={() => handleDateSelect("Now Showing")}>Now Showing</li>
+                <li onClick={() => handleDateSelect("Upcoming")}>Upcoming</li>
               </ul>
             </div>
           </div>
           <button
             style={styles.showtimesButton}
-            onClick={() => {
-              navigate("/movies/showtimes");
-            }}
+            onClick={() => navigate("/movies/showtimes")}
           >
             View Showtimes
           </button>
         </div>
-
-        <div
-          style={{
-            display: "flex",
-            flexFlow: "row wrap",
-            maxWidth: "70%",
-            justifyContent: "center",
-          }}
-        >
+        <div style={styles.moviesGrid}>
           {filteredMovies.map((movie, index) => (
-            <MovieCard key={index} movie={movie} onNavigate={handleNavigate} />
+            <div
+              key={index}
+              style={styles.movieCard}
+              onClick={() => handleNavigate(movie.id)}
+            >
+              <img
+                src={movie.image}
+                alt={movie.title}
+                style={styles.movieImage}
+              />
+              <p style={styles.movieTitle}>{movie.title}</p>
+            </div>
           ))}
         </div>
       </div>
@@ -236,52 +176,69 @@ const MoviePage = () => {
 const styles = {
   container: {
     display: "flex",
-    justifyContent: "space-around",
     padding: "20px",
-    backgroundColor: "#1b1b2f",
-    color: "#fff",
+    backgroundColor: "#1b1f38",
   },
   filterSection: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    padding: "20px",
-    backgroundColor: "#2d2d44",
+    width: "250px",
+    backgroundColor: "#0c1024",
+    padding: "15px",
     borderRadius: "10px",
-    width: "25%",
-  },
-  searchBox: {
-    padding: "10px",
-    marginBottom: "20px",
-    width: "100%",
-    borderRadius: "5px",
-    border: "none",
-    outline: "none",
+    marginRight: "20px",
+    color: "white",
   },
   filterContainer: {
-    width: "100%",
+    marginBottom: "20px",
   },
   filterCategory: {
     marginBottom: "20px",
   },
   filterTitle: {
-    marginBottom: "10px",
-    color: "#f8f8f8",
+    fontSize: "18px",
+    fontWeight: "bold",
   },
   filterList: {
     listStyleType: "none",
-    padding: "0",
-    color: "#bbb",
+    paddingLeft: "0",
+    color: "white",
     cursor: "pointer",
   },
+  searchBox: {
+    width: "100%",
+    padding: "10px",
+    marginBottom: "15px",
+    borderRadius: "5px",
+    border: "none",
+  },
   showtimesButton: {
+    backgroundColor: "#ff9800",
+    color: "white",
     padding: "10px 20px",
-    backgroundColor: "#f8c444",
     border: "none",
     borderRadius: "5px",
-    color: "#000",
     cursor: "pointer",
-    marginTop: "20px",
+    width: "100%",
+  },
+  moviesGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
+    gridGap: "20px",
+    flexGrow: 1,
+  },
+  movieCard: {
+    textAlign: "center",
+    backgroundColor: "#0c1024",
+    padding: "15px",
+    borderRadius: "10px",
+    cursor: "pointer",
+  },
+  movieImage: {
+    width: "90%",
+    borderRadius: "10px",
+  },
+  movieTitle: {
+    color: "#fff",
+    marginTop: "10px",
   },
 };
 

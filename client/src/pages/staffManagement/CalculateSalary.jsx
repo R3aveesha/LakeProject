@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import NavBar from "../../components/core/NavBar";
+import Footer from "../../components/core/Footer";
 
 const SalaryCalculator = () => {
   const [id, setId] = useState("");
@@ -28,7 +30,9 @@ const SalaryCalculator = () => {
   };
 
   return (
-    <div
+    <div>
+      <NavBar></NavBar>
+      <div
       style={{
         backgroundColor: "#2a2a40",
         display: "flex",
@@ -179,6 +183,8 @@ const SalaryCalculator = () => {
           </div>
         </form>
       </div>
+    </div>
+    <Footer></Footer>
     </div>
   );
 };

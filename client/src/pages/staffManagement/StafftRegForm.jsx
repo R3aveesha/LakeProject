@@ -1,4 +1,6 @@
 import React from 'react';
+import NavBar from '../../components/core/NavBar';
+import Footer from '../../components/core/Footer';
 
 const StaffRegistrationForm = () => {
   const formContainerStyle = {
@@ -6,7 +8,7 @@ const StaffRegistrationForm = () => {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '100vh',
+    height: '80vh',
     backgroundColor: '#1b1f38',
     padding: '20px',
     boxSizing: 'border-box',
@@ -89,7 +91,9 @@ const StaffRegistrationForm = () => {
   };
 
   return (
-    <div style={formContainerStyle}>
+    <div>
+      <NavBar></NavBar>
+      <div style={formContainerStyle}>
       <form style={{ ...formStyle, ...responsiveGrid }}>
         <h2 style={titleStyle}>Staff Registration Form</h2>
 
@@ -133,6 +137,9 @@ const StaffRegistrationForm = () => {
           <button type="reset" style={clearButtonStyle}>Clear</button>
         </div>
       </form>
+    </div>
+
+      <Footer></Footer>
     </div>
   );
 };

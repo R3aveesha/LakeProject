@@ -1,4 +1,6 @@
 import React from 'react';
+import Footer from '../../components/core/Footer';
+import NavBar from '../../components/core/NavBar';
 
 const SalaryTable = () => {
   const containerStyle = {
@@ -48,7 +50,9 @@ const SalaryTable = () => {
   };
 
   return (
-    <div style={containerStyle}>
+   <div>
+    <NavBar></NavBar>
+     <div style={containerStyle}>
       <table style={tableStyle}>
         <thead>
           <tr>
@@ -77,6 +81,8 @@ const SalaryTable = () => {
         </tbody>
       </table>
     </div>
+    <Footer></Footer>
+   </div>
   );
 };
 

@@ -1,4 +1,6 @@
 import React from 'react';
+import Footer from '../../components/core/Footer';
+import NavBar from '../../components/core/NavBar';
 
 const Myleaves = () => {
   const containerStyle = {
@@ -66,7 +68,9 @@ const Myleaves = () => {
   };
 
   return (
-    <div style={containerStyle}>
+    <div>
+      <NavBar></NavBar>
+      <div style={containerStyle}>
       <button style={dashboardButtonStyle}>My Dashboard</button>
       <div style={headerStyle}>MY LEAVE REQUESTS</div>
       <table style={tableStyle}>
@@ -103,6 +107,8 @@ const Myleaves = () => {
           </tr>
         </tbody>
       </table>
+    </div>
+    <Footer></Footer>
     </div>
   );
 };
