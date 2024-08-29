@@ -55,9 +55,6 @@ function App() {
           <Route path="/food/start" element={<FoodOrderStart />} />
           <Route path="/food" element={<FoodPage />} />
           <Route path="/cart" element={<Cart />} />
-
-          <Route path="/foods" element={<FoodPage />} />
-          <Route path="/cart" element={<Cart />} />
           <Route path="/manageFoods" element={<ManageFoood />} />
           <Route path="/updateFoodItem/:id" element={<UpdateFood />} />
 
@@ -85,18 +82,18 @@ function App() {
 
           {/* movie management */}
 
-          <Route path="/movies" element={<MoviePage />} />
-          <Route path="/movies/showtimes" element={<ShowtimesPage />} />
-          <Route path="/movies/addnewmovie" element={<AddnewMovie />} />
-          <Route path="/movie/:id" element={<Movie1 />} />
+          <Route path="/movies" element={<MoviePage />} />  {/** done */}
+          <Route path="/movies/showtimes" element={<ShowtimesPage />} />  {/** done */}
+          <Route path="/movies/addnewmovie" element={<AddnewMovie />} />    {/** done */}
+          <Route path="/movie/:id" element={<Movie1 />} />      {/** done */}
           <Route
             path="/movieManagerDashboard"
-            element={<MovieManagerDashboard />}
-          />
+            element={<MovieManagerDashboard />}     
+          />      {/** done */}                   {/** inc ui */}
 
           {/*games management*/}
-          <Route path="/games" element={<GameMainPage />} />
-          <Route path="/games/:id" element={<GamesDetails />} />
+          <Route path="/games" element={<GameMainPage />} />        {/** done */}
+          <Route path="/games/:id" element={<GamesDetails />} />    
           <Route path="/AddGames" element={<AddGames />} />
           <Route path="/AvailableTimes" element={<AvailableTimes />} />
           <Route

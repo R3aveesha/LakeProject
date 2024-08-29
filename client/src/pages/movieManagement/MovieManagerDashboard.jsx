@@ -1,15 +1,19 @@
 import React from 'react';
 import NavBar from '../../components/core/NavBar';
 import Footer from '../../components/core/Footer';
+import { useNavigate } from 'react-router-dom';
 
 const MovieManagerDashboard = () => {
+
+const navigate = useNavigate();
+
   return (
     <>
       <NavBar name="home" />
       <div style={styles.container}>
         <h2 style={styles.header}>Movie Manager Dashboard</h2>
         <div style={styles.buttonContainer}>
-          <button style={styles.button}>Add New Movie</button>
+          <button style={styles.button} onClick={()=>navigate("/movies/addnewmovie")}>Add New Movie</button>
           <button style={styles.button}>Remove Movies</button>
           <button style={styles.button}>Update Movie Details</button>
           <button style={styles.button}>View Movies</button>

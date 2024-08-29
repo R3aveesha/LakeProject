@@ -45,22 +45,66 @@ exports.getMovieById = async (req, res) => {
  * @param {string} req.body.description The description of the movie
  * @returns {Promise<Movie>} A promise that resolves with the newly created movie
  */
+
 exports.createMovie = async (req, res) => {
   try {
-    const { name, category, availableTimes, duration, price, description } =
-      req.body;
-    const newMovie = new Movie({
+    const {
       name,
       category,
+      image,
+      language,
       availableTimes,
       duration,
       price,
+      artists,
       description,
+    } = req.body;
+
+    // Basic validation
+    if (
+      !name ||
+      !category ||
+      !image ||
+      !language ||
+      !duration ||
+      !price ||
+      !description
+    ) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    // Ensure that duration and price are numbers
+    const parsedDuration = parseFloat(duration);
+    const parsedPrice = parseFloat(price);
+
+    if (isNaN(parsedDuration) || isNaN(parsedPrice)) {
+      return res.status(400).json({ error: "Invalid duration or price" });
+    }
+
+    // Create new movie
+    const newMovie = new Movie({
+      name,
+      category,
+      image,
+      language,
+      availableTimes: availableTimes || [], // Default to empty array if not provided
+      duration: parsedDuration,
+      price: parsedPrice,
+      artists: artists || [], // Default to empty array if not provided
+      description: description || "", // Default to empty string if not provided
     });
+
+    // Save the movie to the database
     await newMovie.save();
+
+    // Respond with the created movie
     res.status(201).json(newMovie);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    // Log error for debugging
+    console.error("Error creating movie:", err);
+
+    // Respond with a generic error message
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
@@ -105,7 +149,6 @@ exports.deleteMovie = async (req, res) => {
   }
 };
 
-
 /**
  * @function addMovieArtists
  * @description Add a list of artists to a movie
@@ -147,7 +190,6 @@ exports.addMovieArtists = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-
 
 /**
  * @function addAvailableTimes

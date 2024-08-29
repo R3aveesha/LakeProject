@@ -45,15 +45,25 @@ const MoviePage = () => {
       );
     }
 
+    // Function to normalize a date by setting time components to zero
+    const normalizeDate = (date) => {
+      return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    };
+
     if (selectedDate) {
-      const now = new Date();
+      const now = normalizeDate(new Date()); // Normalize the current date
       filtered = filtered.filter((movie) => {
-        const availableDates = movie.availableTimes.map(
-          (date) => new Date(date)
+        const availableDates = movie.availableTimes.map((date) =>
+          normalizeDate(new Date(date))
         );
+
         if (selectedDate === "Now Showing") {
-          return availableDates.some((date) => date === now);
+          // Check if any available date matches the normalized current date
+          return availableDates.some(
+            (date) => date.getTime() === now.getTime()
+          );
         } else if (selectedDate === "Upcoming") {
+          // Check if all available dates are after the current date
           return availableDates.every((date) => date > now);
         }
         return false;
