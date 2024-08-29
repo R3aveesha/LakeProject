@@ -14,7 +14,9 @@ const GameMainPage = () => {
   useEffect(() => {
     const fetchGames = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/games/games"); // Proxy will handle this
+        const response = await axios.get(
+          "http://localhost:3000/api/games/games"
+        ); // Proxy will handle this
         setGames(response.data);
         setFilteredGames(response.data); // Set the initial filtered games
       } catch (error) {
@@ -48,7 +50,9 @@ const GameMainPage = () => {
   const handleSearchChange = (e) => {
     const query = e.target.value.toLowerCase();
     setSearchQuery(query);
-    setFilteredGames(games.filter((game) => game.name.toLowerCase().includes(query)));
+    setFilteredGames(
+      games.filter((game) => game.name.toLowerCase().includes(query))
+    );
   };
 
   return (
@@ -58,25 +62,35 @@ const GameMainPage = () => {
         className="main"
         style={{
           display: "flex",
-          flexDirection: "column", // Added to handle search input above the grid
+          flexDirection: "row", // Added to handle search input above the grid
           justifyContent: "start",
-          alignItems: "center",
+          alignItems: "start",
           flexWrap: "wrap",
+          width: "100%",
         }}
       >
-        <CategorizeNav
-          onIndoorClick={handleIndoorClick}
-          onOutdoorClick={handleOutdoorClick}
-          onWaterClick={handleWaterClick}
-          onCategoryClick={handleCategoryClick} // For "Show All Games"
-        />
-       
-        <ActivitiesGrid activities={filteredGames} />
+        <div style={{ width: "20%" }}>
+          <CategorizeNav
+            onIndoorClick={handleIndoorClick}
+            onOutdoorClick={handleOutdoorClick}
+            onWaterClick={handleWaterClick}
+            onCategoryClick={handleCategoryClick} // For "Show All Games"
+          />
+        </div>
+
+        <div style={{ width: "80%",display:"flex",flexFlow:"column wrap" }}>
+          <div style={{height:"200px"}}></div>
+          <ActivitiesGrid activities={filteredGames} />
+        </div>
+
+        {/* <ActivitiesGrid activities={filteredGames} /> */}
         {/* Pass filteredGames to ActivitiesGrid */}
       </div>
       <Footer />
     </section>
   );
 };
+
+
 
 export default GameMainPage;

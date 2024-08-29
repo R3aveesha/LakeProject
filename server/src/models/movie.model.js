@@ -5,6 +5,8 @@ const MovieSchema = new Schema(
   {
     name: { type: String, required: true, unique: true, index: true },
     category: { type: String, required: true },
+    image:{type: String, required: true},
+    language:{type: String, required: true},
     availableTimes: { type: [Date], default: [] },
     duration: { type: Number, required: true },
     price: { type: Number, required: true },

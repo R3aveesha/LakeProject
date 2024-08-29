@@ -10,7 +10,7 @@ const FoodPage = () => {
   useEffect(() => {
     const fetchFood = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/food"); // Proxy will handle this
+        const response = await axios.get("http://localhost:3000/api/food"); 
         setFoods(response.data);
         
       } catch (error) {
@@ -78,6 +78,8 @@ const FoodPage = () => {
       .then(data => setFoods(data))
       .catch(error => console.error('Error fetching food data:', error));
   }, []); */
+
+  console.log(foods);
 
   return (
     <>
