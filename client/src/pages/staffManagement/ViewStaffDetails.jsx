@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Footer from '../../components/core/Footer';
+import NavBar from '../../components/core/NavBar';
 
 const StaffTable = () => {
   const [searchQuery, setSearchQuery] = useState(''); // State to track search query
@@ -12,6 +14,7 @@ const StaffTable = () => {
     padding: '20px',
     backgroundColor: '#161E38',
     color: '#234151',
+    height:"60vh"
   };
 
   const tableStyle = {
@@ -32,6 +35,7 @@ const StaffTable = () => {
     padding: '10px',
     border: '1px solid #ccc',
     textAlign: 'left',
+    
   };
 
   const buttonStyle = {
@@ -67,7 +71,9 @@ const StaffTable = () => {
   );
 
   return (
-    <div style={containerStyle}>
+    <div>
+      <NavBar></NavBar>
+      <div style={containerStyle}>
       <input
         type="text"
         placeholder="Search staff..."
@@ -106,6 +112,8 @@ const StaffTable = () => {
           ))}
         </tbody>
       </table>
+    </div>
+    <Footer></Footer>
     </div>
   );
 };

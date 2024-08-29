@@ -1,7 +1,11 @@
 import React from 'react';
+import NavBar from '../../components/core/NavBar';
+import Footer from '../../components/core/Footer';
 
 const StaffManagerProfile = () => {
   return (
+   <div>
+    <NavBar></NavBar>
     <div style={styles.container}>
       <div style={styles.dashboard}>
         <h3 style={styles.dashboardTitle}>Dashboard</h3>
@@ -37,9 +41,9 @@ const StaffManagerProfile = () => {
           </div>
         </form>
       </div>
-      
-     
     </div>
+    <Footer></Footer>
+   </div>
   );
 };
 

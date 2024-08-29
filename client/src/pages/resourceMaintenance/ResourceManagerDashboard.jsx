@@ -1,9 +1,13 @@
 
 import React from 'react';
+import NavBar from '../../components/core/NavBar';
+import Footer from '../../components/core/Footer';
 
 const ResourceManagerDashboard = () => {
   return (
-    <div style={styles.container}>
+   <div>
+    <NavBar></NavBar>
+     <div style={styles.container}>
       <h2 style={styles.title}>Customer Support Manager Dashboard</h2>
       <div style={styles.buttonContainer}>
         <button style={styles.button}>View Resources</button>
@@ -15,6 +19,8 @@ const ResourceManagerDashboard = () => {
 
       </div>
     </div>
+    <Footer></Footer>
+   </div>
   );
 };
 
@@ -23,9 +29,10 @@ const styles = {
     fontFamily: 'Arial, sans-serif',
     backgroundColor: '#0D1B2A',
     color: '#FFFFFF',
-    padding: '20px',
-    borderRadius: '10px',
+    padding: '40px',
     textAlign: 'center',
+    height:'60vh',
+   
   },
   title: {
     marginBottom: '30px',

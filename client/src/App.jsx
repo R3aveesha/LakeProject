@@ -33,6 +33,22 @@ import games from './pages/gamesManagement/gameMainPage.jsx';
 import AddGames from './pages/gamesManagement/Dashboards/AddGames.jsx';
 import AvailableTimes from './pages/gamesManagement/Dashboards/AvailableTimes.jsx';
 import ChangeAvailableTimes from './pages/gamesManagement/Dashboards/ChangeAvailableTimes.jsx';
+import MovieSection from './pages/movieManagement/MoviePage.jsx';
+import AddnewMovie from './pages/movieManagement/AddnewMovie.jsx';
+import MovieManagerDashboard from './pages/movieManagement/MovieManagerDashboard.jsx';
+import ShowtimesPage from './pages/movieManagement/ShowtimesPage.jsx';
+import ResourceManagerDashboard from './pages/resourceMaintenance/ResourceManagerDashboard.jsx';
+import SalaryCalculator from './pages/staffManagement/CalculateSalary.jsx';
+import LeaveRequests from './pages/staffManagement/LeaveDashboard.jsx';
+import Myleaves from './pages/staffManagement/Myleaves.jsx';
+import StaffDashboard from './pages/staffManagement/StaffDashboard.jsx';
+import StaffmemberDash from './pages/staffManagement/StaffMemberDash.jsx';
+import StaffRegistrationForm from './pages/staffManagement/StafftRegForm.jsx';
+import ViewAttendance from './pages/staffManagement/ViewAttendance.jsx';
+import StaffTable from './pages/staffManagement/ViewStaffDetails.jsx';
+import LeaveDetails from './pages/staffManagement/ViewLeaveDetails.jsx';
+import SalaryTable from './pages/staffManagement/ViewSalaryDetails.jsx';
+
 
 function App() {
   return (
@@ -80,15 +96,35 @@ function App() {
 
 
          {/*games management*/}
-         <Route path="/games" element={<GameMainPage />} />
-         <Route path="//games/:activity" element={<GamesDetails />} />
+        <Route path="/games" element={<GameMainPage />} />
+        <Route path="//games/:activity" element={<GamesDetails />} />
         <Route path='/AddGames' element={<AddGames/>}/>
         <Route path='/AvailableTimes' element={<AvailableTimes/>}/>
         <Route path='/ChangeAvailableTimes' element={<ChangeAvailableTimes/>}/>
-        </Routes>
-        
 
-    
+        {/*movie management*/}
+            <Route path='/moviesection' element={<MovieSection/>}/> {/*for movie page*/}
+            <Route path='/AddnewMovie' element={<AddnewMovie/>}/>
+            <Route path='/MovieManagerDashboard' element={<MovieManagerDashboard/>}/>
+            <Route path='/AddnewMovie' element ={<AddnewMovie/>}/>
+            <Route path='/ShowtimesPage' element ={<ShowtimesPage/>}/>
+
+        {/*resource management*/}
+            <Route path='/ResourceManagerDashboard' element={<ResourceManagerDashboard/>}/>
+
+          {/*staff management*/}
+            <Route path='/SalaryCalculator' element={<SalaryCalculator/>}/>   
+            <Route path='/LeaveRequests' element={<LeaveRequests/>}/>  
+            <Route path='/Myleaves' element={<Myleaves/>}/>
+            <Route path='/StaffDashboard' element={<StaffDashboard/>}/> 
+            <Route path='/StaffmemberDash' element={<StaffmemberDash/>}/> 
+            <Route path='/StaffRegistrationForm' element={<StaffRegistrationForm/>}/>
+            <Route path='/ViewAttendance' element={<ViewAttendance/>}/>
+            <Route path='/LeaveDetails' element ={<LeaveDetails/>}/>
+            <Route path ='/SalaryTable' element={<SalaryTable/>}/>
+            <Route path='/StaffTable' element ={<StaffTable/>}/>
+
+        </Routes>
     </Router>
     </CartProvider>
   );

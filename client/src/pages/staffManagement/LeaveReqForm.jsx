@@ -1,4 +1,6 @@
 import React from 'react';
+import NavBar from '../../components/core/NavBar';
+import Footer from '../../components/core/Footer';
 
 const LeaveRequestForm = () => {
   // Inline CSS styles
@@ -52,7 +54,9 @@ const LeaveRequestForm = () => {
   };
 
   return (
-    <div style={containerStyle}>
+    <div>
+      <NavBar></NavBar>
+      <div style={containerStyle}>
       <div style={formStyle}>
         <h3>Leave Request Form</h3>
         <form>
@@ -65,6 +69,8 @@ const LeaveRequestForm = () => {
           </div>
         </form>
       </div>
+    </div>
+    <Footer></Footer>
     </div>
   );
 };

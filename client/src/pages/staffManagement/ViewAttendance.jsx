@@ -1,13 +1,17 @@
 import React from 'react';
+import NavBar from '../../components/core/NavBar';
+import Footer from '../../components/core/Footer';
 
 const ViewAttendance = () => {
   const containerStyle = {
     padding: '20px',
     backgroundColor: '#161E38', // Changed background color
     color: '#234151', // Changed text color to be readable on dark background
+    height:'100vh'
   };
 
   const tableStyle = {
+    padding :'40px',
     width: '100%',
     borderCollapse: 'collapse',
     marginTop: '20px',
@@ -48,7 +52,9 @@ const ViewAttendance = () => {
   };
 
   return (
-    <div style={containerStyle}>
+    <div>
+      <NavBar></NavBar>
+      <div style={containerStyle}>
       <table style={tableStyle}>
         <thead>
           <tr>
@@ -73,6 +79,10 @@ const ViewAttendance = () => {
           </tr>
         </tbody>
       </table>
+    </div>
+
+
+      <Footer></Footer>
     </div>
   );
 };

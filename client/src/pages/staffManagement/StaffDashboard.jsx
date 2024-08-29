@@ -1,4 +1,6 @@
 import React from 'react';
+import Footer from '../../components/core/Footer';
+import NavBar from '../../components/core/NavBar';
 
 const StaffDashboard = () => {
   const containerStyle = {
@@ -6,7 +8,7 @@ const StaffDashboard = () => {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    height: "100vh",
+    height: "70vh",
     backgroundColor: "#1b1f38",
     color: "white",
     fontFamily: "Arial, sans-serif",
@@ -50,6 +52,8 @@ const StaffDashboard = () => {
   };
 
   return (
+    <div>
+      <NavBar></NavBar>
     <div style={containerStyle}>
       <h1 style={titleStyle}>STAFF MANAGER DASHBOARD</h1>
       <div
@@ -69,6 +73,8 @@ const StaffDashboard = () => {
         <button style={buttonStyle}>View Salary</button>
         <button style={buttonStyle}>Calculate Salary</button>
       </div>
+    </div>
+<Footer></Footer>
     </div>
   );
 };

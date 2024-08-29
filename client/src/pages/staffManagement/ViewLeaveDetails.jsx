@@ -1,10 +1,13 @@
 import React from 'react';
+import Footer from '../../components/core/Footer';
+import NavBar from '../../components/core/NavBar';
 
 const LeaveDetails = () => {
   const containerStyle = {
     padding: '20px',
     backgroundColor: '#161E38', // Changed background color
     color: '#234151', // Changed text color to be readable on dark background
+    height:'60vh'
   };
 
   const tableStyle = {
@@ -48,7 +51,10 @@ const LeaveDetails = () => {
   };
 
   return (
-    <div style={containerStyle}>
+  <div>
+    <NavBar></NavBar>
+      <div>
+      <div style={containerStyle}>
       <table style={tableStyle}>
         <thead>
           <tr>
@@ -71,6 +77,9 @@ const LeaveDetails = () => {
         </tbody>
       </table>
     </div>
+    </div>
+    <Footer></Footer>
+  </div>
   );
 };
 

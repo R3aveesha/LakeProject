@@ -1,11 +1,15 @@
 import React from "react";
+import Footer from "../../components/core/Footer";
+import NavBar from "../../components/core/NavBar";
 
 const StaffmemberDash = () => {
   return (
+    <div>
+      <NavBar></NavBar>
     <div
       style={{
         backgroundColor: "#404267",
-        height: "100vh",
+        height: "65vh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -121,6 +125,8 @@ const StaffmemberDash = () => {
           </div>
         </div>
       </div>
+    </div>
+    <Footer></Footer>
     </div>
   );
 };
