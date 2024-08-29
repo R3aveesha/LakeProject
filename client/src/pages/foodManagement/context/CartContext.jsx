@@ -10,10 +10,10 @@ const cartReducer = (state, action) => {
       return state.filter(item => item.id !== action.payload);
     default:
       return state;
-  }
+  } 
 };
 
-export const CartProvider = ({ children }) => {
+export const  CartProvider = ({ children }) => {
   const [cart, dispatch] = useReducer(cartReducer, []);
 
   return (
