@@ -2,20 +2,26 @@
 import React from 'react';
 import NavBar from '../../components/core/NavBar';
 import Footer from '../../components/core/Footer';
+import { useNavigate } from 'react-router-dom';
 
 const ResourceManagerDashboard = () => {
+
+  const navigate = useNavigate();
+
+
   return (
+
    <div>
     <NavBar></NavBar>
      <div style={styles.container}>
       <h2 style={styles.title}>Customer Support Manager Dashboard</h2>
       <div style={styles.buttonContainer}>
-        <button style={styles.button}>View Resources</button>
-        <button style={styles.button}>Add new Resources</button>
-        <button style={styles.button}>Delete Resources</button>
-        <button style={styles.button}>Generate Report</button>
-        <button style={styles.button}>Shedule & Maintenance Task</button>
-        <button style={styles.button}>Update & Maintenance Task</button>
+        <button style={styles.button} onClick={()=>navigate("/ResourcesTable")} >View Resources</button>
+        <button style={styles.button} onClick={()=>navigate("/AddResourceForm")} >Add new Resources</button>
+        <button style={styles.button} onClick={()=>navigate("")} >Delete Resources</button>
+        <button style={styles.button} onClick={()=>navigate("")} >Generate Report</button>
+        <button style={styles.button} onClick={()=>navigate("")} >Shedule & Maintenance Task</button>
+        <button style={styles.button} onClick={()=>navigate("")} >Update & Maintenance Task</button>
 
       </div>
     </div>
