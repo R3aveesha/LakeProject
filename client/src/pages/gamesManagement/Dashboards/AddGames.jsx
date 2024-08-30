@@ -24,17 +24,28 @@ const AddGames = () => {
     };
 
     try {
-      const response = await axios.post("http://localhost:3000/api/games/games", gameData);
+      const response = await axios.post(
+        "http://localhost:3000/api/games/games",
+        gameData
+      );
       console.log("Game added successfully:", response.data);
+      alert("Game added successfully!");
+      setGameName("");
+      setCategory("");
+      setDescription("");
+      setPrice(0);
+      setAvailableTimes([]);
     } catch (error) {
       console.error("There was an error adding the game:", error);
+      console.error("Error details:", error.response?.data || error.message);
     }
   };
 
   const handleDateChange = (date) => {
-    setAvailableTimes([...availableTimes, date]);
+    if (date) {
+      setAvailableTimes([...availableTimes, date]);
+    }
   };
-
   const removeTime = (index) => {
     setAvailableTimes(availableTimes.filter((_, i) => i !== index));
   };
@@ -94,7 +105,7 @@ const AddGames = () => {
           <div style={styles.formGroup}>
             <label style={styles.label}>Available Times:</label>
             <DatePicker
-              selected={null}
+              selected={null} // This keeps the picker empty after selection
               onChange={handleDateChange}
               showTimeSelect
               dateFormat="Pp"

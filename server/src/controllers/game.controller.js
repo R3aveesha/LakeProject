@@ -29,8 +29,8 @@ exports.getGames = async (req, res) => {
  */
 exports.addGame = async (req, res) => {
     try {
-        const { name, category, availableTimes } = req.body;
-        const game = new Game({ name, category, availableTimes });
+        const { name, category, availableTimes,description,price } = req.body;
+        const game = new Game({ name, category, availableTimes,description,price });
         await game.save();
         res.status(201).json(game);
     } catch (err) {

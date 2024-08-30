@@ -5,14 +5,15 @@ const GameSchema = new Schema({
     name: { type: String, required: true },
     category: { type: String, required: true },
     availableTimes: [{ type: Date }],
-    discription: { type: String, required: true },
+    description: { type: String, required: true },
     ratings: [{
         customerId: { type: Schema.Types.ObjectId, ref: 'Customer' },
         score: { type: Number },
         feedback: { type: String }
     }],
     createdAt: { type: Date, default: Date.now },
-    images: { type: [String], default: [] }
+    images: { type: [String], default: [] },
+    price: { type: Number, required: true }
 });
 
 module.exports = mongoose.model('Game', GameSchema);
