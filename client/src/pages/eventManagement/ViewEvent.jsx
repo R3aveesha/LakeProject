@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBar from '../../components/core/NavBar';
 import Footer from '../../components/core/Footer';
+import game1 from '../../../public/game1.png';
 
 const ViewEvent = () => {
   return (
@@ -8,7 +9,7 @@ const ViewEvent = () => {
       <NavBar name="events" />
       <div style={styles.container}>
         <div style={styles.imageSection}>
-          <img src="path_to_victory_arena_image.jpg" alt="Victory Arena" style={styles.eventImage} />
+          <img src={game1} alt="Victory Arena" style={styles.eventImage} />
         </div>
         <div style={styles.detailsSection}>
           <h1 style={styles.eventTitle}>Victory Arena</h1>

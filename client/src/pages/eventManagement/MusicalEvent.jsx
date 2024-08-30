@@ -1,6 +1,9 @@
 import React from 'react';
 import NavBar from '../../components/core/NavBar';
 import Footer from '../../components/core/Footer';
+import music from '../../../public/music.png'
+import music1 from '../../../public/music1.png'
+import music3 from '../../../public/music3.png'
 
 
 const MusicalEvent = () => {
@@ -23,7 +26,7 @@ const MusicalEvent = () => {
             <button style={styles.viewButton}>View</button>
           </div>
           <div style={styles.eventCard}>
-            <img src={music2} alt="TunePlay Extravaganza" style={styles.eventImage} />
+            <img src={music1} alt="TunePlay Extravaganza" style={styles.eventImage} />
             <h3 style={styles.cardTitle}>TunePlay Extravaganza</h3>
             <button style={styles.viewButton}>View</button>
           </div>

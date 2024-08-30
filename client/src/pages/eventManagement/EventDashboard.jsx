@@ -1,7 +1,7 @@
 import React from 'react';
 import NavBar from '../../components/core/NavBar';
 import Footer from '../../components/core/Footer';
-import game1 from '../../../public/game1.png';
+import game1 from '../../../public/game1.jpeg';
 import game2 from '../../../public/game2.png';
 import game3 from '../../../public/game3.png';
 
