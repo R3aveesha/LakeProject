@@ -46,6 +46,10 @@ import LeaveDetails from './pages/staffManagement/ViewLeaveDetails.jsx';
 import SalaryTable from './pages/staffManagement/ViewSalaryDetails.jsx';
 import LostitemTable from './pages/customerSupport/LostItemTable.jsx';
 import LostItemForm from './pages/customerSupport/LostForm.jsx';
+import ResourcesTable from "./pages/resourceMaintenance/ViewResource.jsx";
+import AddResourceForm from "./pages/resourceMaintenance/AddResourceForm.jsx";
+import ResourceReport from "./pages/resourceMaintenance/ReportonResource.jsx";
+import GameDetails from "./pages/gamesManagement/Gamedetails.jsx";
 
 function App() {
   return (
@@ -92,6 +96,7 @@ function App() {
           <Route path="/addgames" element={<AddGames />} />
           <Route path="/availabletimes" element={<AvailableTimes />} />
           <Route path="/changeavailabletimes" element={<ChangeAvailableTimes />} />
+          <Route path="/GameDetails" element={<GameDetails />} />
 
           {/* Movie Management */}
           <Route path="/movies" element={<MoviePage />} />
@@ -101,6 +106,9 @@ function App() {
 
           {/* Resource Management */}
           <Route path="/resourceManagerDashboard" element={<ResourceManagerDashboard />} />
+          <Route path='/ResourcesTable' element={<ResourcesTable />} />
+          <Route path="/AddResourceForm" element={<AddResourceForm />} />
+          <Route path="/ResourceReport" element={<ResourceReport/>}/>
 
           {/* Staff Management */}
           <Route path="/salarycalculator" element={<SalaryCalculator />} />

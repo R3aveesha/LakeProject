@@ -83,29 +83,7 @@ const Myleaves = () => {
             <th style={thTdStyle}>Status</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td style={thTdStyle}>L001</td>
-            <td style={thTdStyle}>S001</td>
-            <td style={thTdStyle}>30/08/2024</td>
-            <td style={thTdStyle}>For channeling doctor</td>
-            <td style={statusAcceptedStyle}>Accepted</td>
-          </tr>
-          <tr>
-            <td style={thTdStyle}>L010</td>
-            <td style={thTdStyle}>S001</td>
-            <td style={thTdStyle}>02/09/2024</td>
-            <td style={thTdStyle}>For essential work</td>
-            <td style={statusRejectedStyle}>Rejected</td>
-          </tr>
-          <tr>
-            <td style={thTdStyle}>L030</td>
-            <td style={thTdStyle}>S001</td>
-            <td style={thTdStyle}>25/08/2024</td>
-            <td style={thTdStyle}>For channeling doctor</td>
-            <td style={statusAcceptedStyle}>Accepted</td>
-          </tr>
-        </tbody>
+        
       </table>
     </div>
     <Footer></Footer>
