@@ -103,10 +103,10 @@ function App() {
           <Route path="/movieManagerDashboard" element={<MovieManagerDashboard />} />
 
           {/* Resource Management */}
-          <Route path="/resourceManagerDashboard" element={<ResourceManagerDashboard />} />
-          <Route path='/ResourcesTable' element={<ResourcesTable />} />
-          <Route path="/AddResourceForm" element={<AddResourceForm />} />
-          <Route path="/ResourceReport" element={<ResourceReport/>}/>
+          <Route path="/resourceManagerDashboard" element={<ResourceManagerDashboard />} />{/*done*/}
+          <Route path='/ResourcesTable' element={<ResourcesTable />} />{/*done*/}
+          <Route path="/AddResourceForm" element={<AddResourceForm />} />{/*done*/}
+          <Route path="/resource/:id" element={<ResourceReport/>}/>{/*done*/}
 
           {/* Staff Management */}
           <Route path="/salarycalculator" element={<SalaryCalculator />} />
