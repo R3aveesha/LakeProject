@@ -3,6 +3,7 @@ import axios from "axios";
 
 const AvailableTimes = () => {
   const [games, setGames] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -19,6 +20,14 @@ const AvailableTimes = () => {
     fetchGames();
   }, []);
 
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredGames = games.filter((game) =>
+    game.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div style={styles.pageContainer}>
       <div style={styles.sidebar}>
@@ -33,6 +42,13 @@ const AvailableTimes = () => {
       <div style={styles.content}>
         <div style={styles.header}>
           <h2>Available Times</h2>
+          <input
+            type="text"
+            placeholder="Search by game name"
+            value={searchTerm}
+            onChange={handleSearchChange}
+            style={styles.searchInput}
+          />
         </div>
         <div style={styles.tableContainer}>
           <table style={styles.table}>
@@ -46,8 +62,8 @@ const AvailableTimes = () => {
               </tr>
             </thead>
             <tbody>
-              {games.length > 0 ? (
-                games.map((game) =>
+              {filteredGames.length > 0 ? (
+                filteredGames.map((game) =>
                   game.availableTimes.map((time, index) => (
                     <tr key={`${game._id}-${index}`} style={styles.tableRow}>
                       <td style={styles.tableCell}>{game._id}</td>
@@ -116,6 +132,15 @@ const styles = {
   },
   header: {
     marginBottom: "20px",
+  },
+  searchInput: {
+    marginBottom: "20px",
+    padding: "10px",
+    width: "100%",
+    borderRadius: "5px",
+    border: "1px solid #2C3354",
+    backgroundColor: "#243055",
+    color: "#fff",
   },
   tableContainer: {
     backgroundColor: "#1E2749",
