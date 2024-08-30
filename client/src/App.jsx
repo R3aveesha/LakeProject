@@ -76,7 +76,7 @@ function App() {
           <Route path="/support" element={<CustomerSupport />} />{/*done*/}
           <Route path="/foundItm/:id" element={<FoundForm />} />{/*login needed*/}
           <Route path="/inquerypage" element={<InquiryForm />} />{/*login needed*/}
-          <Route path="/customerInquiries" element={<CustomerInquiries />} />
+          <Route path="/customerInquiries" element={<CustomerInquiries />} />{/*done*/}
           <Route path="/transport" element={<TransportPage />} />{/*done*/}
           <Route path="/lostitems" element={<LostitemTable />} />{/*done*/}
           <Route path="/lostitemform" element={<LostItemForm />} />{/*login needed*/}
@@ -86,7 +86,7 @@ function App() {
           <Route path="/bookingevent" element={<BookingEvent />} />{/*login needed*/}
           <Route path="/cardpay" element={<CardPay />} />{/*login needed*/}
           <Route path="/eventdashboard" element={<EventDashboard />} />
-          <Route path="/events" element={<ViewEvent />} />{/*done*/}
+          <Route path="/events/:id" element={<ViewEvent />} />{/*done*/}
 
           {/* Games Management */}
           <Route path="/games" element={<GameMainPage />} />{/*done*/}

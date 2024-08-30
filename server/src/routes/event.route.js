@@ -11,5 +11,6 @@ router.get('/participants/:id', eventController.viewParticipants);
 router.get('/payments/:id', eventController.viewPayments);
 router.get('/events', eventController.viewEvents);
 router.post('/payments/:paymentId', eventController.acceptOrRejectPayment);
+router.get('/events/:id', eventController.viewEventDetails);
 
 module.exports = router;

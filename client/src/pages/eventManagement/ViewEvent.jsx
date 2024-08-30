@@ -1,24 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import NavBar from '../../components/core/NavBar';
 import Footer from '../../components/core/Footer';
-import game1 from '../../../public/game1.png';
+import axios from 'axios';
 
 const ViewEvent = () => {
+  const { id } = useParams(); // Get the event ID from the URL
+  const [event, setEvent] = useState(null);
+
+  useEffect(() => {
+    axios.get(`http://localhost:3000/api/event/events/${id}`)
+      .then(response => {
+        setEvent(response.data);
+      })
+      .catch(error => {
+        console.error("There was an error fetching the event details!", error);
+      });
+  }, [id]);
+
+  if (!event) {
+    return <p>Loading...</p>; // Display a loading message or spinner while data is being fetched
+  }
+
   return (
     <>
       <NavBar name="events" />
       <div style={styles.container}>
         <div style={styles.imageSection}>
-          <img src={game1} alt="Victory Arena" style={styles.eventImage} />
+          <img src={event.poster} alt={event.name} style={styles.eventImage} />
         </div>
         <div style={styles.detailsSection}>
-          <h1 style={styles.eventTitle}>Victory Arena</h1>
+          <h1 style={styles.eventTitle}>{event.name}</h1>
           <p style={styles.eventDescription}>
-            Prepare yourself for an exhilarating competition at Victory Arena, the leading gaming event hosted by Play Zone! 
-            This dynamic event unites elite gamers for an extraordinary contest spanning various game genres. Whether you 
-            prefer high-octane shooters or tactical battle royals, Victory Arena caters to all preferences. Engage in fierce 
-            matchups, relish live commentary, and immerse yourself in the thrill as participants vie for honor and a substantial 
-            prize. Seize the opportunity to partake in this unparalleled gaming experience!
+            {event.description}
           </p>
           <button style={styles.bookButton}>Book Now</button>
         </div>
