@@ -1,41 +1,56 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const GamesDetails = () => {
-    // Example data, replace this with your actual data source
-    const games = [
-        { id: 'G001', category: 'Action', name: 'Game 1', description: 'An action-packed adventure', price: '$20' },
-        { id: 'G002', category: 'Puzzle', name: 'Game 2', description: 'A mind-bending puzzle', price: '$15' },
-        { id: 'G003', category: 'Adventure', name: 'Game 3', description: 'Explore new worlds', price: '$30' },
-    ];
+  const { id } = useParams(); // Get the game ID from the URL
+  const [game, setGame] = useState(null);
 
-    return (
-        <div className="games-details">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Category</th>
-                        <th>Game Name</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {games.map(game => (
-                        <tr key={game.id}>
-                            <td>{game.id}</td>
-                            <td>{game.category}</td>
-                            <td>{game.name}</td>
-                            <td>{game.description}</td>
-                            <td>{game.price}</td>
-                            <td><button className="edit-button">Edit</button></td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    );
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/api/games/games/${id}`)
+      .then((response) => {
+        setGame(response.data);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the game details!", error);
+      });
+  }, [id]);
+
+  console.log(game);
+
+  if (!game) {
+    return <p>Loading...</p>;
+  }
+
+  return (
+    <div className="games-details">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Category</th>
+            <th>Game Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr key={game.id}>
+            <td>{game.id}</td>
+            <td>{game.category}</td>
+            <td>{game.name}</td>
+            <td>{game.description}</td>
+            <td>{game.price}</td>
+            <td>
+              <button className="edit-button">Edit</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
 export default GamesDetails;

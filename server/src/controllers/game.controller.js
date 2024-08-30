@@ -149,3 +149,16 @@ exports.addFeedbackRating = async (req, res) => {
     }
 };
 
+
+exports.getGameById = async (req, res) => {
+    try {
+        const gameId = req.params.id;
+        const game = await Game.findById(gameId);
+        if (!game) {
+            return res.status(404).json({ error: 'Game not found' });
+        }
+        res.json(game);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};

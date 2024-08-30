@@ -12,5 +12,6 @@ router.put('/games/:id', gameController.updateGame);
 router.delete('/games/:id', gameController.deleteGame);
 router.post('/games/:id/available-times', gameController.addAvailableTimes);
 router.get('/games/:id/feedback', gameController.viewFeedbackRatings);
+router.get('/games/:id', gameController.getGameById);
 
 module.exports = router;

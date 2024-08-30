@@ -5,6 +5,7 @@ const GameSchema = new Schema({
     name: { type: String, required: true },
     category: { type: String, required: true },
     availableTimes: [{ type: Date }],
+    discription: { type: String, required: true },
     ratings: [{
         customerId: { type: Schema.Types.ObjectId, ref: 'Customer' },
         score: { type: Number },

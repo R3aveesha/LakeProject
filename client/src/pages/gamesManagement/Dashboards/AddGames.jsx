@@ -1,32 +1,72 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import Footer from "../../../components/core/Footer";
 import NavBar from "../../../components/core/NavBar";
 
 const AddGames = () => {
+  const [gameName, setGameName] = useState("");
+  const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState(0);
+  const [availableTimes, setAvailableTimes] = useState([]);
+
+  const handleAddGame = async (e) => {
+    e.preventDefault();
+
+    const gameData = {
+      name: gameName,
+      category,
+      description,
+      availableTimes,
+      price,
+    };
+
+    try {
+      const response = await axios.post("http://localhost:3000/api/games/games", gameData);
+      console.log("Game added successfully:", response.data);
+    } catch (error) {
+      console.error("There was an error adding the game:", error);
+    }
+  };
+
+  const handleDateChange = (date) => {
+    setAvailableTimes([...availableTimes, date]);
+  };
+
+  const removeTime = (index) => {
+    setAvailableTimes(availableTimes.filter((_, i) => i !== index));
+  };
+
   return (
     <div style={styles.pageContainer}>
       <NavBar />
       <div style={styles.addGamesContainer}>
-        <form style={styles.form}>
+        <form style={styles.form} onSubmit={handleAddGame}>
           <div style={styles.formGroup}>
             <label style={styles.label}>Category:</label>
-            <select style={styles.select}>
+            <select
+              style={styles.select}
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            >
               <option value="">Select category</option>
-              <option value="Action">Action</option>
-              <option value="Adventure">Adventure</option>
-              <option value="Puzzle">Puzzle</option>
-              {/* Add more categories as needed */}
+              <option value="Indoor">Indoor</option>
+              <option value="Outdoor">Outdoor</option>
+              <option value="Water">Water</option>
             </select>
           </div>
 
           <div style={styles.formGroup}>
-            <label style={styles.label}>Upload Photo:</label>
-            <input type="file" style={styles.uploadPhoto} />
-          </div>
-
-          <div style={styles.formGroup}>
             <label style={styles.label}>Game Name:</label>
-            <input type="text" placeholder="Game Name" style={styles.input} />
+            <input
+              type="text"
+              placeholder="Game Name"
+              style={styles.input}
+              value={gameName}
+              onChange={(e) => setGameName(e.target.value)}
+            />
           </div>
 
           <div style={styles.formGroup}>
@@ -35,13 +75,53 @@ const AddGames = () => {
               type="text"
               placeholder="Description"
               style={styles.input}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
             />
           </div>
 
           <div style={styles.formGroup}>
             <label style={styles.label}>Price:</label>
-            <input type="number" placeholder="Price" style={styles.input} />
+            <input
+              type="number"
+              placeholder="Price"
+              style={styles.input}
+              value={price}
+              onChange={(e) => setPrice(Number(e.target.value))}
+            />
           </div>
+
+          <div style={styles.formGroup}>
+            <label style={styles.label}>Available Times:</label>
+            <DatePicker
+              selected={null}
+              onChange={handleDateChange}
+              showTimeSelect
+              dateFormat="Pp"
+              placeholderText="Select a date and time"
+              style={styles.input}
+            />
+          </div>
+
+          {availableTimes.length > 0 && (
+            <div style={styles.timesContainer}>
+              <h4 style={styles.timesTitle}>Picked Times:</h4>
+              <ul style={styles.timesList}>
+                {availableTimes.map((time, index) => (
+                  <li key={index} style={styles.timeItem}>
+                    {time.toLocaleString()}{" "}
+                    <button
+                      type="button"
+                      onClick={() => removeTime(index)}
+                      style={styles.removeButton}
+                    >
+                      Remove
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           <button type="submit" style={styles.addButton}>
             Add
@@ -94,19 +174,43 @@ const styles = {
     backgroundColor: "#fff",
     color: "#000",
   },
-  uploadPhoto: {
-    padding: "10px",
-    borderRadius: "5px",
-    border: "none",
-    backgroundColor: "#fff",
-    color: "#000",
-  },
   input: {
     padding: "10px",
     borderRadius: "5px",
     border: "none",
     backgroundColor: "#fff",
     color: "#000",
+  },
+  timesContainer: {
+    marginTop: "20px",
+    padding: "10px",
+    backgroundColor: "#2E3553",
+    borderRadius: "5px",
+  },
+  timesTitle: {
+    marginBottom: "10px",
+    fontSize: "16px",
+    color: "#FFD700",
+  },
+  timesList: {
+    listStyleType: "none",
+    paddingLeft: "0",
+  },
+  timeItem: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "5px 0",
+    borderBottom: "1px solid #FFD700",
+  },
+  removeButton: {
+    padding: "5px 10px",
+    backgroundColor: "#FF6347",
+    color: "#fff",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+    fontSize: "12px",
   },
   addButton: {
     padding: "10px 20px",
@@ -117,6 +221,7 @@ const styles = {
     cursor: "pointer",
     fontSize: "16px",
     fontWeight: "bold",
+    marginTop: "20px",
   },
 };
 
