@@ -4,19 +4,19 @@ import axios from "axios";
 const AvailableTimes = () => {
   const [games, setGames] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [gameIdToUpdate, setGameIdToUpdate] = useState(null);
+  const [newTimes, setNewTimes] = useState({});
+
+  const fetchGames = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/api/games/games");
+      setGames(response.data);
+    } catch (error) {
+      console.error("Error fetching games:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchGames = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:3000/api/games/games"
-        );
-        setGames(response.data);
-      } catch (error) {
-        console.error("Error fetching games:", error);
-      }
-    };
-
     fetchGames();
   }, []);
 
@@ -27,6 +27,41 @@ const AvailableTimes = () => {
   const filteredGames = games.filter((game) =>
     game.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const handleTimeDelete = (gameId, time) => async () => {
+    const updatedTimes = games
+      .find((game) => game._id === gameId)
+      .availableTimes.filter((t) => t !== time);
+
+    setNewTimes((prevTimes) => ({
+      ...prevTimes,
+      [gameId]: updatedTimes,
+    }));
+    setGameIdToUpdate(gameId);
+  };
+
+  useEffect(() => {
+    const updateGame = async () => {
+      if (gameIdToUpdate && newTimes[gameIdToUpdate]) {
+        try {
+          const response = await axios.put(
+            `http://localhost:3000/api/games/games/${gameIdToUpdate}`,
+            { availableTimes: newTimes[gameIdToUpdate] }
+          );
+          console.log("Game updated successfully:", response.data);
+        } catch (error) {
+          console.error("There was an error updating the game:", error);
+          console.error(
+            "Error details:",
+            error.response?.data || error.message
+          );
+        }
+      }
+    };
+
+    updateGame();
+    fetchGames();
+  }, [newTimes, gameIdToUpdate]);
 
   return (
     <div style={styles.pageContainer}>
@@ -78,7 +113,12 @@ const AvailableTimes = () => {
                         {new Date(time).toLocaleDateString()}
                       </td>
                       <td style={styles.tableCell}>
-                        <button style={styles.deleteButton}>Delete</button>
+                        <button
+                          style={styles.deleteButton}
+                          onClick={handleTimeDelete(game._id, time)}
+                        >
+                          Delete
+                        </button>
                       </td>
                     </tr>
                   ))

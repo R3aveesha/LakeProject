@@ -92,9 +92,9 @@ function App() {
           <Route path="/games" element={<GameMainPage />} />{/*done*/}
           <Route path="/games/:id" element={<GamesDetails />} />{/*done*/}
           <Route path="/addgames" element={<AddGames />} />{/*done*/}
-          <Route path="/availabletimes" element={<AvailableTimes />} />
-          <Route path="/changeavailabletimes" element={<ChangeAvailableTimes />} />
-          <Route path="/GameDetails" element={<GameDetails />} />
+          <Route path="/availabletimes" element={<AvailableTimes />} />{/*done*/}
+          <Route path="/changeavailabletimes" element={<ChangeAvailableTimes />} />{/*n ui*/}
+          <Route path="/GameDetails" element={<GameDetails />} />{/*done*/}
 
           {/* Movie Management */}
           <Route path="/movies" element={<MoviePage />} />{/*done*/}
