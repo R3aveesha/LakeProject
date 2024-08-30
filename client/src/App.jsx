@@ -65,33 +65,31 @@ function App() {
           <Route path="/categorize" element={<CategorizeNav />} />
 
           {/* Food Management */}
-          <Route path="/food/start" element={<FoodOrderStart />} />
+          <Route path="/food/start" element={<FoodOrderStart />} />{/*done*/}
           <Route path="/food" element={<FoodPage />} /> {/*done*/}
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<Cart />} />{/*done*/}
           <Route path="/manageFoods" element={<ManageFood />} />{/*done*/}
           <Route path="/updateFoodItem/:id" element={<UpdateFood />} />{/*done*/}
 
           {/* Customer Support */}
-          <Route path="/customerSupportManagerDashboard" element={<CustomerSupportManagerDashboard />} />
-          <Route path="/support" element={<CustomerSupport />} />
-          <Route path="/foundItm/:id" element={<FoundForm />} />
-          <Route path="/inquerypage" element={<InquiryForm />} />
+          <Route path="/customerSupportManagerDashboard" element={<CustomerSupportManagerDashboard />} />{/*done*/}
+          <Route path="/support" element={<CustomerSupport />} />{/*done*/}
+          <Route path="/foundItm/:id" element={<FoundForm />} />{/*login needed*/}
+          <Route path="/inquerypage" element={<InquiryForm />} />{/*login needed*/}
           <Route path="/customerInquiries" element={<CustomerInquiries />} />
-          <Route path="/transport" element={<TransportPage />} />
-          <Route path="/lostitems" element={<LostitemTable />} />
-          <Route path="/lostitemform" element={<LostItemForm />} />
+          <Route path="/transport" element={<TransportPage />} />{/*done*/}
+          <Route path="/lostitems" element={<LostitemTable />} />{/*done*/}
+          <Route path="/lostitemform" element={<LostItemForm />} />{/*login needed*/}
 
           {/* Event Management */}
-          <Route path="/billinfo" element={<BillInfo />} />
-          <Route path="/bookingevent" element={<BookingEvent />} />
-          <Route path="/cardpay" element={<CardPay />} />
+          <Route path="/billinfo" element={<BillInfo />} />{/*login needed*/}
+          <Route path="/bookingevent" element={<BookingEvent />} />{/*login needed*/}
+          <Route path="/cardpay" element={<CardPay />} />{/*login needed*/}
           <Route path="/eventdashboard" element={<EventDashboard />} />
-          <Route path="/musicalevent" element={<MusicalEvent />} />
-          <Route path="/otherevent" element={<OtherEvent />} />
-          <Route path="/events" element={<ViewEvent />} />
+          <Route path="/events" element={<ViewEvent />} />{/*done*/}
 
           {/* Games Management */}
-          <Route path="/games" element={<GameMainPage />} />
+          <Route path="/games" element={<GameMainPage />} />{/*done*/}
           <Route path="/games/:id" element={<GamesDetails />} />
           <Route path="/addgames" element={<AddGames />} />
           <Route path="/availabletimes" element={<AvailableTimes />} />
@@ -99,9 +97,9 @@ function App() {
           <Route path="/GameDetails" element={<GameDetails />} />
 
           {/* Movie Management */}
-          <Route path="/movies" element={<MoviePage />} />
-          <Route path="/movies/showtimes" element={<ShowtimesPage />} />
-          <Route path="/movies/addnewmovie" element={<AddnewMovie />} />
+          <Route path="/movies" element={<MoviePage />} />{/*done*/}
+          <Route path="/movies/showtimes" element={<ShowtimesPage />} />{/*done*/}
+          <Route path="/movies/addnewmovie" element={<AddnewMovie />} />{/*done*/}
           <Route path="/movieManagerDashboard" element={<MovieManagerDashboard />} />
 
           {/* Resource Management */}

@@ -1,5 +1,3 @@
-// routes/eventRoutes.js
-
 const express = require('express');
 const router = express.Router();
 const eventController = require('../controllers/event.controller.js');
@@ -11,6 +9,7 @@ router.post('/cancel/:id', eventController.cancelEvent);
 router.get('/notifications/:userId', eventController.viewNotifications);
 router.get('/participants/:id', eventController.viewParticipants);
 router.get('/payments/:id', eventController.viewPayments);
+router.get('/events', eventController.viewEvents);
 router.post('/payments/:paymentId', eventController.acceptOrRejectPayment);
 
 module.exports = router;

@@ -13,6 +13,15 @@ exports.addEvent = async (req, res) => {
     }
 };
 
+exports.viewEvents = async (req, res) => {
+    try {
+        const events = await Event.find();
+        res.status(200).json(events);
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
+};
+
 exports.updateEvent = async (req, res) => {
     try {
         const event = await Event.findByIdAndUpdate(req.params.id, req.body, { new: true });
