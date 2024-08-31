@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -12,8 +12,36 @@ const AddGames = () => {
   const [price, setPrice] = useState(0);
   const [availableTimes, setAvailableTimes] = useState([]);
 
+  // Validation states
+  const [nameError, setNameError] = useState("");
+  const [priceError, setPriceError] = useState("");
+
+  // Real-time validation
+  useEffect(() => {
+    const namePattern = /^[A-Za-z\s]+$/;
+    if (gameName && !namePattern.test(gameName)) {
+      setNameError("Game name can only contain letters and spaces.");
+    } else {
+      setNameError("");
+    }
+  }, [gameName]);
+
+  useEffect(() => {
+    if (price < 0) {
+      setPriceError("Price cannot be negative.");
+    } else {
+      setPriceError("");
+    }
+  }, [price]);
+
   const handleAddGame = async (e) => {
     e.preventDefault();
+
+    // Check for validation errors before submitting
+    if (nameError || priceError) {
+      alert("Please fix validation errors before submitting.");
+      return;
+    }
 
     const gameData = {
       name: gameName,
@@ -46,6 +74,7 @@ const AddGames = () => {
       setAvailableTimes([...availableTimes, date]);
     }
   };
+
   const removeTime = (index) => {
     setAvailableTimes(availableTimes.filter((_, i) => i !== index));
   };
@@ -78,6 +107,7 @@ const AddGames = () => {
               value={gameName}
               onChange={(e) => setGameName(e.target.value)}
             />
+            {nameError && <p style={styles.errorText}>{nameError}</p>}
           </div>
 
           <div style={styles.formGroup}>
@@ -100,6 +130,7 @@ const AddGames = () => {
               value={price}
               onChange={(e) => setPrice(Number(e.target.value))}
             />
+            {priceError && <p style={styles.errorText}>{priceError}</p>}
           </div>
 
           <div style={styles.formGroup}>
@@ -233,6 +264,11 @@ const styles = {
     fontSize: "16px",
     fontWeight: "bold",
     marginTop: "20px",
+  },
+  errorText: {
+    color: "#FF6347",
+    fontSize: "14px",
+    marginTop: "5px",
   },
 };
 

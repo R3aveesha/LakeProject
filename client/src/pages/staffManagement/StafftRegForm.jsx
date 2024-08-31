@@ -1,8 +1,73 @@
-import React from 'react';
+import React, { useState } from 'react';
 import NavBar from '../../components/core/NavBar';
 import Footer from '../../components/core/Footer';
 
 const StaffRegistrationForm = () => {
+  const [name, setName] = useState('');
+  const [position, setPosition] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [nic, setNic] = useState('');
+  const [address, setAddress] = useState('');
+  const [phone, setPhone] = useState('');
+
+  const [errors, setErrors] = useState({
+    name: '',
+    position: '',
+    phone: '',
+  });
+
+  const validateName = (value) => {
+    const namePattern = /^[A-Za-z\s]+$/;
+    if (!namePattern.test(value)) {
+      setErrors((prevErrors) => ({ ...prevErrors, name: 'Name can only contain letters and spaces.' }));
+    } else {
+      setErrors((prevErrors) => ({ ...prevErrors, name: '' }));
+    }
+  };
+
+  const validatePosition = (value) => {
+    const positionPattern = /^[A-Za-z\s]+$/;
+    if (!positionPattern.test(value)) {
+      setErrors((prevErrors) => ({ ...prevErrors, position: 'Position can only contain letters and spaces.' }));
+    } else {
+      setErrors((prevErrors) => ({ ...prevErrors, position: '' }));
+    }
+  };
+
+  const validatePhone = (value) => {
+    const phonePattern = /^\d{10}$/;
+    if (!phonePattern.test(value)) {
+      setErrors((prevErrors) => ({ ...prevErrors, phone: 'Phone number must be exactly 10 digits.' }));
+    } else {
+      setErrors((prevErrors) => ({ ...prevErrors, phone: '' }));
+    }
+  };
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    switch (id) {
+      case 'name':
+        setName(value);
+        validateName(value);
+        break;
+      case 'job':
+        setPosition(value);
+        validatePosition(value);
+        break;
+      case 'phone':
+        setPhone(value);
+        validatePhone(value);
+        break;
+      default:
+        if (id === 'email') setEmail(value);
+        if (id === 'password') setPassword(value);
+        if (id === 'nic') setNic(value);
+        if (id === 'address') setAddress(value);
+        break;
+    }
+  };
+
   const formContainerStyle = {
     display: 'flex',
     flexDirection: 'column',
@@ -92,54 +157,98 @@ const StaffRegistrationForm = () => {
 
   return (
     <div>
-      <NavBar></NavBar>
+      <NavBar />
       <div style={formContainerStyle}>
-      <form style={{ ...formStyle, ...responsiveGrid }}>
-        <h2 style={titleStyle}>Staff Registration Form</h2>
+        <form style={{ ...formStyle, ...responsiveGrid }}>
+          <h2 style={titleStyle}>Staff Registration Form</h2>
 
-        <div style={inputContainerStyle}>
-          <label style={labelStyle} htmlFor="name">Name</label>
-          <input style={inputStyle} type="text" id="name" />
-        </div>
+          <div style={inputContainerStyle}>
+            <label style={labelStyle} htmlFor="name">Name</label>
+            <input
+              style={inputStyle}
+              type="text"
+              id="name"
+              value={name}
+              onChange={handleChange}
+            />
+            {errors.name && <p style={{ color: 'red' }}>{errors.name}</p>}
+          </div>
 
-        <div style={inputContainerStyle}>
-          <label style={labelStyle} htmlFor="job">Position</label>
-          <input style={inputStyle} type="text" id="job" />
-        </div>
+          <div style={inputContainerStyle}>
+            <label style={labelStyle} htmlFor="job">Position</label>
+            <input
+              style={inputStyle}
+              type="text"
+              id="job"
+              value={position}
+              onChange={handleChange}
+            />
+            {errors.position && <p style={{ color: 'red' }}>{errors.position}</p>}
+          </div>
 
-        <div style={inputContainerStyle}>
-          <label style={labelStyle} htmlFor="email">Email</label>
-          <input style={inputStyle} type="email" id="email" />
-        </div>
+          <div style={inputContainerStyle}>
+            <label style={labelStyle} htmlFor="email">Email</label>
+            <input
+              style={inputStyle}
+              type="email"
+              id="email"
+              value={email}
+              onChange={handleChange}
+            />
+          </div>
 
-        <div style={inputContainerStyle}>
-          <label style={labelStyle} htmlFor="password">Password</label>
-          <input style={inputStyle} type="password" id="password" />
-        </div>
+          <div style={inputContainerStyle}>
+            <label style={labelStyle} htmlFor="password">Password</label>
+            <input
+              style={inputStyle}
+              type="password"
+              id="password"
+              value={password}
+              onChange={handleChange}
+            />
+          </div>
 
-        <div style={inputContainerStyle}>
-          <label style={labelStyle} htmlFor="nic">NIC</label>
-          <input style={inputStyle} type="text" id="nic" />
-        </div>
+          <div style={inputContainerStyle}>
+            <label style={labelStyle} htmlFor="nic">NIC</label>
+            <input
+              style={inputStyle}
+              type="text"
+              id="nic"
+              value={nic}
+              onChange={handleChange}
+            />
+          </div>
 
-        <div style={inputContainerStyle}>
-          <label style={labelStyle} htmlFor="address">Address</label>
-          <input style={inputStyle} type="text" id="address" />
-        </div>
+          <div style={inputContainerStyle}>
+            <label style={labelStyle} htmlFor="address">Address</label>
+            <input
+              style={inputStyle}
+              type="text"
+              id="address"
+              value={address}
+              onChange={handleChange}
+            />
+          </div>
 
-        <div style={inputContainerStyle}>
-          <label style={labelStyle} htmlFor="phone">Phone</label>
-          <input style={inputStyle} type="text" id="phone" />
-        </div>
+          <div style={inputContainerStyle}>
+            <label style={labelStyle} htmlFor="phone">Phone</label>
+            <input
+              style={inputStyle}
+              type="text"
+              id="phone"
+              value={phone}
+              onChange={handleChange}
+            />
+            {errors.phone && <p style={{ color: 'red' }}>{errors.phone}</p>}
+          </div>
 
-        <div style={buttonContainerStyle}>
-          <button type="submit" style={registerButtonStyle}>Register</button>
-          <button type="reset" style={clearButtonStyle}>Clear</button>
-        </div>
-      </form>
-    </div>
-
-      <Footer></Footer>
+          <div style={buttonContainerStyle}>
+            <button type="submit" style={registerButtonStyle}>Register</button>
+            <button type="reset" style={clearButtonStyle}>Clear</button>
+          </div>
+        </form>
+      </div>
+      <Footer />
     </div>
   );
 };

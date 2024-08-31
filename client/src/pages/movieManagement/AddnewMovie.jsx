@@ -24,6 +24,28 @@ const AddNewMovie = () => {
   
   const handleChange = (e) => {
     const { id, value } = e.target;
+
+    // Validation logic
+    if (id === 'name' && !/^[a-zA-Z\s]*$/.test(value)) {
+      return; // Allow only letters and spaces
+    }
+
+    if (id === 'language' && !/^[a-zA-Z\s]*$/.test(value)) {
+      return; // Allow only letters and spaces
+    }
+
+    if (id === 'category' && !/^[a-zA-Z\s]*$/.test(value)) {
+      return; // Allow only letters and spaces
+    }
+
+    if (id === 'duration' && !/^\d*$/.test(value)) {
+      return; // Allow only numbers
+    }
+
+    if (id === 'price' && !/^\d*\.?\d*$/.test(value)) {
+      return; // Allow numbers and optional decimal point
+    }
+
     setFormData((prevData) => ({
       ...prevData,
       [id]: value,
