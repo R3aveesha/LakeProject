@@ -21,7 +21,7 @@ const Cart = () => {
   );
 
   return (
-    <>
+    <div>
       <NavBar name="foods" />
       <div className={styles.cart}>
         <h2>Your Cart</h2>
@@ -47,8 +47,8 @@ const Cart = () => {
           ))
         )}
       </div>
-      <Footer />
-    </>
+      <Footer></Footer>
+    </div>
   );
 }
 

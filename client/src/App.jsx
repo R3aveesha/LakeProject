@@ -51,6 +51,10 @@ import AddResourceForm from "./pages/resourceMaintenance/AddResourceForm.jsx";
 import ResourceReport from "./pages/resourceMaintenance/ReportonResource.jsx";
 import GameDetails from "./pages/gamesManagement/Gamedetails.jsx";
 import { AuthProvider } from "./pages/foodManagement/context/authContext.jsx";
+import EditDeleteUpdateTable from "./pages/gamesManagement/MovieTable.jsx";
+import LostItemEditForm from "./pages/customerSupport/LostItemEditForm.jsx";
+import LostItemsForm from "./pages/customerSupport/LostForm.jsx";
+import FoundItemsTable from "./pages/customerSupport/FoundItemTable.jsx";
 
 function App() {
   return (
@@ -79,7 +83,9 @@ function App() {
           <Route path="/customerInquiries" element={<CustomerInquiries />} />{/*done*/}
           <Route path="/transport" element={<TransportPage />} />{/*done*/}
           <Route path="/lostitems" element={<LostitemTable />} />{/*done*/}
-          <Route path="/lostitemform" element={<LostItemForm />} />{/*done*/}
+          <Route path="/LostItemsForm" element={<LostItemsForm />} />{/*done*/}
+          <Route path="/LostItemEditForm" element={<LostItemEditForm />} />{/*done*/}
+          <Route path="/FoundItemsTable" element={<FoundItemsTable />} />{/*done*/}
 
           {/* Event Management */}
           <Route path="/billinfo/:id" element={<BillInfo />} />{/*done*/}
@@ -101,6 +107,7 @@ function App() {
           <Route path="/movies/showtimes" element={<ShowtimesPage />} />{/*done*/}
           <Route path="/movies/addnewmovie" element={<AddnewMovie />} />{/*done*/}
           <Route path="/movieManagerDashboard" element={<MovieManagerDashboard />} />
+          <Route path="/EditDeleteUpdateTable" element={<EditDeleteUpdateTable />} />
 
           {/* Resource Management */}
           <Route path="/resourceManagerDashboard" element={<ResourceManagerDashboard />} />{/*done*/}
@@ -119,6 +126,9 @@ function App() {
           <Route path="/leavedetails" element={<LeaveDetails />} />
           <Route path="/salarytable" element={<SalaryTable />} />
           <Route path="/stafftable" element={<StaffTable />} />
+
+      
+
         </Routes>
       </Router>
     </CartProvider>

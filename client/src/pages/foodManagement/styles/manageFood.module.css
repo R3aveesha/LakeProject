@@ -4,7 +4,8 @@
   padding: 20px;
   background-color: #0d1633;
   color: white;
-  height: 400px; /* Adjust if needed */
+  height: 100vh; /* Adjust if needed */
+  height: auto;
 }
 
 .tableWrapper {

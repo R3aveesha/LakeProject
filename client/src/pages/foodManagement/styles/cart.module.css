@@ -16,7 +16,8 @@
     padding: 20px;
     background-color: #1a1a2e;
     color: #fff;
-    height: 400px;
+    height: 100vh;
+    height: auto;
   }
   
   .cartItem {
