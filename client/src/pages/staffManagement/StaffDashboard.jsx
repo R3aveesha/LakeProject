@@ -78,7 +78,7 @@ const StaffDashboard = () => {
         <button style={buttonStyle} onClick={()=>navigate('/staffregistrationform')}>Add Staff Member</button>
         <button style={buttonStyle} onClick={()=>navigate('/stafftable')} >View Staff Member Details</button>
         <button style={buttonStyle} onClick={()=>navigate('/leaverequests')} >View Leave Requests</button>
-        <button style={buttonStyle} onClick={()=>navigate('/viewattendance')}>View Attendance</button>
+        <button style={buttonStyle} onClick={()=>navigate('/leavedetails')}>View Attendance</button>
         <button style={buttonStyle} onClick={()=>navigate('/salarytable')}>View Salary</button>
         <button style={buttonStyle} onClick={()=>navigate('/salarycalculator')}>Calculate Salary</button>
       </div>

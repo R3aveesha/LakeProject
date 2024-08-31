@@ -132,15 +132,15 @@ function App() {
 
           {/* Staff Management */}
           <Route path="/salarycalculator" element={<SalaryCalculator />} />
-          <Route path="/leaverequests" element={<LeaveRequests />} />
+          <Route path="/leaverequests" element={<LeaveRequests />} />{/*done*/}
           <Route path="/myleaves" element={<Myleaves />} />
           <Route path="/staffdashboard" element={<StaffDashboard />} />{/*done*/}
           <Route path="/staffmemberdash" element={<StaffmemberDash />} />
           <Route path="/staffregistrationform" element={<StaffRegistrationForm />} />{/*done*/}
-          <Route path="/viewattendance" element={<ViewAttendance />} />
+          <Route path="/viewattendance" element={<ViewAttendance />} />{/*X*/}
           <Route path="/leavedetails" element={<LeaveDetails />} />
-          <Route path="/salarytable" element={<SalaryTable />} />
-          <Route path="/stafftable" element={<StaffTable />} />
+          <Route path="/salarytable" element={<SalaryTable />} />{/*done*/}
+          <Route path="/stafftable" element={<StaffTable />} />{/*done*/}
 
           <Route path='/booking1' element={<Booking1/>} />
 

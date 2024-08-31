@@ -3,7 +3,7 @@ import NavBar from "../../components/core/NavBar";
 import Footer from "../../components/core/Footer";
 
 const SalaryCalculator = () => {
-  const [id, setId] = useState("");
+
   const [month, setMonth] = useState("");
   const [totalHours, setTotalHours] = useState("");
   const [otHours, setOtHours] = useState("");
@@ -20,7 +20,7 @@ const SalaryCalculator = () => {
   };
 
   const clearFields = () => {
-    setId("");
+
     setMonth("");
     setTotalHours("");
     setOtHours("");
@@ -55,36 +55,6 @@ const SalaryCalculator = () => {
         </h2>
 
         <form>
-          <div style={{ marginBottom: "10px" }}>
-            <label htmlFor="id" style={{ display: "block" }}>
-              ID
-            </label>
-            <input
-              type="text"
-              id="id"
-              value={id}
-              onChange={(e) => setId(e.target.value)}
-              style={{ width: "100%", padding: "5px" }}
-            />
-          </div>
-
-          <div style={{ marginBottom: "10px" }}>
-            <label htmlFor="month" style={{ display: "block" }}>
-              Month
-            </label>
-            <select
-              id="month"
-              value={month}
-              onChange={(e) => setMonth(e.target.value)}
-              style={{ width: "100%", padding: "5px" }}
-            >
-              <option value="">Select Month</option>
-              <option value="January">January</option>
-              <option value="February">February</option>
-              <option value="March">March</option>
-              {/* Add more months as needed */}
-            </select>
-          </div>
 
           <div style={{ marginBottom: "10px" }}>
             <label htmlFor="totalHours" style={{ display: "block" }}>
