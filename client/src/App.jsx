@@ -75,7 +75,7 @@ function App() {
           <Route path="/customerSupportManagerDashboard" element={<CustomerSupportManagerDashboard />} />{/*done*/}
           <Route path="/support" element={<CustomerSupport />} />{/*done*/}
           <Route path="/foundItm/:id" element={<FoundForm />} />{/*done*/}
-          <Route path="/inquerypage" element={<InquiryForm />} />{/*login needed*/}
+          <Route path="/inquerypage" element={<InquiryForm />} />{/*done*/}
           <Route path="/customerInquiries" element={<CustomerInquiries />} />{/*done*/}
           <Route path="/transport" element={<TransportPage />} />{/*done*/}
           <Route path="/lostitems" element={<LostitemTable />} />{/*done*/}
