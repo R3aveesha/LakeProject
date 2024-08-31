@@ -92,7 +92,7 @@ const EventDashboard = () => {
           )}
         </div>
       </div>
-      <Footer />
+      
     </>
   );
 };
