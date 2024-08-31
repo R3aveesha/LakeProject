@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import NavBar from "../../components/core/NavBar";
 import Footer from "../../components/core/Footer";
+import { useNavigate } from "react-router-dom";
 
 const AddResourceForm = () => {
   const [resource, setResource] = useState({
@@ -14,6 +15,8 @@ const AddResourceForm = () => {
     maintainanceStatus: false,
     price: 0,
   });
+
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -37,6 +40,8 @@ const AddResourceForm = () => {
           maintainanceStatus: false,
           price: 0,
         });
+
+        navigate("/ResourcesTable");
       })
       .catch((error) => {
         console.error("There was an error adding the resource!", error);

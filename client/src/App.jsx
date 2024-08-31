@@ -69,11 +69,11 @@ function App() {
           <Route path="/categorize" element={<CategorizeNav />} />{/*done*/}
 
           {/* Food Management */}
-          <Route path="/food/start" element={<FoodOrderStart />} />{/*done*/}
-          <Route path="/food" element={<FoodPage />} /> {/*done*/}
-          <Route path="/cart" element={<Cart />} />{/*done*/}
+          <Route path="/food/start" element={<FoodOrderStart />} />{/*done*/}{/*linked*/}
+          <Route path="/food" element={<FoodPage />} /> {/*done*/}{/*linked*/}
+          <Route path="/cart" element={<Cart />} />{/*done*/}{/*linked*/}
           <Route path="/manageFoods" element={<ManageFood />} />{/*done*/}
-          <Route path="/updateFoodItem/:id" element={<UpdateFood />} />{/*done*/}
+          <Route path="/updateFoodItem/:id" element={<UpdateFood />} />{/*done*/}{/*linked*/}
 
           {/* Customer Support */}
           <Route path="/customerSupportManagerDashboard" element={<CustomerSupportManagerDashboard />} />{/*done*/}
@@ -86,34 +86,42 @@ function App() {
           <Route path="/LostItemsForm" element={<LostItemsForm />} />{/*done*/}
           <Route path="/LostItemEditForm" element={<LostItemEditForm />} />{/*done*/}
           <Route path="/FoundItemsTable" element={<FoundItemsTable />} />{/*done*/}
+          <Route path="/customerSupportManagerDashboard" element={<CustomerSupportManagerDashboard />} />{/*done*/}{/*linked*/}
+          <Route path="/support" element={<CustomerSupport />} />{/*done*/}{/*linked*/}
+          <Route path="/foundItm/:id" element={<FoundForm />} />{/*done*/}{/*linked*/}
+          <Route path="/inquerypage" element={<InquiryForm />} />{/*done*/}{/*linked*/}
+          <Route path="/customerInquiries" element={<CustomerInquiries />} />{/*done*/}{/*linked*/}
+          <Route path="/transport" element={<TransportPage />} />{/*done*/}{/*linked*/}
+          <Route path="/lostitems" element={<LostitemTable />} />{/*done*/}{/*linked*/}
+          <Route path="/lostitemform" element={<LostItemForm />} />{/*done*/}{/*linked*/}
 
           {/* Event Management */}
-          <Route path="/billinfo/:id" element={<BillInfo />} />{/*done*/}
-          <Route path="/bookingevent/:id" element={<BookingEvent />} />{/*done*/}
-          <Route path="/cardpay/:id" element={<CardPay />} />{/*login needed*/}
-          <Route path="/eventdashboard" element={<EventDashboard />} />
-          <Route path="/events/:id" element={<ViewEvent />} />{/*done*/}
+          <Route path="/billinfo/:id" element={<BillInfo />} />{/*done*/}{/*linked*/}
+          <Route path="/bookingevent/:id" element={<BookingEvent />} />{/*done*/}{/*linked*/}
+          <Route path="/cardpay/:id" element={<CardPay />} />{/*login needed*/}{/*linked*/}
+          <Route path="/eventdashboard" element={<EventDashboard />} />{/*linked*/}
+          <Route path="/events/:id" element={<ViewEvent />} />{/*done*/}{/*linked*/}
 
           {/* Games Management */}
-          <Route path="/games" element={<GameMainPage />} />{/*done*/}
-          <Route path="/games/:id" element={<GamesDetails />} />{/*done*/}
+          <Route path="/games" element={<GameMainPage />} />{/*done*/}{/*linked*/}
+          <Route path="/games/:id" element={<GamesDetails />} />{/*done*/}{/*linked*/}
           <Route path="/addgames" element={<AddGames />} />{/*done*/}
           <Route path="/availabletimes" element={<AvailableTimes />} />{/*done*/}
           <Route path="/changeavailabletimes" element={<ChangeAvailableTimes />} />{/*n ui*/}
           <Route path="/GameDetails" element={<GameDetails />} />{/*done*/}
 
           {/* Movie Management */}
-          <Route path="/movies" element={<MoviePage />} />{/*done*/}
-          <Route path="/movies/showtimes" element={<ShowtimesPage />} />{/*done*/}
-          <Route path="/movies/addnewmovie" element={<AddnewMovie />} />{/*done*/}
+          <Route path="/movies" element={<MoviePage />} />{/*done*/}{/*linked*/}
+          <Route path="/movies/showtimes" element={<ShowtimesPage />} />{/*done*/}{/*linked*/}
+          <Route path="/movies/addnewmovie" element={<AddnewMovie />} />{/*done*/}{/*linked*/}
           <Route path="/movieManagerDashboard" element={<MovieManagerDashboard />} />
           <Route path="/EditDeleteUpdateTable" element={<EditDeleteUpdateTable />} />
 
           {/* Resource Management */}
           <Route path="/resourceManagerDashboard" element={<ResourceManagerDashboard />} />{/*done*/}
-          <Route path='/ResourcesTable' element={<ResourcesTable />} />{/*done*/}
-          <Route path="/AddResourceForm" element={<AddResourceForm />} />{/*done*/}
-          <Route path="/resource/:id" element={<ResourceReport/>}/>{/*done*/}
+          <Route path='/ResourcesTable' element={<ResourcesTable />} />{/*done*/}{/*linked*/}
+          <Route path="/AddResourceForm" element={<AddResourceForm />} />{/*done*/}{/*linked*/}
+          <Route path="/resource/:id" element={<ResourceReport/>}/>{/*done*/}{/*linked*/}
 
           {/* Staff Management */}
           <Route path="/salarycalculator" element={<SalaryCalculator />} />
@@ -127,7 +135,7 @@ function App() {
           <Route path="/salarytable" element={<SalaryTable />} />
           <Route path="/stafftable" element={<StaffTable />} />
 
-      
+
 
         </Routes>
       </Router>

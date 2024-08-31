@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 import axios from "axios";
 import NavBar from "../../components/core/NavBar";
 import Footer from "../../components/core/Footer";
@@ -15,6 +15,8 @@ const ResourceReport = () => {
     location: "",
     repairStatus: "false", // Default value
   });
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -60,6 +62,7 @@ const ResourceReport = () => {
       .put(`http://localhost:3000/api/resource/resources/${id}`, updatedResource)
       .then(() => {
         alert("Resource updated successfully!");
+        navigate('/ResourcesTable');
         console.log("Resource updated successfully!", updatedResource);
       })
       .catch((error) => {
