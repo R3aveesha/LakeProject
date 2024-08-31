@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import NavBar from "../../components/core/NavBar";
 import Footer from "../../components/core/Footer";
+import { useNavigate } from "react-router-dom";
 
 const StaffRegistrationForm = () => {
   const [name, setName] = useState('');
@@ -11,6 +12,9 @@ const StaffRegistrationForm = () => {
   const [nic, setNic] = useState('');
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
+  const [salary, setSalary] = useState('');
+
+  const navigate = useNavigate();
 
   const [errors, setErrors] = useState({
     name: '',
@@ -60,6 +64,9 @@ const StaffRegistrationForm = () => {
         setPhone(value);
         validatePhone(value);
         break;
+      case 'salary':
+        setSalary(value);
+        break;
       default:
         if (id === 'email') setEmail(value);
         if (id === 'password') setPassword(value);
@@ -69,98 +76,43 @@ const StaffRegistrationForm = () => {
     }
   };
 
-  const formContainerStyle = {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    height: "80vh",
-    backgroundColor: "#1b1f38",
-    padding: "20px",
-    boxSizing: "border-box",
-  };
-
-  const formStyle = {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-    gridGap: "20px",
-    backgroundColor: "#d1d1d1",
-    padding: "30px",
-    borderRadius: "10px",
-    maxWidth: "800px",
-    width: "100%",
-    boxSizing: "border-box",
-  };
-
-  const labelStyle = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    fontWeight: "bold",
-    marginRight: "10px",
-  };
-
-  const inputContainerStyle = {
-    display: "flex",
-    alignItems: "center",
-    width: "100%",
-  };
-
-  const inputStyle = {
-    padding: "10px",
-    fontSize: "16px",
-    borderRadius: "5px",
-    border: "1px solid #ccc",
-    width: "100%",
-  };
-
-  const titleStyle = {
-    gridColumn: "span 2",
-    fontSize: "24px",
-    textAlign: "center",
-    marginBottom: "20px",
-    fontWeight: "bold",
-  };
-
-  const buttonContainerStyle = {
-    gridColumn: "span 2",
-    display: "flex",
-    justifyContent: "center",
-    marginTop: "20px",
-  };
-
-  const buttonStyle = {
-    padding: "10px 20px",
-    fontSize: "16px",
-    borderRadius: "5px",
-    border: "none",
-    cursor: "pointer",
-    marginRight: "10px",
-  };
-
-  const registerButtonStyle = {
-    ...buttonStyle,
-    backgroundColor: "#f9a825",
-    color: "#ffffff",
-  };
-
-  const clearButtonStyle = {
-    ...buttonStyle,
-    backgroundColor: "#000000",
-    color: "#ffffff",
-  };
-
-  const responsiveGrid = {
-    "@media (max-width: 768px)": {
-      gridTemplateColumns: "1fr",
-    },
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const newUser = {
+        username:name,
+        role:position,
+        email,
+        password,
+        nic,
+        address,
+        phone,
+        salary,
+      };
+      const response = await axios.post('http://localhost:3000/api/staff/add', newUser);
+      console.log(response.data);
+      // Reset the form after successful submission
+      setName('');
+      setPosition('');
+      setEmail('');
+      setPassword('');
+      setNic('');
+      setAddress('');
+      setPhone('');
+      setSalary('');
+      alert("Staff member registered successfully!");
+      navigate('/stafftable')
+    } catch (error) {
+      console.error("There was an error registering the staff member!", error);
+      alert("Failed to register staff member. Please try again.");
+    }
   };
 
   return (
     <div>
       <NavBar />
       <div style={formContainerStyle}>
-        <form style={{ ...formStyle, ...responsiveGrid }}>
+        <form style={{ ...formStyle, ...responsiveGrid }} onSubmit={handleSubmit}>
           <h2 style={titleStyle}>Staff Registration Form</h2>
 
           <div style={inputContainerStyle}>
@@ -232,6 +184,17 @@ const StaffRegistrationForm = () => {
           </div>
 
           <div style={inputContainerStyle}>
+            <label style={labelStyle} htmlFor="salary">Salary</label>
+            <input
+              style={inputStyle}
+              type="text"
+              id="salary"
+              value={salary}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div style={inputContainerStyle}>
             <label style={labelStyle} htmlFor="phone">Phone</label>
             <input
               style={inputStyle}
@@ -252,6 +215,76 @@ const StaffRegistrationForm = () => {
       <Footer />
     </div>
   );
+};
+
+// Styles
+const formContainerStyle = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100vh',
+  backgroundColor: '#f4f4f4',
+};
+
+const formStyle = {
+  backgroundColor: '#fff',
+  padding: '20px',
+  borderRadius: '8px',
+  boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+  width: '400px',
+};
+
+const titleStyle = {
+  textAlign: 'center',
+  marginBottom: '20px',
+  color: '#333',
+};
+
+const inputContainerStyle = {
+  marginBottom: '15px',
+};
+
+const labelStyle = {
+  display: 'block',
+  marginBottom: '5px',
+  color: '#333',
+};
+
+const inputStyle = {
+  width: '100%',
+  padding: '8px',
+  borderRadius: '4px',
+  border: '1px solid #ccc',
+  boxSizing: 'border-box',
+};
+
+const buttonContainerStyle = {
+  display: 'flex',
+  justifyContent: 'space-between',
+};
+
+const registerButtonStyle = {
+  backgroundColor: '#4CAF50',
+  color: 'white',
+  padding: '10px 15px',
+  border: 'none',
+  borderRadius: '5px',
+  cursor: 'pointer',
+};
+
+const clearButtonStyle = {
+  backgroundColor: '#f44336',
+  color: 'white',
+  padding: '10px 15px',
+  border: 'none',
+  borderRadius: '5px',
+  cursor: 'pointer',
+};
+
+const responsiveGrid = {
+  display: 'grid',
+  gridTemplateColumns: '1fr',
+  gap: '15px',
 };
 
 export default StaffRegistrationForm;
