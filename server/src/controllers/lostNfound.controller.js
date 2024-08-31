@@ -7,6 +7,8 @@ exports.addLostAndFound = async (req, res) => {
       email: req.body.email,
       contactNumber: req.body.contactNumber,
       foundItemsCategory: req.body.foundItemsCategory,
+      userId: req.body.userId,
+      lostPlace: req.body.lostPlace,
       foundItem: req.body.foundItem,
       foundItemPlace: req.body.foundItem,
       isFound: req.body.isFound,
