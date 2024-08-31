@@ -4,45 +4,68 @@ import NavBar from "../../components/core/NavBar";
 import Footer from "../../components/core/Footer";
 
 const StaffRegistrationForm = () => {
-  const [formData, setFormData] = useState({
-    username: "",
-    role: "",
-    email: "",
-    password: "",
-    nic: "",
-    salary: "",
-    address: "",
-    phone: "",
+  const [name, setName] = useState('');
+  const [position, setPosition] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [nic, setNic] = useState('');
+  const [address, setAddress] = useState('');
+  const [phone, setPhone] = useState('');
+
+  const [errors, setErrors] = useState({
+    name: '',
+    position: '',
+    phone: '',
   });
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.id]: e.target.value,
-    });
+  const validateName = (value) => {
+    const namePattern = /^[A-Za-z\s]+$/;
+    if (!namePattern.test(value)) {
+      setErrors((prevErrors) => ({ ...prevErrors, name: 'Name can only contain letters and spaces.' }));
+    } else {
+      setErrors((prevErrors) => ({ ...prevErrors, name: '' }));
+    }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(
-        "http://localhost:3000/api/staff/add",
-        formData
-      );
-      console.log("Staff member registered:", response.data);
-      // Optionally, reset the form after successful submission
-      setFormData({
-        username: "",
-        role: "",
-        email: "",
-        password: "",
-        nic: "",
-        salary: "",
-        address: "",
-        phone: "",
-      });
-    } catch (error) {
-      console.error("There was an error registering the staff member!", error);
+  const validatePosition = (value) => {
+    const positionPattern = /^[A-Za-z\s]+$/;
+    if (!positionPattern.test(value)) {
+      setErrors((prevErrors) => ({ ...prevErrors, position: 'Position can only contain letters and spaces.' }));
+    } else {
+      setErrors((prevErrors) => ({ ...prevErrors, position: '' }));
+    }
+  };
+
+  const validatePhone = (value) => {
+    const phonePattern = /^\d{10}$/;
+    if (!phonePattern.test(value)) {
+      setErrors((prevErrors) => ({ ...prevErrors, phone: 'Phone number must be exactly 10 digits.' }));
+    } else {
+      setErrors((prevErrors) => ({ ...prevErrors, phone: '' }));
+    }
+  };
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    switch (id) {
+      case 'name':
+        setName(value);
+        validateName(value);
+        break;
+      case 'job':
+        setPosition(value);
+        validatePosition(value);
+        break;
+      case 'phone':
+        setPhone(value);
+        validatePhone(value);
+        break;
+      default:
+        if (id === 'email') setEmail(value);
+        if (id === 'password') setPassword(value);
+        if (id === 'nic') setNic(value);
+        if (id === 'address') setAddress(value);
+        break;
     }
   };
 
@@ -137,131 +160,92 @@ const StaffRegistrationForm = () => {
     <div>
       <NavBar />
       <div style={formContainerStyle}>
-        <form
-          onSubmit={handleSubmit}
-          style={{ ...formStyle, ...responsiveGrid }}
-        >
+        <form style={{ ...formStyle, ...responsiveGrid }}>
           <h2 style={titleStyle}>Staff Registration Form</h2>
 
           <div style={inputContainerStyle}>
-            <label style={labelStyle} htmlFor="username">
-              username
-            </label>
+            <label style={labelStyle} htmlFor="name">Name</label>
             <input
               style={inputStyle}
               type="text"
-              id="username"
-              value={formData.username}
+              id="name"
+              value={name}
               onChange={handleChange}
-              required
             />
+            {errors.name && <p style={{ color: 'red' }}>{errors.name}</p>}
           </div>
 
           <div style={inputContainerStyle}>
-            <label style={labelStyle} htmlFor="role">
-              Position
-            </label>
+            <label style={labelStyle} htmlFor="job">Position</label>
             <input
               style={inputStyle}
               type="text"
-              id="role"
-              value={formData.role}
+              id="job"
+              value={position}
               onChange={handleChange}
-              required
             />
+            {errors.position && <p style={{ color: 'red' }}>{errors.position}</p>}
           </div>
 
           <div style={inputContainerStyle}>
-            <label style={labelStyle} htmlFor="email">
-              Email
-            </label>
+            <label style={labelStyle} htmlFor="email">Email</label>
             <input
               style={inputStyle}
               type="email"
               id="email"
-              value={formData.email}
+              value={email}
               onChange={handleChange}
-              required
             />
           </div>
 
           <div style={inputContainerStyle}>
-            <label style={labelStyle} htmlFor="password">
-              Password
-            </label>
+            <label style={labelStyle} htmlFor="password">Password</label>
             <input
               style={inputStyle}
               type="password"
               id="password"
-              value={formData.password}
+              value={password}
               onChange={handleChange}
-              required
             />
           </div>
 
           <div style={inputContainerStyle}>
-            <label style={labelStyle} htmlFor="nic">
-              NIC
-            </label>
+            <label style={labelStyle} htmlFor="nic">NIC</label>
             <input
               style={inputStyle}
               type="text"
               id="nic"
-              value={formData.nic}
+              value={nic}
               onChange={handleChange}
-              required
             />
           </div>
 
           <div style={inputContainerStyle}>
-            <label style={labelStyle} htmlFor="salary">
-              Salary
-            </label>
-            <input
-              style={inputStyle}
-              type="number"
-              id="salary"
-              value={formData.salary}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div style={inputContainerStyle}>
-            <label style={labelStyle} htmlFor="address">
-              Address
-            </label>
+            <label style={labelStyle} htmlFor="address">Address</label>
             <input
               style={inputStyle}
               type="text"
               id="address"
-              value={formData.address}
+              value={address}
               onChange={handleChange}
-              required
             />
           </div>
 
           <div style={inputContainerStyle}>
-            <label style={labelStyle} htmlFor="phone">
-              Phone
-            </label>
+            <label style={labelStyle} htmlFor="phone">Phone</label>
             <input
               style={inputStyle}
               type="text"
               id="phone"
-              value={formData.phone}
+              value={phone}
               onChange={handleChange}
-              required
             />
+            {errors.phone && <p style={{ color: 'red' }}>{errors.phone}</p>}
           </div>
 
           <div style={buttonContainerStyle}>
-            <button type="submit" style={registerButtonStyle}>
-              Register
-            </button>
-            <button type="reset" style={clearButtonStyle}>
-              Clear
-            </button>
+            <button type="submit" style={registerButtonStyle}>Register</button>
+            <button type="reset" style={clearButtonStyle}>Clear</button>
           </div>
         </form>
       </div>

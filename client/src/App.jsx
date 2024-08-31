@@ -51,6 +51,13 @@ import AddResourceForm from "./pages/resourceMaintenance/AddResourceForm.jsx";
 import ResourceReport from "./pages/resourceMaintenance/ReportonResource.jsx";
 import GameDetails from "./pages/gamesManagement/Gamedetails.jsx";
 import { AuthProvider } from "./pages/foodManagement/context/authContext.jsx";
+import EditDeleteUpdateTable from "./pages/gamesManagement/MovieTable.jsx";
+import LostItemEditForm from "./pages/customerSupport/LostItemEditForm.jsx";
+import LostItemsForm from "./pages/customerSupport/LostForm.jsx";
+import FoundItemsTable from "./pages/customerSupport/FoundItemTable.jsx";
+import FeedbackDetails from "./pages/gamesManagement/Dashboards/FeedbackDetails.jsx";
+import Booking1 from "./pages/bookingmanager/Booking1.jsx";
+import AddNewMovie from "./pages/movieManagement/AddnewMovie.jsx";
 
 function App() {
   return (
@@ -72,6 +79,16 @@ function App() {
           <Route path="/updateFoodItem/:id" element={<UpdateFood />} />{/*done*/}{/*linked*/}
 
           {/* Customer Support */}
+          <Route path="/customerSupportManagerDashboard" element={<CustomerSupportManagerDashboard />} />{/*done*/}
+          <Route path="/support" element={<CustomerSupport />} />{/*done*/}
+          <Route path="/foundItm/:id" element={<FoundForm />} />{/*done*/}
+          <Route path="/inquerypage" element={<InquiryForm />} />{/*done*/}
+          <Route path="/customerInquiries" element={<CustomerInquiries />} />{/*done*/}
+          <Route path="/transport" element={<TransportPage />} />{/*done*/}
+          <Route path="/lostitems" element={<LostitemTable />} />{/*done*/}
+          <Route path="/LostItemsForm" element={<LostItemsForm />} />{/*done*/}
+          <Route path="/LostItemEditForm" element={<LostItemEditForm />} />{/*done*/}
+          <Route path="/FoundItemsTable" element={<FoundItemsTable />} />{/*done*/}
           <Route path="/customerSupportManagerDashboard" element={<CustomerSupportManagerDashboard />} />{/*done*/}{/*linked*/}
           <Route path="/support" element={<CustomerSupport />} />{/*done*/}{/*linked*/}
           <Route path="/foundItm/:id" element={<FoundForm />} />{/*done*/}{/*linked*/}
@@ -95,12 +112,17 @@ function App() {
           <Route path="/availabletimes" element={<AvailableTimes />} />{/*done*/}
           <Route path="/changeavailabletimes" element={<ChangeAvailableTimes />} />{/*n ui*/}
           <Route path="/GameDetails" element={<GameDetails />} />{/*done*/}
+          <Route path="/FeedbackDetails" element={<FeedbackDetails />} />
 
           {/* Movie Management */}
           <Route path="/movies" element={<MoviePage />} />{/*done*/}{/*linked*/}
           <Route path="/movies/showtimes" element={<ShowtimesPage />} />{/*done*/}{/*linked*/}
           <Route path="/movies/addnewmovie" element={<AddnewMovie />} />{/*done*/}{/*linked*/}
           <Route path="/movieManagerDashboard" element={<MovieManagerDashboard />} />
+          <Route path="/EditDeleteUpdateTable" element={<EditDeleteUpdateTable />} />
+          <Route path ="/AddNewMovie" element={<AddNewMovie />} />
+
+
 
           {/* Resource Management */}
           <Route path="/resourceManagerDashboard" element={<ResourceManagerDashboard />} />{/*done*/}
@@ -119,6 +141,9 @@ function App() {
           <Route path="/leavedetails" element={<LeaveDetails />} />
           <Route path="/salarytable" element={<SalaryTable />} />
           <Route path="/stafftable" element={<StaffTable />} />
+
+          <Route path='/booking1' element={<Booking1/>} />
+
         </Routes>
       </Router>
     </CartProvider>
