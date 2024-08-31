@@ -122,20 +122,20 @@ const MoviePage = () => {
             <div style={styles.filterCategory}>
               <h3 style={styles.filterTitle}>Filter By Genre</h3>
               <ul style={styles.filterList}>
-                <li onClick={() => handleGenreSelect("Family")}>Family</li>
-                <li onClick={() => handleGenreSelect("Action")}>Action</li>
-                <li onClick={() => handleGenreSelect("Crime")}>Crime</li>
-                <li onClick={() => handleGenreSelect("Horror")}>Horror</li>
-                <li onClick={() => handleGenreSelect("Romantic")}>Romantic</li>
+                <li style={styles.filterListItem} onClick={() => handleGenreSelect("Family")}>Family</li>
+                <li style={styles.filterListItem} onClick={() => handleGenreSelect("Action")}>Action</li>
+                <li style={styles.filterListItem} onClick={() => handleGenreSelect("Crime")}>Crime</li>
+                <li style={styles.filterListItem} onClick={() => handleGenreSelect("Horror")}>Horror</li>
+                <li style={styles.filterListItem} onClick={() => handleGenreSelect("Romantic")}>Romantic</li>
               </ul>
             </div>
             <div style={styles.filterCategory}>
               <h3 style={styles.filterTitle}>Filter By Language</h3>
               <ul style={styles.filterList}>
-                <li onClick={() => handleLanguageSelect("Sinhala")}>Sinhala</li>
-                <li onClick={() => handleLanguageSelect("Tamil")}>Tamil</li>
-                <li onClick={() => handleLanguageSelect("Hindi")}>Hindi</li>
-                <li onClick={() => handleLanguageSelect("English")}>English</li>
+                <li style={styles.filterListItem} onClick={() => handleLanguageSelect("Sinhala")} className="lsit01">Sinhala</li>
+                <li style={styles.filterListItem} onClick={() => handleLanguageSelect("Tamil")} className="list02">Tamil</li>
+                <li style={styles.filterListItem} onClick={() => handleLanguageSelect("Hindi")} className="list03">Hindi</li>
+                <li style={styles.filterListItem} onClick={() => handleLanguageSelect("English")} className="list03">English</li>
               </ul>
             </div>
             <div style={styles.filterCategory}>
@@ -204,6 +204,15 @@ const styles = {
     paddingLeft: "0",
     color: "white",
     cursor: "pointer",
+    marginBottom: "10px"
+    
+  },
+  filterListItem: {
+    marginBottom: "10px",
+  },
+  
+  lsit01:{
+    padding: "10px",
   },
   searchBox: {
     width: "100%",
