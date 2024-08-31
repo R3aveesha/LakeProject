@@ -74,12 +74,12 @@ function App() {
           {/* Customer Support */}
           <Route path="/customerSupportManagerDashboard" element={<CustomerSupportManagerDashboard />} />{/*done*/}
           <Route path="/support" element={<CustomerSupport />} />{/*done*/}
-          <Route path="/foundItm/:id" element={<FoundForm />} />{/*login needed*/}
+          <Route path="/foundItm/:id" element={<FoundForm />} />{/*done*/}
           <Route path="/inquerypage" element={<InquiryForm />} />{/*login needed*/}
           <Route path="/customerInquiries" element={<CustomerInquiries />} />{/*done*/}
           <Route path="/transport" element={<TransportPage />} />{/*done*/}
           <Route path="/lostitems" element={<LostitemTable />} />{/*done*/}
-          <Route path="/lostitemform" element={<LostItemForm />} />{/*login needed*/}
+          <Route path="/lostitemform" element={<LostItemForm />} />{/*done*/}
 
           {/* Event Management */}
           <Route path="/billinfo" element={<BillInfo />} />{/*login needed*/}

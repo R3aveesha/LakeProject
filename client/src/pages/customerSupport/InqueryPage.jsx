@@ -1,71 +1,140 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import NavBar from "../../components/core/NavBar";
 import Footer from "../../components/core/Footer";
+import { useAuth } from "../foodManagement/context/authContext";
+import { useNavigate } from "react-router-dom";
 
 const InquiryForm = () => {
-  return (
- <div>
-  <NavBar></NavBar>
-   <div style={styles.background}>
-      <div style={styles.container}>
-      <div style={styles.sidebar}>
-        <h2 style={styles.sidebarHeading}>Dashboard</h2>
-        <button style={styles.sidebarButton}>Inquiry Form</button>
-      </div>
-      <div style={styles.formContainer}>
-        <h2 style={styles.formHeading}>Inquiry Form</h2>
-        <form style={styles.form}>
-          <div style={styles.formGroup}>
-            <input
-              type="text"
-              placeholder="Name"
-              style={styles.inputField}
-            />
-            <input
-              type="text"
-              placeholder="Inquiry Category"
-              style={styles.inputField}
-            />
-          </div>
-          <div style={styles.formGroup}>
-            <input
-              type="email"
-              placeholder="Email"
-              style={styles.inputField}
-            />
-            <textarea
-              placeholder="Inquiry"
-              style={{ ...styles.inputField, height: "100px" }}
-            ></textarea>
-          </div>
-          <div style={styles.formGroup}>
-            <input
-              type="text"
-              placeholder="Contact Number"
-              style={styles.inputField}
-            />
-          </div>
-          <div style={styles.buttonGroup}>
-            <button style={styles.submitButton}>Submit</button>
-            <button style={styles.editButton}>Edit</button>
-            <button style={styles.deleteButton}>Delete</button>
-          </div>
-        </form>
-      </div>
-     
-    </div>
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  
+  const [formData, setFormData] = useState({
+    userName: "",
+    email: "",
+    contactNumber: "",
+    inquiryCategory: "Food",
+    inquiryMessage: "",
+  });
 
-  </div>
-  <Footer></Footer>
- </div>
+  const [categories] = useState(["Food", "Games", "Movies"]); 
+
+  useEffect(() => {
+    if (user) {
+      setFormData((prevData) => ({
+        ...prevData,
+        user: user.user._id, 
+        userName: user.user.username,
+        email: user.user.email,
+      }));
+    }
+  }, [user]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:3000/api/inquiry/inquiries", formData); // Adjust the URL as necessary
+      navigate("/customerInquiries"); // Redirect to a success page or similar
+    } catch (error) {
+      console.error("Error submitting the form:", error);
+    }
+  };
+
+  console.log(user.user)
+
+  return (
+    <div>
+      <NavBar />
+      <div style={styles.background}>
+        <div style={styles.container}>
+          <div style={styles.sidebar}>
+            <h2 style={styles.sidebarHeading}>Dashboard</h2>
+            <button style={styles.sidebarButton}>Inquiry Form</button>
+          </div>
+          <div style={styles.formContainer}>
+            <h2 style={styles.formHeading}>Inquiry Form</h2>
+            <form style={styles.form} onSubmit={handleSubmit}>
+              <div style={styles.formGroup}>
+                <input
+                  type="text"
+                  name="userName"
+                  placeholder="Name"
+                  value={user ? user.user.username : ""}
+                  readOnly
+                  style={styles.inputField}
+                />
+                <select
+                  name="inquiryCategory"
+                  value={formData.inquiryCategory}
+                  onChange={handleChange}
+                  style={styles.inputField}
+                >
+                  {categories.map((category) => (
+                    <option key={category} value={category}>
+                      {category}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div style={styles.formGroup}>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={user ? user.user.email : ""}
+                  readOnly
+                  style={styles.inputField}
+                />
+                <textarea
+                  name="inquiryMessage"
+                  placeholder="Inquiry"
+                  value={formData.inquiryMessage}
+                  onChange={handleChange}
+                  style={{ ...styles.inputField, height: "100px" }}
+                ></textarea>
+              </div>
+              <div style={styles.formGroup}>
+                <input
+                  type="text"
+                  name="contactNumber"
+                  placeholder="Contact Number"
+                  value={formData.contactNumber}
+                  onChange={handleChange}
+                  style={styles.inputField}
+                />
+              </div>
+              <div style={styles.buttonGroup}>
+                <button type="submit" style={styles.submitButton}>
+                  Submit
+                </button>
+                <button type="button" style={styles.editButton}>
+                  Edit
+                </button>
+                <button type="button" style={styles.deleteButton}>
+                  Delete
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </div>
   );
 };
 
 const styles = {
   background: {
     height: "80vh",
-      backgroundColor: "#161E38"
-
+    backgroundColor: "#161E38",
   },
   container: {
     display: "flex",
@@ -145,21 +214,6 @@ const styles = {
     border: "none",
     borderRadius: "5px",
     cursor: "pointer",
-  },
-  footer: {
-    marginTop: "20px",
-    paddingTop: "20px",
-    borderTop: "1px solid #333",
-    color: "#fff",
-    textAlign: "center",
-  },
-  contactInfo: {
-    marginBottom: "10px",
-  },
-  aboutSection: {
-    maxWidth: "400px",
-    margin: "0 auto",
-    fontSize: "14px",
   },
 };
 

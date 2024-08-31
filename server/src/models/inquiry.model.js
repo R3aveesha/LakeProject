@@ -3,7 +3,9 @@ const Schema = mongoose.Schema;
 
 const InquirySchema = new Schema(
   {
-    userName: { type: Schema.Types.ObjectId, ref: "Customer", required: true },
+    user: { type: Schema.Types.ObjectId, ref: "Customer", required: true },
+
+    userName: { type: String, ref: "Customer", required: true },
 
     email: { type: String, required: true },
 

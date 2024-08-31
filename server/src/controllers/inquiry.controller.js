@@ -18,6 +18,7 @@ exports.addInquiry = async (req,res) => {
     try {
         const inquiry = {
             userName: req.body.userName,
+            user: req.body.user,
             email: req.body.email,
             contactNumber: req.body.contactNumber,
             inquiryCategory: req.body.inquiryCategory,

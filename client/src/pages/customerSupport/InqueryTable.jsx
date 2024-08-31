@@ -3,13 +3,25 @@ import axios from "axios";
 import NavBar from "../../components/core/NavBar";
 import Footer from "../../components/core/Footer";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../foodManagement/context/authContext";
 
 const CustomerInquiries = () => {
   const [inquiries, setInquiries] = useState([]);
   const [error, setError] = useState(null);
-  const [showOptions, setShowOptions] = useState(true); // State to control the visibility of the "Options" column
+  const [showOptions, setShowOptions] = useState(false); // State to control the visibility of the "Options" column
 
   const navigate = useNavigate();
+
+  var { user } = useAuth();
+
+  useEffect(() => {
+    if (user.user.role){
+      setShowOptions(true);
+    }else{
+      setShowOptions(false);
+    }
+  }, [user.user.role]);
+  console.log(user.user.role);
 
   // Function to fetch inquiries
   const fetchInquiries = async () => {
@@ -104,12 +116,6 @@ const CustomerInquiries = () => {
             </tbody>
           </table>
         </div>
-        <button
-          style={styles.toggleButton}
-          onClick={() => setShowOptions(!showOptions)}
-        >
-          Toggle Options Column
-        </button>
       </div>
       <Footer />
     </div>
