@@ -9,20 +9,26 @@ mongoose.connect('mongodb+srv://root:root@r3cluster.ikcec.mongodb.net/?retryWrit
 
 async function seedAttendance() {
   try {
-    const customers = await StaffMember.find().limit(10); // Assuming you have at least 10 customers
+    // Clear existing attendance records
+    await Attendance.deleteMany({});
+    console.log('Existing attendance records cleared.');
 
-    if (customers.length < 10) {
-      console.log('Not enough customers to seed attendance.');
+    // Fetch staff members
+    const staffMembers = await StaffMember.find();
+    if (staffMembers.length === 0) {
+      console.log('No staff members found.');
       return;
     }
 
-    const attendances = customers.map((customer, index) => ({
-      userId: customer._id,
+    // Create attendance records
+    const attendances = staffMembers.map((staff) => ({
+      userId: staff._id,
       start: new Date(2024, 8, 1, 9, 0, 0), // Same start time for simplicity
       end: new Date(2024, 8, 1, 17, 0, 0),  // Same end time for simplicity
-      ot: index % 2 === 0 ? 2 : 0, // Alternate between 2 hours OT and 0 OT
+      ot: staff.role === 'Manager' ? 2 : 0, // Managers get 2 hours OT, others get 0
     }));
 
+    // Insert attendance records
     await Attendance.insertMany(attendances);
     console.log('Attendance records seeded successfully');
   } catch (err) {
