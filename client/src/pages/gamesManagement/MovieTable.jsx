@@ -1,35 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const EditDeleteUpdateTable = () => {
-  const [movies, setMovies] = useState([
-    {
-      id: 1,
-      name: "Inception",
-      director: "Christopher Nolan",
-      year: "2010",
-      language: "English",
-      genre: "Sci-Fi",
-      actors: "Leonardo DiCaprio, Joseph Gordon-Levitt",
-      duration: "148 minutes",
-      synopsis: "A thief who steals corporate secrets...",
-    },
-    // Add more movies here...
-  ]);
+  const [movies, setMovies] = useState([]);
+  const navigate = useNavigate();
+
+  const fetchMovies = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:3000/api/movies/movies"
+      );
+      setMovies(response.data);
+    } catch (error) {
+      console.error("Error fetching movies:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchMovies();
+  }, []);
 
   const handleEdit = (id) => {
-    // Implement your edit functionality here
-    console.log("Edit movie with id:", id);
+    navigate(`http://localhost:3000/api/movies/movies/${id}`);
   };
 
-  const handleDelete = (id) => {
-    // Implement your delete functionality here
-    console.log("Delete movie with id:", id);
-    setMovies(movies.filter((movie) => movie.id !== id));
-  };
-
-  const handleUpdate = (id) => {
-    // Implement your update functionality here
-    console.log("Update movie with id:", id);
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3000/api/movies/movies/${id}`);
+      fetchMovies();
+    } catch (error) {
+      console.error("Error deleting movie:", error);
+    }
   };
 
   return (
@@ -38,8 +40,6 @@ const EditDeleteUpdateTable = () => {
         <thead>
           <tr style={styles.tableHeaderRow}>
             <th style={styles.tableHeader}>Name</th>
-            <th style={styles.tableHeader}>Director</th>
-            <th style={styles.tableHeader}>Year</th>
             <th style={styles.tableHeader}>Language</th>
             <th style={styles.tableHeader}>Genre</th>
             <th style={styles.tableHeader}>Actions</th>
@@ -49,14 +49,21 @@ const EditDeleteUpdateTable = () => {
           {movies.map((movie) => (
             <tr key={movie.id} style={styles.tableRow}>
               <td style={styles.tableCell}>{movie.name}</td>
-              <td style={styles.tableCell}>{movie.director}</td>
-              <td style={styles.tableCell}>{movie.year}</td>
               <td style={styles.tableCell}>{movie.language}</td>
-              <td style={styles.tableCell}>{movie.genre}</td>
+              <td style={styles.tableCell}>{movie.category}</td>
               <td style={styles.tableCell}>
-                <button style={styles.editButton} onClick={() => handleEdit(movie.id)}>Edit</button>
-                <button style={styles.updateButton} onClick={() => handleUpdate(movie.id)}>Update</button>
-                <button style={styles.deleteButton} onClick={() => handleDelete(movie.id)}>Delete</button>
+                <button
+                  style={styles.editButton}
+                  onClick={() => handleEdit(movie._id)}
+                >
+                  Edit
+                </button>
+                <button
+                  style={styles.deleteButton}
+                  onClick={() => handleDelete(movie._id)}
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
@@ -104,15 +111,6 @@ const styles = {
     borderRadius: "5px",
     cursor: "pointer",
     color: "#000",
-  },
-  updateButton: {
-    marginRight: "5px",
-    padding: "5px 10px",
-    backgroundColor: "#4caf50",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
-    color: "#fff",
   },
   deleteButton: {
     padding: "5px 10px",

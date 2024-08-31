@@ -118,9 +118,9 @@ function App() {
           <Route path="/movies" element={<MoviePage />} />{/*done*/}{/*linked*/}
           <Route path="/movies/showtimes" element={<ShowtimesPage />} />{/*done*/}{/*linked*/}
           <Route path="/movies/addnewmovie" element={<AddnewMovie />} />{/*done*/}{/*linked*/}
-          <Route path="/movieManagerDashboard" element={<MovieManagerDashboard />} />
+          <Route path="/movieManagerDashboard" element={<MovieManagerDashboard />} />{/*done*/}
           <Route path="/EditDeleteUpdateTable" element={<EditDeleteUpdateTable />} />
-          <Route path ="/AddNewMovie" element={<AddNewMovie />} />
+          <Route path ="/AddNewMovie" element={<AddNewMovie />} />{/*done*/}{/*linked*/}
 
 
 
