@@ -1,6 +1,8 @@
 import React from 'react';
 import Footer from '../../components/core/Footer';
 import NavBar from '../../components/core/NavBar';
+import { useAuth } from '../foodManagement/context/authContext';
+import { useNavigate } from 'react-router-dom';
 
 const StaffDashboard = () => {
   const containerStyle = {
@@ -51,6 +53,13 @@ const StaffDashboard = () => {
     gridTemplateColumns: "1fr",
   };
 
+  const {user} =useAuth();
+  const navigate = useNavigate();
+  var isManager = false;
+
+  user.user.role? user.user.role === "Manager" ? isManager=true : navigate('/staffmemberdash') : navigate('/');
+
+
   return (
     <div>
       <NavBar></NavBar>
@@ -66,12 +75,12 @@ const StaffDashboard = () => {
             : {}),
         }}
       >
-        <button style={buttonStyle}>Add Staff Member</button>
-        <button style={buttonStyle}>View Staff Member Details</button>
-        <button style={buttonStyle}>View Leave Requests</button>
-        <button style={buttonStyle}>View Attendance</button>
-        <button style={buttonStyle}>View Salary</button>
-        <button style={buttonStyle}>Calculate Salary</button>
+        <button style={buttonStyle} onClick={()=>navigate('/staffregistrationform')}>Add Staff Member</button>
+        <button style={buttonStyle} onClick={()=>navigate('/stafftable')} >View Staff Member Details</button>
+        <button style={buttonStyle} onClick={()=>navigate('/leaverequests')} >View Leave Requests</button>
+        <button style={buttonStyle} onClick={()=>navigate('/viewattendance')}>View Attendance</button>
+        <button style={buttonStyle} onClick={()=>navigate('/salarytable')}>View Salary</button>
+        <button style={buttonStyle} onClick={()=>navigate('/salarycalculator')}>Calculate Salary</button>
       </div>
     </div>
 <Footer></Footer>

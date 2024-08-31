@@ -23,8 +23,14 @@ const StaffMemberSchema = new Schema(
         approved: { type: Boolean, default: false },
       },
     ],
-  },
-  { timestamps: true }
+    attendance: [
+      {
+        start: { type: Date, default: Date.now },
+        leave: { type: Date, default: Date.now },
+        otHours: { type: Number, default: 0 },
+      },
+    ]
+  }
 );
 
 /**
