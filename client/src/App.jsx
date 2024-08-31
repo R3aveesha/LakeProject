@@ -61,7 +61,7 @@ function App() {
           {/* General Routes */}
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/staff" element={<StaffLoginPage />} />
+          <Route path="/staff/login" element={<StaffLoginPage />} />
           <Route path="/admin" element={<AdminLoginPage />} />
           <Route path="/commonLogin" element={<CommonLoginPage />} />
           <Route path="/categorize" element={<CategorizeNav />} />

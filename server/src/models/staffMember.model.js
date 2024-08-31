@@ -17,9 +17,9 @@ const StaffMemberSchema = new Schema(
     salary: { type: Number, required: true },
     leaves: [
       {
-        startDate: { type: Date, required: true },
-        endDate: { type: Date, required: true },
-        reason: { type: String, required: true },
+        startDate: { type: Date,},
+        endDate: { type: Date, },
+        reason: { type: String, },
         approved: { type: Boolean, default: false },
       },
     ],
