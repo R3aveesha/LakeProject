@@ -45,17 +45,17 @@ exports.login = async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        let customer = await Customer.findOne({ email });
-        if (!customer) {
+        let user = await Customer.findOne({ email });
+        if (!user) {
             return res.status(400).json({ msg: 'Invalid credentials' });
         }
 
-        const isMatch = await customer.verifyPassword(password);
+        const isMatch = await user.verifyPassword(password);
         if (!isMatch) {
             return res.status(400).json({ msg: 'Invalid credentials' });
         }
 
-        const payload = { customer };
+        const payload = {user} ;
 
         jwt.sign(payload, jwtSecret, { expiresIn: '1h' }, (err, token) => {
             if (err) throw err;
@@ -110,17 +110,17 @@ exports.staffLogin = async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        let staff = await StaffMember.findOne({ email });
-        if (!staff) {
+        let user = await StaffMember.findOne({ email });
+        if (!user) {
             return res.status(400).json({ msg: 'Invalid credentials' });
         }
 
-        const isMatch = await staff.verifyPassword(password);
+        const isMatch = await user.verifyPassword(password);
         if (!isMatch) {
             return res.status(400).json({ msg: 'Invalid credentials' });
         }
 
-        const payload = { staff };
+        const payload =  {user} ;
 
         jwt.sign(payload, jwtSecret, { expiresIn: '1h' }, (err, token) => {
             if (err) throw err;

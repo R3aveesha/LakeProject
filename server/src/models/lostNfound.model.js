@@ -3,7 +3,9 @@ const Schema = mongoose.Schema;
 
 const LostNFoundSchema = new Schema(
   {
-    userName: { type: Schema.Types.ObjectId, ref: "Customer", required: true },
+    userName: { type:String , required: true },
+
+    userId: { type: Schema.Types.ObjectId, ref:"Customer", required: true },
 
     email: { type: String, required: true },
 
@@ -16,6 +18,8 @@ const LostNFoundSchema = new Schema(
     },
 
     foundItem: { type: String },
+    
+    lostPlace: { type: String, required: true},
 
     foundItemPlace: { type: String },
 

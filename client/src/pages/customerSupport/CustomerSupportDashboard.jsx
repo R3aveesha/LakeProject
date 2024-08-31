@@ -3,10 +3,14 @@ import React from 'react';
 import NavBar from '../../components/core/NavBar';
 import Footer from '../../components/core/Footer';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../foodManagement/context/authContext';
 
 const CustomerSupportManagerDashboard = () => {
 
   const navigate = useNavigate();
+
+  const {authState} = useAuth();
+  console.log(authState);
 
   return (
    <div>
@@ -14,7 +18,7 @@ const CustomerSupportManagerDashboard = () => {
      <div style={styles.container}>
       <h2 style={styles.title}>Customer Support Manager Dashboard</h2>
       <div style={styles.buttonContainer}>
-        <button style={styles.button} onClick={()=>navigate('/foundform')} >Add Found Items</button>
+        <button style={styles.button} onClick={()=>navigate('/lostitemform')} >Add lost Items</button>
         <button style={styles.button} onClick={()=>navigate('/customerInquiries')} >View Customer Inquiry</button>
         <button style={styles.button} onClick={()=>navigate('/lostitems')} >View Lost Items</button>
         <button style={styles.button} onClick={()=>navigate('/founditems')} >View Found Items</button>

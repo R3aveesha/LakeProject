@@ -59,12 +59,10 @@ function App() {
       <Router>
         <Routes>
           {/* General Routes */}
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/staff/login" element={<StaffLoginPage />} />
-          <Route path="/admin" element={<AdminLoginPage />} />
-          <Route path="/commonLogin" element={<CommonLoginPage />} />
-          <Route path="/categorize" element={<CategorizeNav />} />
+          <Route path="/" element={<Home />} />{/*done*/}
+          <Route path="/login" element={<LoginPage />} />{/*done*/}
+          <Route path="/staff/login" element={<StaffLoginPage />} />{/*done*/}
+          <Route path="/categorize" element={<CategorizeNav />} />{/*done*/}
 
           {/* Food Management */}
           <Route path="/food/start" element={<FoodOrderStart />} />{/*done*/}

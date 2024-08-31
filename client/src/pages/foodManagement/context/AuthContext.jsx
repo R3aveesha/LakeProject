@@ -9,13 +9,36 @@ export const AuthProvider = ({ children }) => {
     user: null,
   });
 
+  const getUserFromToken = () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        return jwtDecode(token);
+      } catch (error) {
+        console.error("Failed to decode token", error);
+        return null;
+      }
+    }
+    return null;
+  };
+
+  useEffect(() => {
+    const user = getUserFromToken();
+    if (user) {
+      setAuthState({
+        isAuthenticated: true,
+        user,
+      });
+    }
+  }, []);
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
       const decodedUser = jwtDecode(token); // Decode the token to get user data
       setAuthState({
         isAuthenticated: true,
-        user: decodedUser,
+        decodedUser,
       });
     }
   }, []);
@@ -25,20 +48,19 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem('token', token);
     setAuthState({
       isAuthenticated: true,
-      user: decodedUser,
+      decodedUser,
     });
   };
 
   const logout = () => {
     localStorage.removeItem('token');
     setAuthState({
-      isAuthenticated: false,
-      user: null,
+      isAuthenticated: false
     });
   };
 
   return (
-    <AuthContext.Provider value={{ authState, login, logout }}>
+    <AuthContext.Provider value={{ authState, login, logout,user: getUserFromToken() }}>
       {children}
     </AuthContext.Provider>
   );
