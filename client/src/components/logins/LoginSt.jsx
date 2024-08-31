@@ -1,5 +1,3 @@
-// src/components/logins/Login.jsx
-
 import React, { useState } from "react";
 import axios from "axios";
 import styles from "../../styles/login.module.css";

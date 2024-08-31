@@ -24,19 +24,6 @@ CustomerSchema.pre('save', async function(next) {
     }
 });
 
-/**
- * Hash password before saving the user
- * @param {Object} next - The next function in the middleware chain
- */
-CustomerSchema.pre('save', async function(next) {
-    if (!this.isModified('password')) return next();
-    try {
-        this.password = await argon2.hash(this.password);
-        next();
-    } catch (err) {
-        next(err);
-    }
-});
 
 /**
  * Compare password for login

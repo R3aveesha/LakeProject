@@ -50,9 +50,11 @@ import ResourcesTable from "./pages/resourceMaintenance/ViewResource.jsx";
 import AddResourceForm from "./pages/resourceMaintenance/AddResourceForm.jsx";
 import ResourceReport from "./pages/resourceMaintenance/ReportonResource.jsx";
 import GameDetails from "./pages/gamesManagement/Gamedetails.jsx";
+import { AuthProvider } from "./pages/foodManagement/context/authContext.jsx";
 
 function App() {
   return (
+    <AuthProvider>
     <CartProvider>
       <Router>
         <Routes>
@@ -122,6 +124,7 @@ function App() {
         </Routes>
       </Router>
     </CartProvider>
+    </AuthProvider>
   );
 }
 

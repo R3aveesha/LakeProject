@@ -18,6 +18,10 @@ router.post('/login', [
     check('password', 'Password is required').exists()
 ], authController.login);
 
+router.post('/staff/login', [
+    check('email', 'Please include a valid email').isEmail(),
+    check('password', 'Password is required').exists()
+], authController.staffLogin);
 
 router.get('/profile', authMiddleware, authController.getProfile);
 

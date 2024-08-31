@@ -13,6 +13,7 @@ const customerRoutes = require('./customer.route.js');
 const bookingRoutes = require('./booking.route.js');
 const lostNFoundRoutes = require('./lostNfound.route.js');
 const InquiryRoutes = require('./inquiry.route.js');
+const staffRoutes = require('./staff.route.js');
 
 const router = express.Router();
 
@@ -33,5 +34,6 @@ router.use("/booking", bookingRoutes);
 router.use("/customer", customerRoutes);
 router.use("/lostNFound", lostNFoundRoutes);
 router.use("/inquiry", InquiryRoutes);
+router.use('/staff', staffRoutes);
 
 module.exports = router;
