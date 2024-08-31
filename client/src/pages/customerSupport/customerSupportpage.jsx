@@ -2,8 +2,10 @@ import React from "react";
 import NavBar from "../../components/core/NavBar";
 import Footer from "../../components/core/Footer";
 import image from "../../../public/CusSup.jpg";
+import { useNavigate } from "react-router-dom";
 
 const CustomerSupport = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <NavBar name = "support"/>
@@ -18,9 +20,9 @@ const CustomerSupport = () => {
         </div>
         <div style={styles.searchSection}>
           <div style={styles.buttonContainer}>
-            <button style={styles.button}>Inquiries</button>
-            <button style={styles.button}>Lost & Found Items</button>
-            <button style={styles.button}>Transport</button>
+            <button style={styles.button} onClick={()=>navigate('/inquerypage')}>Inquire us</button>
+            <button style={styles.button} onClick={()=>navigate('/lostitems')}>Lost & Found Items</button>
+            <button style={styles.button} onClick={()=>navigate('/transport')}>Transport</button>
           </div>
         </div>
       </div>

@@ -45,7 +45,7 @@ const NavBar = ({ name }) => {
           Movies
         </Link>
         <Link
-          to="/food"
+          to="/food/start"
           className={styles.link}
           style={{
             backgroundColor: currentPage === "foods" ? "white" : "transparent",
@@ -55,7 +55,7 @@ const NavBar = ({ name }) => {
           Foods
         </Link>
         <Link
-          to="/events"
+          to="/eventdashboard"
           className={styles.link}
           style={{
             backgroundColor: currentPage === "events" ? "white" : "transparent",

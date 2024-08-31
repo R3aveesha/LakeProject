@@ -10,10 +10,10 @@ const LostItemsForm = () => {
   const { user } = useAuth();
 
   const userId = user.user ? user.user._id : "";
-  const userName = user.user ? user.user.name : "";
+  const userName = user.user ? user.user.name ? user.user.name :user.user.username  : "";
   const userEmail = user.user ? user.user.email : "";
 
-  console.log(user); 
+  console.log(user.user.username); 
 
   const [formData, setFormData] = useState({
     userName: userName,
@@ -48,7 +48,7 @@ const LostItemsForm = () => {
       );
   
       if (response.status === 200 || response.status === 201) {
-        navigate("/success");
+        navigate("/lostitems");
       } else {
         console.error("Form submission failed with status:", response.status);
       }
@@ -73,7 +73,7 @@ const LostItemsForm = () => {
             <input
               type="text"
               name="userName"
-              value={formData.userName}
+              value={userName}
               readOnly
               style={styles.input}
             />
