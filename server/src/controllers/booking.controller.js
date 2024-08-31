@@ -58,3 +58,12 @@ exports.notifyUnavailableBookings = async (req, res) => {
     }
 };
 
+exports.viewBookings = async (req, res) => {
+    try {
+        const bookings = await Booking.find();
+        res.status(200).json(bookings);
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
+};
+

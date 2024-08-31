@@ -11,10 +11,10 @@ const EventSchema = new mongoose.Schema({
     end_time: Date,
     category: String,
     capacity: Number,
-    participants: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Participant' }],
+    participants: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Customer' }],
     location: String,
     status: { type: String, enum: ['active', 'cancelled', 'ongoing'], default: 'active' },
-    payments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Payment' }]
+    price:{type:Number,required: true} ,
 });
 
 module.exports = mongoose.model('Event', EventSchema);

@@ -1,49 +1,97 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import NavBar from '../../components/core/NavBar';
 import Footer from '../../components/core/Footer';
+import { useAuth } from '../foodManagement/context/authContext';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const BookingEvent = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const { id } = useParams(); // Extract event ID from URL
+
+  // State to hold form data
+  const [formData, setFormData] = useState({
+    event: id || '', // Set event ID from URL if available
+    paymentMethod: 'online', // Default value
+    eventDate: '', // Initial empty value for event date
+    customer: user.user._id,
+  });
+
+  // Handle input change
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!user.user) {
+      alert('User not authenticated.');
+      return;
+    }
+
+    try {
+      await axios.post('http://localhost:3000/api/booking/create', {
+        ...formData,
+        bookingDate: new Date(), // Set current date for bookingDate
+        status: 'pending', // Default status
+        paymentStatus: 'unpaid', // Default paymentStatus
+        
+      });
+      console.log(user.user._id)
+      console.log(formData);
+      navigate(`/billinfo/${id}`); // Redirect to a confirmation page or similar
+    } catch (error) {
+      console.error('Error booking the event:', error);
+    }
+  };
+
   return (
     <>
       <NavBar name="events" />
       <div style={styles.container}>
         <h1 style={styles.heading}>Victory Arena Booking Form</h1>
-        <form style={styles.form}>
+        <form style={styles.form} onSubmit={handleSubmit}>
           <div style={styles.formGroup}>
-            <label style={styles.label}>Name</label>
-            <input type="text" placeholder="Input" style={styles.input} />
+            <label style={styles.label}>Event ID</label>
+            <input
+              type="text"
+              name="event"
+              placeholder="Event ID"
+              value={id}
+              onChange={handleChange}
+              style={styles.input}
+              readOnly // Making the event ID field read-only
+            />
           </div>
           <div style={styles.formGroup}>
-            <label style={styles.label}>Address</label>
-            <input type="text" placeholder="Input" style={styles.input} />
-          </div>
-          <div style={styles.formGroup}>
-            <label style={styles.label}>Age</label>
-            <input type="text" placeholder="Input" style={styles.input} />
-          </div>
-          <div style={styles.formGroup}>
-            <label style={styles.label}>Contact No</label>
-            <input type="text" placeholder="Input" style={styles.input} />
-          </div>
-          <div style={styles.formGroup}>
-            <label style={styles.label}>Gender</label>
-            <input type="text" placeholder="Input" style={styles.input} />
-          </div>
-          <div style={styles.formGroup}>
-            <label style={styles.label}>Email</label>
-            <input type="email" placeholder="Input" style={styles.input} />
-          </div>
-          <div style={styles.formGroup}>
-            <label style={styles.label}>Event Name</label>
-            <input type="text" placeholder="Input" style={styles.input} />
+            <label style={styles.label}>Payment Method</label>
+            <select
+              name="paymentMethod"
+              value={formData.paymentMethod}
+              onChange={handleChange}
+              style={styles.input}
+              required
+            >
+              <option value="cash">Cash</option>
+              <option value="online">Online</option>
+            </select>
           </div>
           <div style={styles.formGroup}>
             <label style={styles.label}>Event Date</label>
-            <input type="date" style={styles.input} />
-          </div>
-          <div style={styles.formGroup}>
-            <label style={styles.label}>Other</label>
-            <input type="text" placeholder="Input" style={styles.input} />
+            <input
+              type="date"
+              name="eventDate"
+              value={formData.eventDate}
+              onChange={handleChange}
+              style={styles.input}
+              required
+            />
           </div>
           <button type="submit" style={styles.submitButton}>
             Save Details and Next
@@ -70,7 +118,7 @@ const styles = {
   },
   form: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(2, 1fr)',
+    gridTemplateColumns: '1fr',
     gap: '20px',
     maxWidth: '900px',
     margin: '0 auto',
@@ -96,7 +144,6 @@ const styles = {
     color: '#fff',
   },
   submitButton: {
-    gridColumn: 'span 2',
     padding: '15px 30px',
     backgroundColor: '#3cd1c2',
     color: '#fff',

@@ -1,26 +1,63 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import NavBar from '../../components/core/NavBar';
 import Footer from '../../components/core/Footer';
+import axios from 'axios';
+import { useNavigate,useParams } from 'react-router-dom';
+import { useAuth } from '../foodManagement/context/authContext';
 
 const BillInfo = () => {
+
+  const [event, setEvent] = React.useState('');
+
+  const { id } = useParams(); // Get the event ID from the URL
+  const navigate = useNavigate();
+  const { user } = useAuth();
+
+  useEffect(() => {
+    axios.get(`http://localhost:3000/api/event/events/${id}`)
+     .then(response => {
+        setEvent(response.data);
+      })
+     .catch(error => {
+        console.error('Error fetching event details:', error);
+      });
+  }, []);
+
+  const handleCashPay = async() => {
+    try{
+      await axios.post("http://localhost:3000/api/payment/add-payment",{
+        participant:user.user._id,
+        event:id,
+        amount: event.price,
+      });
+      alert('Payment Successful');
+      navigate(`/eventdashboard`);
+    }catch(e){
+      alert('Payment Failed');
+      console.error('Error paying for event:', e);
+    }
+  };
+
+  console.log(event);
+
   return (
     <>
       <NavBar name="events" />
       <div style={styles.container}>
         <div style={styles.header}>
-          <h1 style={styles.mainTitle}>Victory Arena</h1>
+          <h1 style={styles.mainTitle}>{event.name}a</h1>
           <h2 style={styles.subTitle}>Booking Form</h2>
         </div>
         <div style={styles.body}>
           <div style={styles.billInformation}>
             <h3>Bill Information</h3>
-            <p>Victory Arena Booking Fee = Rs.1500</p>
-            <p>Total Amount = Rs.1500</p>
+            <p>{`${event.name} booking fee = ${event.price}`}</p>
+            <p>{`Total amount = ${event.price}`}</p>
           </div>
           <div style={styles.paymentMethod}>
             <h3>Payment Method</h3>
-            <button style={styles.button}>Card Payment &rarr;</button>
-            <button style={styles.button}>Cash on Delivery &rarr;</button>
+            <button style={styles.button} onClick={()=>navigate(`/cardpay/${id}`)} >Card Payment &rarr;</button>
+            <button style={styles.button} onClick={handleCashPay} >Cash on Delivery &rarr;</button>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams,useNavigate } from 'react-router-dom';
 import NavBar from '../../components/core/NavBar';
 import Footer from '../../components/core/Footer';
 import axios from 'axios';
@@ -7,7 +7,7 @@ import axios from 'axios';
 const ViewEvent = () => {
   const { id } = useParams(); // Get the event ID from the URL
   const [event, setEvent] = useState(null);
-
+const navigate = useNavigate();
   useEffect(() => {
     axios.get(`http://localhost:3000/api/event/events/${id}`)
       .then(response => {
@@ -34,7 +34,7 @@ const ViewEvent = () => {
           <p style={styles.eventDescription}>
             {event.description}
           </p>
-          <button style={styles.bookButton}>Book Now</button>
+          <button style={styles.bookButton} onClick={()=>navigate(`/bookingevent/${id}`)}>Book Now</button>
         </div>
       </div>
       <Footer />

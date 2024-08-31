@@ -18,7 +18,8 @@ const events = [
             capacity: 500,
             category: 'others',
             location: 'Convention Center, Tech City',
-            status: 'active'
+            status: 'active',
+            price:2000
         },
         {
             name: 'Music Festival',
@@ -30,7 +31,8 @@ const events = [
             capacity: 10000,
             category: 'musical',
             location: 'Open Air Stadium, Music Town',
-            status: 'active'
+            status: 'active',
+            price:3000
         },
         {
             name: 'Art Exhibition',
@@ -42,7 +44,8 @@ const events = [
             capacity: 300,
             category: 'gaming',
             location: 'Art Gallery, Culture City',
-            status: 'active'
+            status: 'active',
+            price:3200
         },
         {
             name: 'Food Truck Festival',
@@ -54,7 +57,8 @@ const events = [
             capacity: 1500,
             category: 'gaming',
             location: 'City Park, Foodville',
-            status: 'active'
+            status: 'active',
+            price:2500
         },
         {
             name: 'Charity Run',
@@ -66,7 +70,8 @@ const events = [
             capacity: 1000,
             category: 'others',
             location: 'Downtown Plaza, Run City',
-            status: 'active'
+            status: 'active',
+            price:1500
         },
         {
             name: 'Business Networking Event',
@@ -78,7 +83,8 @@ const events = [
             capacity: 200,
             category: 'gaming',
             location: 'Hotel Grand, Business District',
-            status: 'active'
+            status: 'active',
+            price:2800
         },
         {
             name: 'Film Screening',
@@ -90,7 +96,8 @@ const events = [
             capacity: 150,
             category: 'others',
             location: 'Cinema Hall, Movie Town',
-            status: 'active'
+            status: 'active',
+            price:1000
         },
         {
             name: 'Book Fair',
@@ -102,7 +109,8 @@ const events = [
             capacity: 500,
             category: 'others',
             location: 'Expo Center, Booksville',
-            status: 'active'
+            status: 'active',
+            price:2000
         },
         {
             name: 'Yoga Retreat',
@@ -114,7 +122,8 @@ const events = [
             capacity: 100,
             category: 'musical',
             location: 'Mountain Resort, Serenity',
-            status: 'active'
+            status: 'active',
+            price:3000
         },
         {
             name: 'Science Fair',
@@ -126,7 +135,8 @@ const events = [
             capacity: 400,
             category: 'others',
             location: 'Science Center, Innovaville',
-            status: 'active'
+            status: 'active',
+            price:3600
         },
     
 

@@ -6,8 +6,8 @@ import { CartProvider } from './pages/foodManagement/context/CartContext.jsx';
 import Cart from './pages/foodManagement/Cart.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import StaffLoginPage from './pages/StaffLoginPage.jsx';
-import AdminLoginPage from './pages/AdminLogin.jsx';
-import CommonLoginPage from './pages/CommonLoginPage.jsx';
+// import AdminLoginPage from './pages/AdminLogin.jsx';
+// import CommonLoginPage from './pages/CommonLoginPage.jsx';
 import GameMainPage from './pages/gamesManagement/gameMainPage.jsx';
 import GamesDetails from './pages/gamesManagement/Dashboards/GamesDetails.jsx';
 import CategorizeNav from './components/core/CategorizeNav.jsx';
@@ -23,8 +23,8 @@ import BillInfo from './pages/eventManagement/BillInfo.jsx';
 import BookingEvent from './pages/eventManagement/BookingEvent.jsx';
 import CardPay from './pages/eventManagement/CardPay.jsx';
 import EventDashboard from './pages/eventManagement/EventDashboard.jsx';
-import MusicalEvent from './pages/eventManagement/MusicalEvent.jsx';
-import OtherEvent from './pages/eventManagement/OtherEvent.jsx';
+// import MusicalEvent from './pages/eventManagement/MusicalEvent.jsx';
+// import OtherEvent from './pages/eventManagement/OtherEvent.jsx';
 import ViewEvent from './pages/eventManagement/ViewEvent.jsx';
 import AddGames from './pages/gamesManagement/Dashboards/AddGames.jsx';
 import AvailableTimes from './pages/gamesManagement/Dashboards/AvailableTimes.jsx';
@@ -82,9 +82,9 @@ function App() {
           <Route path="/lostitemform" element={<LostItemForm />} />{/*done*/}
 
           {/* Event Management */}
-          <Route path="/billinfo" element={<BillInfo />} />{/*login needed*/}
-          <Route path="/bookingevent" element={<BookingEvent />} />{/*login needed*/}
-          <Route path="/cardpay" element={<CardPay />} />{/*login needed*/}
+          <Route path="/billinfo/:id" element={<BillInfo />} />{/*done*/}
+          <Route path="/bookingevent/:id" element={<BookingEvent />} />{/*done*/}
+          <Route path="/cardpay/:id" element={<CardPay />} />{/*login needed*/}
           <Route path="/eventdashboard" element={<EventDashboard />} />
           <Route path="/events/:id" element={<ViewEvent />} />{/*done*/}
 
