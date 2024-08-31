@@ -131,14 +131,14 @@ function App() {
           <Route path="/resource/:id" element={<ResourceReport/>}/>{/*done*/}{/*linked*/}
 
           {/* Staff Management */}
-          <Route path="/salarycalculator" element={<SalaryCalculator />} />
+          <Route path="/salarycalculator" element={<SalaryCalculator />} />{/*done*/}
           <Route path="/leaverequests" element={<LeaveRequests />} />{/*done*/}
           <Route path="/myleaves" element={<Myleaves />} />
           <Route path="/staffdashboard" element={<StaffDashboard />} />{/*done*/}
           <Route path="/staffmemberdash" element={<StaffmemberDash />} />
           <Route path="/staffregistrationform" element={<StaffRegistrationForm />} />{/*done*/}
           <Route path="/viewattendance" element={<ViewAttendance />} />{/*X*/}
-          <Route path="/leavedetails" element={<LeaveDetails />} />
+          <Route path="/leavedetails" element={<LeaveDetails />} />{/*done*/}
           <Route path="/salarytable" element={<SalaryTable />} />{/*done*/}
           <Route path="/stafftable" element={<StaffTable />} />{/*done*/}
 
