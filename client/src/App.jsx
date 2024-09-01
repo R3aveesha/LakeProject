@@ -58,6 +58,7 @@ import FoundItemsTable from "./pages/customerSupport/FoundItemTable.jsx";
 import FeedbackDetails from "./pages/gamesManagement/Dashboards/FeedbackDetails.jsx";
 import Booking1 from "./pages/bookingmanager/Booking1.jsx";
 import AddNewMovie from "./pages/movieManagement/AddnewMovie.jsx";
+import LeaveRequestForm from "./pages/staffManagement/LeaveReqForm.jsx";
 
 function App() {
   return (
@@ -141,6 +142,7 @@ function App() {
           <Route path="/leavedetails" element={<LeaveDetails />} />
           <Route path="/salarytable" element={<SalaryTable />} />
           <Route path="/stafftable" element={<StaffTable />} />
+          <Route path ="/LeaveRequestForm" element ={<LeaveRequestForm/>}/>
 
           <Route path='/booking1' element={<Booking1/>} />
 
