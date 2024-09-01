@@ -59,6 +59,8 @@ import FeedbackDetails from "./pages/gamesManagement/Dashboards/FeedbackDetails.
 import Booking1 from "./pages/bookingmanager/Booking1.jsx";
 import AddNewMovie from "./pages/movieManagement/AddnewMovie.jsx";
 import LeaveRequestForm from "./pages/staffManagement/LeaveReqForm.jsx";
+import AdminDashboard from "./pages/AdminDashboard.jsx";
+import GamesManagementPanel from "./pages/gamesManagement/Dashboards/GamesManagementPanel.jsx";
 
 function App() {
   return (
@@ -107,7 +109,8 @@ function App() {
           <Route path="/availabletimes" element={<AvailableTimes />} />{/*done*/}
           <Route path="/changeavailabletimes" element={<ChangeAvailableTimes />} />{/*n ui*/}
           <Route path="/GameDetails" element={<GameDetails />} />{/*done*/}
-          <Route path="/FeedbackDetails" element={<FeedbackDetails />} />
+          <Route path="/FeedbackDetails" element={<FeedbackDetails />} />{/*done*/}
+          <Route path="/gameManagement" element={<GamesManagementPanel/>}/>{/*done*/}
 
           {/* Movie Management */}
           <Route path="/movies" element={<MoviePage />} />{/*done*/}{/*linked*/}
@@ -139,6 +142,8 @@ function App() {
           <Route path ="/LeaveRequestForm" element ={<LeaveRequestForm/>}/>{/*done*/}{/*linked*/}
 
           {/* <Route path='/booking1' element={<Booking1/>} /> */}
+
+          < Route path="/admin-dash"  element={<AdminDashboard/>} />
 
         </Routes>
       </Router>
