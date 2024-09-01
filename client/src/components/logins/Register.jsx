@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import NavBar from '../core/NavBar';
 import Footer from '../core/Footer';
+import axios from 'axios'; 
+import { useNavigate } from 'react-router-dom';
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +10,8 @@ const RegistrationForm = () => {
     email: '',
     password: '',
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,10 +21,13 @@ const RegistrationForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Form submitted:', formData);
+
+    await axios.post('http://localhost:3000/api/customer/register', {...formData,name:formData.username});
+    console.log('Form submitted:', {...formData,name:formData.username});
+    alert('Registration successfull');
+    navigate('/login');
   };
 
   const pageStyle = {

@@ -97,7 +97,7 @@ const NavBar = ({ name }) => {
                 Sign in
               </button>
             </Link>
-            <Link to="/register" className={styles.link}>
+            <Link to="/RegistrationForm" className={styles.link}>
               <button type="button" className={styles.register}>
                 Register
               </button>

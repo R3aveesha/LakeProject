@@ -13,7 +13,7 @@ const GameSchema = new Schema({
         feedback: { type: String }
     }],
     createdAt: { type: Date, default: Date.now },
-    images: { type: [String], default: [] },
+    image: { type: String },
     price: { type: Number, required: true }
 });
 
