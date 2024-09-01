@@ -28,71 +28,97 @@ const EventManagement = () => {
   };
 
   return (
-    <div>
-      <h1>Event Management</h1>
-      <button onClick={()=>navigate('/event/add')}>Add Event</button>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Date</th>
-            <th>Start Date</th>
-            <th>End Time</th>
-            <th>Category</th>
-            <th>Capacity</th>
-            <th>Location</th>
-            <th>Price</th>
-            <th>Options</th>
-          </tr>
-        </thead>
-        <tbody>
-          {events.map(event => (
-            <tr key={event._id}>
-              <td>{event.name}</td>
-              <td>{event.description}</td>
-              <td>{new Date(event.date).toLocaleDateString()}</td>
-              <td>{new Date(event.start_date).toLocaleDateString()}</td>
-              <td>{new Date(event.end_time).toLocaleDateString()}</td>
-              <td>{event.category}</td>
-              <td>{event.capacity}</td>
-              <td>{event.location}</td>
-              <td>${event.price}</td>
-              <td>
-                <button onClick={() => handleEdit(event._id)}>Edit</button>
-                <button onClick={() => handleDelete(event._id)}>Delete</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
-      {/* Inline CSS */}
-      <style jsx>{`
-        table {
-          width: 100%;
-          border-collapse: collapse;
-        }
-
-        table, th, td {
-          border: 1px solid #ddd;
-        }
-
-        th, td {
-          padding: 8px;
-          text-align: left;
-        }
-
-        th {
-          background-color: #f2f2f2;
-        }
-
-        button {
-          margin: 0 5px;
-        }
-      `}</style>
+    <div style={containerStyle}>
+      <h1 style={headerStyle}>Event Management</h1>
+      <button onClick={() => navigate('/event/add')} style={addButtonStyle}>Add Event</button>
+      <div style={gridStyle}>
+        {events.map(event => (
+          <div key={event._id} style={cardStyle}>
+            <h3 style={cardTitleStyle}>{event.name}</h3>
+            <p><strong>Description:</strong> {event.description}</p>
+            <p><strong>Date:</strong> {new Date(event.date).toLocaleDateString()}</p>
+            <p><strong>Start Date:</strong> {new Date(event.start_date).toLocaleDateString()}</p>
+            <p><strong>End Time:</strong> {new Date(event.end_time).toLocaleDateString()}</p>
+            <p><strong>Category:</strong> {event.category}</p>
+            <p><strong>Capacity:</strong> {event.capacity}</p>
+            <p><strong>Location:</strong> {event.location}</p>
+            <p><strong>Price:</strong> ${event.price}</p>
+            <div style={buttonContainerStyle}>
+              <button onClick={() => handleEdit(event._id)} style={editButtonStyle}>Edit</button>
+              <button onClick={() => handleDelete(event._id)} style={deleteButtonStyle}>Delete</button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
+};
+
+const containerStyle = {
+  backgroundColor: '#161E38',
+  minHeight: '100vh',
+  padding: '20px',
+  color: '#fff',
+};
+
+const headerStyle = {
+  textAlign: 'center',
+  marginBottom: '20px',
+};
+
+const addButtonStyle = {
+  backgroundColor: '#007bff',
+  color: '#fff',
+  padding: '10px 20px',
+  border: 'none',
+  borderRadius: '5px',
+  cursor: 'pointer',
+  display: 'block',
+  margin: '0 auto 20px auto',
+};
+
+const gridStyle = {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+  gap: '20px',
+};
+
+const cardStyle = {
+  backgroundColor: '#222',
+  padding: '20px',
+  borderRadius: '10px',
+  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+};
+
+const cardTitleStyle = {
+  marginTop: '0',
+  marginBottom: '15px',
+  fontSize: '18px',
+  color: '#ffcc00',
+};
+
+const buttonContainerStyle = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  marginTop: '15px',
+};
+
+const editButtonStyle = {
+  backgroundColor: '#007bff',
+  color: '#fff',
+  padding: '8px 12px',
+  border: 'none',
+  borderRadius: '5px',
+  cursor: 'pointer',
+};
+
+const deleteButtonStyle = {
+  backgroundColor: '#dc3545',
+  color: '#fff',
+  padding: '8px 12px',
+  border: 'none',
+  borderRadius: '5px',
+  cursor: 'pointer',
 };
 
 export default EventManagement;

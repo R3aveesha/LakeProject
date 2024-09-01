@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Footer from "../../../components/core/Footer";
+import NavBar from "../../../components/core/NavBar";
 
 const ChangeAvailableTimes = () => {
   const [gameId, setGameId] = useState("");
@@ -39,41 +41,107 @@ const ChangeAvailableTimes = () => {
   };
 
   return (
-    <div className="change-available-times">
-      <form>
-        <div className="form-group">
-          <label>Game ID:</label>
-          <select value={gameId} onChange={(e) => setGameId(e.target.value)}>
-            <option value="">Select Game ID</option>
-            {games.map((game) => (
-              <option key={game._id} value={game._id}>
-                {game._id}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {gameName && (
-          <div className="form-group">
-            <p>Game Name: {gameName}</p>
+    <div>
+      <NavBar></NavBar>
+      <div style={styles.pageContainer}>
+      <div style={styles.formContainer}>
+        <form>
+          <div style={styles.formGroup}>
+            <label style={styles.label}>Game ID:</label>
+            <select
+              style={styles.select}
+              value={gameId}
+              onChange={(e) => setGameId(e.target.value)}
+            >
+              <option value="">Select Game ID</option>
+              {games.map((game) => (
+                <option key={game._id} value={game._id}>
+                  {game._id}
+                </option>
+              ))}
+            </select>
           </div>
-        )}
 
-        <div className="form-group">
-          <label>Available Time:</label>
-          <input
-            type="datetime-local"
-            value={availableTime}
-            onChange={(e) => setAvailableTime(e.target.value)}
-          />
-        </div>
+          {gameName && (
+            <div style={styles.formGroup}>
+              <p style={styles.gameName}>Game Name: {gameName}</p>
+            </div>
+          )}
 
-        <button type="button" className="save-button" onClick={handleSave}>
-          Save
-        </button>
-      </form>
+          <div style={styles.formGroup}>
+            <label style={styles.label}>Available Time:</label>
+            <input
+              type="datetime-local"
+              style={styles.input}
+              value={availableTime}
+              onChange={(e) => setAvailableTime(e.target.value)}
+            />
+          </div>
+
+          <button type="button" style={styles.saveButton} onClick={handleSave}>
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+          <Footer></Footer>
     </div>
   );
+};
+
+const styles = {
+  pageContainer: {
+    backgroundColor: "#161E38", 
+    minHeight: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "20px",
+  },
+  formContainer: {
+    backgroundColor: "#ffffff", // White background for the form container
+    padding: "20px",
+    borderRadius: "8px",
+    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+    width: "100%",
+    maxWidth: "600px",
+  },
+  formGroup: {
+    marginBottom: "15px",
+    display: "flex",
+    flexDirection: "column",
+  },
+  label: {
+    marginBottom: "5px",
+    fontSize: "16px",
+    fontWeight: "bold",
+  },
+  select: {
+    padding: "10px",
+    borderRadius: "4px",
+    border: "1px solid #ddd",
+    fontSize: "16px",
+  },
+  input: {
+    padding: "10px",
+    borderRadius: "4px",
+    border: "1px solid #ddd",
+    fontSize: "16px",
+  },
+  gameName: {
+    fontSize: "16px",
+    fontWeight: "normal",
+  },
+  saveButton: {
+    padding: "10px 20px",
+    backgroundColor: "#28a745",
+    color: "#fff",
+    border: "none",
+    borderRadius: "4px",
+    cursor: "pointer",
+    fontSize: "16px",
+    fontWeight: "bold",
+  },
 };
 
 export default ChangeAvailableTimes;

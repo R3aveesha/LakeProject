@@ -6,9 +6,9 @@ import { useNavigate } from "react-router-dom";
 
 const AddResourceForm = () => {
   const [resource, setResource] = useState({
-    resourceId: "", // Added resourceId field
+    resourceId: "",
     resourceName: "",
-    resourceType: "indoor", // Default to 'indoor'
+    resourceType: "indoor",
     availableQuantity: 0,
     location: "",
     repairStatus: false,
@@ -20,7 +20,20 @@ const AddResourceForm = () => {
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
-    setResource({ ...resource, [id]: value });
+
+    // Validation logic
+    if (id === "resourceName") {
+      const noSymbols = value.replace(/[^a-zA-Z0-9 ]/g, "");
+      setResource({ ...resource, [id]: noSymbols });
+    } else if (id === "availableQuantity") {
+      const nonNegative = Math.max(0, parseInt(value) || 0);
+      setResource({ ...resource, [id]: nonNegative });
+    } else if (id === "price") {
+      const nonNegative = Math.max(0, parseFloat(value) || 0);
+      setResource({ ...resource, [id]: nonNegative.toString().replace(/[^\d.]/g, "") });
+    } else {
+      setResource({ ...resource, [id]: value });
+    }
   };
 
   const handleSubmit = (e) => {
