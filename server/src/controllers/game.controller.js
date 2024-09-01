@@ -162,3 +162,54 @@ exports.getGameById = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
+
+
+exports.getAllFeedbacks = async (req, res) => {
+    try {
+        const games = await Game.find().populate('ratings.customerId', 'name');
+        const feedbacks = games.reduce((acc, game) => {
+            game.ratings.forEach(rating => {
+                acc.push({
+                    gameId: game._id,
+                    gameName: game.name,
+                    user: rating.customerId.name,
+                    feedback: rating.feedback,
+                    score: rating.score,
+                    feedbackId: rating._id
+                });
+            });
+            return acc;
+        }, []);
+
+        res.json(feedbacks);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+
+exports.deleteFeedback = async (req, res) => {
+    try {
+        const { gameId, feedbackId } = req.params;
+
+        if (!gameId || !feedbackId) {
+            return res.status(400).json({ error: 'Game ID and Feedback ID are required' });
+        }
+
+        const result = await Game.updateOne(
+            { _id: gameId },
+            { $pull: { ratings: { _id: feedbackId } } }
+        );
+
+        if (result.nModified === 0) {
+            return res.status(404).json({ error: 'Feedback not found' });
+        }
+
+        res.status(200).json({ message: 'Feedback deleted successfully' });
+    } catch (err) {
+        console.error("Error deleting feedback:", err);
+        res.status(500).json({ error: err.message });
+    }
+};
+
+

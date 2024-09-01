@@ -7,6 +7,7 @@ const GameSchema = new Schema({
     availableTimes: [{ type: Date }],
     description: { type: String, required: true },
     ratings: [{
+        _id: { type: Schema.Types.ObjectId, default: () => new mongoose.Types.ObjectId() },
         customerId: { type: Schema.Types.ObjectId, ref: 'Customer' },
         score: { type: Number },
         feedback: { type: String }

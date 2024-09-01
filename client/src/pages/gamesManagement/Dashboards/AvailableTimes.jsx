@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useAuth } from "../../foodManagement/context/authContext";
 
 const AvailableTimes = () => {
   const [games, setGames] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [gameIdToUpdate, setGameIdToUpdate] = useState(null);
   const [newTimes, setNewTimes] = useState({});
+
+  const { user } = useAuth();
 
   const fetchGames = async () => {
     try {
@@ -65,15 +68,6 @@ const AvailableTimes = () => {
 
   return (
     <div style={styles.pageContainer}>
-      <div style={styles.sidebar}>
-        <ul style={styles.sidebarMenu}>
-          <li style={styles.sidebarMenuItem}>Add Games</li>
-          <li style={styles.sidebarMenuItemActive}>Games Details</li>
-          <li style={styles.sidebarMenuItem}>Available Times</li>
-          <li style={styles.sidebarMenuItem}>Feedback Details</li>
-          <li style={styles.sidebarMenuItem}>Rating Details</li>
-        </ul>
-      </div>
       <div style={styles.content}>
         <div style={styles.header}>
           <h2>Available Times</h2>
@@ -93,7 +87,11 @@ const AvailableTimes = () => {
                 <th style={styles.tableHeader}>Game Name</th>
                 <th style={styles.tableHeader}>Available Times</th>
                 <th style={styles.tableHeader}>Date</th>
-                <th style={styles.tableHeader}>Action</th>
+                {user.user.role ? (
+                  <th style={styles.tableHeader}>Action</th>
+                ) : (
+                  <></>
+                )}
               </tr>
             </thead>
             <tbody>
@@ -112,14 +110,18 @@ const AvailableTimes = () => {
                       <td style={styles.tableCell}>
                         {new Date(time).toLocaleDateString()}
                       </td>
-                      <td style={styles.tableCell}>
-                        <button
-                          style={styles.deleteButton}
-                          onClick={handleTimeDelete(game._id, time)}
-                        >
-                          Delete
-                        </button>
-                      </td>
+                      {user.user.role ? (
+                        <td style={styles.tableCell}>
+                          <button
+                            style={styles.deleteButton}
+                            onClick={handleTimeDelete(game._id, time)}
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      ) : (
+                        <></>
+                      )}
                     </tr>
                   ))
                 )
