@@ -12,8 +12,9 @@ function LoginPage() {
         Staff Login
       </a>
       <a href="/admin-login" className={styles.loginboxadmin}>
-        Administrator Login
+         Administrator Login
       </a>
+      
     </div>
   )
 }

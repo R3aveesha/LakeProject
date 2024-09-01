@@ -11,6 +11,7 @@ console.log('staff login', authState);
   return (
     <section style={{ backgroundColor: '#161E38' }}>
       <NavFunction name={'home'} />
+      <center><h1 style={{ color: 'white', fontFamily: 'serif' }}>Staff Login</h1>  </center>
       <Login />
       <Footer />
     </section>

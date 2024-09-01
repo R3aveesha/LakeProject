@@ -61,9 +61,10 @@ const Login = () => {
           <a href="#" className={styles["forgot-password"]}>
             Forgot password?
           </a>
-          <a href="#" className={styles["sign-up"]}>
-            Sign Up
-          </a>
+         
+          
+          <a href='/staff/login' style={{marginLeft: '2px'}}><></>Admin login ?</a>
+          
         </div>
       </div>
     </div>
