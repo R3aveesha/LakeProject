@@ -21,7 +21,9 @@ const CustomerSupport = () => {
         <div style={styles.searchSection}>
           <div style={styles.buttonContainer}>
             <button style={styles.button} onClick={()=>navigate('/inquerypage')}>Inquire us</button>
-            <button style={styles.button} onClick={()=>navigate('/lostitems')}>Lost & Found Items</button>
+            <button style={styles.button} onClick={()=>navigate('/lostitems')}>Lost Items</button>
+            <button style={styles.button} onClick={()=>navigate('/LostItemsForm')}>Report a lost Item</button>
+            <button style={styles.button} onClick={()=>navigate('/FoundItemsTable')}>Found Items</button>
             <button style={styles.button} onClick={()=>navigate('/transport')}>Transport</button>
           </div>
         </div>

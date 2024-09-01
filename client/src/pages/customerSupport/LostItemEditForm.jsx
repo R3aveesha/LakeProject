@@ -1,14 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useParams,useNavigate } from "react-router-dom"; 
 
-const LostItemEditForm = () => {
+const LostItemEditForm = ({ initialData }) => {
+  const { id } = useParams(); 
   const [formData, setFormData] = useState({
-    name: "",
+    userName: "",
     email: "",
     contactNumber: "",
-    lostItemCategory: "",
-    lostItem: "",
+    foundItemsCategory: "",
+    foundItem: "",
     lostPlace: "",
   });
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (initialData) {
+      setFormData(initialData); 
+    } else {
+      
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(`http://localhost:3000/api/lostNFound/one-lost-and-found/${id}`);
+          setFormData(response.data);
+        } catch (error) {
+          console.error("Error fetching item data:", error);
+        }
+      };
+      fetchData();
+    }
+  }, [id, initialData]);
+
+  console.log(formData);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,10 +42,16 @@ const LostItemEditForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic
-    console.log("Form data submitted:", formData);
+    try {
+      await axios.put(`http://localhost:3000/api/lostNFound/update-lost-and-found/${id}`, formData);
+      console.log("Item updated successfully:", formData);
+      alert("Item updated successfully!");
+      navigate(-1); 
+    } catch (error) {
+      console.error("Error updating item:", error);
+    }
   };
 
   return (
@@ -32,8 +62,8 @@ const LostItemEditForm = () => {
             Name:
             <input
               type="text"
-              name="name"
-              value={formData.name}
+              name="userName"
+              value={formData.userName}
               onChange={handleChange}
               style={styles.input}
             />
@@ -42,8 +72,8 @@ const LostItemEditForm = () => {
             Lost item Category:
             <input
               type="text"
-              name="lostItemCategory"
-              value={formData.lostItemCategory}
+              name="Category"
+              value={formData.foundItemsCategory}
               onChange={handleChange}
               style={styles.input}
             />
@@ -64,8 +94,8 @@ const LostItemEditForm = () => {
             Lost item:
             <input
               type="text"
-              name="lostItem"
-              value={formData.lostItem}
+              name="Item"
+              value={formData.foundItem}
               onChange={handleChange}
               style={styles.input}
             />

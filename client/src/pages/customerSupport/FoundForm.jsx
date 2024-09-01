@@ -51,7 +51,7 @@ const FoundForm = () => {
         `http://localhost:3000/api/lostNFound/update-lost-and-found/${id}`,
         newItem
       );
-      navigate("/founditems");
+      navigate("/FoundItemsTable");
     } catch (e) {
       console.error(`Error updating item: ${e}`);
     }

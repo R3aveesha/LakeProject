@@ -79,16 +79,10 @@ function App() {
           <Route path="/updateFoodItem/:id" element={<UpdateFood />} />{/*done*/}{/*linked*/}
 
           {/* Customer Support */}
-          <Route path="/customerSupportManagerDashboard" element={<CustomerSupportManagerDashboard />} />{/*done*/}
-          <Route path="/support" element={<CustomerSupport />} />{/*done*/}
-          <Route path="/foundItm/:id" element={<FoundForm />} />{/*done*/}
-          <Route path="/inquerypage" element={<InquiryForm />} />{/*done*/}
-          <Route path="/customerInquiries" element={<CustomerInquiries />} />{/*done*/}
-          <Route path="/transport" element={<TransportPage />} />{/*done*/}
-          <Route path="/lostitems" element={<LostitemTable />} />{/*done*/}
-          <Route path="/LostItemsForm" element={<LostItemsForm />} />{/*done*/}
-          <Route path="/LostItemEditForm" element={<LostItemEditForm />} />{/*done*/}
-          <Route path="/FoundItemsTable" element={<FoundItemsTable />} />{/*done*/}
+          <Route path="/support" element={<CustomerSupport />} />{/*done*/}{/*linked*/}
+          <Route path="/LostItemsForm" element={<LostItemsForm />} />{/*done*/}{/*linked*/}
+          <Route path="/lostNfound/edit/:id" element={<LostItemEditForm />} />{/*done*/}
+          <Route path="/FoundItemsTable" element={<FoundItemsTable />} />{/*done*/}{/*linked*/}
           <Route path="/customerSupportManagerDashboard" element={<CustomerSupportManagerDashboard />} />{/*done*/}{/*linked*/}
           <Route path="/support" element={<CustomerSupport />} />{/*done*/}{/*linked*/}
           <Route path="/foundItm/:id" element={<FoundForm />} />{/*done*/}{/*linked*/}
@@ -101,7 +95,7 @@ function App() {
           {/* Event Management */}
           <Route path="/billinfo/:id" element={<BillInfo />} />{/*done*/}{/*linked*/}
           <Route path="/bookingevent/:id" element={<BookingEvent />} />{/*done*/}{/*linked*/}
-          <Route path="/cardpay/:id" element={<CardPay />} />{/*login needed*/}{/*linked*/}
+          <Route path="/cardpay/:id" element={<CardPay />} />{/*done*/}{/*linked*/}
           <Route path="/eventdashboard" element={<EventDashboard />} />{/*linked*/}
           <Route path="/events/:id" element={<ViewEvent />} />{/*done*/}{/*linked*/}
 
@@ -119,7 +113,7 @@ function App() {
           <Route path="/movies/showtimes" element={<ShowtimesPage />} />{/*done*/}{/*linked*/}
           <Route path="/movies/addnewmovie" element={<AddnewMovie />} />{/*done*/}{/*linked*/}
           <Route path="/movieManagerDashboard" element={<MovieManagerDashboard />} />{/*done*/}
-          <Route path="/EditDeleteUpdateTable" element={<EditDeleteUpdateTable />} />
+          <Route path="/EditDeleteUpdateTable" element={<EditDeleteUpdateTable />} />{/*done*/}{/*linked*/}
           <Route path ="/AddNewMovie" element={<AddNewMovie />} />{/*done*/}{/*linked*/}
 
 
@@ -131,16 +125,16 @@ function App() {
           <Route path="/resource/:id" element={<ResourceReport/>}/>{/*done*/}{/*linked*/}
 
           {/* Staff Management */}
-          <Route path="/salarycalculator" element={<SalaryCalculator />} />{/*done*/}
-          <Route path="/leaverequests" element={<LeaveRequests />} />{/*done*/}
-          <Route path="/myleaves" element={<Myleaves />} />
+          <Route path="/salarycalculator" element={<SalaryCalculator />} />{/*done*/}{/*linked*/}
+          <Route path="/leaverequests" element={<LeaveRequests />} />{/*done*/}{/*linked*/}
+          <Route path="/myleaves" element={<Myleaves />} />{/*done*/}{/*linked*/}
           <Route path="/staffdashboard" element={<StaffDashboard />} />{/*done*/}
-          <Route path="/staffmemberdash" element={<StaffmemberDash />} />
-          <Route path="/staffregistrationform" element={<StaffRegistrationForm />} />{/*done*/}
+          <Route path="/staffmemberdash" element={<StaffmemberDash />} />{/*done*/}
+          <Route path="/staffregistrationform" element={<StaffRegistrationForm />} />{/*done*/}{/*linked*/}
           <Route path="/viewattendance" element={<ViewAttendance />} />{/*X*/}
-          <Route path="/leavedetails" element={<LeaveDetails />} />{/*done*/}
-          <Route path="/salarytable" element={<SalaryTable />} />{/*done*/}
-          <Route path="/stafftable" element={<StaffTable />} />{/*done*/}
+          <Route path="/leavedetails" element={<LeaveDetails />} />{/*done*/}{/*linked*/}
+          <Route path="/salarytable" element={<SalaryTable />} />{/*done*/}{/*linked*/}
+          <Route path="/stafftable" element={<StaffTable />} />{/*done*/}{/*linked*/}
 
           <Route path='/booking1' element={<Booking1/>} />
 
