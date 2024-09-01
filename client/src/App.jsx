@@ -67,6 +67,7 @@ import EventManagement from "./pages/eventManagement/EventManagement.jsx";
 import EditEvent from "./pages/eventManagement/EditEvent.jsx";
 import AddEvent from "./pages/eventManagement/AddEvent.jsx";
 import RegistrationForm from "./components/logins/Register.jsx";
+import UpdateGame from "./pages/gamesManagement/UpdateGame.jsx";
 
 function App() {
   return (
@@ -120,6 +121,7 @@ function App() {
           <Route path="/GameDetails" element={<GameDetails />} />{/*done*/}
           <Route path="/FeedbackDetails" element={<FeedbackDetails />} />{/*done*/}
           <Route path="/gameManagement" element={<GamesManagementPanel/>}/>{/*done*/}
+          <Route path="/UpdateGame" element={<UpdateGame/>} />
 
           {/* Movie Management */}
           <Route path="/movies" element={<MoviePage />} />{/*done*/}{/*linked*/}

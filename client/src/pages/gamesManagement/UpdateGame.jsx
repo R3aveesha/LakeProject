@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Footer from "../../../components/core/Footer";
-import NavBar from "../../../components/core/NavBar";
+import NavBar from "../../components/core/NavBar";
+import Footer from "../../components/core/Footer";
 
-const AddGames = () => {
+
+const UpdateGame = () => {
   const [gameName, setGameName] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
@@ -44,19 +45,23 @@ const AddGames = () => {
       return;
     }
 
-    const gameData = {
-      name: gameName,
-      category,
-      description,
-      availableTimes,
-      price,
-      image, // Include image data
-    };
+    const formData = new FormData(); // Create form data object
+    formData.append("name", gameName);
+    formData.append("category", category);
+    formData.append("description", description);
+    formData.append("availableTimes", JSON.stringify(availableTimes)); // Send available times as a JSON string
+    formData.append("price", price);
+    if (image) formData.append("image", image); // Append the image if it exists
 
     try {
       const response = await axios.post(
         "http://localhost:3000/api/games/games",
-        gameData
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
       console.log("Game added successfully:", response.data);
       alert("Game added successfully!");
@@ -65,7 +70,7 @@ const AddGames = () => {
       setDescription("");
       setPrice(0);
       setAvailableTimes([]);
-      setImage(null); // Reset image
+      setImage(null); // Reset image state
     } catch (error) {
       console.error("There was an error adding the game:", error);
       console.error("Error details:", error.response?.data || error.message);
@@ -80,13 +85,6 @@ const AddGames = () => {
 
   const removeTime = (index) => {
     setAvailableTimes(availableTimes.filter((_, i) => i !== index));
-  };
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImage(URL.createObjectURL(file)); // Preview the image
-    }
   };
 
   return (
@@ -156,14 +154,12 @@ const AddGames = () => {
           </div>
 
           <div style={styles.formGroup}>
-            <label style={styles.label}>Upload Image:</label>
+            <label style={styles.label}>Game Image:</label> {/* New label for image */}
             <input
               type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-              style={styles.fileInput}
+              style={styles.input}
+              onChange={(e) => setImage(e.target.files[0])} // Set image state to the selected file
             />
-            {image && <img src={image} alt="Preview" style={styles.imagePreview} />}
           </div>
 
           {availableTimes.length > 0 && (
@@ -244,19 +240,6 @@ const styles = {
     backgroundColor: "#fff",
     color: "#000",
   },
-  fileInput: {
-    marginTop: "10px",
-    padding: "10px",
-    borderRadius: "5px",
-    border: "none",
-    backgroundColor: "#fff",
-    color: "#000",
-  },
-  imagePreview: {
-    marginTop: "10px",
-    maxWidth: "200px",
-    borderRadius: "5px",
-  },
   timesContainer: {
     marginTop: "20px",
     padding: "10px",
@@ -306,4 +289,4 @@ const styles = {
   },
 };
 
-export default AddGames;
+export default UpdateGame;

@@ -64,6 +64,14 @@ const FeedbackDetails = () => {
                   >
                     Delete
                   </button>
+                  <button
+                    className="edit-button"
+                    onClick={() => {
+                      // Handle edit button click
+                    }}
+                  >
+                    Edit
+                  </button>
                 </td>
               ) : (
                 <></>
