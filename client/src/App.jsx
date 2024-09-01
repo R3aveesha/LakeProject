@@ -126,17 +126,17 @@ function App() {
           <Route path="/resource/:id" element={<ResourceReport/>}/>{/*done*/}{/*linked*/}
 
           {/* Staff Management */}
-          <Route path="/salarycalculator" element={<SalaryCalculator />} />
-          <Route path="/leaverequests" element={<LeaveRequests />} />
-          <Route path="/myleaves" element={<Myleaves />} />
-          <Route path="/staffdashboard" element={<StaffDashboard />} />
-          <Route path="/staffmemberdash" element={<StaffmemberDash />} />
-          <Route path="/staffregistrationform" element={<StaffRegistrationForm />} />
-          <Route path="/viewattendance" element={<ViewAttendance />} />
-          <Route path="/leavedetails" element={<LeaveDetails />} />
-          <Route path="/salarytable" element={<SalaryTable />} />
-          <Route path="/stafftable" element={<StaffTable />} />
-          <Route path ="/LeaveRequestForm" element ={<LeaveRequestForm/>}/>
+          <Route path="/salarycalculator" element={<SalaryCalculator />} />{/*done*/}{/*linked*/}
+          <Route path="/leaverequests" element={<LeaveRequests />} />{/*done*/}{/*linked*/}
+          <Route path="/myleaves" element={<Myleaves />} />{/*done*/}{/*linked*/}
+          <Route path="/staffdashboard" element={<StaffDashboard />} />{/*done*/}
+          <Route path="/staffmemberdash" element={<StaffmemberDash />} />{/*done*/}
+          <Route path="/staffregistrationform" element={<StaffRegistrationForm />} />{/*done*/}{/*linked*/}
+          <Route path="/viewattendance" element={<ViewAttendance />} />{/*done*/}{/*linked*/}
+          <Route path="/leavedetails" element={<LeaveDetails />} />{/*done*/}{/*linked*/}
+          <Route path="/salarytable" element={<SalaryTable />} />{/*done*/}{/*linked*/}
+          <Route path="/stafftable" element={<StaffTable />} />{/*done*/}{/*linked*/}
+          <Route path ="/LeaveRequestForm" element ={<LeaveRequestForm/>}/>{/*done*/}{/*linked*/}
 
           {/* <Route path='/booking1' element={<Booking1/>} /> */}
 

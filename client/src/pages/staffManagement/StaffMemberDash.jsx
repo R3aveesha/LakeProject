@@ -139,6 +139,7 @@ const StaffmemberDash = () => {
                   cursor: "pointer",
                   fontSize: "16px",
                 }}
+                onClick={() => navigate("/LeaveRequestForm")}
               >
                 Apply Leaves
               </button>
