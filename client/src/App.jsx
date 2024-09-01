@@ -59,7 +59,6 @@ import FeedbackDetails from "./pages/gamesManagement/Dashboards/FeedbackDetails.
 import Booking1 from "./pages/bookingmanager/Booking1.jsx";
 import AddNewMovie from "./pages/movieManagement/AddnewMovie.jsx";
 import LeaveRequestForm from "./pages/staffManagement/LeaveReqForm.jsx";
-import GameManagementPanel from "./pages/gamesManagement/Addgames.jsx";
 
 function App() {
   return (
@@ -109,7 +108,6 @@ function App() {
           <Route path="/changeavailabletimes" element={<ChangeAvailableTimes />} />{/*n ui*/}
           <Route path="/GameDetails" element={<GameDetails />} />{/*done*/}
           <Route path="/FeedbackDetails" element={<FeedbackDetails />} />
-          <Route path="/GameManagementPanel" element={<GameManagementPanel />} />
 
           {/* Movie Management */}
           <Route path="/movies" element={<MoviePage />} />{/*done*/}{/*linked*/}
@@ -139,18 +137,8 @@ function App() {
           <Route path="/salarytable" element={<SalaryTable />} />
           <Route path="/stafftable" element={<StaffTable />} />
           <Route path ="/LeaveRequestForm" element ={<LeaveRequestForm/>}/>
-          <Route path="/salarycalculator" element={<SalaryCalculator />} />{/*done*/}{/*linked*/}
-          <Route path="/leaverequests" element={<LeaveRequests />} />{/*done*/}{/*linked*/}
-          <Route path="/myleaves" element={<Myleaves />} />{/*done*/}{/*linked*/}
-          <Route path="/staffdashboard" element={<StaffDashboard />} />{/*done*/}
-          <Route path="/staffmemberdash" element={<StaffmemberDash />} />{/*done*/}
-          <Route path="/staffregistrationform" element={<StaffRegistrationForm />} />{/*done*/}{/*linked*/}
-          <Route path="/viewattendance" element={<ViewAttendance />} />{/*X*/}
-          <Route path="/leavedetails" element={<LeaveDetails />} />{/*done*/}{/*linked*/}
-          <Route path="/salarytable" element={<SalaryTable />} />{/*done*/}{/*linked*/}
-          <Route path="/stafftable" element={<StaffTable />} />{/*done*/}{/*linked*/}
 
-          <Route path='/booking1' element={<Booking1/>} />
+          {/* <Route path='/booking1' element={<Booking1/>} /> */}
 
         </Routes>
       </Router>
