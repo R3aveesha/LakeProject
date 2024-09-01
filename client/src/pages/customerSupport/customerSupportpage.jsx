@@ -41,7 +41,7 @@ const styles = {
     padding: "20px",
     backgroundColor: "#161E38",
     color: "#fff",
-    height: "70vh",
+    height: "100vh",
   },
   supportSection: {
     textAlign: "center",

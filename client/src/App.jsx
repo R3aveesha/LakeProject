@@ -66,6 +66,7 @@ import BookingManagement from "./pages/bookingmanager/BookingManagement.jsx";
 import EventManagement from "./pages/eventManagement/EventManagement.jsx";
 import EditEvent from "./pages/eventManagement/EditEvent.jsx";
 import AddEvent from "./pages/eventManagement/AddEvent.jsx";
+import RegistrationForm from "./components/logins/Register.jsx";
 
 function App() {
   return (
@@ -78,6 +79,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />{/*done*/}
           <Route path="/staff/login" element={<StaffLoginPage />} />{/*done*/}
           <Route path="/categorize" element={<CategorizeNav />} />{/*done*/}
+          <Route path="/RegistrationForm" element={<RegistrationForm />} />
 
           {/* Food Management */}
           <Route path="/food/start" element={<FoodOrderStart />} />{/*done*/}{/*linked*/}
@@ -127,6 +129,7 @@ function App() {
           <Route path="/EditDeleteUpdateTable" element={<EditDeleteUpdateTable />} />{/*done*/}{/*linked*/}
           <Route path ="/AddNewMovie" element={<AddNewMovie />} />{/*done*/}{/*linked*/}
           <Route path="/editmovie/:id" element={<EditMovie />} />{/*done*/}{/*linked*/}
+
 
 
 
