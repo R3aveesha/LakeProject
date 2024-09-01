@@ -22,7 +22,7 @@ const EditDeleteUpdateTable = () => {
   }, []);
 
   const handleEdit = (id) => {
-    navigate(`http://localhost:3000/api/movies/movies/${id}`);
+    navigate(`/editmovie/${id}`);
   };
 
   const handleDelete = async (id) => {

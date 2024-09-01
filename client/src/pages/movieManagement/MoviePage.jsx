@@ -158,7 +158,7 @@ const MoviePage = () => {
             <div
               key={index}
               style={styles.movieCard}
-              onClick={() => handleNavigate(movie.id)}
+              onClick={() => handleNavigate(movie._id)}
             >
               <img
                 src={movie.image}

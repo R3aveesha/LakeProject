@@ -106,7 +106,8 @@ const Myleaves = () => {
             <tr style={rowStyle}>
               <th style={thTdStyle}>Leave ID</th>
               <th style={thTdStyle}>Staff ID</th>
-              <th style={thTdStyle}>Leave Need Date</th>
+              <th style={thTdStyle}>Start</th>
+              <th style={thTdStyle}>End</th>
               <th style={thTdStyle}>Reason</th>
               <th style={thTdStyle}>Status</th>
             </tr>
@@ -117,7 +118,10 @@ const Myleaves = () => {
                 <td style={thTdStyle}>{leave._id}</td>
                 <td style={thTdStyle}>{leave.employeeId._id}</td>
                 <td style={thTdStyle}>
-                  {new Date(leave.leaveNeedDate).toLocaleDateString()}
+                  {new Date(leave.startDate).toLocaleDateString()}
+                </td>
+                <td style={thTdStyle}>
+                  {new Date(leave.endDate).toLocaleDateString()}
                 </td>
                 <td style={thTdStyle}>{leave.leaveReason}</td>
                 <td style={thTdStyle}>

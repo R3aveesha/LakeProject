@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import AddGames from './AddGames';
-import GamesDetails from './GamesDetails';
+import GameDetails from '../Gamedetails';
 import AvailableTimes from './AvailableTimes';
 import ChangeAvailableTimes from './ChangeAvailableTimes';
-import RatingDetails from './RatingDetails';
 import FeedbackDetails from './FeedbackDetails';
 
 const GamesManagementPanel = () => {
@@ -12,13 +11,11 @@ const GamesManagementPanel = () => {
     const renderActivePage = () => {
         switch (activePage) {
             case 'GamesDetails':
-                return <GamesDetails />;
+                return <GameDetails />;
             case 'AvailableTimes':
                 return <AvailableTimes />;
             case 'ChangeAvailableTimes':
                 return <ChangeAvailableTimes />;
-            case 'RatingDetails':
-                return <RatingDetails />;
             case 'FeedbackDetails':
                 return <FeedbackDetails />;
             default:
@@ -33,7 +30,6 @@ const GamesManagementPanel = () => {
                 <button onClick={() => setActivePage('GamesDetails')}>Games Details</button>
                 <button onClick={() => setActivePage('AvailableTimes')}>Available Times</button>
                 <button onClick={() => setActivePage('ChangeAvailableTimes')}>Change Available Times</button>
-                <button onClick={() => setActivePage('RatingDetails')}>Rating Details</button>
                 <button onClick={() => setActivePage('FeedbackDetails')}>Feedback Details</button>
             </div>
             <div className="content">

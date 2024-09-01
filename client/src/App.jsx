@@ -59,6 +59,13 @@ import FeedbackDetails from "./pages/gamesManagement/Dashboards/FeedbackDetails.
 import Booking1 from "./pages/bookingmanager/Booking1.jsx";
 import AddNewMovie from "./pages/movieManagement/AddnewMovie.jsx";
 import LeaveRequestForm from "./pages/staffManagement/LeaveReqForm.jsx";
+import AdminDashboard from "./pages/AdminDashboard.jsx";
+import GamesManagementPanel from "./pages/gamesManagement/Dashboards/GamesManagementPanel.jsx";
+import EditMovie from "./pages/movieManagement/EditMovie.jsx";
+import BookingManagement from "./pages/bookingmanager/BookingManagement.jsx";
+import EventManagement from "./pages/eventManagement/EventManagement.jsx";
+import EditEvent from "./pages/eventManagement/EditEvent.jsx";
+import AddEvent from "./pages/eventManagement/AddEvent.jsx";
 
 function App() {
   return (
@@ -99,6 +106,8 @@ function App() {
           <Route path="/cardpay/:id" element={<CardPay />} />{/*done*/}{/*linked*/}
           <Route path="/eventdashboard" element={<EventDashboard />} />{/*linked*/}
           <Route path="/events/:id" element={<ViewEvent />} />{/*done*/}{/*linked*/}
+          <Route path="/event/edit/:id" element={<EditEvent />} />
+          <Route path="/event/add" element={<AddEvent />} />{/*done*/}
 
           {/* Games Management */}
           <Route path="/games" element={<GameMainPage />} />{/*done*/}{/*linked*/}
@@ -107,7 +116,8 @@ function App() {
           <Route path="/availabletimes" element={<AvailableTimes />} />{/*done*/}
           <Route path="/changeavailabletimes" element={<ChangeAvailableTimes />} />{/*n ui*/}
           <Route path="/GameDetails" element={<GameDetails />} />{/*done*/}
-          <Route path="/FeedbackDetails" element={<FeedbackDetails />} />
+          <Route path="/FeedbackDetails" element={<FeedbackDetails />} />{/*done*/}
+          <Route path="/gameManagement" element={<GamesManagementPanel/>}/>{/*done*/}
 
           {/* Movie Management */}
           <Route path="/movies" element={<MoviePage />} />{/*done*/}{/*linked*/}
@@ -116,6 +126,7 @@ function App() {
           <Route path="/movieManagerDashboard" element={<MovieManagerDashboard />} />{/*done*/}
           <Route path="/EditDeleteUpdateTable" element={<EditDeleteUpdateTable />} />{/*done*/}{/*linked*/}
           <Route path ="/AddNewMovie" element={<AddNewMovie />} />{/*done*/}{/*linked*/}
+          <Route path="/editmovie/:id" element={<EditMovie />} />{/*done*/}{/*linked*/}
 
 
 
@@ -126,19 +137,23 @@ function App() {
           <Route path="/resource/:id" element={<ResourceReport/>}/>{/*done*/}{/*linked*/}
 
           {/* Staff Management */}
-          <Route path="/salarycalculator" element={<SalaryCalculator />} />
-          <Route path="/leaverequests" element={<LeaveRequests />} />
-          <Route path="/myleaves" element={<Myleaves />} />
-          <Route path="/staffdashboard" element={<StaffDashboard />} />
-          <Route path="/staffmemberdash" element={<StaffmemberDash />} />
-          <Route path="/staffregistrationform" element={<StaffRegistrationForm />} />
-          <Route path="/viewattendance" element={<ViewAttendance />} />
-          <Route path="/leavedetails" element={<LeaveDetails />} />
-          <Route path="/salarytable" element={<SalaryTable />} />
-          <Route path="/stafftable" element={<StaffTable />} />
-          <Route path ="/LeaveRequestForm" element ={<LeaveRequestForm/>}/>
+          <Route path="/salarycalculator" element={<SalaryCalculator />} />{/*done*/}{/*linked*/}
+          <Route path="/leaverequests" element={<LeaveRequests />} />{/*done*/}{/*linked*/}
+          <Route path="/myleaves" element={<Myleaves />} />{/*done*/}{/*linked*/}
+          <Route path="/staffdashboard" element={<StaffDashboard />} />{/*done*/}
+          <Route path="/staffmemberdash" element={<StaffmemberDash />} />{/*done*/}
+          <Route path="/staffregistrationform" element={<StaffRegistrationForm />} />{/*done*/}{/*linked*/}
+          <Route path="/viewattendance" element={<ViewAttendance />} />{/*done*/}{/*linked*/}
+          <Route path="/leavedetails" element={<LeaveDetails />} />{/*done*/}{/*linked*/}
+          <Route path="/salarytable" element={<SalaryTable />} />{/*done*/}{/*linked*/}
+          <Route path="/stafftable" element={<StaffTable />} />{/*done*/}{/*linked*/}
+          <Route path ="/LeaveRequestForm" element ={<LeaveRequestForm/>}/>{/*done*/}{/*linked*/}
 
           {/* <Route path='/booking1' element={<Booking1/>} /> */}
+
+          < Route path="/admin-dash"  element={<AdminDashboard/>} />
+          < Route path="/bookingManagement" element={<BookingManagement/>}/>
+          < Route path="/eventManagement" element={<EventManagement/>}/>
 
         </Routes>
       </Router>

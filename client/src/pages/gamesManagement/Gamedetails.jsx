@@ -58,7 +58,7 @@ const GameDetails = () => {
                   <td style={styles.cell}>{game.description}</td>
                   <td style={styles.cell}>Rs. {game.price}</td>
                   <td style={styles.cell}>
-                    <button style={styles.editButton} onClick={()=>navigate(`/gameDetails/edit/${game._id}`)} >Edit</button>
+                    {/* <button style={styles.editButton} onClick={()=>navigate(`/gameDetails/edit/${game._id}`)} >Edit</button> */}
                     <button
                       style={styles.deleteButton}
                       onClick={() => handleDelete(game._id)}
