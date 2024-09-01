@@ -7,7 +7,7 @@ import { useAuth } from "../../pages/foodManagement/context/authContext";
 const NavBar = ({ name }) => {
   const [currentPage, setCurrentPage] = useState("home");
   const { cart } = useCart();
-  const { authState,logout } = useAuth();
+  const { authState, logout, user } = useAuth();
 
   useEffect(() => {
     setCurrentPage(name);
@@ -86,7 +86,7 @@ const NavBar = ({ name }) => {
 
         {authState.isAuthenticated ? (
           <Link to="/" className={styles.link}>
-            <button type="button" className={styles.signIn} onClick={logout} >
+            <button type="button" className={styles.signIn} onClick={logout}>
               Log out
             </button>
           </Link>
@@ -103,6 +103,16 @@ const NavBar = ({ name }) => {
               </button>
             </Link>
           </>
+        )}
+
+        {user && user.user.role ? (
+          <Link to="/admin-dash" className={styles.link}>
+            <button type="button" className={styles.register}>
+              Admin portal
+            </button>
+          </Link>
+        ) : (
+          <></>
         )}
       </div>
     </nav>

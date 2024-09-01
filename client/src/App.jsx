@@ -62,6 +62,7 @@ import LeaveRequestForm from "./pages/staffManagement/LeaveReqForm.jsx";
 import AdminDashboard from "./pages/AdminDashboard.jsx";
 import GamesManagementPanel from "./pages/gamesManagement/Dashboards/GamesManagementPanel.jsx";
 import EditMovie from "./pages/movieManagement/EditMovie.jsx";
+import BookingManagement from "./pages/bookingmanager/BookingManagement.jsx";
 
 function App() {
   return (
@@ -146,6 +147,7 @@ function App() {
           {/* <Route path='/booking1' element={<Booking1/>} /> */}
 
           < Route path="/admin-dash"  element={<AdminDashboard/>} />
+          < Route path="/bookingManagement" element={<BookingManagement/>}/>
 
         </Routes>
       </Router>
