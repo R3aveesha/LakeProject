@@ -13,7 +13,7 @@ const EventSchema = new mongoose.Schema({
     capacity: Number,
     participants: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Customer' }],
     location: String,
-    status: { type: String, enum: ['active', 'cancelled', 'ongoing'], default: 'active' },
+    status: { type: String, enum: ['active', 'inactive', 'ongoing'], default: 'active' },
     price:{type:Number,required: true} ,
 });
 

@@ -29,7 +29,7 @@ const AdminDashboard = () => {
         </button>
         <button
           style={buttonStyle}
-          onClick={() => navigate("/event-management")}
+          onClick={() => navigate("/eventManagement")}
         >
           Event Management
         </button>

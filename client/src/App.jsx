@@ -63,6 +63,9 @@ import AdminDashboard from "./pages/AdminDashboard.jsx";
 import GamesManagementPanel from "./pages/gamesManagement/Dashboards/GamesManagementPanel.jsx";
 import EditMovie from "./pages/movieManagement/EditMovie.jsx";
 import BookingManagement from "./pages/bookingmanager/BookingManagement.jsx";
+import EventManagement from "./pages/eventManagement/EventManagement.jsx";
+import EditEvent from "./pages/eventManagement/EditEvent.jsx";
+import AddEvent from "./pages/eventManagement/AddEvent.jsx";
 
 function App() {
   return (
@@ -103,6 +106,8 @@ function App() {
           <Route path="/cardpay/:id" element={<CardPay />} />{/*done*/}{/*linked*/}
           <Route path="/eventdashboard" element={<EventDashboard />} />{/*linked*/}
           <Route path="/events/:id" element={<ViewEvent />} />{/*done*/}{/*linked*/}
+          <Route path="/event/edit/:id" element={<EditEvent />} />
+          <Route path="/event/add" element={<AddEvent />} />{/*done*/}
 
           {/* Games Management */}
           <Route path="/games" element={<GameMainPage />} />{/*done*/}{/*linked*/}
@@ -148,6 +153,7 @@ function App() {
 
           < Route path="/admin-dash"  element={<AdminDashboard/>} />
           < Route path="/bookingManagement" element={<BookingManagement/>}/>
+          < Route path="/eventManagement" element={<EventManagement/>}/>
 
         </Routes>
       </Router>
