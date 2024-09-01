@@ -15,6 +15,8 @@ const lostNFoundRoutes = require('./lostNfound.route.js');
 const InquiryRoutes = require('./inquiry.route.js');
 const staffRoutes = require('./staff.route.js');
 const paymentRoutes = require('./payment.route.js');
+const leaveRoutes = require('./leaves.route.js');
+const attendanceRoutes = require('./attendence.route.js');
 
 const router = express.Router();
 
@@ -37,5 +39,7 @@ router.use("/lostNFound", lostNFoundRoutes);
 router.use("/inquiry", InquiryRoutes);
 router.use('/staff', staffRoutes);
 router.use('/payment',paymentRoutes)
+router.use('/leaves',leaveRoutes)
+router.use('/attendance',attendanceRoutes)
 
 module.exports = router;

@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../styles/navbar.module.css";
 import { useCart } from "../../pages/foodManagement/context/CartContext";
+import { useAuth } from "../../pages/foodManagement/context/authContext";
 
 const NavBar = ({ name }) => {
   const [currentPage, setCurrentPage] = useState("home");
   const { cart } = useCart();
+  const { authState,logout } = useAuth();
+
   useEffect(() => {
     setCurrentPage(name);
   }, [name]);
@@ -81,16 +84,26 @@ const NavBar = ({ name }) => {
           <></>
         )}
 
-        <Link to="/commomLoign" className={styles.link}>
-          <button type="button" className={styles.signIn}>
-            Sign in
-          </button>
-        </Link>
-        <Link to="/register" className={styles.link}>
-          <button type="button" className={styles.register}>
-            Register
-          </button>
-        </Link>
+        {authState.isAuthenticated ? (
+          <Link to="/" className={styles.link}>
+            <button type="button" className={styles.signIn} onClick={logout} >
+              Log out
+            </button>
+          </Link>
+        ) : (
+          <>
+            <Link to="/login" className={styles.link}>
+              <button type="button" className={styles.signIn}>
+                Sign in
+              </button>
+            </Link>
+            <Link to="/register" className={styles.link}>
+              <button type="button" className={styles.register}>
+                Register
+              </button>
+            </Link>
+          </>
+        )}
       </div>
     </nav>
   );

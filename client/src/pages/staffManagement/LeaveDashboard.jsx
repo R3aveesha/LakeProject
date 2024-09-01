@@ -1,6 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const LeaveRequests = () => {
+  const [leaveRequests, setLeaveRequests] = useState([]);
+
+  const fetchLeaveRequests = async () => {
+    const response = await fetch('http://localhost:3000/api/leaves/leaves');
+    const data = await response.json();
+    setLeaveRequests(data);
+  };
+
+  const approveLeave = async (leaveId) => {
+    try {
+      await fetch(`http://localhost:3000/api/leaves/leaves/${leaveId}/approve`, {
+        method: 'PUT',
+      });
+      fetchLeaveRequests(); // Refresh the leave requests after approving
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchLeaveRequests();
+  }, []);
+
   const containerStyle = {
     width: '80%',
     margin: '0 auto',
@@ -31,66 +54,56 @@ const LeaveRequests = () => {
 
   const statusAcceptedStyle = {
     color: 'white',
-    backgroundColor: '#f8b400',
+    backgroundColor: '#28a745', // Green background
     padding: '5px 10px',
     borderRadius: '5px',
+    cursor: 'not-allowed',
   };
 
-  const statusRejectedStyle = {
-    color: 'white',
-    backgroundColor: '#333',
+  const statusPendingStyle = {
+    color: 'black',
+    backgroundColor: 'yellow', // Yellow background
     padding: '5px 10px',
     borderRadius: '5px',
+    cursor: 'pointer',
   };
 
   return (
-    <div>
-    
-
-      <div style={containerStyle}>
-        <h2>MY LEAVE REQUESTS</h2>
-        <table style={tableStyle}>
-          <thead>
-            <tr>
-              <th style={thStyle}>Leave ID</th>
-              <th style={thStyle}>Staff ID</th>
-              <th style={thStyle}>Leave Need Date</th>
-              <th style={thStyle}>Reason</th>
-              <th style={thStyle}>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style={tdStyle}>L001</td>
-              <td style={tdStyle}>S001</td>
-              <td style={tdStyle}>30/08/2024</td>
-              <td style={tdStyle}>For channeling doctor</td>
+    <div style={containerStyle}>
+      <h2>LEAVE REQUESTS</h2>
+      <table style={tableStyle}>
+        <thead>
+          <tr>
+            <th style={thStyle}>Staff name</th>
+            <th style={thStyle}>Leave Start Date</th>
+            <th style={thStyle}>Leave End Date</th>
+            <th style={thStyle}>Reason</th>
+            <th style={thStyle}>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {leaveRequests.map((leave) => (
+            <tr key={leave._id}>
+              <td style={tdStyle}>{leave.employeeId.username}</td>
+              <td style={tdStyle}>{new Date(leave.startDate).toLocaleDateString()}</td>
+              <td style={tdStyle}>{new Date(leave.endDate).toLocaleDateString()}</td>
+              <td style={tdStyle}>{leave.leaveReason}</td>
               <td style={tdStyle}>
-                <span style={statusAcceptedStyle}>Accepted</span>
+                {leave.leaveStatus ? (
+                  <span style={statusAcceptedStyle}>Accepted</span>
+                ) : (
+                  <span
+                    style={statusPendingStyle}
+                    onClick={() => approveLeave(leave._id)}
+                  >
+                    Accept?
+                  </span>
+                )}
               </td>
             </tr>
-            <tr>
-              <td style={tdStyle}>L010</td>
-              <td style={tdStyle}>S001</td>
-              <td style={tdStyle}>02/09/2024</td>
-              <td style={tdStyle}>For essential work</td>
-              <td style={tdStyle}>
-                <span style={statusRejectedStyle}>Rejected</span>
-              </td>
-            </tr>
-            <tr>
-              <td style={tdStyle}>L030</td>
-              <td style={tdStyle}>S001</td>
-              <td style={tdStyle}>25/08/2024</td>
-              <td style={tdStyle}>For channeling doctor</td>
-              <td style={tdStyle}>
-                <span style={statusAcceptedStyle}>Accepted</span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
