@@ -59,6 +59,7 @@ import FeedbackDetails from "./pages/gamesManagement/Dashboards/FeedbackDetails.
 import Booking1 from "./pages/bookingmanager/Booking1.jsx";
 import AddNewMovie from "./pages/movieManagement/AddnewMovie.jsx";
 import LeaveRequestForm from "./pages/staffManagement/LeaveReqForm.jsx";
+import GameManagementPanel from "./pages/gamesManagement/Addgames.jsx";
 
 function App() {
   return (
@@ -108,6 +109,7 @@ function App() {
           <Route path="/changeavailabletimes" element={<ChangeAvailableTimes />} />{/*n ui*/}
           <Route path="/GameDetails" element={<GameDetails />} />{/*done*/}
           <Route path="/FeedbackDetails" element={<FeedbackDetails />} />
+          <Route path="/GameManagementPanel" element={<GameManagementPanel />} />
 
           {/* Movie Management */}
           <Route path="/movies" element={<MoviePage />} />{/*done*/}{/*linked*/}
@@ -126,7 +128,6 @@ function App() {
           <Route path="/resource/:id" element={<ResourceReport/>}/>{/*done*/}{/*linked*/}
 
           {/* Staff Management */}
-<<<<<<< HEAD
           <Route path="/salarycalculator" element={<SalaryCalculator />} />
           <Route path="/leaverequests" element={<LeaveRequests />} />
           <Route path="/myleaves" element={<Myleaves />} />
@@ -138,7 +139,6 @@ function App() {
           <Route path="/salarytable" element={<SalaryTable />} />
           <Route path="/stafftable" element={<StaffTable />} />
           <Route path ="/LeaveRequestForm" element ={<LeaveRequestForm/>}/>
-=======
           <Route path="/salarycalculator" element={<SalaryCalculator />} />{/*done*/}{/*linked*/}
           <Route path="/leaverequests" element={<LeaveRequests />} />{/*done*/}{/*linked*/}
           <Route path="/myleaves" element={<Myleaves />} />{/*done*/}{/*linked*/}
@@ -149,7 +149,6 @@ function App() {
           <Route path="/leavedetails" element={<LeaveDetails />} />{/*done*/}{/*linked*/}
           <Route path="/salarytable" element={<SalaryTable />} />{/*done*/}{/*linked*/}
           <Route path="/stafftable" element={<StaffTable />} />{/*done*/}{/*linked*/}
->>>>>>> 0f5887f35e982a24715f17bd7d9916dab33fce7e
 
           <Route path='/booking1' element={<Booking1/>} />
 
