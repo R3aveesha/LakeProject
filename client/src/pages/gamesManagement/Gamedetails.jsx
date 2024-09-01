@@ -18,7 +18,6 @@ const GameDetails = () => {
   };
 
   useEffect(() => {
-
     fetchGames();
   }, []);
 
@@ -64,6 +63,12 @@ const GameDetails = () => {
                       onClick={() => handleDelete(game._id)}
                     >
                       Delete
+                    </button>
+                    <button
+                      style={styles.editButton}
+                      onClick={() => navigate(`/game/edit/${game._id}`)}
+                    >
+                      Edit
                     </button>
                   </td>
                 </tr>

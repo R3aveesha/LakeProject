@@ -11,7 +11,7 @@ const AddGames = () => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
   const [availableTimes, setAvailableTimes] = useState([]);
-  const [image, setImage] = useState(null); // New state for image
+  const [image, setImage] = useState(""); 
 
   // Validation states
   const [nameError, setNameError] = useState("");
@@ -65,7 +65,7 @@ const AddGames = () => {
       setDescription("");
       setPrice(0);
       setAvailableTimes([]);
-      setImage(null); // Reset image
+      setImage(""); // Reset image
     } catch (error) {
       console.error("There was an error adding the game:", error);
       console.error("Error details:", error.response?.data || error.message);
@@ -83,10 +83,7 @@ const AddGames = () => {
   };
 
   const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImage(URL.createObjectURL(file)); // Preview the image
-    }
+    setImage(e.target.value);
   };
 
   return (
@@ -158,8 +155,7 @@ const AddGames = () => {
           <div style={styles.formGroup}>
             <label style={styles.label}>Upload Image:</label>
             <input
-              type="file"
-              accept="image/*"
+              type="text"
               onChange={handleImageChange}
               style={styles.fileInput}
             />

@@ -2,21 +2,46 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useParams,useNavigate } from "react-router-dom"; // To get the game ID from the URL
 import NavBar from "../../components/core/NavBar";
 import Footer from "../../components/core/Footer";
 
-
 const UpdateGame = () => {
+  const { id } = useParams(); // Get the game ID from the URL
   const [gameName, setGameName] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
   const [availableTimes, setAvailableTimes] = useState([]);
-  const [image, setImage] = useState(null); // New state for image
+  const [image, setImage] = useState(""); // Change to text field
 
+  const navigate = useNavigate();
   // Validation states
   const [nameError, setNameError] = useState("");
   const [priceError, setPriceError] = useState("");
+
+  useEffect(() => {
+    // Fetch the game data by ID and prefill the form
+    const fetchGameData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/api/games/games/${id}`
+        );
+        const game = response.data;
+        console.log(game);
+        setGameName(game.name);
+        setCategory(game.category);
+        setDescription(game.description);
+        setPrice(game.price);
+        setAvailableTimes(game.availableTimes);
+        setImage(game.image);
+      } catch (error) {
+        console.error("There was an error fetching the game data:", error);
+      }
+    };
+
+    fetchGameData();
+  }, [id]);
 
   // Real-time validation
   useEffect(() => {
@@ -36,7 +61,7 @@ const UpdateGame = () => {
     }
   }, [price]);
 
-  const handleAddGame = async (e) => {
+  const handleUpdateGame = async (e) => {
     e.preventDefault();
 
     // Check for validation errors before submitting
@@ -45,34 +70,25 @@ const UpdateGame = () => {
       return;
     }
 
-    const formData = new FormData(); // Create form data object
-    formData.append("name", gameName);
-    formData.append("category", category);
-    formData.append("description", description);
-    formData.append("availableTimes", JSON.stringify(availableTimes)); // Send available times as a JSON string
-    formData.append("price", price);
-    if (image) formData.append("image", image); // Append the image if it exists
+    const updatedGameData = {
+      name: gameName,
+      category,
+      description,
+      availableTimes,
+      price,
+      image, // Image URL
+    };
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/games/games",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+      const response = await axios.put(
+        `http://localhost:3000/api/games/games/${id}`,
+        updatedGameData
       );
-      console.log("Game added successfully:", response.data);
-      alert("Game added successfully!");
-      setGameName("");
-      setCategory("");
-      setDescription("");
-      setPrice(0);
-      setAvailableTimes([]);
-      setImage(null); // Reset image state
+      //console.log("Game updated successfully:", response.data);
+      alert("Game updated successfully!");
+      navigate('/GameDetails');
     } catch (error) {
-      console.error("There was an error adding the game:", error);
+      console.error("There was an error updating the game:", error);
       console.error("Error details:", error.response?.data || error.message);
     }
   };
@@ -91,7 +107,7 @@ const UpdateGame = () => {
     <div style={styles.pageContainer}>
       <NavBar />
       <div style={styles.addGamesContainer}>
-        <form style={styles.form} onSubmit={handleAddGame}>
+        <form style={styles.form} onSubmit={handleUpdateGame}>
           <div style={styles.formGroup}>
             <label style={styles.label}>Category:</label>
             <select
@@ -154,11 +170,13 @@ const UpdateGame = () => {
           </div>
 
           <div style={styles.formGroup}>
-            <label style={styles.label}>Game Image:</label> {/* New label for image */}
+            <label style={styles.label}>Game Image URL:</label>
             <input
-              type="file"
+              type="text"
+              placeholder="Image URL"
               style={styles.input}
-              onChange={(e) => setImage(e.target.files[0])} // Set image state to the selected file
+              value={image}
+              onChange={(e) => setImage(e.target.value)} // Set image state to the text value
             />
           </div>
 
@@ -183,7 +201,7 @@ const UpdateGame = () => {
           )}
 
           <button type="submit" style={styles.addButton}>
-            Add
+            Update Game
           </button>
         </form>
       </div>
@@ -279,13 +297,11 @@ const styles = {
     borderRadius: "5px",
     cursor: "pointer",
     fontSize: "16px",
-    fontWeight: "bold",
-    marginTop: "20px",
+    width: "100%",
   },
   errorText: {
     color: "#FF6347",
-    fontSize: "14px",
-    marginTop: "5px",
+    fontSize: "12px",
   },
 };
 

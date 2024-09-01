@@ -121,7 +121,7 @@ function App() {
           <Route path="/GameDetails" element={<GameDetails />} />{/*done*/}
           <Route path="/FeedbackDetails" element={<FeedbackDetails />} />{/*done*/}
           <Route path="/gameManagement" element={<GamesManagementPanel/>}/>{/*done*/}
-          <Route path="/UpdateGame" element={<UpdateGame/>} />
+          <Route path="/game/edit/:id" element={<UpdateGame/>} />
 
           {/* Movie Management */}
           <Route path="/movies" element={<MoviePage />} />{/*done*/}{/*linked*/}

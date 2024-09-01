@@ -11,7 +11,7 @@ const ActivitiesGrid = ({activities}) => {
         activities.map((activity) => (
           <ActivityCard
             key={activity._id} // Use a unique identifier for keys
-            image={activity.images[0]} // Assuming images is an array
+            image={activity.image} // Assuming images is an array
             title={activity.name}
             activity={activity}
           />
