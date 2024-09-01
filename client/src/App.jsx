@@ -61,6 +61,7 @@ import AddNewMovie from "./pages/movieManagement/AddnewMovie.jsx";
 import LeaveRequestForm from "./pages/staffManagement/LeaveReqForm.jsx";
 import AdminDashboard from "./pages/AdminDashboard.jsx";
 import GamesManagementPanel from "./pages/gamesManagement/Dashboards/GamesManagementPanel.jsx";
+import EditMovie from "./pages/movieManagement/EditMovie.jsx";
 
 function App() {
   return (
@@ -119,6 +120,7 @@ function App() {
           <Route path="/movieManagerDashboard" element={<MovieManagerDashboard />} />{/*done*/}
           <Route path="/EditDeleteUpdateTable" element={<EditDeleteUpdateTable />} />{/*done*/}{/*linked*/}
           <Route path ="/AddNewMovie" element={<AddNewMovie />} />{/*done*/}{/*linked*/}
+          <Route path="/editmovie/:id" element={<EditMovie />} />{/*done*/}{/*linked*/}
 
 
 

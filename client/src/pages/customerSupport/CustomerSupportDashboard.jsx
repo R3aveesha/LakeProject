@@ -12,6 +12,8 @@ const CustomerSupportManagerDashboard = () => {
   const {authState} = useAuth();
   console.log(authState);
 
+  
+
   return (
    <div>
     <NavBar></NavBar>
@@ -21,7 +23,7 @@ const CustomerSupportManagerDashboard = () => {
         <button style={styles.button} onClick={()=>navigate('/lostitemform')} >Add lost Items</button>
         <button style={styles.button} onClick={()=>navigate('/customerInquiries')} >View Customer Inquiry</button>
         <button style={styles.button} onClick={()=>navigate('/lostitems')} >View Lost Items</button>
-        <button style={styles.button} onClick={()=>navigate('/founditems')} >View Found Items</button>
+        <button style={styles.button} onClick={()=>navigate('/FoundItemsTable')} >View Found Items</button>
         <button style={styles.button} onClick={()=>navigate('/transport')} >Add Transport</button>
       </div>
     </div>

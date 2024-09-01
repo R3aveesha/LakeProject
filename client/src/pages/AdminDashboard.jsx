@@ -5,7 +5,7 @@ import { useAuth } from "./foodManagement/context/authContext";
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
-  
+
   if (!user || !user.user.role) {
     navigate("/login");
     return null;
@@ -23,7 +23,7 @@ const AdminDashboard = () => {
         </button>
         <button
           style={buttonStyle}
-          onClick={() => navigate("/customer-support-management")}
+          onClick={() => navigate("/customerSupportManagerDashboard")}
         >
           Customer Support Management
         </button>
@@ -33,40 +33,41 @@ const AdminDashboard = () => {
         >
           Event Management
         </button>
-        <button
-          style={buttonStyle}
-          onClick={() => navigate("/food-management")}
-        >
+        <button style={buttonStyle} onClick={() => navigate("/manageFoods")}>
           Food Management
         </button>
-        <button
-          style={buttonStyle}
-          onClick={() => navigate("/gameManagement")}
-        >
+        <button style={buttonStyle} onClick={() => navigate("/gameManagement")}>
           Games Management
         </button>
         <button
           style={buttonStyle}
-          onClick={() => navigate("/movies-management")}
+          onClick={() => navigate("/movieManagerDashboard")}
         >
           Movies Management
         </button>
         <button
           style={buttonStyle}
-          onClick={() => navigate("/resource-management")}
+          onClick={() => navigate("/resourceManagerDashboard")}
         >
           Resource Management
         </button>
         {user.user.role === "Manager" ? (
           <button
             style={buttonStyle}
-            onClick={() => navigate("/staff-management")}
+            onClick={() => navigate("/staffdashboard")}
           >
             Staff Management
           </button>
         ) : (
           <></>
         )}
+
+        <button
+          style={buttonStyle}
+          onClick={() => navigate("/staffmemberdash")}
+        >
+          My dashboard
+        </button>
       </div>
     </div>
   );
