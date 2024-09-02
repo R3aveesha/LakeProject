@@ -1,8 +1,9 @@
-import React, { useState, useEffect,useContext } from "react";
-import { useParams,useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import NavBar from "../../../components/core/NavBar";
 import Footer from "../../../components/core/Footer";
+import FeedbackGame from "../FeedbackGame"; // Import the FeedbackForm component
 import { BookingContext } from "../../foodManagement/context/BookingContext";
 
 const GamesDetails = () => {
@@ -18,33 +19,33 @@ const GamesDetails = () => {
       .get(`http://localhost:3000/api/games/games/${id}`)
       .then((response) => {
         setGame(response.data);
+        // Set feedbacks from the game details if available
+        setFeedbacks(response.data.ratings || []);
       })
       .catch((error) => {
         console.error("There was an error fetching the game details!", error);
-      });
-
-    // Fetch feedbacks for the game
-    axios
-      .get(`http://localhost:3000/api/games/games/${id}/feedbacks`)
-      .then((response) => {
-        setFeedbacks(response.data);
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the feedbacks!", error);
       });
   }, [id]);
 
   const handleBookNow = () => {
     // Implement booking logic here
-    setBookingItem('game',game._id,game.price);
+    setBookingItem('game', game._id, game.price);
     navigate('/selectSeats');
-    
   };
 
-  const handleFeedback = () => {
-    // Implement feedback form or action here
-    alert('Feedback functionality is not implemented yet.');
+  const handleFeedbackSubmit = () => {
+    // Refresh feedbacks after submitting a new one
+    axios
+      .get(`http://localhost:3000/api/games/games/${id}`)
+      .then((response) => {
+        setFeedbacks(response.data.ratings || []);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the updated feedbacks!", error);
+      });
   };
+
+  console.log(feedbacks);
 
   if (!game) {
     return <p style={loadingStyle}>Loading...</p>;
@@ -54,28 +55,28 @@ const GamesDetails = () => {
     <div>
       <NavBar />
       <div style={containerStyle}>
+        <img src={game.image} style={{width:"300px"}} />
         <div style={cardStyle}>
           <h2 style={cardTitleStyle}>{game.name}</h2>
-          
           <p><strong>Category:</strong> {game.category}</p>
           <p><strong>Description:</strong> {game.description}</p>
           <p><strong>Price:</strong> RS.{game.price}</p>
-          <button style={buttonStyle} >
+          <button style={buttonStyle} onClick={handleBookNow}>
             Book Now
-          </button><br></br>
-          <button style={buttonStyle2} onClick={() => navigate(``)} >
-            Give Feedback
           </button>
+          <br />
         </div>
-        
+
+        <FeedbackGame onFeedbackSubmit={handleFeedbackSubmit} />
+
         <div style={feedbackContainerStyle}>
           <h3 style={feedbackTitleStyle}>Feedbacks</h3>
           {feedbacks.length > 0 ? (
             feedbacks.map((feedback) => (
-              <div key={feedback.id} style={feedbackStyle}>
-                <p><strong>Reviewer:</strong> {feedback.reviewer}</p>
-                <p><strong>Rating:</strong> {feedback.rating}</p>
-                <p><strong>Comment:</strong> {feedback.comment}</p>
+              <div key={feedback._id} style={feedbackStyle}>
+                <p><strong>Reviewer:</strong> {feedback.customerId ? `Customer : ${feedback.customerId}` : feedback.customerId.name}</p>
+                <p><strong>Rating:</strong> {feedback.score}</p>
+                <p><strong>Comment:</strong> {feedback.feedback}</p>
               </div>
             ))
           ) : (
@@ -122,16 +123,6 @@ const buttonStyle = {
   border: 'none',
   borderRadius: '5px',
   cursor: 'pointer',
-};
-
-const buttonStyle2 = {
-  padding: '10px 20px',
-  backgroundColor: '#ffcc00',
-  color: '#000',
-  border: 'none',
-  borderRadius: '5px',
-  cursor: 'pointer',
-  marginTop: '10px', // Adjust the space between buttons here
 };
 
 const loadingStyle = {
