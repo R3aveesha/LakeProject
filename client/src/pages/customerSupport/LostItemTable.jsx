@@ -9,6 +9,17 @@ const LostItemsTable = () => {
   const [lostItems, setLostItems] = useState([]);
   const [showOptions, setShowOptions] = useState(false); // Control visibility of the options column
   const {user} = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user || !user.user) {
+      navigate('/login');
+    }
+  }, [user, navigate]);
+
+  if (!user || !user.user) {
+    return null; 
+  }
 
   useEffect(() => {
     if (user.user.role){
@@ -19,7 +30,6 @@ const LostItemsTable = () => {
     }
     }, [user]);
 
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchLostItems = async () => {

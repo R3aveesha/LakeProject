@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import NavBar from '../../components/core/NavBar';
 import Footer from '../../components/core/Footer';
@@ -8,13 +8,22 @@ import { useNavigate, useParams } from 'react-router-dom';
 const BookingEvent = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
-  const { id } = useParams(); // Extract event ID from URL
+  const { id } = useParams();
 
-  // State to hold form data
+  useEffect(() => {
+    if (!user || !user.user) {
+      navigate('/login');
+    }
+  }, [user, navigate]);
+
+  if (!user || !user.user) {
+    return null; 
+  }
+
   const [formData, setFormData] = useState({
-    event: id || '', // Set event ID from URL if available
-    paymentMethod: 'online', // Default value
-    eventDate: '', // Initial empty value for event date
+    event: id || '', 
+    paymentMethod: 'online',
+    eventDate: '', 
     customer: user.user._id,
   });
 
@@ -30,7 +39,7 @@ const BookingEvent = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!user.user) {
+    if (!user || !user.user) {
       alert('User not authenticated.');
       return;
     }
@@ -41,10 +50,8 @@ const BookingEvent = () => {
         bookingDate: new Date(), // Set current date for bookingDate
         status: 'pending', // Default status
         paymentStatus: 'unpaid', // Default paymentStatus
-        
       });
-      console.log(user.user._id)
-      console.log(formData);
+
       navigate(`/billinfo/${id}`); // Redirect to a confirmation page or similar
     } catch (error) {
       console.error('Error booking the event:', error);

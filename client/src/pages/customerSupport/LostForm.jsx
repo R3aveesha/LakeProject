@@ -9,6 +9,16 @@ const LostItemsForm = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
 
+  useEffect(() => {
+    if (!user || !user.user) {
+      navigate('/login');
+    }
+  }, [user, navigate]);
+
+  if (!user || !user.user) {
+    return null; 
+  }
+
   const userId = user.user ? user.user._id : "";
   const userName = user.user ? user.user.name ? user.user.name :user.user.username  : "";
   const userEmail = user.user ? user.user.email : "";

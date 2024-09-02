@@ -8,6 +8,16 @@ import { useNavigate } from "react-router-dom";
 const InquiryForm = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
+
+  useEffect(() => {
+    if (!user || !user.user) {
+      navigate('/login');
+    }
+  }, [user, navigate]);
+
+  if (!user || !user.user) {
+    return null; 
+  }
   
   const [formData, setFormData] = useState({
     userName: "",

@@ -3,10 +3,22 @@ import axios from "axios";
 import NavBar from "../../components/core/NavBar";
 import Footer from "../../components/core/Footer";
 import { useAuth } from "../foodManagement/context/authContext";
+import { useNavigate } from "react-router-dom";
 
 const FoundItemsTable = () => {
   const [foundItems, setFoundItems] = useState([]);
   const { user } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user || !user.user) {
+      navigate('/login');
+    }
+  }, [user, navigate]);
+
+  if (!user || !user.user) {
+    return null; 
+  }
 
   useEffect(() => {
     const fetchFoundItems = async () => {
