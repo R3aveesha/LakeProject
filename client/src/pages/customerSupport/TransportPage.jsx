@@ -21,46 +21,11 @@ const TransportPage = () => {
           /> </a>
         </div>
 
-        <div style={styles.optionsContainer}>
-          <div style={styles.optionRow}>
-            <input
-              type="radio"
-              name="transport"
-              value="walk"
-              style={styles.radio}
-            />
-            <label style={styles.label}>Walk</label>
-            <input
-              type="radio"
-              name="transport"
-              value="car"
-              style={styles.radio}
-            />
-            <label style={styles.label}>Car</label>
-          </div>
-          <div style={styles.optionRow}>
-            <input
-              type="radio"
-              name="transport"
-              value="bus"
-              style={styles.radio}
-            />
-            <label style={styles.label}>Bus</label>
-            <input
-              type="radio"
-              name="transport"
-              value="taxi"
-              style={styles.radio}
-            />
-            <label style={styles.label}>Taxi</label>
-          </div>
-        </div>
+        <p>
 
-        <div style={styles.buttonContainer}>
-          <button style={styles.button}>Submit</button>
-          <button style={styles.button}>Edit</button>
-          <button style={styles.button}>Delete</button>
-        </div>
+        </p>
+
+       
       </div>
 
       <Footer></Footer>

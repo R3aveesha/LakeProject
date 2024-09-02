@@ -47,9 +47,9 @@ const Cart = () => {
           ))
         )}
       </div>
-      <Footer></Footer>
+      <Footer />
     </div>
   );
-}
+};
 
 export default Cart;

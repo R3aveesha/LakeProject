@@ -74,6 +74,7 @@ import { BookingProvider } from "./pages/foodManagement/context/BookingContext.j
 import SeatSelection from "./pages/bookingmanager/SeatSelection.jsx";
 import GameBillInfo from "./pages/bookingmanager/gameBillInfo.jsx";
 import MovieBillInfo from "./pages/bookingmanager/movieBillinfo.jsx";
+import GameBookingForm from "./pages/gamesManagement/GameBookingForm.jsx";
 
 function App() {
   return (

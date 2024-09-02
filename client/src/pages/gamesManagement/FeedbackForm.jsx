@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import NavBar from "../../components/core/NavBar";
+import Footer from "../../components/core/Footer";
 
 const FeedbackForm = () => {
   const [rating, setRating] = useState(0);
@@ -9,8 +11,8 @@ const FeedbackForm = () => {
     display: "flex",
     justifyContent: "space-around",
     alignItems: "center",
-    padding: "20px",
-    gap: "20px",
+    padding: "10px",
+    gap: "10px",
   };
 
   const formStyle = {
@@ -23,7 +25,7 @@ const FeedbackForm = () => {
   };
 
   const inputStyle = {
-    width: "100%",
+    width: "80%",
     padding: "12px 15px",
     margin: "8px 0",
     borderRadius: "8px",
@@ -60,7 +62,10 @@ const FeedbackForm = () => {
   });
 
   return (
-    <div style={formContainerStyle}>
+   <div>
+    <NavBar></NavBar>
+    <div style={{backgroundColor:"#161E38", height:"100vh"}}>
+     <div style={formContainerStyle}>
       {/* Feedback Form */}
       <div style={formStyle}>
         <form>
@@ -140,6 +145,9 @@ const FeedbackForm = () => {
         </form>
       </div>
     </div>
+   </div>
+   <Footer></Footer>
+   </div>
   );
 };
 
