@@ -367,7 +367,7 @@ function App() {
           < Route path="/PayOnlineFood" element={<CardPayF/>}/>
           <Route path="/manage/foodOrder" element={<FoodOrderManagement/>}/>
           <Route path="/BookingNavigationPage" element={<BookingNavigationPage />} />
-          <Route path ="/StaffManagmentUpdate" element ={<StaffManagmentUpdate/>}/>
+          <Route path ="/StaffManagmentUpdate/:id" element ={<StaffManagmentUpdate/>}/>
 
 
         </Routes>

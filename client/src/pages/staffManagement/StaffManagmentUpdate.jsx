@@ -1,148 +1,187 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
 import NavBar from "../../components/core/NavBar";
 import Footer from "../../components/core/Footer";
 
-const StaffManagmentUpdate = () => {
+const StaffUpdatePage = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  const [staff, setStaff] = useState({
+    username: "",
+    nic: "",
+    email: "",
+    address: "",
+    role: "",
+    salary: "",
+  });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchStaff = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/api/staff/${id}`);
+        setStaff(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching staff details:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchStaff();
+  }, [id]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setStaff((prevStaff) => ({
+      ...prevStaff,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.put(`http://localhost:3000/api/staff/update/${id}`, staff);
+      alert("Staff updated successfully!");
+      navigate("/stafftable"); // Redirect to the staff list page
+    } catch (error) {
+      console.error("Error updating staff:", error);
+    }
+  };
+
+  if (loading) {
+    return <p>Loading staff details...</p>;
+  }
+
   return (
     <div>
-        <NavBar></NavBar>
-        <div
-      style={{
-        backgroundColor: "#121C38",
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <div
-        style={{
-          backgroundColor: "#d9d9d9",
-          padding: "10px",
-          borderRadius: "20px",
-          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-          width: "500px",
-        }}
-      >
-        <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
-          Staff Registration Update
-        </h2>
-        <form>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              marginBottom: "15px",
-            }}
-          >
+      <NavBar />
+      <div style={styles.container}>
+        <h1 style={styles.title}>Update Staff</h1>
+        <form style={styles.form} onSubmit={handleSubmit}>
+          <div style={styles.inputGroup}>
+            <label htmlFor="username" style={styles.label}>Name</label>
             <input
               type="text"
-              placeholder="Name"
-              style={{ flex: "1", marginRight: "10px", padding: "10px" }}
-            />
-            <input
-              type="text"
-              placeholder="Job Position"
-              style={{ flex: "1", padding: "10px" }}
+              id="username"
+              name="username"
+              value={staff.username}
+              onChange={handleChange}
+              style={styles.input}
+              required
             />
           </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              marginBottom: "15px",
-            }}
-          >
+          <div style={styles.inputGroup}>
+            <label htmlFor="nic" style={styles.label}>NIC</label>
+            <input
+              type="text"
+              id="nic"
+              name="nic"
+              value={staff.nic}
+              onChange={handleChange}
+              style={styles.input}
+              required
+            />
+          </div>
+          <div style={styles.inputGroup}>
+            <label htmlFor="email" style={styles.label}>Email</label>
             <input
               type="email"
-              placeholder="Email"
-              style={{ flex: "1", marginRight: "10px", padding: "10px" }}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              style={{ flex: "1", padding: "10px" }}
+              id="email"
+              name="email"
+              value={staff.email}
+              onChange={handleChange}
+              style={styles.input}
+              required
             />
           </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              marginBottom: "15px",
-            }}
-          >
+          <div style={styles.inputGroup}>
+            <label htmlFor="address" style={styles.label}>Address</label>
             <input
               type="text"
-              placeholder="NIC"
-              style={{ flex: "1", marginRight: "10px", padding: "10px" }}
+              id="address"
+              name="address"
+              value={staff.address}
+              onChange={handleChange}
+              style={styles.input}
+              required
             />
           </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              marginBottom: "15px",
-            }}
-          >
+          <div style={styles.inputGroup}>
+            <label htmlFor="role" style={styles.label}>Job Position</label>
             <input
               type="text"
-              placeholder="Address"
-              style={{ flex: "1", marginRight: "10px", padding: "10px" }}
+              id="role"
+              name="role"
+              value={staff.role}
+              onChange={handleChange}
+              style={styles.input}
+              required
             />
           </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              marginBottom: "20px",
-            }}
-          >
+          <div style={styles.inputGroup}>
+            <label htmlFor="salary" style={styles.label}>Salary</label>
             <input
-              type="text"
-              placeholder="Phone"
-              style={{ flex: "1", padding: "10px" }}
+              type="number"
+              id="salary"
+              name="salary"
+              value={staff.salary}
+              onChange={handleChange}
+              style={styles.input}
+              required
             />
           </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              gap: "10px",
-            }}
-          >
-            <button
-              type="submit"
-              style={{
-                backgroundColor: "#FFCC00",
-                color: "#000",
-                padding: "10px 20px",
-                border: "none",
-                borderRadius: "5px",
-                cursor: "pointer",
-              }}
-            >
-              Update
-            </button>
-            <button
-              type="button"
-              style={{
-                backgroundColor: "#000",
-                color: "#fff",
-                padding: "10px 20px",
-                border: "none",
-                borderRadius: "5px",
-                cursor: "pointer",
-              }}
-            >
-              Clear
-            </button>
-          </div>
+          <button type="submit" style={styles.submitButton}>Update Staff</button>
         </form>
       </div>
-    </div>
-    <Footer></Footer>
+      <Footer />
     </div>
   );
 };
 
-export default StaffManagmentUpdate;
+const styles = {
+  container: {
+    padding: "20px",
+    backgroundColor: "#f4f4f4",
+    minHeight: "80vh",
+  },
+  title: {
+    textAlign: "center",
+    marginBottom: "20px",
+  },
+  form: {
+    maxWidth: "600px",
+    margin: "0 auto",
+    backgroundColor: "#fff",
+    padding: "20px",
+    borderRadius: "8px",
+    boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+  },
+  inputGroup: {
+    marginBottom: "15px",
+  },
+  label: {
+    display: "block",
+    marginBottom: "5px",
+  },
+  input: {
+    width: "100%",
+    padding: "10px",
+    borderRadius: "4px",
+    border: "1px solid #ddd",
+  },
+  submitButton: {
+    padding: "10px 20px",
+    backgroundColor: "#007bff",
+    color: "#fff",
+    border: "none",
+    borderRadius: "4px",
+    cursor: "pointer",
+    fontSize: "16px",
+  },
+};
+
+export default StaffUpdatePage;
