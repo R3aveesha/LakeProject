@@ -1,8 +1,12 @@
 import React from "react";
+import NavBar from "../../components/core/NavBar";
+import Footer from "../../components/core/Footer";
 
 const MovieDetailsPage = ({ imageUrl, movieDetails, onBookNow }) => {
   return (
-    <div style={containerStyle}>
+    <div>
+        <NavBar></NavBar>
+        <div style={containerStyle}>
       <div style={contentStyle}>
         <div style={imageContainerStyle}>
           <img src={imageUrl} alt="Movie Poster" style={imageStyle} />
@@ -22,6 +26,8 @@ const MovieDetailsPage = ({ imageUrl, movieDetails, onBookNow }) => {
       <button style={buttonStyle} onClick={onBookNow}>
         Book Now
       </button>
+    </div>
+    <Footer></Footer>
     </div>
   );
 };
