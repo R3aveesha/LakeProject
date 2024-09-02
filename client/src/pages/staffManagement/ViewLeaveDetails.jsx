@@ -46,9 +46,10 @@ const LeaveDetails = () => {
     setSearchTerm(event.target.value);
   };
 
-  const filteredLeaves = leaves.filter((leave) =>
-    leave._id.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredLeaves = leaves.filter((leave) => {
+    const leaveDate = new Date(leave.start).toLocaleDateString();
+    return leaveDate.includes(searchTerm);
+  });
 
   return (
     <div>
@@ -57,7 +58,7 @@ const LeaveDetails = () => {
         <div style={containerStyle}>
           <input
             type="text"
-            placeholder="Search by ID"
+            placeholder="Search by Date (MM/DD/YYYY)"
             value={searchTerm}
             onChange={handleSearch}
             style={searchBarStyle}
@@ -113,8 +114,8 @@ const LeaveDetails = () => {
 
 const containerStyle = {
   padding: "20px",
-  backgroundColor: "#161E38", // Changed background color
-  color: "#ffffff", // Changed text color to be readable on dark background
+  backgroundColor: "#161E38",
+  color: "#ffffff",
   height: "100vh",
 };
 
