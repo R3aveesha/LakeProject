@@ -48,9 +48,8 @@ const BookingManagement = () => {
 
   return (
     <div>
-      <NavBar></NavBar>
-      <button onClick={()=>navigate('/manage/MovieBooking')}>Movie Bookings</button>
-      <button onClick={()=>navigate('/manage/GameBooking')} >Game Bookings</button>
+      <NavBar />
+      
       <div style={{ backgroundColor: "#161E38", minHeight: "100vh", padding: "20px" }}>
         <input
           type="text"
@@ -122,11 +121,12 @@ const BookingManagement = () => {
           </tbody>
         </table>
       </div>
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 };
 
+// Inline styles
 const thStyle = {
   borderBottom: "2px solid #ddd",
   padding: "12px",
@@ -137,6 +137,15 @@ const thStyle = {
 const tdStyle = {
   borderBottom: "1px solid #ddd",
   padding: "12px",
+};
+
+const buttonStyle = {
+  padding: "10px 20px",
+  backgroundColor: "#007bff",
+  color: "#fff",
+  border: "none",
+  borderRadius: "4px",
+  cursor: "pointer",
 };
 
 export default BookingManagement;
