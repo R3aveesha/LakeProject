@@ -90,11 +90,13 @@ const GamesDetails = () => {
 };
 
 // Inline CSS Styles
+// Inline CSS Styles
 const containerStyle = {
   backgroundColor: '#161E38',
   minHeight: '100vh',
   display: 'flex',
-  justifyContent: 'center',
+  flexDirection: 'column', // Change to column for a more natural flow
+  justifyContent: 'flex-start', // Align content to the top
   alignItems: 'center',
   padding: '20px',
   color: '#fff',
@@ -102,54 +104,62 @@ const containerStyle = {
 
 const cardStyle = {
   backgroundColor: '#222',
-  padding: '20px',
+  padding: '25px', // Increase padding for more space
   borderRadius: '10px',
-  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-  maxWidth: '400px',
+  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)', // Enhanced shadow for better depth
+  maxWidth: '450px', // Slightly increased width for more content space
   width: '100%',
   textAlign: 'left',
+  marginBottom: '20px', // Added margin at the bottom for spacing
 };
 
 const cardTitleStyle = {
-  fontSize: '24px',
-  marginBottom: '15px',
+  marginTop:'10px',
+  fontSize: '26px', // Slightly larger font for the title
+  marginBottom: '20px', // Increased margin for better spacing
   color: '#ffcc00',
 };
 
 const buttonStyle = {
-  padding: '10px 20px',
+  padding: '12px 25px', // Increased padding for a more comfortable button
   backgroundColor: '#ffcc00',
   color: '#000',
   border: 'none',
-  borderRadius: '5px',
+  borderRadius: '8px', // Increased border-radius for a softer look
   cursor: 'pointer',
+  transition: 'background-color 0.3s ease', // Added smooth hover transition
+};
+
+buttonStyle['&:hover'] = {
+  backgroundColor: '#e6b800', // Slightly darker on hover for feedback
 };
 
 const loadingStyle = {
   color: '#fff',
   textAlign: 'center',
+  fontSize: '18px', // Slightly larger font for better readability
 };
 
 const feedbackContainerStyle = {
-  marginTop: '20px',
+  marginTop: '30px', // Increased margin for better spacing from the card
   backgroundColor: '#333',
-  padding: '15px',
+  padding: '20px', // Increased padding for more space
   borderRadius: '10px',
   width: '80%',
   marginLeft: '10px',
 };
 
 const feedbackTitleStyle = {
-  fontSize: '20px',
+  fontSize: '22px', // Slightly larger title font
   color: '#ffcc00',
-  marginBottom: '10px',
+  marginBottom: '15px', // Increased margin for better spacing
 };
 
 const feedbackStyle = {
   backgroundColor: '#444',
-  padding: '10px',
-  marginBottom: '10px',
-  borderRadius: '5px',
+  padding: '15px', // Increased padding for more space
+  marginBottom: '15px', // Increased margin for better spacing
+  borderRadius: '8px', // Increased border-radius for a softer look
 };
 
 export default GamesDetails;

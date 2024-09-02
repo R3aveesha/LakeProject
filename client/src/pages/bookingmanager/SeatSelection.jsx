@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { BookingContext } from "../foodManagement/context/BookingContext";
 import { useNavigate } from "react-router-dom";
+import NavBar from "../../components/core/NavBar";
+import Footer from "../../components/core/Footer";
 
 // SeatSelection Component
 const SeatSelection = ({ movieId, pricePerSeat }) => {
@@ -71,9 +73,21 @@ const SeatSelection = ({ movieId, pricePerSeat }) => {
       seats.push(
         <div
           key={seatNumber}
-          className={`seat ${
-            unavailableSeats.includes(seatNumber) ? "unavailable" : ""
-          } ${selectedSeats.includes(seatNumber) ? "selected" : ""}`}
+          style={{
+            width: "35px",
+            height: "35px",
+            lineHeight: "35px",
+            border: "1px solid #333",
+            cursor: unavailableSeats.includes(seatNumber) ? "not-allowed" : "pointer",
+            textAlign: "center",
+            backgroundColor: unavailableSeats.includes(seatNumber)
+              ? "grey"
+              : selectedSeats.includes(seatNumber)
+              ? "green"
+              : "#fff",
+            color: selectedSeats.includes(seatNumber) ? "#fff" : "#000",
+            userSelect: "none",
+          }}
           onClick={() => handleSeatClick(seatNumber)}
         >
           {seatNumber}
@@ -84,10 +98,36 @@ const SeatSelection = ({ movieId, pricePerSeat }) => {
   };
 
   return (
-    <div className="seat-selection">
+
+    <div>
+      
+    <div style={{ backgroundColor: "#161E38", minHeight: "80vh" }}>
+      <NavBar></NavBar>
+    <div style={{ textAlign: "center",  }}>
       <h3>Select Your Seats</h3>
-      <div className="seats-container">{renderSeats()}</div>
-      <button onClick={confirmSelection} className="confirm-button">
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(10, 1fr)",
+          gap: "px",
+          maxWidth: "400px",
+          margin: "0 auto",
+        }}
+      >
+        {renderSeats()}
+      </div>
+      <button
+        onClick={confirmSelection}
+        style={{
+          marginTop: "20px",
+          padding: "10px 20px",
+          backgroundColor: "#28a745",
+          color: "white",
+          border: "none",
+          cursor: "pointer",
+          borderRadius: "5px",
+        }}
+      >
         Confirm Selection
       </button>
       <button
@@ -96,69 +136,24 @@ const SeatSelection = ({ movieId, pricePerSeat }) => {
             ? navigate("/movieBillInfo")
             : navigate("/gameBillInfo")
         }
-        className="confirm-button"
+        style={{
+          marginTop: "20px",
+          padding: "10px 20px",
+          backgroundColor: "#28a745",
+          color: "white",
+          border: "none",
+          cursor: "pointer",
+          borderRadius: "5px",
+          marginLeft: "10px",
+        }}
       >
         Proceed
       </button>
     </div>
+    </div>
+    <Footer></Footer>
+    </div>
   );
 };
-
-// CSS for SeatSelection Component (in the same file)
-const styles = `
-.seat-selection {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.seats-container {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  gap: 10px;
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-.seat {
-  width: 35px;
-  height: 35px;
-  line-height: 35px;
-  border: 1px solid #333;
-  cursor: pointer;
-  text-align: center;
-  background-color: #fff;
-  user-select: none;
-}
-
-.seat.unavailable {
-  background-color: grey;
-  cursor: not-allowed;
-}
-
-.seat.selected {
-  background-color: green;
-  color: #fff;
-}
-
-.confirm-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.confirm-button:hover {
-  background-color: #218838;
-}
-`;
-
-// Adding CSS to the document
-const styleSheet = document.createElement("style");
-styleSheet.type = "text/css";
-styleSheet.innerText = styles;
-document.head.appendChild(styleSheet);
 
 export default SeatSelection;
