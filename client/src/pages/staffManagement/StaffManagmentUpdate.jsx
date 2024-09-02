@@ -145,7 +145,7 @@ const StaffUpdatePage = () => {
 const styles = {
   container: {
     padding: "20px",
-    backgroundColor: "#f4f4f4",
+    backgroundColor: "#161E38",
     minHeight: "80vh",
   },
   title: {
