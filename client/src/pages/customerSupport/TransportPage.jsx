@@ -21,8 +21,8 @@ const TransportPage = () => {
           /> </a>
         </div>
 
-        <p>
-
+        <p style={styles.description}>
+          Find The Locations From Here......
         </p>
 
        
@@ -88,6 +88,11 @@ const styles = {
     border: 'none',
     borderRadius: '5px',
     cursor: 'pointer',
+  },
+  description: {
+    fontSize: '16px',
+    color: '#ffffff',
+    textAlign: 'center',
   },
 };
 

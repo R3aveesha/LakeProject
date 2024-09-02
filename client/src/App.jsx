@@ -76,6 +76,9 @@ import GameBillInfo from "./pages/bookingmanager/gameBillInfo.jsx";
 import MovieBillInfo from "./pages/bookingmanager/movieBillinfo.jsx";
 import GameBookingForm from "./pages/gamesManagement/GameBookingForm.jsx";
 import MovieDetailsPage from "./pages/movieManagement/MovieDetailsPage.jsx";
+import MovieBill from "./pages/movieManagement/MovieBill.jsx";
+import FoodBill from "./pages/foodManagement/FoodBill.jsx";
+import GameBill from "./pages/gamesManagement/GameBill.jsx";
 
 function App() {
   return (
@@ -111,6 +114,9 @@ function App() {
               <Route path="/addFood" element={<AddFood />} />
               {/*done*/}
               {/* Customer Support */}
+              <Route path="/FoodBill" element={<FoodBill />} />
+
+
               <Route path="/support" element={<CustomerSupport />} />
               {/*done*/}
               {/*linked*/}
@@ -200,6 +206,8 @@ function App() {
                 path="/gameManagement"
                 element={<GamesManagementPanel />}
               />
+              <Route path="/GameBill" element={<GameBill />} />
+
               {/*done*/}
               <Route path="/game/edit/:id" element={<UpdateGame />} />
               <Route path="/FeedbackForm" element={<FeedbackForm />} />
@@ -314,6 +322,7 @@ function App() {
           <Route path ="/AddNewMovie" element={<AddNewMovie />} />{/*done*/}{/*linked*/}
           <Route path="/editmovie/:id" element={<EditMovie />} />{/*done*/}{/*linked*/}
           <Route path="/MovieDetailsPage" element={<MovieDetailsPage/>}/>
+          <Route path="/MovieBill" element ={<MovieBill/>}/>
 
 
 

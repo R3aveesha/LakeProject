@@ -45,7 +45,7 @@ const StaffTable = () => {
   const thStyle = {
     padding: "10px",
     border: "1px solid #ccc",
-    backgroundColor: "#f4f4f4",
+    backgroundColor: "#ffffff",
     fontWeight: "bold",
     textAlign: "left",
     position: "sticky",
