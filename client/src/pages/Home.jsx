@@ -5,10 +5,9 @@ import ItemCard from '../components/itemCard';
 import NavFunction from "../functions/navFunction";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import image2 from "../../public/image2.jpg";
 
 const Home = () => {
-  const images = ["/image1.jpg", "/image2.jpg", "/image3.jpg"];
+  const images = ["/image1.jpg", "/image2.jpg", "/image3.jpg", "/game1.png", "/game2.png", "/game3.png"];
 
   // State for games and movies
   const [games, setGames] = useState([]);
@@ -27,9 +26,8 @@ const Home = () => {
     };
 
     fetchGames();
-  }, []); // Empty dependency array means this runs once on mount
+  }, []); 
 
-  // Effect for fetching movies
   useEffect(() => {
     const fetchMovies = async () => {
       try {
@@ -42,7 +40,7 @@ const Home = () => {
     };
 
     fetchMovies();
-  }, []); // Empty dependency array means this runs once on mount
+  }, []); 
 
   return (
     <section>
