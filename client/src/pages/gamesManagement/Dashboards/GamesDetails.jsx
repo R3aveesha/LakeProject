@@ -57,8 +57,8 @@ const GamesDetails = () => {
           <p><strong>Price:</strong> RS.{game.price}</p>
           <button style={buttonStyle} onClick={handleBookNow}>
             Book Now
-          </button>
-          <button style={buttonStyle} onClick={handleFeedback}>
+          </button><br></br>
+          <button style={buttonStyle2} onClick={handleFeedback}>
             Give Feedback
           </button>
         </div>
@@ -111,13 +111,22 @@ const cardTitleStyle = {
 };
 
 const buttonStyle = {
-  marginTop: '20px',
   padding: '10px 20px',
   backgroundColor: '#ffcc00',
   color: '#000',
   border: 'none',
   borderRadius: '5px',
   cursor: 'pointer',
+};
+
+const buttonStyle2 = {
+  padding: '10px 20px',
+  backgroundColor: '#ffcc00',
+  color: '#000',
+  border: 'none',
+  borderRadius: '5px',
+  cursor: 'pointer',
+  marginTop: '10px', // Adjust the space between buttons here
 };
 
 const loadingStyle = {
@@ -131,7 +140,7 @@ const feedbackContainerStyle = {
   padding: '15px',
   borderRadius: '10px',
   width: '80%',
-  marginleft:'10px'
+  marginLeft: '10px',
 };
 
 const feedbackTitleStyle = {
