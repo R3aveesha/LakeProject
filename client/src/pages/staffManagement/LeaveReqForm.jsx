@@ -3,6 +3,7 @@ import axios from "axios";
 import NavBar from "../../components/core/NavBar";
 import Footer from "../../components/core/Footer";
 import { useAuth } from "../foodManagement/context/authContext"; // Adjust the path as necessary
+import { useNavigate } from "react-router-dom";
 
 const LeaveRequestForm = () => {
   const { user } = useAuth(); // Assuming user object contains employeeId
@@ -10,6 +11,7 @@ const LeaveRequestForm = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [reason, setReason] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -107,7 +109,7 @@ const LeaveRequestForm = () => {
               onChange={(e) => setReason(e.target.value)}
             ></textarea>
             <div>
-              <button type="submit" style={submitButtonStyle}>
+              <button type="submit" style={submitButtonStyle} onClick={()=>navigate("/myleaves")}>
                 Submit
               </button>
               <button
@@ -118,6 +120,8 @@ const LeaveRequestForm = () => {
                   setStartDate("");
                   setEndDate("");
                   setReason("");
+                  
+                  
                 }}
               >
                 Clear
