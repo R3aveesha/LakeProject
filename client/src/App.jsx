@@ -346,11 +346,11 @@ function App() {
         </Routes>
       </Router>
     </CartProvider>
-            </Routes>
-          </Router>
-        </CartProvider>
-      </BookingProvider>
+    </BookingProvider>
     </AuthProvider>
+          
+    
+      
   );
 }
 
