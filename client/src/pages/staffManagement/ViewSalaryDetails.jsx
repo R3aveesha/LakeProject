@@ -8,7 +8,6 @@ const SalaryTable = () => {
   const [staffData, setStaffData] = useState([]);
 
   useEffect(() => {
-
     const fetchData = async () => {
       try {
         const attendanceResponse = await axios.get(
@@ -40,7 +39,6 @@ const SalaryTable = () => {
     fetchData();
   }, []);
 
-
   const calculateTotalHours = (start, end) => {
     const startTime = new Date(start);
     const endTime = new Date(end);
@@ -52,20 +50,19 @@ const SalaryTable = () => {
   const salaryDetails = attendanceData
     .map((attendance) => {
       const staffMember = staffData.find(
-        (staff) => staff._id === attendance.userId._id
+        (staff) => staff._id === attendance?.userId?._id
       );
       if (!staffMember) return null;
 
       const totalHours = calculateTotalHours(attendance.start, attendance.end);
-      const otHours = attendance.ot;
-      //const normalSalary = (staffMember.salary / 160) * totalHours; // Assuming 160 working hours in a month
+      const otHours = attendance.ot || 0;
       const normalSalary = staffMember.salary;
-      const otSalary = otHours * (staffMember.salary / 160 * 4); // Assuming OT rate is four times the normal rate
+      const otSalary = otHours * ((staffMember.salary / 160) * 4); // Assuming OT rate is four times the normal rate
       const finalSalary = normalSalary + otSalary;
 
       return {
         _id: attendance._id,
-        username: attendance.userId.username,
+        username: attendance?.userId?.username || "Unknown",
         totalHours,
         otHours,
         normalSalary,
@@ -99,26 +96,6 @@ const SalaryTable = () => {
     padding: "10px",
     border: "1px solid #ccc",
     textAlign: "left",
-  };
-
-  const buttonStyle = {
-    padding: "5px 10px",
-    margin: "5px",
-    cursor: "pointer",
-    border: "none",
-    borderRadius: "5px",
-  };
-
-  const updateButtonStyle = {
-    ...buttonStyle,
-    backgroundColor: "#f0ad4e",
-    color: "white",
-  };
-
-  const deleteButtonStyle = {
-    ...buttonStyle,
-    backgroundColor: "#d9534f",
-    color: "white",
   };
 
   return (

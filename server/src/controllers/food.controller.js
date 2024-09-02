@@ -15,27 +15,57 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-exports.addFood = [
-  upload.single("imageUrl"),
-  async (req, res) => {
-    try {
-      const newFood = {
-        name: req.body.name,
-        ingredients: req.body.ingredients,
-        category: req.body.category,
-        price: req.body.price,
-        isAvailable: req.body.isAvailable,
-        imageUrl: req.file ? req.file.path : null,
-      };
+// exports.addFood = [
+//   upload.single("imageUrl"),
+//   async (req, res) => {
+//     try {
+//       const newFood = {
+//         name: req.body.name,
+//         ingredients: req.body.ingredients,
+//         category: req.body.category,
+//         price: req.body.price,
+//         isAvailable: req.body.isAvailable,
+//         imageUrl: req.body.imageUrl,
+//       };
 
-      const food = new Food(newFood);
-      await food.save();
-      return res.status(201).json(food);
-    } catch (error) {
-      return res.status(500).json({ error: error.message });
+//       const food = new Food(newFood);
+//       await food.save();
+//       return res.status(201).json(food);
+//     } catch (error) {
+//       return res.status(500).json({ error: error.message });
+//     }
+//   }
+// ];
+
+exports.addFood = async (req, res) => {
+  try {
+    const { name, ingredients, category, price, isAvailable, imageUrl } = req.body;
+
+    // Validate required fields
+    if (!name || !ingredients || !category || !price) {
+      return res.status(400).json({ message: 'Please fill in all required fields.' });
     }
+
+    // Create a new food item
+    const newFood = new Food({
+      name,
+      ingredients,  // Assuming ingredients is already an array
+      category,
+      price,
+      isAvailable: isAvailable !== undefined ? isAvailable : true,
+      imageUrl,
+    });
+
+    // Save the food item to the database
+    const savedFood = await newFood.save();
+
+    // Respond with the newly created food item
+    return res.status(201).json(savedFood);
+  } catch (error) {
+    console.error('Error adding food:', error);
+    return res.status(500).json({ message: 'Server error. Please try again later.' });
   }
-];
+};
 
 exports.getFood = async (req, res) => {
   try {

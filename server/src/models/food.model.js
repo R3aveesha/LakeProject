@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const foodSchema = new Schema({
   name: { type: String, required: true },
   ingredients: { type: [String], required: true },
-  category: { type: String,enum : ["Appetizer", "Main Course", "Beverage", "Dessert", "Pizza"] ,required: true },
+  category: { type: String,enum : ["Soups", "Chinese food", "Pizza", "Dessert", "Drinks"] ,required: true },
   price: { type: Number, required: true },
   isAvailable: { type: Boolean, default: true },
   imageUrl: { type: String },

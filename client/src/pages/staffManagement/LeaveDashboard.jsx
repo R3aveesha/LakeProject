@@ -4,9 +4,13 @@ const LeaveRequests = () => {
   const [leaveRequests, setLeaveRequests] = useState([]);
 
   const fetchLeaveRequests = async () => {
-    const response = await fetch('http://localhost:3000/api/leaves/leaves');
-    const data = await response.json();
-    setLeaveRequests(data);
+    try {
+      const response = await fetch('http://localhost:3000/api/leaves/leaves');
+      const data = await response.json();
+      setLeaveRequests(data);
+    } catch (err) {
+      console.error("Failed to fetch leave requests:", err);
+    }
   };
 
   const approveLeave = async (leaveId) => {
@@ -16,7 +20,7 @@ const LeaveRequests = () => {
       });
       fetchLeaveRequests(); // Refresh the leave requests after approving
     } catch (err) {
-      console.error(err);
+      console.error("Failed to approve leave:", err);
     }
   };
 
@@ -74,7 +78,7 @@ const LeaveRequests = () => {
       <table style={tableStyle}>
         <thead>
           <tr>
-            <th style={thStyle}>Staff name</th>
+            <th style={thStyle}>Staff Name</th>
             <th style={thStyle}>Leave Start Date</th>
             <th style={thStyle}>Leave End Date</th>
             <th style={thStyle}>Reason</th>
@@ -84,7 +88,9 @@ const LeaveRequests = () => {
         <tbody>
           {leaveRequests.map((leave) => (
             <tr key={leave._id}>
-              <td style={tdStyle}>{leave.employeeId.username}</td>
+              <td style={tdStyle}>
+                {leave.employeeId ? leave.employeeId.username : 'Unknown'}
+              </td>
               <td style={tdStyle}>{new Date(leave.startDate).toLocaleDateString()}</td>
               <td style={tdStyle}>{new Date(leave.endDate).toLocaleDateString()}</td>
               <td style={tdStyle}>{leave.leaveReason}</td>

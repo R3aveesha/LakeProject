@@ -68,6 +68,7 @@ import EditEvent from "./pages/eventManagement/EditEvent.jsx";
 import AddEvent from "./pages/eventManagement/AddEvent.jsx";
 import RegistrationForm from "./components/logins/Register.jsx";
 import UpdateGame from "./pages/gamesManagement/UpdateGame.jsx";
+import AddFood from "./pages/foodManagement/AddFood.jsx";
 
 function App() {
   return (
@@ -88,6 +89,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />{/*done*/}{/*linked*/}
           <Route path="/manageFoods" element={<ManageFood />} />{/*done*/}
           <Route path="/updateFoodItem/:id" element={<UpdateFood />} />{/*done*/}{/*linked*/}
+          <Route path="/addFood" element={<AddFood />} />{/*done*/}
 
           {/* Customer Support */}
           <Route path="/support" element={<CustomerSupport />} />{/*done*/}{/*linked*/}

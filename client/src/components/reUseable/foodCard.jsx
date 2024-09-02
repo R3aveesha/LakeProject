@@ -16,7 +16,7 @@ const FoodCard = ({ food }) => {
         <p>{food.description}</p>
         <p>Rs.{food.price.toFixed(2)}</p>
         <div style={styles.foodRating}>
-          <span>⭐ {food.rating}</span>
+          <span>⭐ {Math.floor(Math.random() * 5) + 1}</span>
         </div>
       </div>
       <div style={styles.favoriteIcon}>💛</div>
