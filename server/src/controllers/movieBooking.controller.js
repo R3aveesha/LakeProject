@@ -86,4 +86,16 @@ exports.getMovieBookingById = async (req, res) => {
       res.status(500).json({ error: error.message });
     }
   };
+
+  exports.getAllBookings = async (req, res) => {
+    try {
+      const bookings = await MovieBooking.find()
+        .populate('customer')
+        .populate('movie');
+  
+      res.status(200).json(bookings);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
   

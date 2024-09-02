@@ -80,6 +80,8 @@ import MovieBill from "./pages/movieManagement/MovieBill.jsx";
 import FoodBill from "./pages/foodManagement/FoodBill.jsx";
 import GameBill from "./pages/gamesManagement/GameBill.jsx";
 import CardPayV from "./pages/bookingmanager/CardPayV.jsx";
+import MovieBookingManagement from "./pages/bookingmanager/MovieBookingManagement.jsx";
+import GameBookingManagement from "./pages/bookingmanager/GameBookingManagement.jsx";
 
 function App() {
   return (
@@ -354,6 +356,9 @@ function App() {
           < Route path="/eventManagement" element={<EventManagement/>}/>
 
           < Route path="/PayOnline" element={<CardPayV/>}/>
+          < Route path="/manage/MovieBooking" element={<MovieBookingManagement/>}  />
+          < Route path="/manage/GameBooking" element={<GameBookingManagement/>}  />
+
 
         </Routes>
       </Router>

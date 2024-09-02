@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Footer from "../../components/core/Footer";
 import NavBar from "../../components/core/NavBar";
+import { useNavigate } from "react-router-dom";
 
 const BookingManagement = () => {
   const [payments, setPayments] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -47,6 +49,8 @@ const BookingManagement = () => {
   return (
     <div>
       <NavBar></NavBar>
+      <button onClick={()=>navigate('/manage/MovieBooking')}>Movie Bookings</button>
+      <button onClick={()=>navigate('/manage/GameBooking')} >Game Bookings</button>
       <div style={{ backgroundColor: "#161E38", minHeight: "100vh", padding: "20px" }}>
         <input
           type="text"
