@@ -21,7 +21,7 @@ const AdminDashboard = () => {
       <div style={buttonContainerStyle}>
         <button
           style={buttonStyle}
-          onClick={() => navigate("/bookingManagement")}
+          onClick={() => navigate("/BookingNavigationPage")}
         >
           Booking Management
         </button>

@@ -47,6 +47,7 @@ const MovieBookingManagement = () => {
   return (
     <div>
       <NavBar />
+      
       <div
         style={{
           backgroundColor: "#161E38",
@@ -54,6 +55,7 @@ const MovieBookingManagement = () => {
           padding: "20px",
         }}
       >
+        
         <input
           type="text"
           placeholder="Search by movie name"
@@ -68,89 +70,94 @@ const MovieBookingManagement = () => {
             color: "#000",
           }}
         />
-        <table
-          style={{ width: "100%", borderCollapse: "collapse", color: "#fff" }}
-        >
-          <thead>
-            <tr>
-              <th style={thStyle}>Movie Name</th>
-              <th style={thStyle}>Customer Email</th>
-              <th style={thStyle}>Seats</th>
-              <th style={thStyle}>Price</th>
-              <th style={thStyle}>Booking Status</th>
-              <th style={thStyle}>Confirm</th>
-              <th style={thStyle}>Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredBookings.map((booking) => (
-              <tr key={booking._id}>
-                <td style={tdStyle}>
-                  {booking.movie?.name || "Unknown Movie"}
-                </td>
-                <td style={tdStyle}>
-                  {booking.customer?.email || "Unknown Customer"}
-                </td>
-                <td style={tdStyle}>
-                  {booking.seatNumbers ? booking.seatNumbers.length : 0}
-                </td>
-                <td style={tdStyle}>${booking.totalPrice.toFixed(2)}</td>
-                <td style={tdStyle}>
-                  {booking.confirmed ? "Paid" : "Not paid"}
-                </td>
-                <td style={tdStyle}>
-                  <button
-                    onClick={() => handleConfirm(booking._id)}
-                    disabled={booking.confirmed}
-                    style={{
-                      padding: "8px 16px",
-                      backgroundColor: booking.confirmed
-                        ? "#28a745"
-                        : "#007bff",
-                      color: "#fff",
-                      border: "none",
-                      borderRadius: "4px",
-                      cursor: booking.confirmed ? "default" : "pointer",
-                    }}
-                  >
-                    {booking.confirmed ? "Payment confirmed" : "Confirm Payment"}
-                  </button>
-                </td>
-                <td style={tdStyle}>
-                  <button
-                    onClick={() => handleDelete(booking._id)}
-                    style={{
-                      padding: "8px 16px",
-                      backgroundColor: "#dc3545",
-                      color: "#fff",
-                      border: "none",
-                      borderRadius: "4px",
-                      cursor: "pointer",
-                    }}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        
+        <div style={cardGridStyle}>
+          {filteredBookings.map((booking) => (
+            <div key={booking._id} style={cardStyle}>
+              <h3 style={cardTitleStyle}>
+                {booking.movie?.name || "Unknown Movie"}
+              </h3>
+              <p style={cardDetailStyle}>
+                <strong>Customer Email:</strong> {booking.customer?.email || "Unknown Customer"}
+              </p>
+              <p style={cardDetailStyle}>
+                <strong>Seats:</strong> {booking.seatNumbers ? booking.seatNumbers.length : 0}
+              </p>
+              <p style={cardDetailStyle}>
+                <strong>Price:</strong> ${booking.totalPrice.toFixed(2)}
+              </p>
+              <p style={cardDetailStyle}>
+                <strong>Booking Status:</strong> {booking.confirmed ? "Paid" : "Not paid"}
+              </p>
+              <div style={cardButtonContainerStyle}>
+                <button
+                  onClick={() => handleConfirm(booking._id)}
+                  disabled={booking.confirmed}
+                  style={{
+                    ...cardButtonStyle,
+                    backgroundColor: booking.confirmed ? "#28a745" : "#007bff",
+                    cursor: booking.confirmed ? "default" : "pointer",
+                  }}
+                >
+                  {booking.confirmed ? "Payment confirmed" : "Confirm Payment"}
+                </button>
+                <button
+                  onClick={() => handleDelete(booking._id)}
+                  style={{
+                    ...cardButtonStyle,
+                    backgroundColor: "#dc3545",
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
       <Footer />
     </div>
   );
 };
 
-const thStyle = {
-  borderBottom: "2px solid #ddd",
-  padding: "12px",
-  textAlign: "left",
-  color: "#ddd",
+// Styles
+const cardGridStyle = {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+  gap: "20px",
 };
 
-const tdStyle = {
-  borderBottom: "1px solid #ddd",
-  padding: "12px",
+const cardStyle = {
+  backgroundColor: "#1b1f38",
+  borderRadius: "8px",
+  padding: "20px",
+  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+  color: "#fff",
+};
+
+const cardTitleStyle = {
+  marginBottom: "15px",
+  fontSize: "20px",
+  color: "#f0f0f0",
+};
+
+const cardDetailStyle = {
+  marginBottom: "10px",
+  fontSize: "16px",
+};
+
+const cardButtonContainerStyle = {
+  display: "flex",
+  justifyContent: "space-between",
+  marginTop: "20px",
+};
+
+const cardButtonStyle = {
+  padding: "8px 16px",
+  color: "#fff",
+  border: "none",
+  borderRadius: "4px",
+  cursor: "pointer",
 };
 
 export default MovieBookingManagement;
