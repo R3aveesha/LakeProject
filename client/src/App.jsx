@@ -104,6 +104,7 @@ function App() {
           <Route path="/transport" element={<TransportPage />} />{/*done*/}{/*linked*/}
           <Route path="/lostitems" element={<LostitemTable />} />{/*done*/}{/*linked*/}
           <Route path="/lostitemform" element={<LostItemForm />} />{/*done*/}{/*linked*/}
+          <Route path="/addFoods" element={<AddFood />} />{/*done*/}{/*linked*/}
 
           {/* Event Management */}
           <Route path="/billinfo/:id" element={<BillInfo />} />{/*done*/}{/*linked*/}
@@ -112,7 +113,7 @@ function App() {
           <Route path="/eventdashboard" element={<EventDashboard />} />{/*linked*/}
           <Route path="/events/:id" element={<ViewEvent />} />{/*done*/}{/*linked*/}
           <Route path="/event/edit/:id" element={<EditEvent />} />
-          <Route path="/event/add" element={<AddEvent />} />{/*done*/}
+          <Route path="/event/add" element={<AddFood />} />{/*done*/}
 
           {/* Games Management */}
           <Route path="/games" element={<GameMainPage />} />{/*done*/}{/*linked*/}
