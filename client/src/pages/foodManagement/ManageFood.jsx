@@ -40,7 +40,7 @@ const FoodPage = () => {
       <NavBar name="foods" />
       <div className={styles.manageItems}>
         <h2>Manage All Menu Items</h2>
-        <span><button onClick={()=>navigate("/addFoods")}>Add Food</button></span>
+        <span><button onClick={()=>navigate("/addFoods")}>Add Food</button> <button onClick={()=>navigate('/manage/foodOrder')}>Manage orders</button></span>
         <div className={styles.tableWrapper}>
           <table className={styles.foodTable}>
             <thead>

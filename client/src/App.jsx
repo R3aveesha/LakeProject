@@ -82,6 +82,9 @@ import GameBill from "./pages/gamesManagement/GameBill.jsx";
 import CardPayV from "./pages/bookingmanager/CardPayV.jsx";
 import MovieBookingManagement from "./pages/bookingmanager/MovieBookingManagement.jsx";
 import GameBookingManagement from "./pages/bookingmanager/GameBookingManagement.jsx";
+import FoodPurchase from "./pages/foodManagement/FoodPurchase.jsx";
+import CardPayF from "./pages/foodManagement/CardPayF.jsx";
+import FoodOrderManagement from "./pages/foodManagement/FoodOrderManagement.jsx";
 
 function App() {
   return (
@@ -301,6 +304,7 @@ function App() {
               <Route path="/selectSeats" element={<SeatSelection />} />
               <Route path="/gameBillInfo" element={<GameBillInfo />} />
               <Route path="/movieBillinfo" element={<MovieBillInfo />} />
+              <Route path="/foodPurchase" element={<FoodPurchase />} />
 
 
           {/* Games Management */}
@@ -358,6 +362,8 @@ function App() {
           < Route path="/PayOnline" element={<CardPayV/>}/>
           < Route path="/manage/MovieBooking" element={<MovieBookingManagement/>}  />
           < Route path="/manage/GameBooking" element={<GameBookingManagement/>}  />
+          < Route path="/PayOnlineFood" element={<CardPayF/>}/>
+          <Route path="/manage/foodOrder" element={<FoodOrderManagement/>}/>
 
 
         </Routes>
