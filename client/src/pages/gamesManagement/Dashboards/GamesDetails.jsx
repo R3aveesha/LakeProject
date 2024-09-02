@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect,useContext } from "react";
+import { useParams,useNavigate } from "react-router-dom";
 import axios from "axios";
 import NavBar from "../../../components/core/NavBar";
 import Footer from "../../../components/core/Footer";
+import { BookingContext } from "../../foodManagement/context/BookingContext";
 
 const GamesDetails = () => {
   const { id } = useParams(); // Get the game ID from the URL
   const [game, setGame] = useState(null);
   const [feedbacks, setFeedbacks] = useState([]);
+  const { setBookingItem } = useContext(BookingContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Fetch game details
@@ -31,7 +34,17 @@ const GamesDetails = () => {
       });
   }, [id]);
 
-  
+  const handleBookNow = () => {
+    // Implement booking logic here
+    setBookingItem('game',game._id,game.price);
+    navigate('/selectSeats');
+    
+  };
+
+  const handleFeedback = () => {
+    // Implement feedback form or action here
+    alert('Feedback functionality is not implemented yet.');
+  };
 
   if (!game) {
     return <p style={loadingStyle}>Loading...</p>;
