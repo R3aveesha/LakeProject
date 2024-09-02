@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./foodManagement/context/authContext";
+import NavBar from "../components/core/NavBar";
+import Footer from "../components/core/Footer";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -12,7 +14,9 @@ const AdminDashboard = () => {
   }
 
   return (
-    <div style={dashboardStyle}>
+   <div>
+    <NavBar></NavBar>
+     <div style={dashboardStyle}>
       <h1 style={headerStyle}>Admin Dashboard</h1>
       <div style={buttonContainerStyle}>
         <button
@@ -70,13 +74,15 @@ const AdminDashboard = () => {
         </button>
       </div>
     </div>
+    <Footer></Footer>
+   </div>
   );
 };
 
 // Styles for the dashboard
 const dashboardStyle = {
   padding: "20px",
-  backgroundColor: "#f4f4f4",
+  backgroundColor: "#161E38", // Updated background color
   minHeight: "100vh",
 };
 
