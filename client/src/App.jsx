@@ -71,6 +71,7 @@ import UpdateGame from "./pages/gamesManagement/UpdateGame.jsx";
 import AddFood from "./pages/foodManagement/AddFood.jsx";
 import FeedbackForm from "./pages/gamesManagement/FeedbackForm.jsx";
 import GameBookingForm from "./pages/gamesManagement/GameBookingForm.jsx";
+import MovieDetailsPage from "./pages/movieManagement/MovieDetailsPage.jsx";
 
 function App() {
   return (
@@ -139,6 +140,7 @@ function App() {
           <Route path="/EditDeleteUpdateTable" element={<EditDeleteUpdateTable />} />{/*done*/}{/*linked*/}
           <Route path ="/AddNewMovie" element={<AddNewMovie />} />{/*done*/}{/*linked*/}
           <Route path="/editmovie/:id" element={<EditMovie />} />{/*done*/}{/*linked*/}
+          <Route path="/MovieDetailsPage" element={<MovieDetailsPage/>}/>
 
 
 
