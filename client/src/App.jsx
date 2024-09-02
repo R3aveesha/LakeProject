@@ -79,6 +79,7 @@ import MovieDetailsPage from "./pages/movieManagement/MovieDetailsPage.jsx";
 import MovieBill from "./pages/movieManagement/MovieBill.jsx";
 import FoodBill from "./pages/foodManagement/FoodBill.jsx";
 import GameBill from "./pages/gamesManagement/GameBill.jsx";
+import CardPayV from "./pages/bookingmanager/CardPayV.jsx";
 
 function App() {
   return (
@@ -321,7 +322,7 @@ function App() {
           <Route path="/EditDeleteUpdateTable" element={<EditDeleteUpdateTable />} />{/*done*/}{/*linked*/}
           <Route path ="/AddNewMovie" element={<AddNewMovie />} />{/*done*/}{/*linked*/}
           <Route path="/editmovie/:id" element={<EditMovie />} />{/*done*/}{/*linked*/}
-          <Route path="/MovieDetailsPage" element={<MovieDetailsPage/>}/>
+          <Route path="/MoviePage/:id" element={<MovieDetailsPage/>}/>
           <Route path="/MovieBill" element ={<MovieBill/>}/>
 
 
@@ -351,6 +352,8 @@ function App() {
           < Route path="/admin-dash"  element={<AdminDashboard/>} />
           < Route path="/bookingManagement" element={<BookingManagement/>}/>
           < Route path="/eventManagement" element={<EventManagement/>}/>
+
+          < Route path="/PayOnline" element={<CardPayV/>}/>
 
         </Routes>
       </Router>

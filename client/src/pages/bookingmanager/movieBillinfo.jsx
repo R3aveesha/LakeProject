@@ -36,7 +36,7 @@ const MovieBillInfo = () => {
         totalPrice: bookingDetails.total,
       });
       alert('Payment Successful');
-      navigate(`/games`);
+      navigate(`/movies`);
     } catch (e) {
       alert('Payment Failed');
       console.error('Error paying for event:', e);
@@ -45,22 +45,23 @@ const MovieBillInfo = () => {
 
   return (
     <>
-      <NavBar name="games" />
+      <NavBar name="movies" />
       <div style={styles.container}>
         <div style={styles.header}>
-          <h1 style={styles.mainTitle}>{game.name}</h1>
+          <h1 style={styles.mainTitle}>{movie.name}</h1>
           <h2 style={styles.subTitle}>Booking Form</h2>
         </div>
         <div style={styles.body}>
           <div style={styles.billInformation}>
             <h3>Bill Information</h3>
-            <p>{`${game.name} booking fee = R.S.${game.price} X  ${bookingDetails.seatNumbers.length} seats `}</p>
+            <p>{`${movie.name} booking fee = R.S.${movie.price} X  ${bookingDetails.seatNumbers.length} seats `}</p>
             <p>{`Total amount = R.S.${bookingDetails.total}`}</p>
           </div>
           <div style={styles.paymentMethod}>
             <h3>Payment Method</h3>
-            <button style={styles.button} onClick={() => navigate(`/cardpay/movie`)}>Card Payment &rarr;</button>
+            <button style={styles.button} onClick={() => navigate(`/PayOnline`)}>Card Payment &rarr;</button>
             <button style={styles.button} onClick={handleCashPay}>Cash on Delivery &rarr;</button>
+            <button style={styles.button} onClick={()=>navigate('/movies')}>Cancel</button>
           </div>
         </div>
       </div>

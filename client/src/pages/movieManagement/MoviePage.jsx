@@ -103,7 +103,7 @@ const MoviePage = () => {
   console.log(filteredMovies);
 
   const handleNavigate = (id) => {
-    navigate(`/movie/${id}`);
+    navigate(`/MoviePage/${id}`);
   };
 
   return (

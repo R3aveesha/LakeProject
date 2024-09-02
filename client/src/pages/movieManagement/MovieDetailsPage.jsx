@@ -1,38 +1,97 @@
-import React from "react";
+import React, { useState, useEffect,useContext } from "react";
+import axios from "axios";
 import NavBar from "../../components/core/NavBar";
 import Footer from "../../components/core/Footer";
+import { useParams, useNavigate } from "react-router-dom";
+import { BookingContext } from "../foodManagement/context/BookingContext";
 
-const MovieDetailsPage = ({ imageUrl, movieDetails, onBookNow }) => {
+const MovieDetailsPage = ({ imageUrl, onBookNow }) => {
+  const [movie, setMovie] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const { setBookingItem } = useContext(BookingContext);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/api/movies/movies/${id}`)
+      .then((response) => {
+        setMovie(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching movie details:", error);
+        setError("Failed to load movie details");
+        setLoading(false);
+      });
+  }, [id]);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
+
+  const handleBooking = ()=>{
+    setBookingItem('movie', movie._id, movie.price);
+    navigate('/selectSeats');
+  }
+
+  console.log(movie)
+
   return (
     <div>
-        <NavBar></NavBar>
-        <div style={containerStyle}>
-      <div style={contentStyle}>
-        <div style={imageContainerStyle}>
-          <img src={imageUrl} alt="Movie Poster" style={imageStyle} />
+      <NavBar />
+      <div style={containerStyle}>
+        <div style={contentStyle}>
+          <div style={imageContainerStyle}>
+            <img
+              src={imageUrl || movie?.image || "defaultImagePath.jpg"} // Fallback image
+              alt="Movie Poster"
+              style={imageStyle}
+            />
+          </div>
+          <div style={detailsContainerStyle}>
+            <h2 style={detailsHeaderStyle}>Movie Details</h2>
+            <p style={detailItemStyle}>
+              <strong>Name:</strong> {movie?.name || "N/A"}
+            </p>
+            <p style={detailItemStyle}>
+              <strong>Director:</strong> {movie?.director || "N/A"}
+            </p>
+            <p style={detailItemStyle}>
+              <strong>Year:</strong> {movie?.createdAt || "N/A"}
+            </p>
+            <p style={detailItemStyle}>
+              <strong>Language:</strong> {movie?.language || "N/A"}
+            </p>
+            <p style={detailItemStyle}>
+              <strong>Actors:</strong> {movie?.artists?.join(", ") || "N/A"}
+            </p>
+            <p style={detailItemStyle}>
+              <strong>Genre:</strong> {movie?.category || "N/A"}
+            </p>
+            <p style={detailItemStyle}>
+              <strong>Duration:</strong> {movie?.duration || "N/A"} minutes
+            </p>
+            <p style={detailItemStyle}>
+              <strong>Synopsis:</strong> {movie?.description || "N/A"}
+            </p>
+          </div>
         </div>
-        <div style={detailsContainerStyle}>
-          <h2 style={detailsHeaderStyle}>Movie Details</h2>
-          <p style={detailItemStyle}><strong>Name:</strong> </p>
-          <p style={detailItemStyle}><strong>Director:</strong> </p>
-          <p style={detailItemStyle}><strong>Year:</strong> </p>
-          <p style={detailItemStyle}><strong>Language:</strong> </p>
-          <p style={detailItemStyle}><strong>Actors:</strong> </p>
-          <p style={detailItemStyle}><strong>Genre:</strong> </p>
-          <p style={detailItemStyle}><strong>Duration:</strong> </p>
-          <p style={detailItemStyle}><strong>Synopsis:</strong> </p>
-        </div>
+        <button style={buttonStyle} onClick={handleBooking}>
+          Book Now
+        </button>
       </div>
-      <button style={buttonStyle} onClick={onBookNow}>
-        Book Now
-      </button>
-    </div>
-    <Footer></Footer>
+      <Footer />
     </div>
   );
 };
 
-// Inline CSS styles
+// Inline CSS styles (same as before)
 const containerStyle = {
   backgroundColor: "#161E38",
   minHeight: "100vh",
