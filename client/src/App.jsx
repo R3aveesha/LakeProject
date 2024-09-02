@@ -117,6 +117,7 @@ function App() {
           <Route path="/event/edit/:id" element={<EditEvent />} />
           <Route path="/event/add" element={<AddFood />} />{/*done*/}
 
+
           {/* Games Management */}
           <Route path="/games" element={<GameMainPage />} />{/*done*/}{/*linked*/}
           <Route path="/games/:id" element={<GamesDetails />} />{/*done*/}{/*linked*/}
