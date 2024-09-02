@@ -83,6 +83,7 @@ import CardPayV from "./pages/bookingmanager/CardPayV.jsx";
 import MovieBookingManagement from "./pages/bookingmanager/MovieBookingManagement.jsx";
 import GameBookingManagement from "./pages/bookingmanager/GameBookingManagement.jsx";
 import BookingNavigationPage from "./pages/bookingmanager/BookingNavigationPage.jsx";
+import StaffManagmentUpdate from "./pages/staffManagement/StaffManagmentUpdate.jsx";
 
 function App() {
   return (
@@ -360,6 +361,7 @@ function App() {
           < Route path="/manage/MovieBooking" element={<MovieBookingManagement/>}  />
           < Route path="/manage/GameBooking" element={<GameBookingManagement/>}  />
           <Route path="/BookingNavigationPage" element={<BookingNavigationPage />} />
+          <Route path ="/StaffManagmentUpdate" element ={<StaffManagmentUpdate/>}/>
 
 
         </Routes>
