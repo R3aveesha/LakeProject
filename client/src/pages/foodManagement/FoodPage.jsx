@@ -31,7 +31,7 @@ const FoodPage = () => {
   );
 
   return (
-    <>
+    <div>
       <NavBar name="foods" />
       <div className={styles.foodPage}>
         <header className={styles.foodHeader}>
@@ -47,7 +47,7 @@ const FoodPage = () => {
         <FoodList foods={filteredFoods} />
       </div>
       <Footer />  
-    </>
+    </div>
   );
 }
 

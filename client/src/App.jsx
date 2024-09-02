@@ -75,6 +75,7 @@ import SeatSelection from "./pages/bookingmanager/SeatSelection.jsx";
 import GameBillInfo from "./pages/bookingmanager/gameBillInfo.jsx";
 import MovieBillInfo from "./pages/bookingmanager/movieBillinfo.jsx";
 import GameBookingForm from "./pages/gamesManagement/GameBookingForm.jsx";
+import MovieDetailsPage from "./pages/movieManagement/MovieDetailsPage.jsx";
 
 function App() {
   return (
@@ -291,11 +292,65 @@ function App() {
               <Route path="/movieBillinfo" element={<MovieBillInfo />} />
 
 
-            </Routes>
-          </Router>
-        </CartProvider>
-      </BookingProvider>
+          {/* Games Management */}
+          <Route path="/games" element={<GameMainPage />} />{/*done*/}{/*linked*/}
+          <Route path="/games/:id" element={<GamesDetails />} />{/*done*/}{/*linked*/}
+          <Route path="/addgames" element={<AddGames />} />{/*done*/}
+          <Route path="/availabletimes" element={<AvailableTimes />} />{/*done*/}
+          <Route path="/changeavailabletimes" element={<ChangeAvailableTimes />} />{/*n ui*/}
+          <Route path="/GameDetails" element={<GameDetails />} />{/*done*/}
+          <Route path="/FeedbackDetails" element={<FeedbackDetails />} />{/*done*/}
+          <Route path="/gameManagement" element={<GamesManagementPanel/>}/>{/*done*/}
+          <Route path="/game/edit/:id" element={<UpdateGame/>} />
+          <Route path="/FeedbackForm" element={<FeedbackForm />} />
+          <Route path="/GameBookingForm" element={<GameBookingForm />} />
+
+          {/* Movie Management */}
+          <Route path="/movies" element={<MoviePage />} />{/*done*/}{/*linked*/}
+          <Route path="/movies/showtimes" element={<ShowtimesPage />} />{/*done*/}{/*linked*/}
+          <Route path="/movies/addnewmovie" element={<AddnewMovie />} />{/*done*/}{/*linked*/}
+          <Route path="/movieManagerDashboard" element={<MovieManagerDashboard />} />{/*done*/}
+          <Route path="/EditDeleteUpdateTable" element={<EditDeleteUpdateTable />} />{/*done*/}{/*linked*/}
+          <Route path ="/AddNewMovie" element={<AddNewMovie />} />{/*done*/}{/*linked*/}
+          <Route path="/editmovie/:id" element={<EditMovie />} />{/*done*/}{/*linked*/}
+          <Route path="/MovieDetailsPage" element={<MovieDetailsPage/>}/>
+
+
+
+
+          {/* Resource Management */}
+          <Route path="/resourceManagerDashboard" element={<ResourceManagerDashboard />} />{/*done*/}
+          <Route path='/ResourcesTable' element={<ResourcesTable />} />{/*done*/}{/*linked*/}
+          <Route path="/AddResourceForm" element={<AddResourceForm />} />{/*done*/}{/*linked*/}
+          <Route path="/resource/:id" element={<ResourceReport/>}/>{/*done*/}{/*linked*/}
+
+          {/* Staff Management */}
+          <Route path="/salarycalculator" element={<SalaryCalculator />} />{/*done*/}{/*linked*/}
+          <Route path="/leaverequests" element={<LeaveRequests />} />{/*done*/}{/*linked*/}
+          <Route path="/myleaves" element={<Myleaves />} />{/*done*/}{/*linked*/}
+          <Route path="/staffdashboard" element={<StaffDashboard />} />{/*done*/}
+          <Route path="/staffmemberdash" element={<StaffmemberDash />} />{/*done*/}
+          <Route path="/staffregistrationform" element={<StaffRegistrationForm />} />{/*done*/}{/*linked*/}
+          <Route path="/viewattendance" element={<ViewAttendance />} />{/*done*/}{/*linked*/}
+          <Route path="/leavedetails" element={<LeaveDetails />} />{/*done*/}{/*linked*/}
+          <Route path="/salarytable" element={<SalaryTable />} />{/*done*/}{/*linked*/}
+          <Route path="/stafftable" element={<StaffTable />} />{/*done*/}{/*linked*/}
+          <Route path ="/LeaveRequestForm" element ={<LeaveRequestForm/>}/>{/*done*/}{/*linked*/}
+
+          {/* <Route path='/booking1' element={<Booking1/>} /> */}
+
+          < Route path="/admin-dash"  element={<AdminDashboard/>} />
+          < Route path="/bookingManagement" element={<BookingManagement/>}/>
+          < Route path="/eventManagement" element={<EventManagement/>}/>
+
+        </Routes>
+      </Router>
+    </CartProvider>
+    </BookingProvider>
     </AuthProvider>
+          
+    
+      
   );
 }
 
