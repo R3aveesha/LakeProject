@@ -31,15 +31,7 @@ const GamesDetails = () => {
       });
   }, [id]);
 
-  const handleBookNow = () => {
-    // Implement booking logic here
-    alert('Booking functionality is not implemented yet.');
-  };
-
-  const handleFeedback = () => {
-    // Implement feedback form or action here
-    alert('Feedback functionality is not implemented yet.');
-  };
+  
 
   if (!game) {
     return <p style={loadingStyle}>Loading...</p>;
@@ -51,14 +43,14 @@ const GamesDetails = () => {
       <div style={containerStyle}>
         <div style={cardStyle}>
           <h2 style={cardTitleStyle}>{game.name}</h2>
-          <p><strong>ID:</strong> {game.id}</p>
+          
           <p><strong>Category:</strong> {game.category}</p>
           <p><strong>Description:</strong> {game.description}</p>
           <p><strong>Price:</strong> RS.{game.price}</p>
-          <button style={buttonStyle} onClick={handleBookNow}>
+          <button style={buttonStyle} >
             Book Now
           </button><br></br>
-          <button style={buttonStyle2} onClick={handleFeedback}>
+          <button style={buttonStyle2} onClick={() => navigate(``)} >
             Give Feedback
           </button>
         </div>

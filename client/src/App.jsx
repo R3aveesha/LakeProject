@@ -70,6 +70,7 @@ import RegistrationForm from "./components/logins/Register.jsx";
 import UpdateGame from "./pages/gamesManagement/UpdateGame.jsx";
 import AddFood from "./pages/foodManagement/AddFood.jsx";
 import FeedbackForm from "./pages/gamesManagement/FeedbackForm.jsx";
+import GameBookingForm from "./pages/gamesManagement/GameBookingForm.jsx";
 
 function App() {
   return (
@@ -127,6 +128,7 @@ function App() {
           <Route path="/gameManagement" element={<GamesManagementPanel/>}/>{/*done*/}
           <Route path="/game/edit/:id" element={<UpdateGame/>} />
           <Route path="/FeedbackForm" element={<FeedbackForm />} />
+          <Route path="/GameBookingForm" element={<GameBookingForm />} />
 
           {/* Movie Management */}
           <Route path="/movies" element={<MoviePage />} />{/*done*/}{/*linked*/}
