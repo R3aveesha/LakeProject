@@ -163,3 +163,4 @@ const deleteButtonStyle = {
 };
 
 export default LeaveDetails;
+  
