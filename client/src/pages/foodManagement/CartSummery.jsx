@@ -56,7 +56,7 @@ const styles = {
   cartItem: {
     display: 'flex',
     justifyContent: 'space-between',
-    padding: '10px 0',
+    padding: '10px ',
     borderBottom: '1px solid #ccc',
   },
   cartTotal: {
