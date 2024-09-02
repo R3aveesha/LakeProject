@@ -10,6 +10,8 @@ const Myleaves = () => {
   const { user } = useAuth(); // Get user ID from Auth context
   const navigate = useNavigate();
 
+  console.log(user.user._id);
+
   useEffect(() => {
     const fetchLeaves = async () => {
       try {
@@ -20,8 +22,11 @@ const Myleaves = () => {
 
         // Filter leaves based on the authenticated user ID
         const userLeaves = allLeaves.filter(
-          (leave) => leave.employeeId._id === user.user._id
+          (leave) =>
+            leave.employeeId && // Ensure employeeId exists
+            leave.employeeId._id === user.user._id
         );
+        
         setLeaves(userLeaves);
       } catch (error) {
         console.error("Error fetching leaves:", error);
@@ -30,6 +35,8 @@ const Myleaves = () => {
 
     fetchLeaves();
   }, [user]);
+
+  
 
   const containerStyle = {
     backgroundColor: "#161E38", // Updated background color for the container
@@ -99,7 +106,13 @@ const Myleaves = () => {
     <div>
       <NavBar />
       <div style={containerStyle}>
-        <button style={dashboardButtonStyle} onClick={()=>navigate('/staffmemberdash')}> My Dashboard </button>
+        <button
+          style={dashboardButtonStyle}
+          onClick={() => navigate("/staffmemberdash")}
+        >
+          {" "}
+          My Dashboard{" "}
+        </button>
         <div style={headerStyle}>MY LEAVE REQUESTS</div>
         <table style={tableStyle}>
           <thead>
