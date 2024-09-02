@@ -44,13 +44,13 @@ const EventDashboard = () => {
 
   return (
     <>
-      <NavBar name="home" />
+      <NavBar name="events" />
       <div style={styles.container}>
         <div style={styles.sidebar}>
           <h2 style={styles.categoryTitle}>Category</h2>
           <div style={styles.categoryList}>
             <button
-              style={styles.categoryItemhigh}
+              style={styles.categoryItem}
               onClick={() => setCategory("gaming")}
             >
               Gaming Tournaments
@@ -92,7 +92,7 @@ const EventDashboard = () => {
           )}
         </div>
       </div>
-      
+      <Footer/>
     </>
   );
 };
@@ -102,7 +102,9 @@ const styles = {
     display: "flex",
     height: "calc(100vh - 60px)", // assuming navbar is 60px high
     backgroundColor: "#0a1e42",
+    paddingBottom:"10px",
     color: "#fff",
+    overflow:"auto"
   },
   sidebar: {
     width: "20%",
@@ -139,7 +141,7 @@ const styles = {
   mainContent: {
     display: "flex",
     flexWrap: "wrap",
-    justifyContent: "space-around",
+    justifyContent: "center",
     alignItems: "center",
     width: "80%",
     padding: "20px",
@@ -154,8 +156,8 @@ const styles = {
     minWidth: "200px",
   },
   eventImage: {
-    width: "100%",
-    height: "auto",
+    width: "250px",
+    height: "300px",
     borderRadius: "8px",
     marginBottom: "10px",
   },
