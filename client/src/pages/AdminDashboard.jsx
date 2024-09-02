@@ -89,6 +89,7 @@ const dashboardStyle = {
 const headerStyle = {
   textAlign: "center",
   marginBottom: "20px",
+  color: "#ffffff",
 };
 
 const buttonContainerStyle = {
