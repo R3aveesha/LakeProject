@@ -26,7 +26,7 @@ const StaffTable = () => {
   const containerStyle = {
     padding: "20px",
     backgroundColor: "#161E38",
-    color: "#234151",
+    color: "#ffffff",
     height: "60vh",
     overflow: "hidden",
   };
@@ -45,7 +45,7 @@ const StaffTable = () => {
   const thStyle = {
     padding: "10px",
     border: "1px solid #ccc",
-    backgroundColor: "#ffffff",
+    backgroundColor: "#000000",
     fontWeight: "bold",
     textAlign: "left",
     position: "sticky",
@@ -57,6 +57,7 @@ const StaffTable = () => {
     padding: "10px",
     border: "1px solid #ccc",
     textAlign: "left",
+    
   };
 
   const buttonStyle = {
