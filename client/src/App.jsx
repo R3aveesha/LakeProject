@@ -88,6 +88,7 @@ import FoodOrderManagement from "./pages/foodManagement/FoodOrderManagement.jsx"
 import BookingNavigationPage from "./pages/bookingmanager/BookingNavigationPage.jsx";
 import StaffManagmentUpdate from "./pages/staffManagement/StaffManagmentUpdate.jsx";
 import BookingSummary from "./pages/bookingmanager/BookingSummary.jsx";
+import EditInquiryForm from "./pages/customerSupport/EditInquiryForm.jsx";
 
 function App() {
   return (
@@ -370,6 +371,7 @@ function App() {
           <Route path="/manage/foodOrder" element={<FoodOrderManagement/>}/>
           <Route path="/BookingNavigationPage" element={<BookingNavigationPage />} />
           <Route path ="/StaffManagmentUpdate/:id" element ={<StaffManagmentUpdate/>}/>
+          <Route path ="/inquiry/edit-inquiry/:id" element ={<EditInquiryForm/>}/>
 
 
         </Routes>
