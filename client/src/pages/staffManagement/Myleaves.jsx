@@ -74,7 +74,7 @@ const Myleaves = () => {
   };
 
   const statusAcceptedStyle = {
-    backgroundColor: "#FFA500",
+    backgroundColor: "#008000",
     color: "#000",
     padding: "5px 10px",
     borderRadius: "10px",
@@ -84,7 +84,7 @@ const Myleaves = () => {
 
   const statusRejectedStyle = {
     backgroundColor: "#000",
-    color: "#fff",
+    color: "#FF0000",
     padding: "5px 10px",
     borderRadius: "10px",
     textAlign: "center",
