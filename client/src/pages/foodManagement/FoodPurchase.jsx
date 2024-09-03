@@ -14,38 +14,47 @@ const FoodPurchase = () => {
   const [cart ,setCart] = useState([]);
 
   const handleCashPay = async () => {
-    setCart(JSON.parse(localStorage.getItem('cart')));
+    // Retrieve the cart items and total from localStorage
+    const savedCart = JSON.parse(localStorage.getItem('cart'));
     const total = localStorage.getItem('total') ? localStorage.getItem('total') : 0;
+    
+    if (!savedCart || savedCart.length === 0) {
+      alert("Your cart is empty!");
+      return;
+    }
+  
+    setCart(savedCart);  // Update the cart state
+  
+    // Calculate the meals and total price based on the saved cart
+    const meals = savedCart.map(item => ({
+      food: item._id,
+      quantity: item.quantity,
+    }));
+  
+    const totalPrice = savedCart.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+  
     try {
-        // Collect cart items
-        const meals = cart.map(item => ({
-          food: item._id,
-          quantity: item.quantity,
-        }));
+      // Post request to the backend
+      await axios.post('http://localhost:3000/api/order/add-order', {
+        userId: user.user._id,
+        meals,
+        totalPrice: total,
+        isCompleted: false,
+      });
   
-        // Calculate total price
-        const totalPrice = cart.reduce(
-          (total, item) => total + item.price * item.quantity,
-          0
-        );
-  
-        // Post request to the backend
-        await axios.post('http://localhost:3000/api/order/add-order', {
-          userId:user.user._id,
-          meals,
-          totalPrice:total,
-          isCompleted: false,
-        });
-  
-        // Redirect or show a success message
-        alert('Order placed successfully!');
-        localStorage.removeItem('cart');
-        localStorage.removeItem('total');
-        navigate('/food/start');
-      } catch (error) {
-        console.error('Error during checkout:', error);
-      }
+      // Redirect or show a success message
+      alert('Order placed successfully!');
+      localStorage.removeItem('cart');
+      localStorage.removeItem('total');
+      navigate('/food/start');
+    } catch (error) {
+      console.error('Error during checkout:', error);
+    }
   };
+  
 
   return (
     <>
