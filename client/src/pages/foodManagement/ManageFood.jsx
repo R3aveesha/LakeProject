@@ -39,7 +39,7 @@ const FoodPage = () => {
     <>
       <NavBar name="foods" />
       <div className={styles.manageItems}>
-        <h2>Manage All Menu Items</h2>
+        
         <span>
   <button 
     onClick={() => navigate("/addFoods")} 
@@ -54,6 +54,7 @@ const FoodPage = () => {
     Manage orders
   </button>
 </span>
+<h2>Manage All Menu Items</h2>
 
         <div className={styles.tableWrapper}>
           <table className={styles.foodTable}>
