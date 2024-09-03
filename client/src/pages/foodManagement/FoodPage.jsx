@@ -72,11 +72,11 @@ const FoodPage = () => {
             style={{
               marginTop: '10px',
               padding: '8px',
-              borderRadius: '4px',
+              borderRadius: '10px',
               border: '1px solid #ccc',
-              width: '80%',
+              width: '40%',
               maxWidth: '400px',
-              backgroundColor: '#ffffff',
+              backgroundColor: '#f2ef1c',
               color: '#333333',
               fontSize: '16px',
               boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
@@ -85,6 +85,7 @@ const FoodPage = () => {
               WebkitAppearance: 'none',
               MozAppearance: 'none',
               outline: 'none',
+              textAlign: 'center'
             }}
           >
             <option value="">All Categories</option>
