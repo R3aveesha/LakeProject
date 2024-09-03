@@ -87,6 +87,7 @@ import CardPayF from "./pages/foodManagement/CardPayF.jsx";
 import FoodOrderManagement from "./pages/foodManagement/FoodOrderManagement.jsx";
 import BookingNavigationPage from "./pages/bookingmanager/BookingNavigationPage.jsx";
 import StaffManagmentUpdate from "./pages/staffManagement/StaffManagmentUpdate.jsx";
+import BookingSummary from "./pages/bookingmanager/BookingSummary.jsx";
 
 function App() {
   return (
@@ -307,6 +308,7 @@ function App() {
               <Route path="/gameBillInfo" element={<GameBillInfo />} />
               <Route path="/movieBillinfo" element={<MovieBillInfo />} />
               <Route path="/foodPurchase" element={<FoodPurchase />} />
+              <Route path="/booking-summary" element={<BookingSummary/>}/>
 
 
           {/* Games Management */}
