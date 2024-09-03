@@ -5,12 +5,14 @@ import NavBar from "../../../components/core/NavBar";
 import Footer from "../../../components/core/Footer";
 import FeedbackGame from "../FeedbackGame"; // Import the FeedbackForm component
 import { BookingContext } from "../../foodManagement/context/BookingContext";
+import { useAuth } from "../../foodManagement/context/authContext";
 
 const GamesDetails = () => {
   const { id } = useParams(); // Get the game ID from the URL
   const [game, setGame] = useState(null);
   const [feedbacks, setFeedbacks] = useState([]);
   const { setBookingItem } = useContext(BookingContext);
+  const { user } = useAuth(); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,7 +32,7 @@ const GamesDetails = () => {
   const handleBookNow = () => {
     // Implement booking logic here
     setBookingItem('game', game._id, game.price);
-    navigate('/selectSeats');
+    user ? navigate('/selectSeats') : navigate('/login') ;
   };
 
   const handleFeedbackSubmit = () => {
