@@ -78,7 +78,7 @@ const NavBar = ({ name }) => {
         >
           Support
         </Link>
-        {currentPage === "foods" ? (
+        { authState.isAuthenticated && currentPage === "foods" ? (
           <Link to="/cart">🛒 Cart ({cart.length})</Link>
         ) : (
           <></>
