@@ -48,6 +48,7 @@ const FeedbackDetails = () => {
             <th style={styles.tableHeaderCell}>Game Name</th>
             <th style={styles.tableHeaderCell}>User</th>
             <th style={styles.tableHeaderCell}>Feedback</th>
+            <th style={styles.tableHeaderCell}>Rating(stars)</th>
             {user.user.role ? <th style={styles.tableHeaderCell}>Action</th> : null}
           </tr>
         </thead>
@@ -58,6 +59,7 @@ const FeedbackDetails = () => {
               <td style={styles.tableCell}>{feedback.gameName}</td>
               <td style={styles.tableCell}>{feedback.user}</td>
               <td style={styles.tableCell}>{feedback.feedback}</td>
+              <td style={styles.tableCell}>{feedback.rating}</td>
               {user.user.role ? (
                 <td style={styles.tableCell}>
                   <button
@@ -68,14 +70,7 @@ const FeedbackDetails = () => {
                   >
                     Delete
                   </button>
-                  <button
-                    style={styles.editButton}
-                    onClick={() => {
-                      // Handle edit button click
-                    }}
-                  >
-                    Edit
-                  </button>
+                  
                 </td>
               ) : null}
             </tr>

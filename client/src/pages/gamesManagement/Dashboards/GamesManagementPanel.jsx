@@ -9,7 +9,7 @@ const GameUpdate = () => {
     const [activePage, setActivePage] = useState('AddGames');
 
     const renderActivePage = () => {
-        switch (activePage) {
+        switch (activePage) {   
             case 'GamesDetails':
                 return <GameDetails />;
             case 'AvailableTimes':
