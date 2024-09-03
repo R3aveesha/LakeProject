@@ -62,7 +62,7 @@ const FoodPurchase = () => {
       <div style={styles.container}>
         <div style={styles.header}>
           <h1 style={styles.mainTitle}>{movie.name}</h1>
-          <h2 style={styles.subTitle}>Booking Form</h2>
+          <h2 style={styles.subTitle}>Payment Form</h2>
         </div>
         <div style={styles.body}>
           <div style={styles.billInformation}>
@@ -72,8 +72,8 @@ const FoodPurchase = () => {
           <div style={styles.paymentMethod}>
             <h3>Payment Method</h3>
             <button style={styles.button} onClick={() => navigate(`/PayOnlineFood`)}>Card Payment &rarr;</button>
-            <button style={styles.button} onClick={handleCashPay}>Cash on Delivery &rarr;</button>
-            <button style={styles.button} onClick={()=>navigate('/movies')}>Cancel</button>
+            <button style={styles.button} onClick={handleCashPay}>Cash on Arrival &rarr;</button>
+            <button style={styles.button} onClick={()=>navigate('/cart')}>Cancel</button>
           </div>
         </div>
       </div>

@@ -147,41 +147,69 @@ const styles = {
     padding: "20px",
     backgroundColor: "#161E38",
     minHeight: "80vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   title: {
     textAlign: "center",
     marginBottom: "20px",
+    color: "#FFFFFF",
+    fontSize: "2rem",
+    fontWeight: "bold",
   },
   form: {
     maxWidth: "600px",
+    width: "100%",
     margin: "0 auto",
-    backgroundColor: "#fff",
-    padding: "20px",
-    borderRadius: "8px",
-    boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+    backgroundColor: "#272D45",
+    padding: "30px",
+    borderRadius: "10px",
+    boxShadow: "0 6px 12px rgba(0, 0, 0, 0.2)",
+    color: "#FFFFFF",
   },
   inputGroup: {
-    marginBottom: "15px",
+    marginBottom: "20px",
   },
   label: {
     display: "block",
-    marginBottom: "5px",
+    marginBottom: "8px",
+    fontWeight: "bold",
+    fontSize: "1rem",
   },
   input: {
     width: "100%",
-    padding: "10px",
-    borderRadius: "4px",
-    border: "1px solid #ddd",
+    padding: "12px",
+    borderRadius: "6px",
+    border: "1px solid #3A3F5A",
+    backgroundColor: "#1F253B",
+    color: "#FFFFFF",
+    fontSize: "1rem",
+    outline: "none",
+    transition: "border-color 0.3s ease",
+  },
+  inputFocus: {
+    borderColor: "#007bff",
   },
   submitButton: {
-    padding: "10px 20px",
-    backgroundColor: "#007bff",
-    color: "#fff",
+    width: "100%",
+    padding: "12px 0",
+    backgroundColor: "#FFD700", // Yellow color for better visibility
+    color: "#1F253B",
     border: "none",
-    borderRadius: "4px",
+    borderRadius: "6px",
     cursor: "pointer",
-    fontSize: "16px",
+    fontSize: "1.2rem",
+    fontWeight: "bold",
+    textAlign: "center",
+    transition: "background-color 0.3s ease",
+  },
+  submitButtonHover: {
+    backgroundColor: "#E5C100", // Slightly darker shade for hover effect
   },
 };
+
+
+
 
 export default StaffUpdatePage;

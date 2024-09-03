@@ -128,103 +128,127 @@ const SalaryTable = () => {
     color: "#ffffff",
   };
 
+  const tableContainerStyle = {
+    marginTop: "20px",
+    overflowX: "auto", // Adds horizontal scrolling for small screens
+  };
+
   const tableStyle = {
     width: "100%",
     borderCollapse: "collapse",
-    marginTop: "20px",
+    backgroundColor: "#1b1f38",
   };
 
   const thStyle = {
-    padding: "10px",
+    padding: "12px",
     border: "1px solid #ccc",
     backgroundColor: "#000000",
     fontWeight: "bold",
     textAlign: "left",
+    color: "#ffffff",
   };
 
   const tdStyle = {
-    padding: "10px",
+    padding: "12px",
     border: "1px solid #ccc",
     textAlign: "left",
+    color: "#e0e0e0",
+  };
+
+  const inputContainerStyle = {
+    display: "flex",
+    flexDirection: "column",
+    marginBottom: "20px",
   };
 
   const inputStyle = {
     padding: "10px",
-    margin: "10px 0",
+    marginBottom: "10px",
     borderRadius: "5px",
     border: "1px solid #ccc",
-    width: "200px",
+    width: "250px",
+    backgroundColor: "#2c3e50",
+    color: "#ffffff",
+  };
+
+  const headingStyle = {
+    fontSize: "24px",
+    marginBottom: "10px",
   };
 
   return (
     <div>
       <NavBar />
       <div style={containerStyle}>
-        <input
-          type="text"
-          style={inputStyle}
-          placeholder="Search by employee name"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <input
-          type="text"
-          style={inputStyle}
-          placeholder="Filter by month (MM-YYYY)"
-          value={filterMonth}
-          onChange={(e) => setFilterMonth(e.target.value)}
-        />
+        <div style={inputContainerStyle}>
+          <input
+            type="text"
+            style={inputStyle}
+            placeholder="Search by employee name"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <input
+            type="text"
+            style={inputStyle}
+            placeholder="Filter by month (MM-YYYY)"
+            value={filterMonth}
+            onChange={(e) => setFilterMonth(e.target.value)}
+          />
+        </div>
         {Object.keys(filteredSalaryDetails).map((employeeId) => (
           <div key={employeeId}>
-            <h2>
+            <h2 style={headingStyle}>
               {filteredSalaryDetails[employeeId].username} (ID: {employeeId})
             </h2>
-            <table style={tableStyle}>
-              <thead>
-                <tr>
-                  <th style={thStyle}>Month-Year</th>
-                  <th style={thStyle}>Total Hours</th>
-                  <th style={thStyle}>OT Hours</th>
-                  <th style={thStyle}>Normal Salary</th>
-                  <th style={thStyle}>OT Salary</th>
-                  <th style={thStyle}>Final Salary</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(filteredSalaryDetails[employeeId].months).map(
-                  (monthYear) => (
-                    <tr key={monthYear}>
-                      <td style={tdStyle}>{monthYear}</td>
-                      <td style={tdStyle}>
-                        {filteredSalaryDetails[employeeId].months[
-                          monthYear
-                        ].totalHours.toFixed(2)}
-                      </td>
-                      <td style={tdStyle}>
-                        {filteredSalaryDetails[employeeId].months[
-                          monthYear
-                        ].otHours.toFixed(2)}
-                      </td>
-                      <td style={tdStyle}>
-                        {filteredSalaryDetails[employeeId].months[
-                          monthYear
-                        ].normalSalary.toFixed(2)}
-                      </td>
-                      <td style={tdStyle}>
-                        {filteredSalaryDetails[employeeId].months[
-                          monthYear
-                        ].otSalary.toFixed(2)}
-                      </td>
-                      <td style={tdStyle}>
-                        {filteredSalaryDetails[employeeId].months[
-                          monthYear
-                        ].finalSalary.toFixed(2)}
-                      </td>
-                    </tr>
-                  )
-                )}
-              </tbody>
-            </table>
+            <div style={tableContainerStyle}>
+              <table style={tableStyle}>
+                <thead>
+                  <tr>
+                    <th style={thStyle}>Month-Year</th>
+                    <th style={thStyle}>Total Hours</th>
+                    <th style={thStyle}>OT Hours</th>
+                    <th style={thStyle}>Normal Salary</th>
+                    <th style={thStyle}>OT Salary</th>
+                    <th style={thStyle}>Final Salary</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {Object.keys(filteredSalaryDetails[employeeId].months).map(
+                    (monthYear) => (
+                      <tr key={monthYear}>
+                        <td style={tdStyle}>{monthYear}</td>
+                        <td style={tdStyle}>
+                          {filteredSalaryDetails[employeeId].months[
+                            monthYear
+                          ].totalHours.toFixed(2)}
+                        </td>
+                        <td style={tdStyle}>
+                          {filteredSalaryDetails[employeeId].months[
+                            monthYear
+                          ].otHours.toFixed(2)}
+                        </td>
+                        <td style={tdStyle}>
+                          {filteredSalaryDetails[employeeId].months[
+                            monthYear
+                          ].normalSalary.toFixed(2)}
+                        </td>
+                        <td style={tdStyle}>
+                          {filteredSalaryDetails[employeeId].months[
+                            monthYear
+                          ].otSalary.toFixed(2)}
+                        </td>
+                        <td style={tdStyle}>
+                          {filteredSalaryDetails[employeeId].months[
+                            monthYear
+                          ].finalSalary.toFixed(2)}
+                        </td>
+                      </tr>
+                    )
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
         ))}
       </div>

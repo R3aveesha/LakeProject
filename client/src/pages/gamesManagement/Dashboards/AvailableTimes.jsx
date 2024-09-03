@@ -5,6 +5,7 @@ import { useAuth } from "../../foodManagement/context/authContext";
 const AvailableTimes = () => {
   const [games, setGames] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [dateSearchTerm, setDateSearchTerm] = useState(""); // New state for date search
   const [gameIdToUpdate, setGameIdToUpdate] = useState(null);
   const [newTimes, setNewTimes] = useState({});
 
@@ -27,9 +28,19 @@ const AvailableTimes = () => {
     setSearchTerm(event.target.value);
   };
 
-  const filteredGames = games.filter((game) =>
-    game.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const handleDateSearchChange = (event) => {
+    setDateSearchTerm(event.target.value);
+  };
+
+  const filteredGames = games
+    .filter((game) =>
+      game.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    .filter((game) =>
+      game.availableTimes.some((time) =>
+        new Date(time).toLocaleDateString().includes(dateSearchTerm)
+      )
+    );
 
   const handleTimeDelete = (gameId, time) => async () => {
     const updatedTimes = games
@@ -76,6 +87,13 @@ const AvailableTimes = () => {
             placeholder="Search by game name"
             value={searchTerm}
             onChange={handleSearchChange}
+            style={styles.searchInput}
+          />
+          <input
+            type="text"
+            placeholder="Search by date (e.g., 09/03/2024)"
+            value={dateSearchTerm}
+            onChange={handleDateSearchChange}
             style={styles.searchInput}
           />
         </div>

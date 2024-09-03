@@ -65,7 +65,7 @@ const GameUpdate = () => {
                 <button style={buttonStyle} onClick={() => setActivePage('AddGames')}>Add Games</button>
                 <button style={buttonStyle} onClick={() => setActivePage('GamesDetails')}>Games Details</button>
                 <button style={buttonStyle} onClick={() => setActivePage('AvailableTimes')}>Available Times</button>
-                <button style={buttonStyle} onClick={() => setActivePage('ChangeAvailableTimes')}>Change Available Times</button>
+                
                 <button style={buttonStyle} onClick={() => setActivePage('FeedbackDetails')}>Feedback Details</button>
             </div>
             <div style={contentStyle}>
