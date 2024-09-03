@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Footer from "../../components/core/Footer";
 import NavBar from "../../components/core/NavBar";
+import { min } from "date-fns";
 
 const LeaveDetails = () => {
   const [leaves, setLeaves] = useState([]);
@@ -116,7 +117,8 @@ const containerStyle = {
   padding: "20px",
   backgroundColor: "#161E38",
   color: "#ffffff",
-  height: "100vh",
+  height: "auto",
+  minheight: "100vh",
 };
 
 const searchBarStyle = {
