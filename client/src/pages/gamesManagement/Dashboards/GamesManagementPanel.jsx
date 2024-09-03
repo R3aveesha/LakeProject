@@ -33,7 +33,7 @@ const GameUpdate = () => {
 
     const sidebarStyle = {
         width: '250px',
-        backgroundColor: '#00796b', // Teal background
+        backgroundColor: '#1d284c', // Teal background
         color: '#fff',
         display: 'flex',
         flexDirection: 'column',

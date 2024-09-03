@@ -39,7 +39,7 @@ const FeedbackDetails = () => {
 
   return (
    <div>
-    <NavBar></NavBar>
+    <NavBar />
      <div style={styles.pageContainer}>
       <table style={styles.table}>
         <thead>
@@ -59,7 +59,7 @@ const FeedbackDetails = () => {
               <td style={styles.tableCell}>{feedback.gameName}</td>
               <td style={styles.tableCell}>{feedback.user}</td>
               <td style={styles.tableCell}>{feedback.feedback}</td>
-              <td style={styles.tableCell}>{feedback.rating}</td>
+              <td style={styles.tableCell}>{feedback.score}</td>
               {user.user.role ? (
                 <td style={styles.tableCell}>
                   <button

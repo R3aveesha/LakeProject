@@ -187,7 +187,6 @@ const AddGames = () => {
           </button>
         </form>
       </div>
-      <Footer />
     </div>
   );
 };
