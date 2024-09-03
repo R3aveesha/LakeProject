@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../foodManagement/context/authContext";
+import NavBar from "../../../components/core/NavBar";
 
 const AvailableTimes = () => {
   const [games, setGames] = useState([]);
@@ -78,83 +79,87 @@ const AvailableTimes = () => {
   }, [newTimes, gameIdToUpdate]);
 
   return (
-    <div style={styles.pageContainer}>
-      <div style={styles.content}>
-        <div style={styles.header}>
-          <h2>Available Times</h2>
-          <input
-            type="text"
-            placeholder="Search by game name"
-            value={searchTerm}
-            onChange={handleSearchChange}
-            style={styles.searchInput}
-          />
-          <input
-            type="text"
-            placeholder="Search by date (e.g., 09/03/2024)"
-            value={dateSearchTerm}
-            onChange={handleDateSearchChange}
-            style={styles.searchInput}
-          />
-        </div>
-        <div style={styles.tableContainer}>
-          <table style={styles.table}>
-            <thead>
-              <tr>
-                <th style={styles.tableHeader}>ID</th>
-                <th style={styles.tableHeader}>Game Name</th>
-                <th style={styles.tableHeader}>Available Times</th>
-                <th style={styles.tableHeader}>Date</th>
-                {user.user.role ? (
-                  <th style={styles.tableHeader}>Action</th>
-                ) : (
-                  <></>
-                )}
-              </tr>
-            </thead>
-            <tbody>
-              {filteredGames.length > 0 ? (
-                filteredGames.map((game) =>
-                  game.availableTimes.map((time, index) => (
-                    <tr key={`${game._id}-${index}`} style={styles.tableRow}>
-                      <td style={styles.tableCell}>{game._id}</td>
-                      <td style={styles.tableCell}>{game.name}</td>
-                      <td style={styles.tableCell}>
-                        {new Date(time).toLocaleTimeString([], {
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })}
-                      </td>
-                      <td style={styles.tableCell}>
-                        {new Date(time).toLocaleDateString()}
-                      </td>
-                      {user.user.role ? (
-                        <td style={styles.tableCell}>
-                          <button
-                            style={styles.deleteButton}
-                            onClick={handleTimeDelete(game._id, time)}
-                          >
-                            Delete
-                          </button>
-                        </td>
-                      ) : (
-                        <></>
-                      )}
-                    </tr>
-                  ))
-                )
-              ) : (
-                <tr style={styles.tableRow}>
-                  <td style={styles.tableCell} colSpan="5">
-                    No games available
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+   <div>
+    <NavBar></NavBar>
+     <div style={styles.pageContainer}>
+     
+     <div style={styles.content}>
+       <div style={styles.header}>
+         <h2>Available Times</h2>
+         <input
+           type="text"
+           placeholder="Search by game name"
+           value={searchTerm}
+           onChange={handleSearchChange}
+           style={styles.searchInput}
+         />
+         <input
+           type="text"
+           placeholder="Search by date (e.g., 09/03/2024)"
+           value={dateSearchTerm}
+           onChange={handleDateSearchChange}
+           style={styles.searchInput}
+         />
+       </div>
+       <div style={styles.tableContainer}>
+         <table style={styles.table}>
+           <thead>
+             <tr>
+               <th style={styles.tableHeader}>ID</th>
+               <th style={styles.tableHeader}>Game Name</th>
+               <th style={styles.tableHeader}>Available Times</th>
+               <th style={styles.tableHeader}>Date</th>
+               {user.user.role ? (
+                 <th style={styles.tableHeader}>Action</th>
+               ) : (
+                 <></>
+               )}
+             </tr>
+           </thead>
+           <tbody>
+             {filteredGames.length > 0 ? (
+               filteredGames.map((game) =>
+                 game.availableTimes.map((time, index) => (
+                   <tr key={`${game._id}-${index}`} style={styles.tableRow}>
+                     <td style={styles.tableCell}>{game._id}</td>
+                     <td style={styles.tableCell}>{game.name}</td>
+                     <td style={styles.tableCell}>
+                       {new Date(time).toLocaleTimeString([], {
+                         hour: "2-digit",
+                         minute: "2-digit",
+                       })}
+                     </td>
+                     <td style={styles.tableCell}>
+                       {new Date(time).toLocaleDateString()}
+                     </td>
+                     {user.user.role ? (
+                       <td style={styles.tableCell}>
+                         <button
+                           style={styles.deleteButton}
+                           onClick={handleTimeDelete(game._id, time)}
+                         >
+                           Delete
+                         </button>
+                       </td>
+                     ) : (
+                       <></>
+                     )}
+                   </tr>
+                 ))
+               )
+             ) : (
+               <tr style={styles.tableRow}>
+                 <td style={styles.tableCell} colSpan="5">
+                   No games available
+                 </td>
+               </tr>
+             )}
+           </tbody>
+         </table>
+       </div>
+     </div>
+   </div>
+   </div>
   );
 };
 

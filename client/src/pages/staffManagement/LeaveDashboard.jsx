@@ -77,7 +77,7 @@ const LeaveRequests = () => {
   };
 
   return (
-    <div>
+    <div style={{backgroundColor: '#161E38'}}>
       <NavBar></NavBar>
       <div style={containerStyle}>
       <h2>LEAVE REQUESTS</h2>

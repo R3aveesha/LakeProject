@@ -64,7 +64,7 @@ const GamesDetails = () => {
     <div>
       <NavBar />
       <div style={containerStyle}>
-        <img src={game.image} style={{ width: "300px" }} alt="Game" />
+        <img src={game.image} style={{ width: "600px" }} alt="Game" />
         <div style={cardStyle}>
           <h2 style={cardTitleStyle}>{game.name}</h2>
           <p>
@@ -82,8 +82,6 @@ const GamesDetails = () => {
           <br />
         </div>
 
-        <FeedbackGame onFeedbackSubmit={handleFeedbackSubmit} />
-
         <h3>Available Times</h3>
         {game.availableTimes && game.availableTimes.length > 0 ? (
           <ul>
@@ -94,6 +92,8 @@ const GamesDetails = () => {
         ) : (
           <p>No available times.</p>
         )}
+
+<FeedbackGame onFeedbackSubmit={handleFeedbackSubmit} />
 
         <div style={feedbackContainerStyle}>
           <h3 style={feedbackTitleStyle}>Feedbacks</h3>
@@ -144,7 +144,7 @@ const cardStyle = {
   maxWidth: "450px", // Slightly increased width for more content space
   width: "100%",
   textAlign: "left",
-  marginBottom: "20px", // Added margin at the bottom for spacing
+  marginTop: "20px",
 };
 
 const cardTitleStyle = {

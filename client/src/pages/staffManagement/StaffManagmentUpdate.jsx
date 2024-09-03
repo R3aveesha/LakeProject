@@ -17,6 +17,7 @@ const StaffUpdatePage = () => {
     salary: "",
   });
   const [loading, setLoading] = useState(true);
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     const fetchStaff = async () => {
@@ -35,6 +36,50 @@ const StaffUpdatePage = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    // Validations
+    if (name === "username") {
+      if (/[^a-zA-Z\s]/.test(value)) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          username: "Name cannot contain symbols or numbers.",
+        }));
+      } else {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          username: "",
+        }));
+      }
+    }
+
+    if (name === "nic") {
+      if (!/^\d{10}[vV]$/.test(value) && !/^\d{12}$/.test(value)) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          nic: "NIC must be 12 digits or 10 digits followed by 'V' or 'v'.",
+        }));
+      } else {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          nic: "",
+        }));
+      }
+    }
+
+    if (name === "address") {
+      if (/[^a-zA-Z0-9\s]/.test(value)) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          address: "Address cannot contain symbols.",
+        }));
+      } else {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          address: "",
+        }));
+      }
+    }
+
     setStaff((prevStaff) => ({
       ...prevStaff,
       [name]: value,
@@ -43,12 +88,18 @@ const StaffUpdatePage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await axios.put(`http://localhost:3000/api/staff/update/${id}`, staff);
-      alert("Staff updated successfully!");
-      navigate("/stafftable"); // Redirect to the staff list page
-    } catch (error) {
-      console.error("Error updating staff:", error);
+    
+    // Final validation check before submission
+    if (!errors.username && !errors.nic && !errors.address) {
+      try {
+        await axios.put(`http://localhost:3000/api/staff/update/${id}`, staff);
+        alert("Staff updated successfully!");
+        navigate("/stafftable"); // Redirect to the staff list page
+      } catch (error) {
+        console.error("Error updating staff:", error);
+      }
+    } else {
+      alert("Please fix the errors before submitting.");
     }
   };
 
@@ -73,6 +124,7 @@ const StaffUpdatePage = () => {
               style={styles.input}
               required
             />
+            {errors.username && <p style={styles.errorText}>{errors.username}</p>}
           </div>
           <div style={styles.inputGroup}>
             <label htmlFor="nic" style={styles.label}>NIC</label>
@@ -85,6 +137,7 @@ const StaffUpdatePage = () => {
               style={styles.input}
               required
             />
+            {errors.nic && <p style={styles.errorText}>{errors.nic}</p>}
           </div>
           <div style={styles.inputGroup}>
             <label htmlFor="email" style={styles.label}>Email</label>
@@ -109,6 +162,7 @@ const StaffUpdatePage = () => {
               style={styles.input}
               required
             />
+            {errors.address && <p style={styles.errorText}>{errors.address}</p>}
           </div>
           <div style={styles.inputGroup}>
             <label htmlFor="role" style={styles.label}>Job Position</label>
@@ -188,8 +242,10 @@ const styles = {
     outline: "none",
     transition: "border-color 0.3s ease",
   },
-  inputFocus: {
-    borderColor: "#007bff",
+  errorText: {
+    color: "#FF6347",
+    fontSize: "0.875rem",
+    marginTop: "8px",
   },
   submitButton: {
     width: "100%",
@@ -208,8 +264,5 @@ const styles = {
     backgroundColor: "#E5C100", // Slightly darker shade for hover effect
   },
 };
-
-
-
 
 export default StaffUpdatePage;
