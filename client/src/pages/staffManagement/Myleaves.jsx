@@ -41,6 +41,7 @@ const Myleaves = () => {
   const containerStyle = {
     backgroundColor: "#161E38", // Updated background color for the container
     padding: "20px",
+    height : "auto",
     minHeight: "100vh",
   };
 

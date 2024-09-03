@@ -37,7 +37,8 @@ const LeaveRequests = () => {
     padding: '20px',
     borderRadius: '8px',
     textAlign: 'center',
-    height: '100vh',
+    minheight: '100vh',
+    height: 'auto',
   };
 
   const tableStyle = {
