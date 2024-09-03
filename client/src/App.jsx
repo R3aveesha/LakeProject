@@ -109,7 +109,7 @@ function App() {
               <Route path="/food/start" element={<FoodOrderStart />} />
               {/*done*/}
               {/*linked*/}
-              <Route path="/food" element={<FoodPage />} /> {/*done*/}
+              <Route path="/food" element={<Foo dPage />} /> {/*done*/}
               {/*linked*/}
               <Route path="/cart" element={<Cart />} />
               {/*done*/}

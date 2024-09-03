@@ -148,6 +148,7 @@ const tableStyle = {
   width: "100%",
   borderCollapse: "collapse",
   marginTop: "20px",
+  borderRadius: "5px",
 };
 
 const thStyle = {
