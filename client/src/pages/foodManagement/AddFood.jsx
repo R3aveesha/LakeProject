@@ -16,15 +16,13 @@ const AddFood = () => {
 
   const [errors, setErrors] = useState({});
 
-  // Set the background color of the page
   useEffect(() => {
     document.body.style.backgroundColor = '#161E38';
     return () => {
-      document.body.style.backgroundColor = ''; // Reset the background color when the component unmounts
+      document.body.style.backgroundColor = '';
     };
   }, []);
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -33,11 +31,9 @@ const AddFood = () => {
     }));
   };
 
-  // Validate the form data
   const validate = () => {
     const errors = {};
 
-    // Name validation: only letters and spaces are allowed
     const nameRegex = /^[A-Za-z\s]+$/;
     if (!formData.name) {
       errors.name = 'Name is required.';
@@ -45,28 +41,32 @@ const AddFood = () => {
       errors.name = 'Name can only contain letters and spaces.';
     }
 
-    // Ingredients validation: required
     if (!formData.ingredients) {
       errors.ingredients = 'Ingredients are required.';
     }
 
-    // Category validation: required
+    const categories = ['Soups', 'Chinese food', 'Pizza', 'Dessert', 'Drinks'];
     if (!formData.category) {
       errors.category = 'Category is required.';
+    } else if (!categories.includes(formData.category)) {
+      errors.category = 'Please select a valid category.';
     }
 
-    // Price validation: must be a valid positive number
     const priceRegex = /^[0-9]+(\.[0-9]{1,2})?$/;
     if (!formData.price) {
       errors.price = 'Price is required.';
-    } else if (!priceRegex.test(formData.price)) {
-      errors.price = 'Price must be a valid number and cannot contain symbols.';
+    } else if (!priceRegex.test(formData.price) || parseFloat(formData.price) <= 0) {
+      errors.price = 'Price must be a positive number.';
+    }
+
+    const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+    if (formData.imageUrl && !urlRegex.test(formData.imageUrl)) {
+      errors.imageUrl = 'Please enter a valid URL.';
     }
 
     return errors;
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
@@ -78,19 +78,17 @@ const AddFood = () => {
     try {
       const dataToSend = {
         ...formData,
-        ingredients: formData.ingredients.split(',').map((item) => item.trim()), // Convert ingredients string to array
+        ingredients: formData.ingredients.split(',').map((item) => item.trim()),
       };
 
       await axios.post('http://localhost:3000/api/food/add-food', dataToSend);
       alert('Food item added successfully!');
-      
-      // Reset the form after successful submission
+
       setFormData({
         name: '',
         ingredients: '',
         category: '',
         price: '',
-        
         isAvailable: true,
         imageUrl: ''
       });
@@ -191,6 +189,7 @@ const AddFood = () => {
               style={styles.input}
               placeholder="Enter image URL"
             />
+            {errors.imageUrl && <span style={styles.error}>{errors.imageUrl}</span>}
           </div>
 
           <button type="submit" style={styles.submitButton}>
