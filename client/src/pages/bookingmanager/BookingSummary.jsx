@@ -5,6 +5,7 @@ import Footer from "../../components/core/Footer";
 import axios from "axios";
 import { useAuth } from "../foodManagement/context/authContext";
 import { BookingContext } from "../foodManagement/context/BookingContext";
+import { FaAlignCenter } from "react-icons/fa";
 
 const BookingSummary = () => {
   const [selectedDate, setSelectedDate] = useState("");
@@ -52,7 +53,9 @@ const BookingSummary = () => {
       <NavBar name="Booking" />
       <div style={styles.container}>
         <h2 style={styles.title}>Booking Summary</h2>
-        <h3>Bill Information</h3>
+
+        <div style={styles.content}>
+        <h3>Bill Information</h3> 
         <p>{`${item.name} booking fee = R.S.${item.price} X ${bookingDetails.seatNumbers.length} seats `}</p>
         <p>{`Total amount = R.S.${bookingDetails.total}`}</p>
         <h3>User information</h3>
@@ -77,6 +80,7 @@ const BookingSummary = () => {
         >
           OK
         </button>
+        </div>
       </div>
       <Footer />
     </>
@@ -84,11 +88,21 @@ const BookingSummary = () => {
 };
 
 const styles = {
+
+  content: {
+    marginTop: "100px",
+    backgroundColor: "#c9cbd0",
+    padding: "20px",
+    width: "50%",
+    margin: "0 auto", // This will center the element horizontally
+    borderRadius: "10px",
+  },
+  
   container: {
     padding: "20px",
     textAlign: "center",
     backgroundColor: "#1E1E1E",
-    color: "#FFFFFF",
+    color: "#1e2026",
     minHeight: "70vh",
   },
   title: {
@@ -105,6 +119,7 @@ const styles = {
   input: {
     padding: "8px",
     fontSize: "16px",
+    borderRadius: "5px",
   },
   button: {
     padding: "10px 20px",

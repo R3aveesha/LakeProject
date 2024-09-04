@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Footer from '../../components/core/Footer';
 import NavBar from '../../components/core/NavBar';
+import FoodSidebar from './FoodSideBar';
 
 const AddFood = () => {
   const [formData, setFormData] = useState({
@@ -35,10 +36,33 @@ const AddFood = () => {
   // Validate the form data
   const validate = () => {
     const errors = {};
-    if (!formData.name) errors.name = 'Name is required.';
-    if (!formData.ingredients) errors.ingredients = 'Ingredients are required.';
-    if (!formData.category) errors.category = 'Category is required.';
-    if (!formData.price || formData.price <= 0) errors.price = 'Valid price is required.';
+
+    // Name validation: only letters and spaces are allowed
+    const nameRegex = /^[A-Za-z\s]+$/;
+    if (!formData.name) {
+      errors.name = 'Name is required.';
+    } else if (!nameRegex.test(formData.name)) {
+      errors.name = 'Name can only contain letters and spaces.';
+    }
+
+    // Ingredients validation: required
+    if (!formData.ingredients) {
+      errors.ingredients = 'Ingredients are required.';
+    }
+
+    // Category validation: required
+    if (!formData.category) {
+      errors.category = 'Category is required.';
+    }
+
+    // Price validation: must be a valid positive number
+    const priceRegex = /^[0-9]+(\.[0-9]{1,2})?$/;
+    if (!formData.price) {
+      errors.price = 'Price is required.';
+    } else if (!priceRegex.test(formData.price)) {
+      errors.price = 'Price must be a valid number and cannot contain symbols.';
+    }
+
     return errors;
   };
 
@@ -66,6 +90,7 @@ const AddFood = () => {
         ingredients: '',
         category: '',
         price: '',
+        
         isAvailable: true,
         imageUrl: ''
       });
@@ -79,6 +104,8 @@ const AddFood = () => {
   return (
     <div>
       <NavBar />
+      <br></br>
+      
       <div style={styles.container}>
         <h2 style={styles.heading}>Add Food Item</h2>
         <form onSubmit={handleSubmit} style={styles.form}>

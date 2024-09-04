@@ -162,7 +162,7 @@ const AddGames = () => {
           </div>
 
           <div style={styles.formGroup}>
-            <label style={styles.label}>Available Times:</label>
+            <label style={styles.label}>Available Dates:</label>
             <DatePicker
               selected={selectedDate}
               onChange={handleDateChange}
@@ -170,6 +170,8 @@ const AddGames = () => {
               placeholderText="Select a date"
               style={styles.input}
             />
+            <br></br>
+            <label style={styles.label}>Available Times:</label>  
             <DatePicker
               selected={selectedTime}
               onChange={handleTimeChange}
@@ -181,6 +183,7 @@ const AddGames = () => {
               placeholderText="Select a time"
               style={styles.input}
             />
+            <br></br>
             <button type="button" onClick={addDateTime} style={styles.addButton}>
               Add Date and Time
             </button>

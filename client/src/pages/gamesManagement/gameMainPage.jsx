@@ -56,7 +56,7 @@ const GameMainPage = () => {
       setFilteredGames(
         games.filter((game) => game.name.toLowerCase().includes(query))
       );
-    }
+    } 
   };
 
   const handleTodayClick = () => {
@@ -90,7 +90,7 @@ const GameMainPage = () => {
             onWaterClick={handleWaterClick}
             onCategoryClick={handleCategoryClick} // For "Show All Games"
           />
-          <h3 onClick={handleTodayClick}>Today available</h3>
+          <h3 onClick={handleTodayClick} style={{ cursor: "pointer" ,color: "yellow", marginLeft: "11vh"}}>Today available</h3>
         </div>
 
         <div style={{ width: "80%", display: "flex", flexFlow: "column wrap" }}>

@@ -84,14 +84,17 @@ const GamesDetails = () => {
 
         <h3>Available Times</h3>
         {game.availableTimes && game.availableTimes.length > 0 ? (
-          <ul>
-            {game.availableTimes.map((time, index) => (
-              <li key={index}>{formatDateTime(time)}</li>
-            ))}
-          </ul>
-        ) : (
-          <p>No available times.</p>
-        )}
+  <ul>
+    {game.availableTimes.map((time, index) => (
+      <li key={index} style={{ marginBottom: '10px' }}>
+        {formatDateTime(time)}
+      </li>
+    ))}
+  </ul>
+) : (
+  <p>No available times.</p>
+)}
+
 
 <FeedbackGame onFeedbackSubmit={handleFeedbackSubmit} />
 
