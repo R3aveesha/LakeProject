@@ -246,6 +246,7 @@ const StaffmemberDash = () => {
               </button>
             </div>
           </div>
+          <h2>Name</h2>{user.user.username}
           <h2>Salary</h2>{user.user.salary}
           <h2>Ot Hours</h2>{salaryData ? salaryData.otHours : 'N/A'}
           <h2>Ot salary</h2>{salaryData  ? salaryData.otSalary : 'N/A'}
