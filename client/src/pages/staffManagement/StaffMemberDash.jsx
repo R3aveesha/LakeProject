@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Footer from "../../components/core/Footer";
 import NavBar from "../../components/core/NavBar";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ import axios from "axios";
 const StaffmemberDash = () => {
   const navigate = useNavigate();
   const { user } = useAuth(); // Get user ID from Auth context
-  const [salaryData, setSalaryData] = useState({});
+  const [salaryData, setSalaryData] = useState({}); // Initialize with an empty object
 
   const handleMarkAttendance = async () => {
     if (!user.user || !user.user._id) {
@@ -101,6 +101,8 @@ const StaffmemberDash = () => {
   
         groupedData[staffMember._id].otHours += attendance.ot || 0;
       });
+
+      console.log(salaryData)
   
       // Calculate OT and final salaries for each employee for the current month
       Object.keys(groupedData).forEach((employeeId) => {
@@ -127,17 +129,11 @@ const StaffmemberDash = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchCurrentMonthData();
-      setSalaryData(data ? data[user.user._id]  : 'Not authenticated' );
+      setSalaryData(data ? data[user.user._id]  : {}); // Default to empty object if not authenticated
     };
 
     fetchData();
   }, []);
-
-  
-
-  
-
-  // console.log(salaryData);
 
   return (
     <div>
@@ -251,8 +247,8 @@ const StaffmemberDash = () => {
             </div>
           </div>
           <h2>Salary</h2>{user.user.salary}
-          <h2>Ot Hours</h2>{salaryData.otHours}
-          <h2>Ot salary</h2>{salaryData.otSalary}
+          <h2>Ot Hours</h2>{salaryData ? salaryData.otHours : 'N/A'}
+          <h2>Ot salary</h2>{salaryData  ? salaryData.otSalary : 'N/A'}
         </div>
       </div>
       <Footer />
