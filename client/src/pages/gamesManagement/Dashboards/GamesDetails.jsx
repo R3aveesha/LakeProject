@@ -64,7 +64,7 @@ const GamesDetails = () => {
     <div>
       <NavBar />
       <div style={containerStyle}>
-        <img src={game.image} style={{ width: "600px" }} alt="Game" />
+        <img src={game.image} style={{ width: "600px",borderRadius: "40px" }} alt="Game" />
         <div style={cardStyle}>
           <h2 style={cardTitleStyle}>{game.name}</h2>
           <p>
@@ -99,7 +99,7 @@ const GamesDetails = () => {
 <FeedbackGame onFeedbackSubmit={handleFeedbackSubmit} />
 
         <div style={feedbackContainerStyle}>
-          <h3 style={feedbackTitleStyle}>Feedbacks</h3>
+          <h3 style={feedbackTitleStyle}>Feedbacks :</h3>
           {feedbacks.length > 0 ? (
             feedbacks.map((feedback) => (
               <div key={feedback._id} style={feedbackStyle}>
