@@ -141,7 +141,7 @@ const StaffmemberDash = () => {
       <div
         style={{
           backgroundColor: "#404267",
-          height: "65vh",
+          height: "100vh",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -246,11 +246,48 @@ const StaffmemberDash = () => {
               </button>
             </div>
           </div>
-          <h2>Name</h2>{user.user.username}
-          <h2>Salary</h2>{user.user.salary}
-          <h2>Ot Hours</h2>{salaryData ? salaryData.otHours : 'N/A'}
-          <h2>Ot salary</h2>{salaryData  ? salaryData.otSalary : 'N/A'}
         </div>
+        <br></br>
+        <div style={{
+  border: '1px solid #ccc',
+  borderRadius: '5px',
+  padding: '20px',
+  maxWidth: '400px',
+  margin: '0 auto',
+  backgroundColor: '#f9f9f9'
+}}>
+  <p style={{
+    fontSize: '16px',
+    fontWeight: 'bold',
+    color: '#333',
+    margin: '10px 0'
+  }}>
+    Name : {user.user.username}
+  </p>
+  <p style={{
+    fontSize: '16px',
+    fontWeight: 'bold',
+    color: '#333',
+    margin: '10px 0'
+  }}>
+    Salary : {user.user.salary}
+  </p>
+  <p style={{
+    fontSize: '16px',
+    color: '#666',
+    margin: '10px 0'
+  }}>
+    Ot Hours : {salaryData ? salaryData.otHours : 'N/A'}
+  </p>
+  <p style={{
+    fontSize: '16px',
+    color: '#666',
+    margin: '10px 0'
+  }}>
+    Ot Salary : {salaryData ? salaryData.otSalary : 'N/A'}
+  </p>
+</div>
+
       </div>
       <Footer />
     </div>
