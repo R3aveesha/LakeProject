@@ -95,7 +95,7 @@ const BookingSummary = () => {
 
 const styles = {
   content: {
-    marginTop: "100px",
+    marginTop: "100px", 
     backgroundColor: "#c9cbd0",
     padding: "20px",
     width: "50%",
@@ -105,7 +105,7 @@ const styles = {
   container: {
     padding: "20px",
     textAlign: "center",
-    backgroundColor: "#1E1E1E",
+    backgroundColor: "#161E38",
     color: "#000000",
     minHeight: "70vh",
   },
