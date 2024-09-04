@@ -59,6 +59,16 @@ const GameMainPage = () => {
     }
   };
 
+  const handleTodayClick = () => {
+    const today = new Date().toISOString().split('T')[0]; // Get today's date in 'YYYY-MM-DD' format
+
+    const todayGames = games.filter((game) => {
+      return game.availableTimes.some((time) => time.split('T')[0] === today);
+    });
+  
+    setFilteredGames(todayGames);
+  };
+
   return (
     <section style={{ backgroundColor: "#161E38" }}>
       <NavFunction name={"games"} />
@@ -80,6 +90,7 @@ const GameMainPage = () => {
             onWaterClick={handleWaterClick}
             onCategoryClick={handleCategoryClick} // For "Show All Games"
           />
+          <h3 onClick={handleTodayClick}>Today available</h3>
         </div>
 
         <div style={{ width: "80%", display: "flex", flexFlow: "column wrap" }}>
