@@ -110,7 +110,7 @@ const FoodOrderManagement = () => {
                   </td>
                   <td style={tdStyle}>${order.totalPrice.toFixed(2)}</td>
                   <td style={tdStyle}>
-                    {order.isCompleted ? "Completed" : "Pending"}
+                    {order.isCompleted ? "paid" : "not paid"}
                   </td>
                   <td style={tdStyle}>
                     <button
