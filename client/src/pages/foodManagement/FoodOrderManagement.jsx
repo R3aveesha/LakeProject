@@ -3,6 +3,7 @@ import axios from "axios";
 import Footer from "../../components/core/Footer";
 import NavBar from "../../components/core/NavBar";
 import ReportButton from "../../components/reUseable/ReportButton";
+import DropdownNavBar from "../../components/core/DropDownbar";
 
 const FoodOrderManagement = () => {
   const [orders, setOrders] = useState([]);
@@ -98,9 +99,11 @@ const FoodOrderManagement = () => {
             <option value="not_completed">Not paied</option>
           </select>
         </div>
+        <DropdownNavBar></DropdownNavBar>
         <table
           style={{ width: "100%", borderCollapse: "collapse", color: "#fff", marginTop: "80px" }}
         >
+          
           <thead>
             <tr>
               <th style={thStyle}>Order ID</th>
